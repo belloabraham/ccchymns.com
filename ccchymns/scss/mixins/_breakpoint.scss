@@ -1,0 +1,5 @@
+@mixin DisplaySize4k {
+  @media (min-width: 2560px) {
+    @content;
+  }
+}
