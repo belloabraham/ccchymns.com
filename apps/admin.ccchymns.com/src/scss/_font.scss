@@ -1,0 +1,14 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;1,6..12,400&display=swap');
+$primary-font: 'Nunito Sans';
+
+//Material design component
+html {
+  --mdc-typography-font-family: $primary-font, sans-serif;
+  --mdc-typography-button-font-weight: 700;
+  --mdc-typography-button-text-transform: none;
+}
+
+body {
+  font-family: $primary-font, sans-serif;
+}
