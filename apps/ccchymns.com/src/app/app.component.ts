@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'ccchymns.com-root',
+  selector: 'ccchymns-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
