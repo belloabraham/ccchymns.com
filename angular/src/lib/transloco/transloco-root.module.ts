@@ -11,7 +11,7 @@ import { Language } from '../i18n/language';
         availableLangs: [Language.ENGLISH, Language.FRENCH],
         defaultLang: Language.ENGLISH,
         reRenderOnLangChange: true,
-        prodMode: isDevMode(),
+        prodMode: !isDevMode(),
       },
       loader: TranslocoLoaderService,
     }),

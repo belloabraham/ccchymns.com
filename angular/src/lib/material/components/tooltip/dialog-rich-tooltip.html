@@ -1,0 +1,19 @@
+
+<div class="mdc-tooltip-wrapper--rich">
+  <div [id]="id" #mdcTooltip class="mdc-tooltip mdc-tooltip--rich" aria-hidden="true" tabindex="-1"
+     [attr.data-mdc-tooltip-persistent]="persistent" role="dialog">
+    <div class="mdc-tooltip__surface mdc-tooltip__surface-animation">
+      <ng-content select=".mdc-tooltip__title">
+      </ng-content>
+
+      <p class="mdc-tooltip__content">
+        <ng-content>
+        </ng-content>
+      </p>
+      <div class="mdc-tooltip--rich-actions">
+        <ng-content select=".mdc-tooltip--rich-action">
+        </ng-content>
+      </div>
+    </div>
+  </div>
+</div>

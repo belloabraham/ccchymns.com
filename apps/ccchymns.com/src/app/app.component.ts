@@ -4,7 +4,7 @@ import { ILanguageResourceService, LANGUAGE_RESOURCE_TOKEN, Language } from '@cc
 import { SubSink } from 'subsink';
 
 @Component({
-  selector: 'ccchymns-root',
+  selector: 'ccc-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })

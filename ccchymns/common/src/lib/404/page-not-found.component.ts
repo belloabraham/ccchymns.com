@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { LanguageResourceKey } from './i18n/language-resource-key';
 
 @Component({
-  selector: 'ccchymns-page-not-found',
+  selector: 'ccc-page-not-found',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './page-not-found.component.html',
