@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@ccchymns.com/angular": ["angular/src/index.ts"],
       "@ccchymns.com/common": ["ccchymns/common/src/index.ts"]
     }
   },
