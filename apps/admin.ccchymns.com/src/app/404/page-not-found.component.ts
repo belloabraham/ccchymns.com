@@ -9,7 +9,7 @@ import { getLanguageLoadedSelector } from '../../store/selectors/language-resour
 
 
 @Component({
-  selector: 'ccc-page-not-found',
+  selector: 'app-page-not-found',
   standalone: true,
   imports: [CommonModule, CCCHymnsPageNotFoundComponent],
   templateUrl: './page-not-found.component.html',
