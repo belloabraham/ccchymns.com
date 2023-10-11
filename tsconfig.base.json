@@ -16,7 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@ccchymns.com/angular": ["angular/src/index.ts"],
-      "@ccchymns.com/common": ["ccchymns/common/src/index.ts"]
+      "@ccchymns.com/common": ["ccchymns/common/src/index.ts"],
+      "@ccchymns.com/ui": ["ccchymns/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
