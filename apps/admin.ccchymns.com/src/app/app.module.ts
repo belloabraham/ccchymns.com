@@ -1,17 +1,27 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
-import { appRoutes } from './app.routes';
-import { NxWelcomeComponent } from './nx-welcome.component';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
+import { TranslocoRootModule } from '@ccchymns.com/angular';
+import { environment } from '../environments/environment';
+import { StoreModule } from '@ngrx/store';
+import { languageLoadedFeature } from '../store/selectors/language-resource.selector';
+
 
 @NgModule({
-  declarations: [AppComponent, NxWelcomeComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes, { initialNavigation: 'enabledBlocking' }),
+    HttpClientModule,
+    CommonModule,
+    TranslocoRootModule,
+    AppRoutingModule,
+    StoreModule.forRoot({}),
+    StoreModule.forFeature(languageLoadedFeature),
+    environment.imports,
   ],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
