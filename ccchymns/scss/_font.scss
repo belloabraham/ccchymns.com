@@ -1,0 +1,24 @@
+@use 'gerillass';
+@use './mixins/breakpoint';
+@use './variables/colors';
+
+html {
+  font-size: 85%;
+  @include gerillass.breakpoint(min, medium) {
+    font-size: 95%;
+  }
+  @include gerillass.breakpoint(min, large) {
+    font-size: 100%;
+  }
+  @include gerillass.breakpoint(min, xlarge) {
+    font-size: 105%;
+  }
+  @include breakpoint.DisplaySize4k {
+    font-size: 140%;
+  }
+}
+
+body {
+  scroll-behavior: smooth;
+  color: colors.$text-light;
+}
