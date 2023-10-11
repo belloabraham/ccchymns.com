@@ -20,7 +20,10 @@
           "apps/ccchymns.com/src/assets"
         ],
         "styles": ["apps/ccchymns.com/src/styles.scss"],
-        "scripts": []
+        "scripts": [],
+        "stylePreprocessorOptions": {
+          "includePaths": ["ccchymns/scss"]
+        }
       },
       "configurations": {
         "production": {
