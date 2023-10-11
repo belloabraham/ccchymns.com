@@ -14,9 +14,12 @@
     "@angular/platform-browser-dynamic": "~16.2.0",
     "@angular/router": "~16.2.0",
     "@ngneat/transloco": "^6.0.0",
+    "@ngrx/store": "^16.3.0",
+    "@ngrx/store-devtools": "^16.3.0",
     "@nx/angular": "16.10.0",
     "dompurify": "^3.0.6",
     "rxjs": "~7.8.0",
+    "subsink": "^1.0.2",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
   },
