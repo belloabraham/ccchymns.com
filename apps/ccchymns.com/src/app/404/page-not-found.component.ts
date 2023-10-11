@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CCCHymnsPageNotFoundComponent } from '@ccchymns.com/common';
 
 @Component({
-  selector: 'ccc-page-not-found',
+  selector: 'app-page-not-found',
   standalone: true,
   imports: [CommonModule, CCCHymnsPageNotFoundComponent],
   templateUrl: './page-not-found.component.html',

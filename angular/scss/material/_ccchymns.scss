@@ -1,4 +1,4 @@
-@use '../../../mydailydigest/scss/variables/colors';
+@use '../../../ccchymns/scss/variables/colors';
 @forward './theme' with (
   $primary: colors.$primary-500,
   $secondary: colors.$accent-500,

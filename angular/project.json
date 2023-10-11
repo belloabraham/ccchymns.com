@@ -68,7 +68,11 @@
         "outputDir": "dist/storybook/angular",
         "configDir": "angular/.storybook",
         "browserTarget": "angular:build-storybook",
-        "compodoc": false
+        "compodoc": false,
+        "styles": ["angular/src/styles.scss"],
+        "stylePreprocessorOptions": {
+          "includePaths": ["ccchymns/scss"]
+        }
       },
       "configurations": {
         "ci": {
