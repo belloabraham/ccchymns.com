@@ -381,79 +381,79 @@
 	--bs-cyan-radio-svg: var(--bs-radio-svg-dark);
 	--bs-cyan-switch-svg: var(--bs-switch-svg-dark);
 
-	/* Contessa */
+	/* blue */
 
-	--bs-contessa-hue: 221.5;
-	--bs-contessa-saturation: 100%;
-	--bs-contessa-100-hsl: var(--bs-contessa-hue), var(--bs-contessa-saturation), 90%;
-	--bs-contessa-200-hsl: var(--bs-contessa-hue), var(--bs-contessa-saturation), 80%;
-	--bs-contessa-300-hsl: var(--bs-contessa-hue), var(--bs-contessa-saturation), 70%;
-	--bs-contessa-400-hsl: var(--bs-contessa-hue), var(--bs-contessa-saturation), 60%;
-	--bs-contessa-500-hsl: var(--bs-contessa-hue), var(--bs-contessa-saturation), 50%;
-	--bs-contessa-600-hsl: var(--bs-contessa-hue), var(--bs-contessa-saturation), 40%;
-	--bs-contessa-700-hsl: var(--bs-contessa-hue), var(--bs-contessa-saturation), 30%;
-	--bs-contessa-800-hsl: var(--bs-contessa-hue), var(--bs-contessa-saturation), 20%;
-	--bs-contessa-900-hsl: var(--bs-contessa-hue), var(--bs-contessa-saturation), 10%;
-	--bs-contessa-100: hsl(var(--bs-contessa-100-hsl));
-	--bs-contessa-200: hsl(var(--bs-contessa-200-hsl));
-	--bs-contessa-300: hsl(var(--bs-contessa-300-hsl));
-	--bs-contessa-400: hsl(var(--bs-contessa-400-hsl));
-	--bs-contessa-500: hsl(var(--bs-contessa-500-hsl));
-	--bs-contessa-600: hsl(var(--bs-contessa-600-hsl));
-	--bs-contessa-700: hsl(var(--bs-contessa-700-hsl));
-	--bs-contessa-800: hsl(var(--bs-contessa-800-hsl));
-	--bs-contessa-900: hsl(var(--bs-contessa-900-hsl));
-	--bs-contessa-hsl: var(--bs-contessa-500-hsl);
-	--bs-contessa: hsl(var(--bs-contessa-hsl));
-	--bs-contessa-foreground-hsl: var(--bs-white-hsl);
-	--bs-contessa-foreground: hsl(var(--bs-contessa-foreground-hsl));
-	--bs-contessa-text-emphasis-hsl: var(--bs-contessa-600-hsl);
-	--bs-contessa-text-emphasis: hsl(var(--bs-contessa-text-emphasis-hsl));
-	--bs-contessa-hover-bg: var(--bs-contessa-600);
-	--bs-contessa-active-bg: var(--bs-contessa-700);
-	--bs-contessa-bg-subtle: hsl(var(--bs-contessa-hue), var(--bs-contessa-saturation), 95%);
-	--bs-contessa-border-subtle: var(--bs-contessa-400);
-	--bs-contessa-checkbox-svg: var(--bs-checkbox-svg-light);
-	--bs-contessa-dash-svg: var(--bs-dash-svg-light);
-	--bs-contessa-radio-svg: var(--bs-radio-svg-light);
-	--bs-contessa-switch-svg: var(--bs-switch-svg-light);
+	--bs-blue-hue: 221.5;
+	--bs-blue-saturation: 100%;
+	--bs-blue-100-hsl: var(--bs-blue-hue), var(--bs-blue-saturation), 90%;
+	--bs-blue-200-hsl: var(--bs-blue-hue), var(--bs-blue-saturation), 80%;
+	--bs-blue-300-hsl: var(--bs-blue-hue), var(--bs-blue-saturation), 70%;
+	--bs-blue-400-hsl: var(--bs-blue-hue), var(--bs-blue-saturation), 60%;
+	--bs-blue-500-hsl: var(--bs-blue-hue), var(--bs-blue-saturation), 50%;
+	--bs-blue-600-hsl: var(--bs-blue-hue), var(--bs-blue-saturation), 40%;
+	--bs-blue-700-hsl: var(--bs-blue-hue), var(--bs-blue-saturation), 30%;
+	--bs-blue-800-hsl: var(--bs-blue-hue), var(--bs-blue-saturation), 20%;
+	--bs-blue-900-hsl: var(--bs-blue-hue), var(--bs-blue-saturation), 10%;
+	--bs-blue-100: hsl(var(--bs-blue-100-hsl));
+	--bs-blue-200: hsl(var(--bs-blue-200-hsl));
+	--bs-blue-300: hsl(var(--bs-blue-300-hsl));
+	--bs-blue-400: hsl(var(--bs-blue-400-hsl));
+	--bs-blue-500: hsl(var(--bs-blue-500-hsl));
+	--bs-blue-600: hsl(var(--bs-blue-600-hsl));
+	--bs-blue-700: hsl(var(--bs-blue-700-hsl));
+	--bs-blue-800: hsl(var(--bs-blue-800-hsl));
+	--bs-blue-900: hsl(var(--bs-blue-900-hsl));
+	--bs-blue-hsl: var(--bs-blue-500-hsl);
+	--bs-blue: hsl(var(--bs-blue-hsl));
+	--bs-blue-foreground-hsl: var(--bs-white-hsl);
+	--bs-blue-foreground: hsl(var(--bs-blue-foreground-hsl));
+	--bs-blue-text-emphasis-hsl: var(--bs-blue-600-hsl);
+	--bs-blue-text-emphasis: hsl(var(--bs-blue-text-emphasis-hsl));
+	--bs-blue-hover-bg: var(--bs-blue-600);
+	--bs-blue-active-bg: var(--bs-blue-700);
+	--bs-blue-bg-subtle: hsl(var(--bs-blue-hue), var(--bs-blue-saturation), 95%);
+	--bs-blue-border-subtle: var(--bs-blue-400);
+	--bs-blue-checkbox-svg: var(--bs-checkbox-svg-light);
+	--bs-blue-dash-svg: var(--bs-dash-svg-light);
+	--bs-blue-radio-svg: var(--bs-radio-svg-light);
+	--bs-blue-switch-svg: var(--bs-switch-svg-light);
 
 	/* Primary */
 
-	--bs-primary-hue: var(--bs-contessa-hue);
-	--bs-primary-saturation: var(--bs-contessa-saturation);
-	--bs-primary-100-hsl: var(--bs-contessa-100-hsl);
-	--bs-primary-200-hsl: var(--bs-contessa-200-hsl);
-	--bs-primary-300-hsl: var(--bs-contessa-300-hsl);
-	--bs-primary-400-hsl: var(--bs-contessa-400-hsl);
-	--bs-primary-500-hsl: var(--bs-contessa-500-hsl);
-	--bs-primary-600-hsl: var(--bs-contessa-600-hsl);
-	--bs-primary-700-hsl: var(--bs-contessa-700-hsl);
-	--bs-primary-800-hsl: var(--bs-contessa-800-hsl);
-	--bs-primary-900-hsl: var(--bs-contessa-900-hsl);
-	--bs-primary-100: var(--bs-contessa-100);
-	--bs-primary-200: var(--bs-contessa-200);
-	--bs-primary-300: var(--bs-contessa-300);
-	--bs-primary-400: var(--bs-contessa-400);
-	--bs-primary-500: var(--bs-contessa-500);
-	--bs-primary-600: var(--bs-contessa-600);
-	--bs-primary-700: var(--bs-contessa-700);
-	--bs-primary-800: var(--bs-contessa-800);
-	--bs-primary-900: var(--bs-contessa-900);
-	--bs-primary-hsl: var(--bs-contessa-hsl);
-	--bs-primary: var(--bs-contessa);
-	--bs-primary-foreground-hsl: var(--bs-contessa-foreground-hsl);
-	--bs-primary-foreground: var(--bs-contessa-foreground);
-	--bs-primary-text-emphasis-hsl: var(--bs-contessa-text-emphasis-hsl);
-	--bs-primary-text-emphasis: var(--bs-contessa-text-emphasis);
-	--bs-primary-hover-bg: var(--bs-contessa-hover-bg);
-	--bs-primary-active-bg: var(--bs-contessa-active-bg);
-	--bs-primary-bg-subtle: var(--bs-contessa-bg-subtle);
-	--bs-primary-border-subtle: var(--bs-contessa-border-subtle);
-	--bs-primary-checkbox-svg: var(--bs-contessa-checkbox-svg);
-	--bs-primary-dash-svg: var(--bs-contessa-dash-svg);
-	--bs-primary-radio-svg: var(--bs-contessa-radio-svg);
-	--bs-primary-switch-svg: var(--bs-contessa-switch-svg);
+	--bs-primary-hue: var(--bs-blue-hue);
+	--bs-primary-saturation: var(--bs-blue-saturation);
+	--bs-primary-100-hsl: var(--bs-blue-100-hsl);
+	--bs-primary-200-hsl: var(--bs-blue-200-hsl);
+	--bs-primary-300-hsl: var(--bs-blue-300-hsl);
+	--bs-primary-400-hsl: var(--bs-blue-400-hsl);
+	--bs-primary-500-hsl: var(--bs-blue-500-hsl);
+	--bs-primary-600-hsl: var(--bs-blue-600-hsl);
+	--bs-primary-700-hsl: var(--bs-blue-700-hsl);
+	--bs-primary-800-hsl: var(--bs-blue-800-hsl);
+	--bs-primary-900-hsl: var(--bs-blue-900-hsl);
+	--bs-primary-100: var(--bs-blue-100);
+	--bs-primary-200: var(--bs-blue-200);
+	--bs-primary-300: var(--bs-blue-300);
+	--bs-primary-400: var(--bs-blue-400);
+	--bs-primary-500: var(--bs-blue-500);
+	--bs-primary-600: var(--bs-blue-600);
+	--bs-primary-700: var(--bs-blue-700);
+	--bs-primary-800: var(--bs-blue-800);
+	--bs-primary-900: var(--bs-blue-900);
+	--bs-primary-hsl: var(--bs-blue-hsl);
+	--bs-primary: var(--bs-blue);
+	--bs-primary-foreground-hsl: var(--bs-blue-foreground-hsl);
+	--bs-primary-foreground: var(--bs-blue-foreground);
+	--bs-primary-text-emphasis-hsl: var(--bs-blue-text-emphasis-hsl);
+	--bs-primary-text-emphasis: var(--bs-blue-text-emphasis);
+	--bs-primary-hover-bg: var(--bs-blue-hover-bg);
+	--bs-primary-active-bg: var(--bs-blue-active-bg);
+	--bs-primary-bg-subtle: var(--bs-blue-bg-subtle);
+	--bs-primary-border-subtle: var(--bs-blue-border-subtle);
+	--bs-primary-checkbox-svg: var(--bs-blue-checkbox-svg);
+	--bs-primary-dash-svg: var(--bs-blue-dash-svg);
+	--bs-primary-radio-svg: var(--bs-blue-radio-svg);
+	--bs-primary-switch-svg: var(--bs-blue-switch-svg);
 
 	/* Secondary */
 
@@ -771,19 +771,19 @@
 	--bs-cyan-bg-subtle: hsl(var(--bs-cyan-hue), calc(var(--bs-cyan-saturation)/3), 15%);
 	--bs-cyan-border-subtle: var(--bs-cyan-600);
 
-	/* Contessa */
+	/* blue */
 
-	--bs-contessa-text-emphasis-hsl: var(--bs-contessa-400-hsl);
-	--bs-contessa-text-emphasis: hsl(var(--bs-contessa-text-emphasis-hsl));
-	--bs-contessa-bg-subtle: hsl(var(--bs-contessa-hue), calc(var(--bs-contessa-saturation)/3), 15%);
-	--bs-contessa-border-subtle: var(--bs-contessa-600);
+	--bs-blue-text-emphasis-hsl: var(--bs-blue-400-hsl);
+	--bs-blue-text-emphasis: hsl(var(--bs-blue-text-emphasis-hsl));
+	--bs-blue-bg-subtle: hsl(var(--bs-blue-hue), calc(var(--bs-blue-saturation)/3), 15%);
+	--bs-blue-border-subtle: var(--bs-blue-600);
 
 	/* Primary */
 
-	--bs-primary-text-emphasis-hsl: var(--bs-contessa-text-emphasis-hsl);
-	--bs-primary-text-emphasis: var(--bs-contessa-text-emphasis);
-	--bs-primary-bg-subtle: var(--bs-contessa-bg-subtle);
-	--bs-primary-border-subtle: var(--bs-contessa-border-subtle);
+	--bs-primary-text-emphasis-hsl: var(--bs-blue-text-emphasis-hsl);
+	--bs-primary-text-emphasis: var(--bs-blue-text-emphasis);
+	--bs-primary-bg-subtle: var(--bs-blue-bg-subtle);
+	--bs-primary-border-subtle: var(--bs-blue-border-subtle);
 
 	/* Secondary */
 
