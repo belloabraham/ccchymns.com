@@ -1,0 +1,20 @@
+
+<!-- Look for the content of the button that is a element that have the class .ccc-i-start and put it here -->
+<ng-content [select]="'.ccc-i-start'">
+</ng-content>
+
+<!-- Take the content of the button tag, put it in a span with the class mdc-button__label -->
+<span class="mdc-button__label"><ng-content></ng-content></span>
+
+<!-- Look for the content of the button that is a element that have the class .ccc-i-end and put it here -->
+<ng-content [select]="'.ccc-i-end'">
+</ng-content>
+
+<!-- Look for the content of the button that is an element that have the class .badge and put it here -->
+<ng-content [[select]]="'.badge'">
+</ng-content>
+
+<!-- Required by the button for ripple and to enable focus state -->
+<span class="mdc-button__ripple"></span>
+<span class="mdc-button__focus-ring"></span>
+<span class="mdc-button__touch"></span>

@@ -2,7 +2,7 @@
   "name": "common",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "ccchymns/common/src",
-  "prefix": "ccchymns",
+  "prefix": "ccc",
   "tags": [],
   "projectType": "library",
   "targets": {
