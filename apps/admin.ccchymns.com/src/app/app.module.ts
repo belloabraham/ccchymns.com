@@ -15,7 +15,6 @@ import { languageLoadedFeature } from '../store/selectors/language-resource.sele
   imports: [
     BrowserModule,
     HttpClientModule,
-    CommonModule,
     TranslocoRootModule,
     AppRoutingModule,
     StoreModule.forRoot({}),

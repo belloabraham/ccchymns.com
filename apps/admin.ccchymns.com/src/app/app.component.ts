@@ -13,7 +13,7 @@ import {
 } from '../store/actions/language-resource.actions';
 
 @Component({
-  selector: 'ccchymns-root',
+  selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
@@ -26,7 +26,7 @@ export class AppComponent implements OnDestroy, OnInit {
     private languageResourceService: ILanguageResourceService,
     private router: Router
   ) {}
-  
+
   ngOnInit(): void {
     this.loadLanguageResource(Language.ENGLISH, () => {
       this.onLanguageResourceLoaded();

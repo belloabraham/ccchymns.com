@@ -2,7 +2,7 @@
   "name": "angular",
   "$schema": "../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "angular/src",
-  "prefix": "ccchymns.com",
+  "prefix": "ccc",
   "tags": [],
   "projectType": "library",
   "targets": {
@@ -45,6 +45,57 @@
           "angular/**/*.html",
           "angular/package.json"
         ]
+      }
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "port": 4400,
+        "configDir": "angular/.storybook",
+        "browserTarget": "angular:build-storybook",
+        "compodoc": false
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@storybook/angular:build-storybook",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "outputDir": "dist/storybook/angular",
+        "configDir": "angular/.storybook",
+        "browserTarget": "angular:build-storybook",
+        "compodoc": false,
+        "styles": ["angular/src/styles.scss"],
+        "stylePreprocessorOptions": {
+          "includePaths": ["ccchymns/scss"]
+        }
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "test-storybook": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "test-storybook -c angular/.storybook --url=http://localhost:4400"
+      }
+    },
+    "static-storybook": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "angular:build-storybook",
+        "staticFilePath": "dist/storybook/angular"
+      },
+      "configurations": {
+        "ci": {
+          "buildTarget": "angular:build-storybook:ci"
+        }
       }
     }
   }

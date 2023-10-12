@@ -1,0 +1,16 @@
+@use '../../../ccchymns/scss/variables/colors';
+@forward './theme' with (
+  $primary: colors.$primary-500,
+  $secondary: colors.$accent-500,
+  $on-primary: white,
+  $on-secondary: colors.$text-light
+);
+@forward './button';
+@forward './icon-button';
+@forward './elevation';
+@forward './tooltip';
+
+.button-secondary {
+  --mdc-theme-primary: white;
+  --mdc-theme-on-primary: colors.$text-light;
+}
