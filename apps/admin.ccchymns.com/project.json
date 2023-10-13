@@ -8,16 +8,12 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/admin.ccchymns.com",
         "index": "apps/admin.ccchymns.com/src/index.html",
         "main": "apps/admin.ccchymns.com/src/main.ts",
-        "polyfills": [
-          "zone.js"
-        ],
+        "polyfills": ["zone.js"],
         "tsConfig": "apps/admin.ccchymns.com/tsconfig.app.json",
         "assets": [
           "apps/admin.ccchymns.com/src/favicon.ico",
@@ -29,13 +25,13 @@
           }
         ],
         "styles": [
+          "node_modules/@taiga-ui/core/styles/taiga-ui-theme.less",
           "apps/admin.ccchymns.com/src/styles.scss"
         ],
         "scripts": [],
         "stylePreprocessorOptions": {
           "includePaths": [
-            "ccchymns/scss",
-            "../../node_modules/@taiga-ui/core/styles"
+            "ccchymns/scss"
           ]
         }
       },
@@ -92,9 +88,7 @@
     },
     "lint": {
       "executor": "@nx/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [
           "apps/admin.ccchymns.com/**/*.ts",
@@ -104,9 +98,7 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/{projectRoot}"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "headers": {
           "Content-Security-Policy": "trusted-types default angular angular#bundler; require-trusted-types-for 'script';"
