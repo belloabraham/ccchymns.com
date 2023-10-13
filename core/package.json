@@ -2,6 +2,7 @@
   "name": "@ccchymns.com/core",
   "version": "0.0.1",
   "dependencies": {
+    "notiflix": "^3.2.6",
     "tslib": "^2.3.0"
   },
   "type": "commonjs",
