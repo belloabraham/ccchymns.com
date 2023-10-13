@@ -25,14 +25,11 @@
           }
         ],
         "styles": [
-          "node_modules/@taiga-ui/core/styles/taiga-ui-theme.less",
           "apps/admin.ccchymns.com/src/styles.scss"
         ],
         "scripts": [],
         "stylePreprocessorOptions": {
-          "includePaths": [
-            "ccchymns/scss"
-          ]
+          "includePaths": ["ccchymns/scss"]
         }
       },
       "configurations": {

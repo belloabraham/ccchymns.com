@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CCCBadgeDirective, CCCBadgeRoundedDirective } from './directives';
-import { CCCRoundedBadgeComponent } from './components/badge/rounded-badge.component';
+import { CCCRoundedBadgeComponent } from './components';
 
 const COMMON = [
   CCCBadgeDirective,
