@@ -17,14 +17,19 @@
         "tsConfig": "apps/admin.ccchymns.com/tsconfig.app.json",
         "assets": [
           "apps/admin.ccchymns.com/src/favicon.ico",
-          "apps/admin.ccchymns.com/src/assets"
+          "apps/admin.ccchymns.com/src/assets",
+          {
+            "glob": "**/*",
+            "input": "node_modules/@taiga-ui/icons/src",
+            "output": "assets/taiga-ui/icons"
+          }
         ],
-        "styles": ["apps/admin.ccchymns.com/src/styles.scss"],
+        "styles": [
+          "apps/admin.ccchymns.com/src/styles.scss"
+        ],
         "scripts": [],
         "stylePreprocessorOptions": {
-          "includePaths": [
-            "ccchymns/scss"
-          ]
+          "includePaths": ["ccchymns/scss"]
         }
       },
       "configurations": {

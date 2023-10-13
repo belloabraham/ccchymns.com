@@ -1,7 +1,8 @@
+import { TuiRootModule, TuiDialogModule } from '@taiga-ui/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { TranslocoRootModule } from '@ccchymns.com/angular';
@@ -20,6 +21,9 @@ import { languageLoadedFeature } from '../store/selectors/language-resource.sele
     StoreModule.forRoot({}),
     StoreModule.forFeature(languageLoadedFeature),
     environment.imports,
+    BrowserAnimationsModule,
+    TuiRootModule,
+    TuiDialogModule,
   ],
   bootstrap: [AppComponent],
 })

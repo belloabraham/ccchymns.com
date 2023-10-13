@@ -1,13 +1,12 @@
-
 $primary-font: 'Nunito Sans';
 
 //Material design component
 html {
-  --mdc-typography-font-family: $primary-font, sans-serif;
+  --mdc-typography-font-family: $primary-font, sans-serif !important;
   --mdc-typography-button-font-weight: 700;
   --mdc-typography-button-text-transform: none;
 }
 
 body {
-  font-family: $primary-font, sans-serif;
+  font-family: $primary-font, sans-serif !important;
 }

@@ -1,1 +1,11 @@
-<router-outlet></router-outlet>
+<tui-root>
+  <div *ngIf="routerIsNavigating$ | async" class="fixed-top">
+    <p class="indeterminate-progress-bar"></p>
+  </div>
+
+  <div *ngIf="(deviceIsConnectedToTheInternet$ | async) === false" class="warning-panel p-2  fixed-top">
+    <span *transloco="let t"> {{ t(languageResourceKey.NO_INTERNET_CONNECTION_NOTICE , {value: t(appNameKey)}) }}</span>
+  </div>
+
+  <router-outlet></router-outlet>
+</tui-root>

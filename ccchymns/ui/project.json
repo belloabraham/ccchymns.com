@@ -48,19 +48,7 @@
         "outputDir": "dist/storybook/ui",
         "configDir": "ccchymns/ui/.storybook",
         "browserTarget": "ui:build-storybook",
-        "compodoc": false,
-        "styles": ["ccchymns/ui/src/styles.scss"],
-        "stylePreprocessorOptions": {
-          "includePaths": [
-            "ccchymns/scss/animations",
-            "ccchymns/scss",
-            "ccchymns/scss/mixins",
-            "ccchymns/scss/transitions",
-            "ccchymns/scss/variables",
-            "ccchymns/scss/components",
-            "angular/scss"
-          ]
-        }
+        "compodoc": false
       },
       "configurations": {
         "ci": {

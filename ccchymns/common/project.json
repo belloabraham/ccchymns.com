@@ -6,22 +6,6 @@
   "tags": [],
   "projectType": "library",
   "targets": {
-    "build": {
-      "executor": "@nx/angular:ng-packagr-lite",
-      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
-      "options": {
-        "project": "ccchymns/common/ng-package.json"
-      },
-      "configurations": {
-        "production": {
-          "tsConfig": "ccchymns/common/tsconfig.lib.prod.json"
-        },
-        "development": {
-          "tsConfig": "ccchymns/common/tsconfig.lib.json"
-        }
-      },
-      "defaultConfiguration": "production"
-    },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
@@ -42,8 +26,7 @@
       "options": {
         "lintFilePatterns": [
           "ccchymns/common/**/*.ts",
-          "ccchymns/common/**/*.html",
-          "ccchymns/common/package.json"
+          "ccchymns/common/**/*.html"
         ]
       }
     }

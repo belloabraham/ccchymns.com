@@ -7,22 +7,22 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
-  CCCHymnsPageNotFoundComponent,
+  CCCPageNotFoundComponent,
   LanguageResourceKey,
 } from '@ccchymns.com/common';
+import { getLanguageLoadedSelector } from '../../store/selectors/language-resource.selector';
 import {
   ILanguageResourceService,
   LANGUAGE_RESOURCE_TOKEN,
 } from '@ccchymns.com/angular';
-import { Title } from '@angular/platform-browser';
 import { SubSink } from 'subsink';
 import { Store } from '@ngrx/store';
-import { getLanguageLoadedSelector } from '../../store/selectors/language-resource.selector';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-page-not-found',
   standalone: true,
-  imports: [CommonModule, CCCHymnsPageNotFoundComponent],
+  imports: [CommonModule, CCCPageNotFoundComponent],
   templateUrl: './page-not-found.component.html',
   styleUrls: ['./page-not-found.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

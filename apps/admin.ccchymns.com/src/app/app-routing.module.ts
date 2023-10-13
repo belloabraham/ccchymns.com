@@ -15,7 +15,7 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes, {
       initialNavigation: 'enabledBlocking',
-      enableTracing: isDevMode(),
+     // enableTracing: isDevMode(),
     }),
   ],
   exports: [RouterModule],
