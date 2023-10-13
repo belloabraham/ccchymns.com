@@ -2,7 +2,7 @@
   "name": "angular",
   "$schema": "../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "angular/src",
-  "prefix": "ccc",
+  "prefix": "ng",
   "tags": [],
   "projectType": "library",
   "targets": {
@@ -78,12 +78,6 @@
         "ci": {
           "quiet": true
         }
-      }
-    },
-    "test-storybook": {
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "test-storybook -c angular/.storybook --url=http://localhost:4400"
       }
     },
     "static-storybook": {
