@@ -1,0 +1,36 @@
+@forward '../../../../scss/transitions/scale';
+@forward '../../../../scss/animations/burning-candle';
+@forward '../../../../scss/utils/colors';
+
+.logo {
+  border-radius: 1.2rem;
+  width: 4rem;
+  height: 4rem;
+  margin: 2rem;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  img {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+.main {
+  background-color: #ffeb68;
+}
+.title {
+  font-size: 15rem;
+  font-weight: 500;
+}
+.home-btn {
+  width: 10rem;
+}
+.title-0 {
+  left: -2.4rem;
+  bottom: -5.5rem;
+  font-size: 17.1rem;
+  font-weight: 300;
+}
+.subtitle {
+  font-size: 1.3rem;
+  font-weight: 600;
+}

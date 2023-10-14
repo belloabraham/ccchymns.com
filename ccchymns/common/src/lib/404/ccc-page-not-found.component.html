@@ -1,1 +1,36 @@
-<p>ccc-page-not-found works!</p>
+<div *transloco="let t" class="main d-flex flex-column  vh-100 vw-100">
+
+  <div class="logo d-flex justify-content-center align-items-center bg-white">
+      <a [routerLink]="root"><img class="scale" width="50" height="50" alt="{{ t(languageResourceKey.LOGO) }}"
+          ngSrc="assets/images/logo.png" priority>
+      </a>
+  </div>
+
+  <div class="d-flex align-items-baseline gap-5">
+    <div class="flex-grow-1 text-end">
+      <h1 class="title">4</h1>
+    </div>
+
+    <div class="holder">
+      <h1 class="title-0">0</h1>
+      <div class="candle">
+        <div class="blinking-glow"></div>
+        <div class="thread"></div>
+        <div class="glow"></div>
+        <div class="flame"></div>
+      </div>
+    </div>
+
+    <div class="flex-grow-1 text-start">
+      <h1 class="title">4</h1>
+    </div>
+  </div>
+
+  <div class="text-center">
+    <h4 class="mb-4 p-1 subtitle">{{ t(languageResourceKey.PAGE_NOT_FOUND_MESSAGE) }}</h4>
+    <a [routerLink]="root" class="home-btn" ng-mat-raised-button [ng-mat-elevation]=1>{{
+      t(languageResourceKey.GO_HOME)
+      }}</a>
+  </div>
+
+</div>

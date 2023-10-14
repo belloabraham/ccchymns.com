@@ -22,7 +22,14 @@
         "styles": ["apps/ccchymns.com/src/styles.scss"],
         "scripts": [],
         "stylePreprocessorOptions": {
-          "includePaths": ["ccchymns/scss"]
+          "includePaths": [
+            "ccchymns/scss",
+            "angular/scss",
+            "ccchymns/scss/mixins",
+            "ccchymns/scss/transitions",
+            "ccchymns/scss/variables",
+            "ccchymns/scss/animations"
+          ]
         }
       },
       "configurations": {
