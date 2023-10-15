@@ -29,7 +29,16 @@
         ],
         "scripts": [],
         "stylePreprocessorOptions": {
-          "includePaths": ["ccchymns/scss"]
+          "includePaths": [
+            "ccchymns/scss",
+            "apps/admin.ccchymns.com/src/scss/animations",
+            "ccchymns/scss/animations",
+            "ccchymns/scss/mixins",
+            "ccchymns/scss/transitions",
+            "ccchymns/scss/variables",
+            "ccchymns/scss/components",
+            "angular/scss"
+          ]
         }
       },
       "configurations": {

@@ -1,4 +1,4 @@
 @forward 'global';
 @forward './scss/font';
-@forward 'components/warning-panel';
-@forward './scss/taiga-ui';
+@forward './scss/variables/vendor/taiga-ui';
+@use 'material/ccchymns';

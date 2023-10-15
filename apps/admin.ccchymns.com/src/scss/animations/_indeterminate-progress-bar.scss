@@ -1,0 +1,32 @@
+@use 'colors';
+
+.indeterminate-progress-bar {
+  width: 100%;
+  height: 0.24rem;
+  display: inline-block;
+  background: colors.$accent-100;
+  position: relative;
+  overflow: hidden;
+}
+.indeterminate-progress-bar::after {
+  content: '';
+  width: 20rem;
+  height: 0.24rem;
+  position: absolute;
+  background-color: colors.$accent-500;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  animation: animloader 1.3s linear infinite;
+}
+
+@keyframes animloader {
+  0% {
+    left: 0;
+    transform: translateX(-100%);
+  }
+  100% {
+    left: 100%;
+    transform: translateX(0%);
+  }
+}
