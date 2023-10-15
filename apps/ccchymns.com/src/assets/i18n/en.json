@@ -3,5 +3,7 @@
   "page_not_found_message": "Oops the page you are looking for does not exist.",
   "go_home": "Go Home",
   "logo": "Logo",
+  "privacy_title": "{{value}} - Privacy Policy",
+  "terms_title": "{{value}} - Terms of  use",
   "page_not_found_title": "Error 404 - Page Not Found"
 }
