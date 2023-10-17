@@ -1,9 +1,23 @@
 {
   "app_name": "CCC Hymns",
+  "full_app_name": "CCC Hymns with Bible References",
   "page_not_found_message": "Oops the page you are looking for does not exist.",
   "go_home": "Go Home",
   "logo": "Logo",
   "privacy_title": "{{value}} - Privacy Policy",
   "terms_title": "{{value}} - Terms of  use",
-  "page_not_found_title": "Error 404 - Page Not Found"
+  "page_not_found_title": "Error 404 - Page Not Found",
+  "legal": "Legal",
+  "quick_links": "Quick Links",
+  "home": "Home",
+  "download": "Download",
+  "contact": "Contact",
+  "privacy_policy": "Privacy Policy",
+  "follow_us_on": "Follow us on",
+  "copyright": "Copyright",
+  "about": "About",
+  "terms": "Terms",
+  "google_play_store": "Google Play Store",
+  "apple_app_store": "Apple App Store",
+  "refund_policy": "Refund Policy"
 }

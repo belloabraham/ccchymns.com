@@ -11,7 +11,13 @@ import {
   standalone: true,
 })
 export class CCCIconDirective implements OnChanges {
-  @Input('ccc-icon') name!: string;
+  @Input('ccc-icon') name!:
+    | 'phone'
+    | 'email'
+    | 'facebook'
+    | 'instagram'
+    | 'x-circle'
+    | 'youtube';
   @Input() position: 'start' | 'end' = 'start';
   @Input() state: 'on' | 'off' | null = null;
 
@@ -29,6 +35,6 @@ export class CCCIconDirective implements OnChanges {
     if (this.state === 'off') {
       iconStateClass = 'mdc-icon-button__icon';
     }
-    return `ccc-i-${this.name} ccc-i-${this.position} ${iconStateClass}`;
+    return `ccci-${this.name} ccci-${this.position} ${iconStateClass}`;
   }
 }

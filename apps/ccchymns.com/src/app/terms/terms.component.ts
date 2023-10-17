@@ -10,15 +10,17 @@ import {
   LANGUAGE_RESOURCE_TOKEN,
   Language,
   LanguageUseCaseService,
+  SharedModule,
 } from '@ccchymns.com/angular';
 import { Title } from '@angular/platform-browser';
 import { SubSink } from 'subsink';
 import { LanguageResourceKey } from './i18n/language-resource-key';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-terms',
   standalone: true,
-  imports: [CommonModule],
+  imports: [SharedModule, FooterComponent],
   templateUrl: './terms.component.html',
   styleUrls: ['./terms.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
