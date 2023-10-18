@@ -21,7 +21,7 @@ section.section{
   font-weight: bold;
 }
 .rating {
-  color: #8c8c8c;
+  color: #FFC000;
   font-size: 1.2rem;
 }
 
@@ -74,6 +74,7 @@ $animationSpeed: 50s;
   .slide-track {
     animation: scroll $animationSpeed linear infinite;
     display: flex;
-    width: calc(24rem * 10);
+    align-items: center;
+    width: calc(24rem * 12);
   }
 }
