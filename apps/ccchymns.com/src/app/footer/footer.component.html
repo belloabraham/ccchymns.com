@@ -36,16 +36,16 @@
     <div class="col-12 col-sm-6 col-lg-2 quick-links">
       <h6 class="text-white">{{ t(languageResourceKey.QUICK_LINKS) }}</h6>
       <ul>
-        <li><a class="link" [routerLink]="route.ROOT">{{ t(languageResourceKey.HOME) }}</a> </li>
-        <li> <a class="link" [routerLink]="route.ABOUT">{{ t(languageResourceKey.ABOUT) }}</a> </li>
+        <li><a class="link" [routerLink]="[root]">{{ t(languageResourceKey.HOME) }}</a> </li>
+        <li> <a class="link" [routerLink]="[root,route.ABOUT]">{{ t(languageResourceKey.ABOUT) }}</a> </li>
       </ul>
     </div>
     <div class="col-12 col-sm-6 col-lg-2 legal">
       <h6 class="text-white">{{ t(languageResourceKey.LEGAL) }}</h6>
       <ul>
-        <li> <a class="link" [routerLink]="route.PRIVACY">{{ t(languageResourceKey.PRIVACY_POLICY) }}</a> </li>
-        <li><a class="link" [routerLink]="route.TERMS">{{ t(languageResourceKey.TERMS) }}</a> </li>
-        <li> <a class="link" [routerLink]="route.REFUND">{{ t(languageResourceKey.REFUND_POLICY) }}</a> </li>
+        <li> <a class="link" [routerLink]="[root,route.PRIVACY]">{{ t(languageResourceKey.PRIVACY_POLICY) }}</a> </li>
+        <li><a class="link" [routerLink]="[root,route.TERMS]">{{ t(languageResourceKey.TERMS) }}</a> </li>
+        <li> <a class="link" [routerLink]="[root,route.REFUND]">{{ t(languageResourceKey.REFUND_POLICY) }}</a> </li>
       </ul>
 
     </div>

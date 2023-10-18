@@ -4,7 +4,6 @@ import {
   Inject,
   OnInit,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import {
   ILanguageResourceService,
   LANGUAGE_RESOURCE_TOKEN,
@@ -15,12 +14,12 @@ import {
 import { Title } from '@angular/platform-browser';
 import { SubSink } from 'subsink';
 import { LanguageResourceKey } from './i18n/language-resource-key';
-import { FooterComponent } from '../footer/footer.component';
+import { NavigationComponent } from '../navigation/navigation.component';
 
 @Component({
   selector: 'app-privacy',
   standalone: true,
-  imports: [SharedModule, FooterComponent],
+  imports: [SharedModule, NavigationComponent],
   templateUrl: './privacy.component.html',
   styleUrls: ['./privacy.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

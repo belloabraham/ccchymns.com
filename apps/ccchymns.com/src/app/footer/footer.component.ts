@@ -32,6 +32,7 @@ export class FooterComponent {
   email = Contact.EMAIL;
   year = new Date().getFullYear();
   route = Route;
+  root= Route.ROOT
   appStoreURL = Config.APP_STORE_URL;
   playStoreURL = Config.PLAY_STORE_URL;
   languageResourceKey = LanguageResourceKey;
