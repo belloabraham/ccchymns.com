@@ -24,21 +24,30 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.ccci-email:before {
+.ccci-star-half:before {
+  content: "\e905";
+}
+.ccci-email-fill:before {
   content: "\e900";
 }
 .ccci-facebook:before {
-  content: '\e901';
+  content: "\e901";
 }
 .ccci-instagram:before {
-  content: '\e902';
+  content: "\e902";
 }
-.ccci-phone:before {
-  content: '\e903';
+.ccci-phone-fill:before {
+  content: "\e903";
+}
+.ccci-star-fill:before {
+  content: "\e904";
+}
+.ccci-star:before {
+  content: "\e906";
 }
 .ccci-x-circle:before {
-  content: '\e904';
+  content: "\e907";
 }
 .ccci-youtube:before {
-  content: '\e905';
+  content: "\e908";
 }

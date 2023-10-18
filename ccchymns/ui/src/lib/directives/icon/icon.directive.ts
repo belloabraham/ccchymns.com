@@ -12,8 +12,10 @@ import {
 })
 export class CCCIconDirective implements OnChanges {
   @Input('ccc-icon') name!:
-    | 'phone'
-    | 'email'
+    | 'phone-fill'
+    | 'email-fill'
+    | 'star-fill'
+    | 'star-half'
     | 'facebook'
     | 'instagram'
     | 'x-circle'

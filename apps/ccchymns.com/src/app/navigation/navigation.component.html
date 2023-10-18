@@ -13,7 +13,7 @@
   </button>
 
   <ul class="side-nav">
-    <li class="highlight" ><a [routerLink]="[root]">{{ t(languageResourceKey.HOME) }}</a></li>
+    <li class="highlight"><a [routerLink]="[root]">{{ t(languageResourceKey.HOME) }}</a></li>
     <li class="highlight"><a [routerLink]="[root,route.ABOUT]">{{ t(languageResourceKey.ABOUT) }}</a></li>
     <li class="highlight"><a [routerLink]="[root,route.PRIVACY]">{{ t(languageResourceKey.PRIVACY) }}</a> </li>
     <li><button (click)="download()" ng-mat-raised-button [ng-mat-elevation]="1" [color]="'accent'">{{
@@ -29,7 +29,7 @@
           <a href="/">
             <div class="logo d-flex justify-content-center align-items-center bg-white">
               <a [routerLink]="route.ROOT"><img width="80" height="75" alt="{{ t(languageResourceKey.LOGO) }}"
-                  ngSrc="assets/images/logo.png">
+                  ngSrc="assets/images/logo.png" priority >
               </a>
             </div>
           </a>

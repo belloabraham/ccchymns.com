@@ -1,0 +1,79 @@
+@use 'gerillass';
+
+section.section{
+  margin-bottom: 2rem;
+}
+
+// Review card
+.card {
+  width: 16rem;
+  margin-left: 4rem;
+  margin-left: 4rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 8px;
+}
+.review {
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+.name {
+  font-size: 1rem;
+  font-weight: bold;
+}
+.rating {
+  color: #8c8c8c;
+  font-size: 1.2rem;
+}
+
+
+// Review card animation
+@mixin white-gradient {
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+$animationSpeed: 50s;
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-250px * 7));
+  }
+}
+.slider {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  &::before,
+  &::after {
+    @include white-gradient;
+    content: '';
+    height: 300px;
+    position: absolute;
+    width: 5rem;
+    z-index: 2;
+    @include gerillass.breakpoint(min, medium) {
+      width: 12rem;
+    }
+  }
+
+  &::after {
+    right: 0;
+    top: 0;
+    transform: rotateZ(180deg);
+  }
+
+  &::before {
+    left: 0;
+    top: 0;
+  }
+
+  .slide-track {
+    animation: scroll $animationSpeed linear infinite;
+    display: flex;
+    width: calc(24rem * 10);
+  }
+}
