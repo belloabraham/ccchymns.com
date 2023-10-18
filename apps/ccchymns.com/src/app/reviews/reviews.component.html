@@ -1,0 +1,33 @@
+<section *transloco="let t" class="section reviews">
+  <div class="container">
+    <header>
+      <h3 class="text-center">{{ t(languageResourceKey.USER_REVIEW) }}</h3>
+    </header>
+  </div>
+
+
+  <div class="slider container">
+    <div class="slide-track">
+      <div *ngFor="let review of appReviews;" class="card slide">
+        <div class="px-2 pt-2">
+          <span class="review">
+            {{t(review.review)}}
+          </span>
+          <div class="d-flex pt-3 gap-3">
+            <div>
+              <img [src]="review.avater" width="50" class="rounded-circle" />
+            </div>
+            <div class="ml-2">
+              <span class="name">{{review.username}}</span>
+              <p class="rating">
+                <i [ccc-icon]="'star-fill'"></i> <i [ccc-icon]="'star-fill'"></i><i [ccc-icon]="'star-fill'"></i><i
+                  [ccc-icon]="'star-fill'"></i><i [ccc-icon]="'star-fill'"></i>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>

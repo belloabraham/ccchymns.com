@@ -4,14 +4,13 @@
   background-color: colors.$primary-800;
 }
 .bg-accent-400-tinted {
-  // background-color: colors.$primary-800;
-  // background-image: linear-gradient(
-  //   288deg,
-  //   rgba(0, 85, 255, 1) 1.5%,
-  //   rgba(4, 56, 115, 1) 91.6%
-  // );
   background: linear-gradient(135deg, #0055ff, #000dff);
 }
+
+.bg-primary-900 {
+  background-color: colors.$primary-900;
+}
+
 .bg-accent-300 {
   background-color: colors.$accent-300;
 }

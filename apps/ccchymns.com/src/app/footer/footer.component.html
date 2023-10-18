@@ -1,0 +1,80 @@
+<footer *transloco="let t" class="vw-100 overflow-hidden">
+  <div class="footer row text-light">
+    <div class="col-12 col-sm-6 col-lg-3 download">
+      <div class="logo d-flex justify-content-center align-items-center bg-white">
+        <a [routerLink]="route.ROOT"><img width="80" height="75" alt="{{ t(languageResourceKey.LOGO) }}"
+            ngSrc="assets/images/logo.png">
+        </a>
+      </div>
+
+      <h6 class="app-name">{{ t(languageResourceKey.FULL_APP_NAME) }}</h6>
+
+      <div class="download-buttons">
+        <a [href]="appStoreURL"><img class="scale" width="183.35" height="54.4"
+            alt="{{ t(languageResourceKey.APPLE_APP_STORE) }}" ngSrc="assets/images/apple-store-light.svg">
+        </a>
+        <br>
+        <a [href]="playStoreURL"><img class="scale" width="183.35" height="54.4"
+            alt="{{ t(languageResourceKey.GOOGLE_PLAY_STORE) }}" ngSrc="assets/images/google-store-light.svg">
+        </a>
+      </div>
+
+    </div>
+    <div class="col-12 col-sm-6 col-lg-2 contact">
+      <h6 class="text-white">{{ t(languageResourceKey.CONTACT) }}</h6>
+      <ul>
+        <li> <a [href]="'tel:'+phone">
+            <i [ccc-icon]="'phone-fill'"></i>
+            &nbsp;{{phone}}</a> </li>
+        <li>
+          <a [href]="'mailto:'+email">
+            <i [ccc-icon]="'email-fill'"></i>
+            &nbsp; {{email}}</a>
+        </li>
+      </ul>
+    </div>
+    <div class="col-12 col-sm-6 col-lg-2 quick-links">
+      <h6 class="text-white">{{ t(languageResourceKey.QUICK_LINKS) }}</h6>
+      <ul>
+        <li><a class="link" [routerLink]="[root]">{{ t(languageResourceKey.HOME) }}</a> </li>
+        <li> <a class="link" [routerLink]="[root,route.ABOUT]">{{ t(languageResourceKey.ABOUT) }}</a> </li>
+      </ul>
+    </div>
+    <div class="col-12 col-sm-6 col-lg-2 legal">
+      <h6 class="text-white">{{ t(languageResourceKey.LEGAL) }}</h6>
+      <ul>
+        <li> <a class="link" [routerLink]="[root,route.PRIVACY]">{{ t(languageResourceKey.PRIVACY_POLICY) }}</a> </li>
+        <li><a class="link" [routerLink]="[root,route.TERMS]">{{ t(languageResourceKey.TERMS) }}</a> </li>
+        <li> <a class="link" [routerLink]="[root,route.REFUND]">{{ t(languageResourceKey.REFUND_POLICY) }}</a> </li>
+      </ul>
+
+    </div>
+    <div class="col-12 col-lg-3 social">
+      <h6 class="text-white">{{ t(languageResourceKey.FOLLOW_US) }}:</h6>
+      <ul>
+        <li>
+          <a target="_blank" href="https://www.linkedin.com/in/belloabraham">
+            <i [ccc-icon]="'facebook'"></i>
+          </a>
+        </li>
+        <li><a href="https://stackoverflow.com/users/17982634/bello-abraham" target="_blank">
+            <i [ccc-icon]="'instagram'"></i>
+          </a></li>
+
+        <li><a href="https://github.com/belloabraham" target="_blank">
+            <i [ccc-icon]="'x-circle'"></i>
+          </a>
+        </li>
+
+        <li><a href="https://github.com/belloabraham" target="_blank">
+            <i [ccc-icon]="'youtube'"></i>
+          </a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+  <div class="copyright p-2 text-light text-center w-100">
+    {{ t(languageResourceKey.COPYRIGHT) }} &copy; {{year}}
+  </div>
+</footer>

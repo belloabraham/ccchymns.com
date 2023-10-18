@@ -12,5 +12,9 @@
 
 .button-secondary {
   --mdc-theme-primary: white;
-  --mdc-theme-on-primary: colors.$text-light;
+  --mdc-theme-on-primary: black;
+}
+.button-accent {
+  --mdc-theme-primary: #ffde03;
+  --mdc-theme-on-primary: black;
 }

@@ -21,14 +21,11 @@ export class NgMaterialBaseButtonDirective implements AfterViewInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     this.hostElementClasses = this.getHostElementClasses();
   }
-  @Input() color: 'primary' | 'secondary' = 'primary';
+  @Input() color: 'primary' | 'secondary' | 'accent' = 'primary';
   @HostBinding('class') hostElementClasses!: string;
 
   private getHostElementClasses() {
-    if (this.color === 'secondary') {
       return `button-${this.color}`;
-    }
-    return this.color;
   }
 }
 
