@@ -1,34 +1,28 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FooterComponent } from '../footer/footer.component';
-import { CCCIconDirective } from '@ccchymns.com/ui';
 import { RouterLink } from '@angular/router';
-import { Route } from '../../core/data/route';
-import { LanguageResourceKey } from '../../core/i18n/language-resource-key';
 import { NgMaterialButtonModule, NgMaterialElevationDirective, SharedModule } from '@ccchymns.com/angular';
+import { Route } from '../../core/data/route';
 import { NgOptimizedImage } from '@angular/common';
+import { LanguageResourceKey } from '../../core/i18n/language-resource-key';
 
 @Component({
-  selector: 'app-navigation',
+  selector: 'app-header',
   standalone: true,
   imports: [
     SharedModule,
     RouterLink,
-    FooterComponent,
-    CCCIconDirective,
-    NgOptimizedImage,
     NgMaterialButtonModule,
     NgMaterialElevationDirective,
+    NgOptimizedImage
   ],
-  templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.scss'],
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NavigationComponent {
-  showSideNavigation = false;
+export class HeaderComponent {
   route = Route;
   root = Route.ROOT;
   languageResourceKey = LanguageResourceKey;
-
   download() {
     console.log();
   }

@@ -15,11 +15,12 @@ import { Title } from '@angular/platform-browser';
 import { SubSink } from 'subsink';
 import { LanguageResourceKey } from './i18n/language-resource-key';
 import { NavigationComponent } from '../navigation/navigation.component';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-terms',
   standalone: true,
-  imports: [SharedModule, NavigationComponent],
+  imports: [SharedModule, NavigationComponent, HeaderComponent],
   templateUrl: './terms.component.html',
   styleUrls: ['./terms.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

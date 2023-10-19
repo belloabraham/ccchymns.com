@@ -1,7 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import {
-  NgMaterialButtonModule,
-  NgMaterialElevationDirective,
   SharedModule,
 } from '@ccchymns.com/angular';
 import { CCCIconDirective } from '@ccchymns.com/ui';
@@ -17,8 +15,6 @@ import { NgOptimizedImage } from '@angular/common';
   standalone: true,
   imports: [
     SharedModule,
-    NgMaterialButtonModule,
-    NgMaterialElevationDirective,
     CCCIconDirective,
     RouterLink,
     NgOptimizedImage,

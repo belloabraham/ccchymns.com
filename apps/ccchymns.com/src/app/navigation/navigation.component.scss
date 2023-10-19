@@ -1,48 +1,8 @@
 @forward '../../scss/mobile-menu';
 @forward '../../scss/bugger-button';
 @use 'gerillass';
-@use 'colors';
-
-.nav {
-  padding-right: 1rem;
-  svg {
-    width: 1.5rem;
-    height: 1.5rem;
-  }
-
-  ul {
-    gap: 2rem;
-    a {
-      color: colors.$neutral-300;
-      font-size: 0.9rem;
-      &:hover {
-        text-decoration: underline;
-        color: rgba(255, 255, 255, 0.5);
-      }
-    }
-  }
-}
-
-.header {
-  padding: 0.5rem 0;
-  padding-top: 1rem;
-  display: none;
-
-  .logo {
-    border-radius: 1rem;
-    width: 3rem;
-    height: 3rem;
-    img {
-      width: 2rem;
-      height: auto;
-    }
-  }
-}
 
 @include gerillass.breakpoint(min, small) {
-  .header {
-    display: block;
-  }
   .menu-btn {
     display: none;
   }
