@@ -1,22 +1,23 @@
-<header  *transloco="let t" class="header">
+<header *transloco="let t" class="header">
+  <div class="container d-flex justify-content-start gap-4">
+      <a href="/">
+        <div class="logo d-flex justify-content-center align-items-center bg-white">
+          <a [routerLink]="route.ROOT"><img width="80" height="75" alt="{{ t(languageResourceKey.LOGO) }}"
+              ngSrc="assets/images/logo.png" priority>
+          </a>
+        </div>
+      </a>
+      <nav class="nav">
+        <ul class="d-flex">
+          <li><a [routerLink]="[root]">{{ t(languageResourceKey.HOME) }}</a></li>
+          <li><a [routerLink]="[root,route.ABOUT]">{{ t(languageResourceKey.ABOUT) }}</a></li>
+          <li><a [routerLink]="[root,route.PRIVACY]">{{ t(languageResourceKey.PRIVACY) }}</a> </li>
 
-  <div class="container d-flex justify-content-between">
-    <a href="/">
-      <div class="logo d-flex justify-content-center align-items-center bg-white">
-        <a [routerLink]="route.ROOT"><img width="80" height="75" alt="{{ t(languageResourceKey.LOGO) }}"
-            ngSrc="assets/images/logo.png" priority>
-        </a>
-      </div>
-    </a>
+        </ul>
+      </nav>
 
-    <nav class="nav">
-      <ul class="d-flex">
-        <li><a [routerLink]="[root]">{{ t(languageResourceKey.HOME) }}</a></li>
-        <li><a [routerLink]="[root,route.ABOUT]">{{ t(languageResourceKey.ABOUT) }}</a></li>
-        <li><a [routerLink]="[root,route.PRIVACY]">{{ t(languageResourceKey.PRIVACY) }}</a> </li>
-        <li><button (click)="download()" ng-mat-raised-button [ng-mat-elevation]="1" [color]="'accent'">{{
-            t(languageResourceKey.DOWNLOAD) }}</button></li>
-      </ul>
-    </nav>
+    <!-- <button (click)="download()" ng-mat-raised-button [ng-mat-elevation]="1" [color]="'accent'">{{
+      t(languageResourceKey.DOWNLOAD) }}</button> -->
+
   </div>
 </header>

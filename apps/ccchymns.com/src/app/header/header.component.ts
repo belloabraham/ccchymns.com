@@ -1,9 +1,13 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { NgMaterialButtonModule, NgMaterialElevationDirective, SharedModule } from '@ccchymns.com/angular';
+import {
+  NgMaterialButtonModule,
+  NgMaterialElevationDirective,
+  SharedModule,
+} from '@ccchymns.com/angular';
 import { Route } from '../../core/data/route';
 import { NgOptimizedImage } from '@angular/common';
-import { LanguageResourceKey } from '../../core/i18n/language-resource-key';
+import { RootLanguageResourceKey } from '../../core/i18n/language-resource-key';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +17,7 @@ import { LanguageResourceKey } from '../../core/i18n/language-resource-key';
     RouterLink,
     NgMaterialButtonModule,
     NgMaterialElevationDirective,
-    NgOptimizedImage
+    NgOptimizedImage,
   ],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
@@ -22,7 +26,7 @@ import { LanguageResourceKey } from '../../core/i18n/language-resource-key';
 export class HeaderComponent {
   route = Route;
   root = Route.ROOT;
-  languageResourceKey = LanguageResourceKey;
+  languageResourceKey = RootLanguageResourceKey;
   download() {
     console.log();
   }

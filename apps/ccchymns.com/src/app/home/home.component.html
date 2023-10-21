@@ -1,9 +1,83 @@
 <app-navigation>
 
-  <main class="main">
-    <app-header />
-  </main>
+  <ng-container *transloco="let t">
 
-  <app-reviews />
+    <main class="main vw-100 vh-100 position-relative">
+      <div class="container position-absolute header">
+        <app-header />
+      </div>
+
+      <div class="position-absolute landing-page w-100 h-100 d-flex flex-row">
+        <div class="left-page"></div>
+        <div class="right-page m-4 flex-grow-1 d-flex justify-content-center align-items-center">
+
+          <div class="outside-border">
+            <div class="silencer"></div>
+            <div class="volume-up"></div>
+            <div class="volume-down"></div>
+            <div class="button-on"></div>
+            <div class="inside-border">
+
+              <!-- Camera -->
+
+              <div class="camera">
+                <div class="camera-dot">
+                  <div class="camera-dot-2"></div>
+                  <div class="camera-dot-3"></div>
+                </div>
+                <div class="camera-speaker">
+                </div>
+              </div>
+
+              <!-- Battery and Signal -->
+
+              <div class="t-r-info">
+                <div class="dots">...</div>
+                <div class="battery">
+                  <div class="bar"></div>
+                  <div class="dot"></div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- PHONE SLIDE -->
+        </div>
+      </div>
+
+      <div class="container position-absolute landing-page-content h-100 d-flex flex-row">
+        <div class="w-50 d-flex flex-column justify-content-center title-container">
+          <div>
+            <h1 class="display-5">Welcome to the Official CCC Hymns with Bible References
+            </h1>
+            <p class="description text-muted">Are you seeking a modern and convenient way to deepen your spiritual connection through hymns and
+              scripture? Look no
+              further! CCC Hymns with Bible References is your comprehensive solution for an enriching worship
+              experience.</p>
+
+            <div class="d-flex gap-4">
+              <a [href]="appStoreURL">
+                <img class="scale" width="183.35" height="54.4" alt="{{ t(rootLangReskey.APPLE_APP_STORE) }}"
+                  ngSrc="assets/images/apple-store-light.svg">
+              </a>
+              <a [href]="playStoreURL"><img class="scale" width="183.35" height="54.4"
+                  alt="{{ t(rootLangReskey.GOOGLE_PLAY_STORE) }}" ngSrc="assets/images/google-store-light.svg">
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+        <div class="w-50"></div>
+      </div>
+
+    </main>
+
+    <app-features />
+    <app-reviews />
+  </ng-container>
+
+
 
 </app-navigation>

@@ -2,11 +2,11 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-features',
+  selector: 'ccchymns.com-faq',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './features.component.html',
-  styleUrls: ['./features.component.scss'],
+  templateUrl: './faq.component.html',
+  styleUrls: ['./faq.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FeaturesComponent {}
+export class FaqComponent {}
