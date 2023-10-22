@@ -19,13 +19,15 @@
 .download-button {
   flex-direction: column;
   margin-top: 2rem;
-  img {
+  svg {
     width: 16.821rem;
     height: 5.121rem;
+    fill: #00211d;
+    stroke: #00211d;
   }
   @include gerillass.breakpoint(min, small) {
     flex-direction: row;
-    img {
+    svg {
       width: 11.5rem;
       height: 3.5rem;
     }
