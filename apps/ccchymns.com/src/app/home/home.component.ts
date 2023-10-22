@@ -8,6 +8,7 @@ import { NgOptimizedImage } from '@angular/common';
 import { Config } from '../../core/data/config';
 import { RootLanguageResourceKey } from '../../core/i18n/language-resource-key';
 import { RouterLink } from '@angular/router';
+import { Route } from '../../core/data/route';
 
 @Component({
   selector: 'app-home',
@@ -19,7 +20,7 @@ import { RouterLink } from '@angular/router';
     HeaderComponent,
     FeaturesComponent,
     NgOptimizedImage,
-    RouterLink
+    RouterLink,
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
@@ -29,4 +30,5 @@ export class HomeComponent {
   appStoreURL = Config.APP_STORE_URL;
   playStoreURL = Config.PLAY_STORE_URL;
   rootLangReskey = RootLanguageResourceKey;
+  root = Route.ROOT;
 }

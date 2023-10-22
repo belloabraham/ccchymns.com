@@ -1,6 +1,21 @@
 @use 'gerillass';
 @forward '../../scss/phone';
 
+.logo {
+  border-radius: 1.7rem;
+  width: 4rem;
+  height: 4rem;
+  margin-left: 1.5rem;
+  margin-top: 1rem;
+  img {
+    width: 3rem;
+    height: auto;
+  }
+  @include gerillass.breakpoint(min, small) {
+    display: none !important;
+  }
+}
+
 .download-button {
   flex-direction: column;
   margin-top: 2rem;
@@ -29,7 +44,7 @@
 }
 
 .main {
-  height: 78rem;
+  height: 84rem;
   @include gerillass.breakpoint(min, small) {
     height: 48rem !important;
   }

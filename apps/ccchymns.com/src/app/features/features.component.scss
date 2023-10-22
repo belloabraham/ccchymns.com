@@ -1,7 +1,18 @@
 .features {
   margin-bottom: 1rem !important  ;
-  img {
-    width: 5rem;
+  svg {
+    fill: #00211d;
+  }
+  .hymns,
+  .audio {
+    width: 10rem;
+  }
+  .tonic-solfa,
+  .bible {
+    width: 15rem;
+  }
+  .language {
+    width: 25rem;
   }
 
   .feature-item {

@@ -7,9 +7,10 @@
     stroke: black;
   }
 }
-
-@include gerillass.breakpoint(min, small) {
-  .menu-btn {
+.menu-btn {
+  margin-top: .5rem;
+  margin-right: 1rem;
+  @include gerillass.breakpoint(min, small) {
     display: none;
   }
 }

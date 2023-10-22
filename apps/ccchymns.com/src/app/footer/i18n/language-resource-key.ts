@@ -5,7 +5,6 @@ export class LanguageResourceKey {
   static readonly LOGO = 'logo';
   static readonly CONTACT = 'contact';
   static readonly HOME = 'home';
-  static readonly TERMS = 'terms';
   static readonly ABOUT = 'about';
   static readonly COPYRIGHT = 'copyright';
   static readonly FOLLOW_US = 'follow_us_on';
