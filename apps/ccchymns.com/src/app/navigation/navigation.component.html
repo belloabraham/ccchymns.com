@@ -1,4 +1,4 @@
-<div *transloco="let t" class="position-relative overflow-hidden mobile-menu" [class.navigation]="showSideNavigation">
+<div *transloco="let t" class="position-relative overflow-hidden mobile-menu d-flex justify-content-between" [class.navigation]="showSideNavigation">
 
   <button class="menu-btn" (click)="showSideNavigation =!showSideNavigation"
     onclick="this.classList.toggle('opened');this.setAttribute('aria-expanded', this.classList.contains('opened'))"
@@ -19,6 +19,7 @@
   </ul>
 
   <div class="body-content">
+    
 
     <ng-content></ng-content>
 

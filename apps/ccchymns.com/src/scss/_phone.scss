@@ -23,11 +23,6 @@ $box_shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
 }
 
 .outside-border {
-  margin-bottom: 4rem;
-  margin-top: 4rem;
-}
-
-.outside-border {
   animation: changeBackground 80s ease-in-out infinite;
   background-repeat: no-repeat;
   background-size: cover;
@@ -36,7 +31,8 @@ $box_shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
   height: 35.5875rem;
   border: 0.6px solid white;
   margin-left: -9px;
-  margin-top: 37px;
+  margin-bottom: 4rem;
+  margin-top: 4rem;
   border-radius: 35px;
 }
 
