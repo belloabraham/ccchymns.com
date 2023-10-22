@@ -2,6 +2,12 @@
 @forward '../../scss/bugger-button';
 @use 'gerillass';
 
+.opened {
+  .line {
+    stroke: black;
+  }
+}
+
 @include gerillass.breakpoint(min, small) {
   .menu-btn {
     display: none;

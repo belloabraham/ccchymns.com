@@ -11,13 +11,19 @@
   ul {
     gap: 2rem;
     a {
-     color:  colors.$text-light;
+      color: colors.$text-light;
       font-size: 1rem;
       &:hover {
         text-decoration: underline;
         color: colors.$primary-500;
       }
     }
+  }
+}
+
+@include gerillass.breakpoint(min, small) {
+  .header {
+    display: block !important;
   }
 }
 
@@ -34,11 +40,5 @@
       width: 3rem;
       height: auto;
     }
-  }
-}
-
-@include gerillass.breakpoint(min, small) {
-  .header {
-    display: block;
   }
 }

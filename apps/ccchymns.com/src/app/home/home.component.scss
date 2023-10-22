@@ -1,12 +1,20 @@
 @use 'gerillass';
 @forward '../../scss/phone';
 
-.main{
-  margin-bottom: 2rem;
-}
-
-.description {
-  font-weight: 500;
+.download-button {
+  flex-direction: column;
+  margin-top: 2rem;
+  img {
+    width: 18.69rem;
+    height: 5.69rem;
+  }
+  @include gerillass.breakpoint(min, small) {
+    flex-direction: row;
+    img {
+      width: 11.5rem;
+      height: 3.5rem;
+    }
+  }
 }
 
 .landing-page,
@@ -16,26 +24,59 @@
   right: 0;
   top: 0;
 }
-
 .header {
   z-index: 3;
 }
+
+.main {
+  height: 78rem;
+  @include gerillass.breakpoint(min, small) {
+    height: 48rem !important;
+  }
+}
+
 .landing-page-content {
   z-index: 2;
+  position: static;
+  @include gerillass.breakpoint(min, small) {
+    position: absolute;
+  }
+}
+
+.description {
+  font-weight: 500;
 }
 
 .landing-page {
   z-index: -2;
+  position: static;
   .left-page {
+    display: none;
     width: 50%;
     @include gerillass.breakpoint(min, xlarge) {
       width: 60%;
     }
   }
+  @include gerillass.breakpoint(min, small) {
+    position: absolute;
+    flex-direction: row;
+    .left-page {
+      display: block;
+    }
+  }
+}
+
+@include gerillass.breakpoint(min, small) {
+  .title-container {
+    margin-top: 14rem !important;
+    width: 50% !important;
+  }
 }
 
 .title-container {
   padding-left: 0.8rem;
+  width: 100%;
+  margin-top: 2rem;
   h1 {
     font-weight: 500;
   }
@@ -45,7 +86,10 @@
   background: linear-gradient(300deg, #33f583, #333dff, #33f583);
   background-size: 180% 180%;
   animation: gradient-animation 4s ease infinite;
-  border-radius: 0.5rem;
+  @include gerillass.breakpoint(min, small) {
+    margin: 4rem !important;
+    border-radius: 0.5rem;
+  }
 }
 
 @keyframes gradient-animation {

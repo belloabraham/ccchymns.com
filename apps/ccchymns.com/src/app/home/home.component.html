@@ -2,14 +2,14 @@
 
   <ng-container *transloco="let t">
 
-    <main class="main vw-100 vh-100 position-relative">
+    <main class="main vw-100 position-relative">
       <div class="container position-absolute header">
         <app-header />
       </div>
 
-      <div class="position-absolute landing-page w-100 h-100 d-flex flex-row">
+      <div class="landing-page w-100 d-flex flex-row">
         <div class="left-page"></div>
-        <div class="right-page m-4 flex-grow-1 d-flex justify-content-center align-items-center">
+        <div class="right-page flex-grow-1 d-flex justify-content-center align-items-center">
 
           <div class="outside-border">
             <div class="silencer"></div>
@@ -42,21 +42,21 @@
             </div>
           </div>
 
-          <!-- PHONE SLIDE -->
         </div>
       </div>
 
-      <div class="container position-absolute landing-page-content h-100 d-flex flex-row">
-        <div class="w-50 d-flex flex-column justify-content-center title-container">
+      <div class="container landing-page-content d-flex">
+        <div class="d-flex flex-column justify-content-center title-container">
           <div>
             <h1 class="display-5">Welcome to the Official CCC Hymns with Bible References
             </h1>
-            <p class="description text-muted">Are you seeking a modern and convenient way to deepen your spiritual connection through hymns and
+            <p class="description text-muted">Are you seeking a modern and convenient way to deepen your spiritual
+              connection through hymns and
               scripture? Look no
               further! CCC Hymns with Bible References is your comprehensive solution for an enriching worship
               experience.</p>
 
-            <div class="d-flex gap-4">
+            <div class="d-flex gap-4 download-button">
               <a [href]="appStoreURL">
                 <img class="scale" width="183.35" height="54.4" alt="{{ t(rootLangReskey.APPLE_APP_STORE) }}"
                   ngSrc="assets/images/apple-store-light.svg">
@@ -67,15 +67,17 @@
             </div>
 
           </div>
-
         </div>
-        <div class="w-50"></div>
+        <div class="w-50 d-none d-sm-block"></div>
       </div>
 
     </main>
 
+
     <app-features />
+
     <app-reviews />
+
   </ng-container>
 
 
