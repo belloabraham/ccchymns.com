@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "ccc-hymns-dev": {
+      "hosting": {
+        "admin.ccchymns.com": [
+          "dev-admin-ccchymns"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "ccc-hymns-dev"
+  }
+}
