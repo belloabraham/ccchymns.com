@@ -1,13 +1,25 @@
 import { NgModule, isDevMode } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { Route } from '../core/data/route';
+import { AuthComponent } from './auth/auth.component';
+import { PageNotFoundComponent } from './404/page-not-found.component';
 
 const routes: Routes = [
   {
-    path: '**',
+    path: Route.ROOT,
+    pathMatch: 'full',
+    component: AuthComponent,
+  },
+  {
+    path: Route.DASHBOARD,
     loadComponent: () =>
-      import('./404/page-not-found.component').then(
-        (mod) => mod.PageNotFoundComponent
+      import('./dashboard/dashboard.component').then(
+        (mod) => mod.DashboardComponent
       ),
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent,
   },
 ];
 
@@ -15,7 +27,7 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes, {
       initialNavigation: 'enabledBlocking',
-     // enableTracing: isDevMode(),
+      // enableTracing: isDevMode(),
     }),
   ],
   exports: [RouterModule],
