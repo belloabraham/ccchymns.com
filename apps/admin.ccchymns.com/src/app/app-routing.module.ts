@@ -2,7 +2,6 @@ import { NgModule, isDevMode } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Route } from '../core/data/route';
 import { AuthComponent } from './auth/auth.component';
-import { PageNotFoundComponent } from './404/page-not-found.component';
 
 const routes: Routes = [
   {
@@ -18,8 +17,18 @@ const routes: Routes = [
       ),
   },
   {
+    path: Route.VERIFY_EMAIL,
+    loadComponent: () =>
+      import('./verify-email/verify-email.component').then(
+        (mod) => mod.VerifyEmailComponent
+      ),
+  },
+  {
     path: '**',
-    component: PageNotFoundComponent,
+    loadComponent: () =>
+      import('./404/page-not-found.component').then(
+        (mod) => mod.PageNotFoundComponent
+      ),
   },
 ];
 
