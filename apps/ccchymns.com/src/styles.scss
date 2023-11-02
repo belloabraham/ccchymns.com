@@ -2,15 +2,22 @@
 @forward './scss/font';
 @forward './scss/font-icon';
 @use 'material/ccchymns';
+@forward 'utils/colors';
 
 .logo {
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px !important;
+}
+
+h3,
+h1,
+h5 {
+  color: #061441;
 }
 
 .section {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
   header {
     margin-bottom: 4rem;
   }

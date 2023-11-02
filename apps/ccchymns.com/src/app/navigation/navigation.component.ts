@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FooterComponent } from '../footer/footer.component';
-import { CCCIconDirective } from '@ccchymns.com/ui';
 import { RouterLink } from '@angular/router';
 import { Route } from '../../core/data/route';
-import { LanguageResourceKey } from './i18n/language-resource-key';
-import { NgMaterialButtonModule, NgMaterialElevationDirective, SharedModule } from '@ccchymns.com/angular';
-import { NgOptimizedImage } from '@angular/common';
+import { RootLanguageResourceKey } from '../../core/i18n/language-resource-key';
+import {
+  SharedModule,
+} from '@ccchymns.com/angular';
 
 @Component({
   selector: 'app-navigation',
@@ -14,10 +14,6 @@ import { NgOptimizedImage } from '@angular/common';
     SharedModule,
     RouterLink,
     FooterComponent,
-    CCCIconDirective,
-    NgOptimizedImage,
-    NgMaterialButtonModule,
-    NgMaterialElevationDirective,
   ],
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss'],
@@ -27,7 +23,7 @@ export class NavigationComponent {
   showSideNavigation = false;
   route = Route;
   root = Route.ROOT;
-  languageResourceKey = LanguageResourceKey;
+  languageResourceKey = RootLanguageResourceKey;
 
   download() {
     console.log();

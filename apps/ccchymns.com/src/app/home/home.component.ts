@@ -1,9 +1,14 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { SharedModule } from '@ccchymns.com/angular';
 import { NavigationComponent } from '../navigation/navigation.component';
-import { FooterComponent } from '../footer/footer.component';
-import { CCCIconDirective } from '@ccchymns.com/ui';
 import { ReviewsComponent } from '../reviews/reviews.component';
+import { HeaderComponent } from '../header/header.component';
+import { FeaturesComponent } from '../features/features.component';
+import { NgOptimizedImage } from '@angular/common';
+import { Config } from '../../core/data/config';
+import { RootLanguageResourceKey } from '../../core/i18n/language-resource-key';
+import { RouterLink } from '@angular/router';
+import { Route } from '../../core/data/route';
 
 @Component({
   selector: 'app-home',
@@ -11,12 +16,19 @@ import { ReviewsComponent } from '../reviews/reviews.component';
   imports: [
     SharedModule,
     NavigationComponent,
-    FooterComponent,
-    CCCIconDirective,
-    ReviewsComponent
+    ReviewsComponent,
+    HeaderComponent,
+    FeaturesComponent,
+    NgOptimizedImage,
+    RouterLink,
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeComponent {}
+export class HomeComponent {
+  appStoreURL = Config.APP_STORE_URL;
+  playStoreURL = Config.PLAY_STORE_URL;
+  rootLangReskey = RootLanguageResourceKey;
+  root = Route.ROOT;
+}

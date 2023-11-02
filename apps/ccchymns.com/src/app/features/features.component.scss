@@ -1,0 +1,26 @@
+.features {
+  margin-bottom: 1rem !important  ;
+  svg {
+    fill: #00211d;
+  }
+  .hymns,
+  .audio {
+    width: 7rem;
+  }
+  .tonic-solfa,
+  .bible {
+    width: 10rem;
+  }
+  .language {
+    width: 20rem;
+  }
+
+  .feature-item {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 2rem;
+  }
+  .language-item {
+    padding-bottom: 1rem;
+  }
+}

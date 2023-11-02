@@ -1,4 +1,5 @@
-<div *transloco="let t" class="position-relative overflow-hidden mobile-menu" [class.navigation]="showSideNavigation">
+<div *transloco="let t" class="position-relative overflow-hidden mobile-menu d-flex justify-content-between"
+  [class.navigation]="showSideNavigation">
 
   <button class="menu-btn" (click)="showSideNavigation =!showSideNavigation"
     onclick="this.classList.toggle('opened');this.setAttribute('aria-expanded', this.classList.contains('opened'))"
@@ -16,40 +17,14 @@
     <li class="highlight"><a [routerLink]="[root]">{{ t(languageResourceKey.HOME) }}</a></li>
     <li class="highlight"><a [routerLink]="[root,route.ABOUT]">{{ t(languageResourceKey.ABOUT) }}</a></li>
     <li class="highlight"><a [routerLink]="[root,route.PRIVACY]">{{ t(languageResourceKey.PRIVACY) }}</a> </li>
-    <li><button (click)="download()" ng-mat-raised-button [ng-mat-elevation]="1" [color]="'accent'">{{
-        t(languageResourceKey.DOWNLOAD) }}</button></li>
+    <li class="highlight"><a [routerLink]="[root,route.TERMS]">{{ t(languageResourceKey.TERMS) }}</a> </li>
+
   </ul>
 
   <div class="body-content">
 
-    <main class="main">
-      <header class="header">
 
-        <div class="container d-flex justify-content-between">
-          <a href="/">
-            <div class="logo d-flex justify-content-center align-items-center bg-white">
-              <a [routerLink]="route.ROOT"><img width="80" height="75" alt="{{ t(languageResourceKey.LOGO) }}"
-                  ngSrc="assets/images/logo.png" priority >
-              </a>
-            </div>
-          </a>
-
-          <nav class="nav">
-            <ul class="d-flex">
-              <li><a [routerLink]="[root]">{{ t(languageResourceKey.HOME) }}</a></li>
-              <li><a [routerLink]="[root,route.ABOUT]">{{ t(languageResourceKey.ABOUT) }}</a></li>
-              <li><a [routerLink]="[root,route.PRIVACY]">{{ t(languageResourceKey.PRIVACY) }}</a> </li>
-              <li><button (click)="download()" ng-mat-raised-button [ng-mat-elevation]="1" [color]="'accent'">{{
-                  t(languageResourceKey.DOWNLOAD) }}</button></li>
-            </ul>
-          </nav>
-        </div>
-      </header>
-
-    </main>
-
-    <ng-content>
-    </ng-content>
+    <ng-content></ng-content>
 
     <app-footer />
   </div>

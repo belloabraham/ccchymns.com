@@ -5,13 +5,9 @@ export class LanguageResourceKey {
   static readonly LOGO = 'logo';
   static readonly CONTACT = 'contact';
   static readonly HOME = 'home';
-  static readonly TERMS = 'terms';
   static readonly ABOUT = 'about';
   static readonly COPYRIGHT = 'copyright';
   static readonly FOLLOW_US = 'follow_us_on';
   static readonly PRIVACY_POLICY = 'privacy_policy';
   static readonly REFUND_POLICY = 'refund_policy';
-  static readonly APPLE_APP_STORE = 'apple_app_store';
-  static readonly FULL_APP_NAME = 'full_app_name';
-  static readonly GOOGLE_PLAY_STORE = 'google_play_store';
 }

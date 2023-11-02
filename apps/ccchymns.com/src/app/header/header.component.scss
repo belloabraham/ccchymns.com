@@ -1,0 +1,40 @@
+@use 'colors';
+@use 'gerillass';
+
+.nav {
+  padding-right: 1rem;
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  ul {
+    gap: 2rem;
+    a {
+      color: colors.$text-light;
+      font-size: 1rem;
+      &:hover {
+        text-decoration: underline;
+        color: colors.$primary-500;
+      }
+    }
+  }
+}
+
+.header {
+  padding: 0.5rem 0;
+  padding-top: 3rem;
+  display: none;
+  @include gerillass.breakpoint(min, small) {
+    display: block !important;
+  }
+  .logo {
+    border-radius: 1.5rem;
+    width: 4rem;
+    height: 4rem;
+    img {
+      width: 3rem;
+      height: auto;
+    }
+  }
+}
