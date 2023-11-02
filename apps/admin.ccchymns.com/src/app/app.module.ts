@@ -9,6 +9,13 @@ import { TranslocoRootModule } from '@ccchymns.com/angular';
 import { environment } from '../environments/environment';
 import { StoreModule } from '@ngrx/store';
 import { languageLoadedFeature } from '../store/selectors/language-resource.selector';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getAuth, provideAuth } from '@angular/fire/auth';
+import { initializeAppCheck, ReCaptchaEnterpriseProvider, provideAppCheck } from '@angular/fire/app-check';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { getFunctions, provideFunctions } from '@angular/fire/functions';
+import { getStorage, provideStorage } from '@angular/fire/storage';
+import { getRemoteConfig, provideRemoteConfig } from '@angular/fire/remote-config';
 
 
 @NgModule({
@@ -24,6 +31,16 @@ import { languageLoadedFeature } from '../store/selectors/language-resource.sele
     BrowserAnimationsModule,
     TuiRootModule,
     TuiDialogModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+   // provideAuth(() => getAuth()),
+    provideAppCheck(() => {
+      const provider = new ReCaptchaEnterpriseProvider(environment.reCAPTCHAEnterpriseKey);
+      return initializeAppCheck(undefined, { provider, isTokenAutoRefreshEnabled: true });
+    }),
+  //  provideFirestore(() => getFirestore()),
+   // provideFunctions(() => getFunctions()),
+    //provideStorage(() => getStorage()),
+   // provideRemoteConfig(() => getRemoteConfig()),
   ],
   bootstrap: [AppComponent],
 })

@@ -1,0 +1,14 @@
+{
+  "hosting": [
+    {
+      "target": "ccchymns.com",
+      "source": ".",
+      "frameworksBackend": {}
+    },
+    {
+      "target": "admin.ccchymns.com",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
+}
