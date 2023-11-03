@@ -25,7 +25,7 @@ export class AuthComponent implements OnDestroy {
   constructor(@Inject(AUTH_TOKEN) private auth: IAuth, private router: Router) {
     this.subscriptions.sink = this.auth.getAuthSate$().subscribe((user) => {
       if (user) {
-        this.router.navigate([Route.ROOT, Route.DASHBOARD])
+        this.router.navigate([Route.ROOT])
       }
     });
   }
