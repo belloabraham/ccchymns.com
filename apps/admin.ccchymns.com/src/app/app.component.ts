@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Inject,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import {
   ILanguageResourceService,
   LANGUAGE_RESOURCE_TOKEN,
@@ -12,10 +18,11 @@ import {
   NavigationError,
   NavigationStart,
   Router,
-} from '@angular/router';import {
+} from '@angular/router';
+import {
   LoadLanguageResourceActionState,
   getLoadLanguageResourceActionGroup,
-} from '../store/actions/language-resource.actions';
+} from '../store/actions';
 import { Observable, filter, map, merge, of } from 'rxjs';
 import { IConnectionUtil } from '@ccchymns.com/core';
 import { CONNECTION_UTIL_TOKEN } from '../core/di/connection-service.token';

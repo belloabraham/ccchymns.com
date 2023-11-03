@@ -10,7 +10,7 @@ import {
   CCCPageNotFoundComponent,
   LanguageResourceKey,
 } from '@ccchymns.com/common';
-import { getLanguageLoadedSelector } from '../../store/selectors/language-resource.selector';
+import { getLanguageLoadedSelector } from '../../store/selectors';
 import {
   ILanguageResourceService,
   LANGUAGE_RESOURCE_TOKEN,

@@ -4,5 +4,6 @@
   "logo": "Logo",
   "go_home": "Go Home",
   "page_not_found_title": "Error 404 - Page Not Found",
+  "verify_email_title": "Verify Email - {{value}}",
   "no_internet_connection_notice": "Can not connect to {{value}} because there is no internet connection"
 }
