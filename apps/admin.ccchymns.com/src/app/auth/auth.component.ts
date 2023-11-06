@@ -8,6 +8,8 @@ import {
 import {
   ILanguageResourceService,
   LANGUAGE_RESOURCE_TOKEN,
+  NgMaterialButtonModule,
+  NgMaterialElevationDirective,
   SharedModule,
 } from '@ccchymns.com/angular';
 import { SubSink } from 'subsink';
@@ -19,11 +21,25 @@ import { Title } from '@angular/platform-browser';
 import { getLanguageLoadedSelector } from '../../store/selectors';
 import { LanguageResourceKey } from './i18n/language-resource-key';
 import { Config } from '@ccchymns.com/common';
+import { NgOptimizedImage } from '@angular/common';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { Regex } from '@ccchymns.com/core';
 
 @Component({
   selector: 'app-auth',
   standalone: true,
-  imports: [SharedModule],
+  imports: [
+    SharedModule,
+    NgMaterialButtonModule,
+    NgMaterialElevationDirective,
+    NgOptimizedImage,
+    ReactiveFormsModule,
+  ],
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -31,6 +47,13 @@ import { Config } from '@ccchymns.com/common';
 export class AuthComponent implements OnDestroy, OnInit {
   private subscriptions = new SubSink();
   private authState$ = this.auth.getAuthSate$();
+  languageResourceKey = LanguageResourceKey;
+  formSubmitted = false;
+  loginForm!: FormGroup;
+  emailFormControl = new FormControl(undefined, [
+    Validators.required,
+    Validators.pattern(Regex.EMAIL),
+  ]);
 
   constructor(
     @Inject(AUTH_TOKEN) private auth: IAuth,
@@ -46,8 +69,24 @@ export class AuthComponent implements OnDestroy, OnInit {
       }
     });
   }
+
+  private createLoginForm() {
+    this.loginForm = new FormGroup({
+      email: this.emailFormControl,
+    });
+  }
+
   ngOnInit(): void {
+    this.createLoginForm();
     this.onLanguageResourceLoad();
+  }
+
+  formIsInvalid() {
+    return (
+      this.formSubmitted &&
+      this.emailFormControl.invalid &&
+      (this.emailFormControl.dirty || this.emailFormControl.touched)
+    );
   }
 
   onLanguageResourceLoad() {
@@ -66,5 +105,12 @@ export class AuthComponent implements OnDestroy, OnInit {
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
+  }
+
+  onSubmit() {
+    this.formSubmitted = true;
+    if (this.loginForm.valid) {
+      const emailValue = this.loginForm.value.email;
+    }
   }
 }

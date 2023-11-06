@@ -1,7 +1,6 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { RouterLink } from '@angular/router';

@@ -1,4 +1,20 @@
-<div *transloco="let t">
-
+<div *transloco="let t"
+  class=" vw-100 vh-100 bg-light d-flex flex-column  gap-4 justify-content-center align-items-center">
+  <div class="logo d-flex justify-content-center align-items-center bg-white">
+    <img width="80" height="75" ngSrc="assets/images/logo.png" priority>
+  </div>
+  <form class="p-3 login" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <p class="title text-center">{{t(languageResourceKey.AUTH_LOGIN_MGS)}}</p>
+    <label for="email" class="form-label">{{t(languageResourceKey.EMAIL)}}
+    </label>
+    <input type="email" formControlName="email" [class.is-invalid]="formIsInvalid()" class="form-control w-100"
+      id="email" placeholder="name@example.com">
+    <div class="invalid-feedback" *ngIf="formIsInvalid()">
+      {{t(languageResourceKey.INVALID_EMAIL_MGS)}}
+    </div>
+    <button class="login-button mt-3 w-100" ng-mat-raised-button>
+      {{t(languageResourceKey.LOGIN)}}
+    </button>
+  </form>
 
 </div>
