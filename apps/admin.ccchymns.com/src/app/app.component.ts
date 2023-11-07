@@ -27,6 +27,12 @@ import { Observable, filter, map, merge, of } from 'rxjs';
 import { IConnectionUtil } from '@ccchymns.com/core';
 import { CONNECTION_UTIL_TOKEN } from '../core/di/connection-service.token';
 import { LanguageResourceKey } from './i18n/language-resource-key';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import {
+  DisplayPercentage,
+  DisplayService,
+  DisplaySize,
+} from '@ccchymns.com/common';
 
 @Component({
   selector: 'app-root',
@@ -48,8 +54,12 @@ export class AppComponent implements OnDestroy, OnInit {
     private languageResourceService: ILanguageResourceService,
     @Inject(CONNECTION_UTIL_TOKEN)
     private connectionUtil: IConnectionUtil,
-    private router: Router
-  ) {}
+    private router: Router,
+    private displayService: DisplayService,
+    private breakpointObserver: BreakpointObserver
+  ) {
+    this.observeChangesInDisplaySize();
+  }
 
   ngOnInit(): void {
     this.loadLanguageResource(Language.ENGLISH, () => {
@@ -107,6 +117,45 @@ export class AppComponent implements OnDestroy, OnInit {
         loadLanguageResourceActionState
       );
     this.ngrxStore.dispatch(loadLanguageResourceAction);
+  }
+
+  private observeChangesInDisplaySize() {
+    const displaySize = new Map([
+      [Breakpoints.XSmall, 'XSmall'],
+      [Breakpoints.Small, 'Small'],
+      [Breakpoints.Medium, 'Medium'],
+      [Breakpoints.Large, 'Large'],
+      [Breakpoints.XLarge, 'XLarge'],
+      ['(min-width: 2560px)', 'XXLarge'],
+    ]);
+
+    const displayPercent = new Map([
+      [Breakpoints.XSmall, 0.85],
+      [Breakpoints.Small, 0.85],
+      [Breakpoints.Medium, 0.95],
+      [Breakpoints.Large, 1.0],
+      [Breakpoints.XLarge, 1.05],
+      ['(min-width: 2560px)', 1.4],
+    ]);
+    this.subscriptions.sink = this.breakpointObserver
+      .observe([
+        Breakpoints.XSmall,
+        Breakpoints.Small,
+        Breakpoints.Medium,
+        Breakpoints.Large,
+        Breakpoints.XLarge,
+        '(min-width: 2560px)',
+      ])
+      .subscribe((state) => {
+        for (const query of Object.keys(state.breakpoints)) {
+          if (state.breakpoints[query]) {
+            this.displayService.size = (displaySize.get(query) ??
+              'Large') as DisplaySize;
+            this.displayService.percent = (displayPercent.get(query) ??
+              1) as DisplayPercentage;
+          }
+        }
+      });
   }
 
   ngOnDestroy(): void {
