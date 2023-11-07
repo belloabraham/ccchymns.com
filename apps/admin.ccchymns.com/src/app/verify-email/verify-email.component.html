@@ -1,3 +1,23 @@
-<div *transloco="let t">
-  Verify email works
+<div *transloco="let t"
+  class="vw-100 vh-100 bg-light d-flex flex-column justify-content-center align-items-center position-relative">
+
+  <div class="logo d-flex justify-content-center align-items-center bg-white position-fixed">
+    <a [routerLink]="root"><img class="scale" width="50" height="40" ngSrc="assets/images/logo.png" priority>
+    </a>
+  </div>
+
+  <form class="p-3 verify-email" [formGroup]="verifyEmailForm" (ngSubmit)="onSubmit()">
+    <p class="title">{{t(languageResourceKey.EMAIL_VERIFICATION_TITLE)}}</p>
+    <label for="email" class="form-label">{{t(rootLanguageResourceKey.EMAIL)}}
+    </label>
+    <input type="email" formControlName="email" [class.is-invalid]="formIsInvalid()" class="form-control w-100"
+      id="email" placeholder="name@example.com">
+    <div class="invalid-feedback" *ngIf="formIsInvalid()">
+      {{t(rootLanguageResourceKey.INVALID_EMAIL_MGS)}}
+    </div>
+    <button class="login-button mt-3 w-100" ng-mat-raised-button>
+      {{t(languageResourceKey.VERIFY_EMAIL)}}
+    </button>
+  </form>
+
 </div>

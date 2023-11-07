@@ -3,6 +3,7 @@ import { EmailAuthService } from './firebase/email.service';
 import { User, UserCredential } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
 import { IAuth } from './auth.interface';
+import { Config } from '@ccchymns.com/common';
 
 @Injectable()
 export class AuthService implements IAuth {
@@ -17,6 +18,10 @@ export class AuthService implements IAuth {
 
   getUser(): User | null {
     return this.emailAuth.getUser();
+  }
+
+   emailIsAuthorized(email: string) {
+    return email.endsWith(Config.DOMAIN);
   }
 
   signOut(): Promise<void> {

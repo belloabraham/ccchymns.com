@@ -51,6 +51,7 @@ export class AuthComponent implements OnDestroy, OnInit {
   private subscriptions = new SubSink();
   private authState$ = this.auth.getAuthSate$();
   languageResourceKey = LanguageResourceKey;
+  rootLanguageResourceKey = RootLanguageResourceKey;
 
   formSubmitted = false;
   loginForm!: FormGroup;
@@ -90,11 +91,7 @@ export class AuthComponent implements OnDestroy, OnInit {
   }
 
   formIsInvalid() {
-    return (
-      this.formSubmitted &&
-      this.emailFormControl.invalid &&
-      (this.emailFormControl.dirty || this.emailFormControl.touched)
-    );
+    return this.formSubmitted && this.emailFormControl.invalid;
   }
 
   onLanguageResourceLoad() {
@@ -130,11 +127,11 @@ export class AuthComponent implements OnDestroy, OnInit {
     if (this.loginForm.valid) {
       const email = this.loginForm.value.email.trim();
 
-      if (this.emailIsAuthorized(email)) {
+      if (this.auth.emailIsAuthorized(email)) {
         await this.sendSignInLinkTo(email);
       }
 
-      if (!this.emailIsAuthorized(email)) {
+      if (!this.auth.emailIsAuthorized(email)) {
         const unAuthorizedLoginErrorMsg =
           this.languageResourceService.getString(
             LanguageResourceKey.UNAUTHORIZED_LOGIN_ERROR_MSG
@@ -146,10 +143,6 @@ export class AuthComponent implements OnDestroy, OnInit {
         );
       }
     }
-  }
-
-  private emailIsAuthorized(email: string) {
-    return email.endsWith(Config.DOMAIN);
   }
 
   async sendSignInLinkTo(email: string) {

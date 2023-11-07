@@ -16,5 +16,7 @@
   "login_link_sent_msg": "A login link has been sent to <b>{{value}}</b>, click on it to login",
   "login_error_title": "Error - Unable to login",
   "ok": "Ok",
-  "unauthorized_login_error_msg":"Authorized personnel only"
+  "unauthorized_login_error_msg": "Authorized personnel only",
+  "email_verification_title": "Let's Confirm Your Email",
+  "verify_email": "Verify Email"
 }

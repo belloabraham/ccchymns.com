@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   Inject,
@@ -9,6 +10,8 @@ import { SharedModule } from '@ccchymns.com/angular';
 import {
   ILanguageResourceService,
   LANGUAGE_RESOURCE_TOKEN,
+  NgMaterialButtonModule,
+  NgMaterialElevationDirective,
 } from '@ccchymns.com/angular';
 import { SubSink } from 'subsink';
 import { Store } from '@ngrx/store';
@@ -18,14 +21,29 @@ import { LanguageResourceKey } from './i18n/language-resource-key';
 import { Config } from '@ccchymns.com/common';
 import { Preference } from '../../core/data/preference';
 import { AUTH_TOKEN, IAuth } from '../../core/auth';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Route } from '../../core/data/route';
-import { LoggerUtil } from '@ccchymns.com/core';
+import { LoggerUtil, Regex } from '@ccchymns.com/core';
+import {
+  FormControl,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import { NgOptimizedImage } from '@angular/common';
+import { RootLanguageResourceKey } from '../../core/i18n/language-resource-key';
 
 @Component({
   selector: 'app-verify-email',
   standalone: true,
-  imports: [SharedModule],
+  imports: [
+    SharedModule,
+    NgMaterialButtonModule,
+    NgMaterialElevationDirective,
+    NgOptimizedImage,
+    ReactiveFormsModule,
+    RouterLink,
+  ],
   templateUrl: './verify-email.component.html',
   styleUrls: ['./verify-email.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -33,6 +51,16 @@ import { LoggerUtil } from '@ccchymns.com/core';
 export class VerifyEmailComponent implements OnInit, OnDestroy {
   private subscriptions = new SubSink();
   private signInMail = localStorage.getItem(Preference.SIGN_IN_MAIL);
+  rootLanguageResourceKey = RootLanguageResourceKey;
+  languageResourceKey = LanguageResourceKey;
+  root = Route.ROOT;
+
+  formSubmitted = false;
+  verifyEmailForm!: FormGroup;
+  emailFormControl = new FormControl(undefined, [
+    Validators.required,
+    Validators.pattern(Regex.EMAIL),
+  ]);
 
   constructor(
     private ngrxStore: Store,
@@ -46,17 +74,32 @@ export class VerifyEmailComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.onLanguageResourceLoad();
     if (this.signInMail) {
-      this.verifyEmailWithLink(this.signInMail);
+      this.verifyEmail(this.signInMail);
     }
   }
 
-  private async verifyEmailWithLink(email: string) {
-    try {
-      await this.auth.signInWithEmailLink(email, location.href);
-      localStorage.removeItem(Preference.SIGN_IN_MAIL);
-      this.router.navigate([Route.ROOT]);
-    } catch (error: any) {
-      LoggerUtil.error(this, this.verifyEmailWithLink.name, error);
+  formIsInvalid() {
+    return this.formSubmitted && this.emailFormControl.invalid;
+  }
+
+  private async verifyEmail(email: string) {
+    await this.auth.signInWithEmailLink(email, location.href);
+    localStorage.removeItem(Preference.SIGN_IN_MAIL);
+    this.router.navigate([Route.ROOT]);
+  }
+
+  async onSubmit() {
+    this.formSubmitted = true;
+    if (this.verifyEmailForm.valid) {
+      const email = this.verifyEmailForm.value.email.trim();
+      try {
+        if (!this.auth.emailIsAuthorized(email)) {
+          throw new Error('UnAuthorized email');
+        }
+        this.verifyEmail(email);
+      } catch (error) {
+        LoggerUtil.error(this, this.onSubmit.name, error);
+      }
     }
   }
 
