@@ -32,11 +32,11 @@ import { getRemoteConfig, provideRemoteConfig } from '@angular/fire/remote-confi
     TuiRootModule,
     TuiDialogModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
-   // provideAuth(() => getAuth()),
-    provideAppCheck(() => {
-      const provider = new ReCaptchaEnterpriseProvider(environment.reCAPTCHAEnterpriseKey);
-      return initializeAppCheck(undefined, { provider, isTokenAutoRefreshEnabled: true });
-    }),
+    provideAuth(() => getAuth()),
+    // provideAppCheck(() => {
+    //   const provider = new ReCaptchaEnterpriseProvider(environment.reCAPTCHAEnterpriseKey);
+    //   return initializeAppCheck(undefined, { provider, isTokenAutoRefreshEnabled: true });
+    // }),
   //  provideFirestore(() => getFirestore()),
    // provideFunctions(() => getFunctions()),
     //provideStorage(() => getStorage()),

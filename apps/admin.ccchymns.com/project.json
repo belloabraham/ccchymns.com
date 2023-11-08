@@ -8,16 +8,12 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/admin.ccchymns.com",
         "index": "apps/admin.ccchymns.com/src/index.html",
         "main": "apps/admin.ccchymns.com/src/main.ts",
-        "polyfills": [
-          "zone.js"
-        ],
+        "polyfills": ["zone.js"],
         "tsConfig": "apps/admin.ccchymns.com/tsconfig.app.json",
         "assets": [
           "apps/admin.ccchymns.com/src/favicon.ico",
@@ -28,9 +24,7 @@
             "output": "assets/taiga-ui/icons"
           }
         ],
-        "styles": [
-          "apps/admin.ccchymns.com/src/styles.scss"
-        ],
+        "styles": ["apps/admin.ccchymns.com/src/styles.scss"],
         "scripts": [],
         "stylePreprocessorOptions": {
           "includePaths": [
@@ -59,7 +53,13 @@
               "maximumError": "4kb"
             }
           ],
-          "outputHashing": "all"
+          "outputHashing": "all",
+          "fileReplacements": [
+            {
+              "replace": "apps/admin.ccchymns.com/src/environments/environment.ts",
+              "with": "apps/admin.ccchymns.com/src/environments/environment.prod.ts"
+            }
+          ]
         },
         "development": {
           "buildOptimizer": false,
@@ -98,9 +98,7 @@
     },
     "lint": {
       "executor": "@nx/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [
           "apps/admin.ccchymns.com/**/*.ts",
@@ -110,9 +108,7 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/{projectRoot}"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "headers": {
           "Content-Security-Policy": "trusted-types default angular angular#bundler; require-trusted-types-for 'script';"

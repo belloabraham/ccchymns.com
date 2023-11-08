@@ -2,7 +2,21 @@
   "app_name": "CCC Hymns",
   "page_not_found_message": "Oops the page you are looking for does not exist.",
   "logo": "Logo",
+  "login": "Login",
+  "email": "Email",
   "go_home": "Go Home",
   "page_not_found_title": "Error 404 - Page Not Found",
-  "no_internet_connection_notice": "Can not connect to {{value}} because there is no internet connection"
+  "verify_email_title": "Verify Email - {{value}}",
+  "dashboard_title": "Dashboard - {{value}}",
+  "auth_title": "Login - {{value}}",
+  "authorized_login_msg": "For authorized personnel login only",
+  "no_internet_connection_notice": "Can not connect to {{value}} because there is no internet connection",
+  "invalid_email_msg": "Enter a valid email address",
+  "login_link_sent_title": "Login link sent",
+  "login_link_sent_msg": "A login link has been sent to <b>{{value}}</b>, click on it to login",
+  "login_error_title": "Error - Unable to login",
+  "ok": "Ok",
+  "unauthorized_login_error_msg": "Authorized personnel only",
+  "email_verification_title": "Let's Confirm Your Email",
+  "verify_email": "Verify Email"
 }
