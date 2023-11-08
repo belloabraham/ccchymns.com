@@ -20,7 +20,7 @@ export class AuthService implements IAuth {
     return this.emailAuth.getUser();
   }
 
-   emailIsAuthorized(email: string) {
+  emailIsAuthorized(email: string) {
     return email.endsWith(Config.DOMAIN);
   }
 
@@ -32,7 +32,7 @@ export class AuthService implements IAuth {
     return this.emailAuth.getAuthSate$();
   }
 
-  sendSignInLinkToEmail(email: string): Promise<void> {
+  sendSignInLinkTo(email: string): Promise<void> {
     return this.emailAuth.sendSignInLinkToEmail(email);
   }
 }

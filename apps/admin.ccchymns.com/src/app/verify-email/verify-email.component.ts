@@ -82,34 +82,34 @@ export class VerifyEmailComponent implements OnInit, OnDestroy {
     this.createVerifyEmailForm();
   }
 
-  formIsInvalid() {
+  emailIsValid() {
     return this.formSubmitted && this.emailFormControl.invalid;
   }
 
   private async verifyEmail(email: string) {
-    await this.auth.signInWithEmailLink(email, location.href);
-    localStorage.removeItem(Preference.SIGN_IN_MAIL);
-    this.router.navigate([Route.ROOT]);
+    const responsiveSvgSize = this.displayService.percentage * 60;
+    Shield.standard(responsiveSvgSize);
+    try {
+      if (!this.auth.emailIsAuthorized(email)) {
+        throw new Error('UnAuthorized email');
+      }
+      await this.auth.signInWithEmailLink(email, location.href);
+      localStorage.removeItem(Preference.SIGN_IN_MAIL);
+      this.router.navigate([Route.ROOT]);
+    } catch (error: any) {
+      const message = AuthError.message(error.code);
+      AlertDialog.error(message, this.loginErrorTitle, this.ok);
+      LoggerUtil.error(this, this.onSubmit.name, error);
+    } finally {
+      Shield.remove();
+    }
   }
 
   async onSubmit() {
     this.formSubmitted = true;
     if (this.verifyEmailForm.valid) {
       const email = this.verifyEmailForm.value.email.trim();
-      const svgSize = this.displayService.percent * 60;
-      Shield.standard(svgSize);
-      try {
-        if (!this.auth.emailIsAuthorized(email)) {
-          throw new Error('UnAuthorized email');
-        }
-        this.verifyEmail(email);
-      } catch (error: any) {
-        const message = AuthError.message(error.code);
-        AlertDialog.error(message, this.loginErrorTitle, this.ok);
-        LoggerUtil.error(this, this.onSubmit.name, error);
-      } finally {
-        Shield.remove();
-      }
+      this.verifyEmail(email);
     }
   }
 
@@ -125,7 +125,7 @@ export class VerifyEmailComponent implements OnInit, OnDestroy {
       .subscribe((loaded) => {
         if (loaded) {
           this.setPageTitle();
-          this.getStringResources();
+          this.getStringResource();
         }
       });
   }
@@ -138,7 +138,7 @@ export class VerifyEmailComponent implements OnInit, OnDestroy {
     this.title.setTitle(pageTitle);
   }
 
-  private getStringResources() {
+  private getStringResource() {
     this.loginErrorTitle = this.languageResourceService.getString(
       RootLanguageResourceKey.LOGIN_ERROR_TITLE
     );

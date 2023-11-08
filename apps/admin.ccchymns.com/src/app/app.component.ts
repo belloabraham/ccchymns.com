@@ -29,9 +29,11 @@ import { CONNECTION_UTIL_TOKEN } from '../core/di/connection-service.token';
 import { LanguageResourceKey } from './i18n/language-resource-key';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import {
+  Display,
   DisplayPercentage,
   DisplayService,
   DisplaySize,
+  Size,
 } from '@ccchymns.com/common';
 
 @Component({
@@ -47,6 +49,25 @@ export class AppComponent implements OnDestroy, OnInit {
   deviceIsConnectedToTheInternet$!: Observable<boolean>;
   languageResourceKey = LanguageResourceKey;
   appNameKey = Language.APP_NAME;
+
+  xxLarge = '(min-width: 2560px)';
+  private displaySizeMap = new Map([
+    [Breakpoints.XSmall, Size.XSmall],
+    [Breakpoints.Small, Size.Small],
+    [Breakpoints.Medium, Size.Medium],
+    [Breakpoints.Large, Size.Large],
+    [Breakpoints.XLarge, Size.XLarge],
+    [this.xxLarge, Size.XXLarge],
+  ]);
+
+  private displayPercentageMap = new Map([
+    [Breakpoints.XSmall, Display.percentage85],
+    [Breakpoints.Small, Display.percentage85],
+    [Breakpoints.Medium, Display.percentage95],
+    [Breakpoints.Large, Display.percentage100],
+    [Breakpoints.XLarge, Display.percentage105],
+    [this.xxLarge, Display.percentage140],
+  ]);
 
   constructor(
     private ngrxStore: Store,
@@ -120,23 +141,6 @@ export class AppComponent implements OnDestroy, OnInit {
   }
 
   private observeChangesInDisplaySize() {
-    const displaySize = new Map([
-      [Breakpoints.XSmall, 'XSmall'],
-      [Breakpoints.Small, 'Small'],
-      [Breakpoints.Medium, 'Medium'],
-      [Breakpoints.Large, 'Large'],
-      [Breakpoints.XLarge, 'XLarge'],
-      ['(min-width: 2560px)', 'XXLarge'],
-    ]);
-
-    const displayPercent = new Map([
-      [Breakpoints.XSmall, 0.85],
-      [Breakpoints.Small, 0.85],
-      [Breakpoints.Medium, 0.95],
-      [Breakpoints.Large, 1.0],
-      [Breakpoints.XLarge, 1.05],
-      ['(min-width: 2560px)', 1.4],
-    ]);
     this.subscriptions.sink = this.breakpointObserver
       .observe([
         Breakpoints.XSmall,
@@ -144,15 +148,16 @@ export class AppComponent implements OnDestroy, OnInit {
         Breakpoints.Medium,
         Breakpoints.Large,
         Breakpoints.XLarge,
-        '(min-width: 2560px)',
+        this.xxLarge,
       ])
       .subscribe((state) => {
         for (const query of Object.keys(state.breakpoints)) {
           if (state.breakpoints[query]) {
-            this.displayService.size = (displaySize.get(query) ??
-              'Large') as DisplaySize;
-            this.displayService.percent = (displayPercent.get(query) ??
-              1) as DisplayPercentage;
+            this.displayService.size = (this.displaySizeMap.get(query) ??
+              Size.Large) as DisplaySize;
+            this.displayService.percentage = (this.displayPercentageMap.get(
+              query
+            ) ?? Display.percentage100) as DisplayPercentage;
           }
         }
       });

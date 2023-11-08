@@ -6,7 +6,7 @@ export interface IAuth {
   signOut: () => Promise<void>;
   getUser: () => User | null;
   emailIsAuthorized: (email: string) => boolean;
-  sendSignInLinkToEmail: (email: string) => Promise<void>;
+  sendSignInLinkTo: (email: string) => Promise<void>;
   signInWithEmailLink: (
     email: string,
     emailLink: string

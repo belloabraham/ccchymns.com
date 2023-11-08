@@ -72,16 +72,10 @@ export class AuthComponent implements OnDestroy, OnInit {
     private title: Title,
     private displayService: DisplayService
   ) {
-    this.subscriptions.sink = this.auth.getAuthSate$().subscribe((user) => {
-      if (user) {
+    this.subscriptions.sink = this.authState$.subscribe((authenticatedUser) => {
+      if (authenticatedUser) {
         this.router.navigate([Route.ROOT]);
       }
-    });
-  }
-
-  private createLoginForm() {
-    this.loginForm = new FormGroup({
-      email: this.emailFormControl,
     });
   }
 
@@ -90,7 +84,13 @@ export class AuthComponent implements OnDestroy, OnInit {
     this.onLanguageResourceLoad();
   }
 
-  formIsInvalid() {
+  private createLoginForm() {
+    this.loginForm = new FormGroup({
+      email: this.emailFormControl,
+    });
+  }
+
+  emailIsInvalid() {
     return this.formSubmitted && this.emailFormControl.invalid;
   }
 
@@ -126,38 +126,40 @@ export class AuthComponent implements OnDestroy, OnInit {
     this.formSubmitted = true;
     if (this.loginForm.valid) {
       const email = this.loginForm.value.email.trim();
+      this.sendLoginLinkTo(email);
+    }
+  }
 
-      if (this.auth.emailIsAuthorized(email)) {
-        await this.sendSignInLinkTo(email);
-      }
+  private async sendLoginLinkTo(email: string) {
+    if (this.auth.emailIsAuthorized(email)) {
+      await this.sendSignInLinkTo(email);
+    }
 
-      if (!this.auth.emailIsAuthorized(email)) {
-        const unAuthorizedLoginErrorMsg =
-          this.languageResourceService.getString(
-            LanguageResourceKey.UNAUTHORIZED_LOGIN_ERROR_MSG
-          );
-        AlertDialog.error(
-          unAuthorizedLoginErrorMsg,
-          this.loginErrorTitle,
-          this.ok
-        );
-      }
+    if (!this.auth.emailIsAuthorized(email)) {
+      const unAuthorizedLoginErrorMsg = this.languageResourceService.getString(
+        LanguageResourceKey.UNAUTHORIZED_LOGIN_ERROR_MSG
+      );
+      AlertDialog.error(
+        unAuthorizedLoginErrorMsg,
+        this.loginErrorTitle,
+        this.ok
+      );
     }
   }
 
   async sendSignInLinkTo(email: string) {
-    const svgSize = this.displayService.percent * 60;
-    Shield.standard(svgSize);
+    const responsiveSvgSize = this.displayService.percentage * 60;
+    Shield.standard(responsiveSvgSize);
     try {
-      await this.auth.sendSignInLinkToEmail(email);
+      await this.auth.sendSignInLinkTo(email);
       localStorage.setItem(Preference.SIGN_IN_MAIL, email);
-      Shield.remove();
       this.showMailSentSuccessAlert(email);
     } catch (error: any) {
-      Shield.remove();
       LoggerUtil.error(this, this.sendSignInLinkTo.name, error);
       const message = AuthError.message(error.code);
       AlertDialog.error(message, this.loginErrorTitle, this.ok);
+    } finally {
+      Shield.remove();
     }
   }
 
@@ -176,6 +178,7 @@ export class AuthComponent implements OnDestroy, OnInit {
       plainText: false,
     });
   }
+
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
   }
