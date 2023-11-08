@@ -1,5 +1,4 @@
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   Inject,
@@ -18,12 +17,12 @@ import { Store } from '@ngrx/store';
 import { Title } from '@angular/platform-browser';
 import { getLanguageLoadedSelector } from '../../store/selectors';
 import { LanguageResourceKey } from './i18n/language-resource-key';
-import { Config } from '@ccchymns.com/common';
+import { Config, DisplayService } from '@ccchymns.com/common';
 import { Preference } from '../../core/data/preference';
 import { AUTH_TOKEN, IAuth } from '../../core/auth';
 import { Router, RouterLink } from '@angular/router';
 import { Route } from '../../core/data/route';
-import { LoggerUtil, Regex } from '@ccchymns.com/core';
+import { AlertDialog, LoggerUtil, Regex, Shield } from '@ccchymns.com/core';
 import {
   FormControl,
   FormGroup,
@@ -32,6 +31,7 @@ import {
 } from '@angular/forms';
 import { NgOptimizedImage } from '@angular/common';
 import { RootLanguageResourceKey } from '../../core/i18n/language-resource-key';
+import { AuthError } from '../../core/auth/auth-error';
 
 @Component({
   selector: 'app-verify-email',
@@ -61,6 +61,8 @@ export class VerifyEmailComponent implements OnInit, OnDestroy {
     Validators.required,
     Validators.pattern(Regex.EMAIL),
   ]);
+  loginErrorTitle = '';
+  ok = '';
 
   constructor(
     private ngrxStore: Store,
@@ -68,7 +70,8 @@ export class VerifyEmailComponent implements OnInit, OnDestroy {
     private languageResourceService: ILanguageResourceService,
     private title: Title,
     @Inject(AUTH_TOKEN) private auth: IAuth,
-    private router: Router
+    private router: Router,
+    private displayService: DisplayService
   ) {}
 
   ngOnInit(): void {
@@ -76,6 +79,7 @@ export class VerifyEmailComponent implements OnInit, OnDestroy {
     if (this.signInMail) {
       this.verifyEmail(this.signInMail);
     }
+    this.createVerifyEmailForm();
   }
 
   formIsInvalid() {
@@ -92,15 +96,27 @@ export class VerifyEmailComponent implements OnInit, OnDestroy {
     this.formSubmitted = true;
     if (this.verifyEmailForm.valid) {
       const email = this.verifyEmailForm.value.email.trim();
+      const svgSize = this.displayService.percent * 60;
+      Shield.standard(svgSize);
       try {
         if (!this.auth.emailIsAuthorized(email)) {
           throw new Error('UnAuthorized email');
         }
         this.verifyEmail(email);
-      } catch (error) {
+      } catch (error: any) {
+        const message = AuthError.message(error.code);
+        AlertDialog.error(message, this.loginErrorTitle, this.ok);
         LoggerUtil.error(this, this.onSubmit.name, error);
+      } finally {
+        Shield.remove();
       }
     }
+  }
+
+  private createVerifyEmailForm() {
+    this.verifyEmailForm = new FormGroup({
+      email: this.emailFormControl,
+    });
   }
 
   onLanguageResourceLoad() {
@@ -108,13 +124,27 @@ export class VerifyEmailComponent implements OnInit, OnDestroy {
       .select(getLanguageLoadedSelector())
       .subscribe((loaded) => {
         if (loaded) {
-          const pageTitle = this.languageResourceService.getStringWithParameter(
-            LanguageResourceKey.PAGE_TITLE,
-            { value: Config.APP_NAME }
-          );
-          this.title.setTitle(pageTitle);
+          this.setPageTitle();
+          this.getStringResources();
         }
       });
+  }
+
+  private setPageTitle() {
+    const pageTitle = this.languageResourceService.getStringWithParameter(
+      LanguageResourceKey.PAGE_TITLE,
+      { value: Config.APP_NAME }
+    );
+    this.title.setTitle(pageTitle);
+  }
+
+  private getStringResources() {
+    this.loginErrorTitle = this.languageResourceService.getString(
+      RootLanguageResourceKey.LOGIN_ERROR_TITLE
+    );
+    this.ok = this.languageResourceService.getString(
+      RootLanguageResourceKey.OK
+    );
   }
 
   ngOnDestroy(): void {

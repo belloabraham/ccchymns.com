@@ -7,7 +7,7 @@
   </div>
 
   <form class="p-3 verify-email" [formGroup]="verifyEmailForm" (ngSubmit)="onSubmit()">
-    <p class="title">{{t(languageResourceKey.EMAIL_VERIFICATION_TITLE)}}</p>
+    <p class="title text-center">{{t(languageResourceKey.EMAIL_VERIFICATION_TITLE)}}</p>
     <label for="email" class="form-label">{{t(rootLanguageResourceKey.EMAIL)}}
     </label>
     <input type="email" formControlName="email" [class.is-invalid]="formIsInvalid()" class="form-control w-100"
@@ -15,7 +15,7 @@
     <div class="invalid-feedback" *ngIf="formIsInvalid()">
       {{t(rootLanguageResourceKey.INVALID_EMAIL_MGS)}}
     </div>
-    <button class="login-button mt-3 w-100" ng-mat-raised-button>
+    <button class="mt-3 w-100" ng-mat-raised-button>
       {{t(languageResourceKey.VERIFY_EMAIL)}}
     </button>
   </form>

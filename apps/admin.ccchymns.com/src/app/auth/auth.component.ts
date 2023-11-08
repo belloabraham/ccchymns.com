@@ -115,7 +115,7 @@ export class AuthComponent implements OnDestroy, OnInit {
 
   private getStringResources() {
     this.loginErrorTitle = this.languageResourceService.getString(
-      LanguageResourceKey.LOGIN_ERROR_TITLE
+      RootLanguageResourceKey.LOGIN_ERROR_TITLE
     );
     this.ok = this.languageResourceService.getString(
       RootLanguageResourceKey.OK
