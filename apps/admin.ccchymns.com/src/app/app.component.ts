@@ -153,11 +153,13 @@ export class AppComponent implements OnDestroy, OnInit {
       .subscribe((state) => {
         for (const query of Object.keys(state.breakpoints)) {
           if (state.breakpoints[query]) {
-            this.displayService.size = (this.displaySizeMap.get(query) ??
+            const displaySize = (this.displaySizeMap.get(query) ??
               Size.Large) as DisplaySize;
+            this.displayService.size = displaySize;
             this.displayService.percentage = (this.displayPercentageMap.get(
               query
             ) ?? Display.percentage100) as DisplayPercentage;
+            this.displayService.size$.next(displaySize);
           }
         }
       });

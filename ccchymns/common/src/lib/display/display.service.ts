@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Providers } from '@ccchymns.com/angular';
+import { ReplaySubject } from 'rxjs';
 
 export type DisplaySize =
   | 'Small'
@@ -32,6 +33,8 @@ export class Display {
   providedIn: Providers.ROOT,
 })
 export class DisplayService {
+  private NUMBER_OF_CACHED_DATA = 1;
   size: DisplaySize = Size.Large;
+  size$ = new ReplaySubject<DisplaySize>(this.NUMBER_OF_CACHED_DATA);
   percentage: DisplayPercentage = Display.percentage100;
 }

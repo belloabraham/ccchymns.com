@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { SharedModule } from '@ccchymns.com/angular';
 
 @Component({
   selector: 'app-audio',
   standalone: true,
-  imports: [CommonModule],
+  imports: [SharedModule],
   templateUrl: './audio.component.html',
   styleUrls: ['./audio.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
