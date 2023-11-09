@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { SharedModule } from '@ccchymns.com/angular';
 
 @Component({
   selector: 'app-lyrics',
   standalone: true,
-  imports: [CommonModule],
+  imports: [SharedModule],
   templateUrl: './lyrics.component.html',
   styleUrls: ['./lyrics.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

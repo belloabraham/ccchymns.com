@@ -1,9 +1,9 @@
 import { NgModule, inject, isDevMode } from '@angular/core';
 import { Router, RouterModule, Routes } from '@angular/router';
-import { Route } from '../core/data/route';
 import { AuthComponent } from './auth/auth.component';
 import { AUTH_TOKEN } from '../core/auth';
 import { map } from 'rxjs';
+import { Route } from '../core/data/route';
 
 const routes: Routes = [
   {
