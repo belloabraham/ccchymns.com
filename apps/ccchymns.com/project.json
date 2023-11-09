@@ -8,24 +8,18 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/ccchymns.com",
         "index": "apps/ccchymns.com/src/index.html",
         "main": "apps/ccchymns.com/src/main.ts",
-        "polyfills": [
-          "zone.js"
-        ],
+        "polyfills": ["zone.js"],
         "tsConfig": "apps/ccchymns.com/tsconfig.app.json",
         "assets": [
           "apps/ccchymns.com/src/favicon.ico",
           "apps/ccchymns.com/src/assets"
         ],
-        "styles": [
-          "apps/ccchymns.com/src/styles.scss"
-        ],
+        "styles": ["apps/ccchymns.com/src/styles.scss"],
         "scripts": [],
         "stylePreprocessorOptions": {
           "includePaths": [
@@ -93,10 +87,8 @@
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [
           "apps/ccchymns.com/**/*.ts",
@@ -106,9 +98,7 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/{projectRoot}"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "apps/ccchymns.com/jest.config.ts",
         "passWithNoTests": true
