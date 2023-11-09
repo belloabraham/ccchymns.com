@@ -19,7 +19,11 @@ export class CCCIconDirective implements OnChanges {
     | 'facebook'
     | 'instagram'
     | 'x-circle'
-    | 'youtube';
+    | 'youtube'
+    | 'arrow-left'
+    | 'menu'
+    | 'logout'
+    | 'close';
   @Input() position: 'start' | 'end' = 'start';
   @Input() state: 'on' | 'off' | null = null;
 

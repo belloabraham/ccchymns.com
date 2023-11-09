@@ -1,0 +1,38 @@
+@font-face {
+  font-family: 'ccc-admin-icon';
+  src:
+    url('../assets/fonts/ccc-admin-icon.ttf?nzc7ks') format('truetype'),
+    url('../assets/fonts/ccc-admin-icon.woff?nzc7ks') format('woff'),
+    url('../assets/fonts/ccc-admin-icon.svg?nzc7ks#ccc-admin-icon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="ccci-"], [class*=" ccci-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'ccc-admin-icon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ccci-logout:before {
+  content: "\e900";
+}
+.ccci-arrow-left:before {
+  content: "\e901";
+}
+.ccci-close:before {
+  content: "\e902";
+}
+.ccci-menu:before {
+  content: "\e903";
+}

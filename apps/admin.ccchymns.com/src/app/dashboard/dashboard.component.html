@@ -3,53 +3,55 @@
   <div class="card-body">
     <div class="card vh-100 rounded-0 bg-body overflow-hidden ps-md-sbwidth">
 
-      <div class="d-flex flex-column w-100 h-100 position-relative">
+      <!--!Content -->
+      <div class="d-flex flex-column w-100 h-100 position-relative bg-light">
 
-        <!-- !Toggle button -->
-        <div class="p-2 d-md-none"
-          style="background-color: var(--bs-content-bg); border-bottom: var(--bs-border-width) solid var(--bs-content-border-color);">
-          <button type="button" (click)="toggleSideBar()" data-bs-toggle="offcanvas" data-bs-target="#sidebar-example"
-            class="btn btn-secondary">
-            <i class="fa-light fa-sidebar me-1"></i> Sidebar
-          </button>
-        </div>
+        <!-- !Mobile Header-->
+        <nav class="navbar p-0 sticky-top"
+          style="background-color: var(--bs-content-bg); border-bottom: var(--bs-border-width) solid var(--bs-content-border-color); min-height: 2.9rem;">
+          <div class="container-md px-3 px-sm-4 px-xl-5 py-1 justify-content-start">
+            <button ng-mat-icon-button class="d-md-none" type="button" (click)="toggleSideBar()"
+              data-bs-toggle="offcanvas" data-bs-target="#sidebar-example">
+              <i [ccc-icon]="'menu'"></i>
+            </button>
+          </div>
+        </nav>
 
-        <!--! Content -->
-        <div class="d-flex align-items-center justify-content-center flex-grow-1">
+
+        <div class="container d-flex align-items-center justify-content-center flex-grow-1">
           <div class="specific-w-100 m-2 rounded">
             <p class="mb-2">Dashboard works</p>
           </div>
         </div>
-        <!--! End content -->
 
       </div>
+      <!--!End Content -->
 
       <!-- !Side nav -->
-      <nav class="sidebar vh-100 bg-white offcanvas-start offcanvas-md position-absolute" [class.show]="openSideBar"
+      <nav class="sidebar text-light vh-100 offcanvas-start offcanvas-md position-absolute" [class.show]="openSideBar"
         tabindex="-1" id="sidebar-example" data-bs-scroll="true" [attr.aria-modal]="openSideBar ? 'true': null"
         [attr.role]="openSideBar ? 'dialog': null">
 
-        <div class="d-default-block d-modern-block">
-          <div class="offcanvas-header border-bottom border-secondary border-opacity-25">
-            <a class="sidebar-brand" href="#">
-              <svg class="demo-brand d-inline-block align-text-top" width="24" height="24" viewBox="0 0 40 40"
-                fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path class="ccustom" fill-rule="evenodd" clip-rule="evenodd"
-                  d="M25.5557 11.6853C23.9112 10.5865 21.9778 10 20 10V0C23.9556 0 27.8224 1.17298 31.1114 3.37061C34.4004 5.56823 36.9638 8.69181 38.4776 12.3463C39.9913 16.0008 40.3874 20.0222 39.6157 23.9018C38.844 27.7814 36.9392 31.3451 34.1421 34.1421C31.3451 36.9392 27.7814 38.844 23.9018 39.6157C20.0222 40.3874 16.0008 39.9913 12.3463 38.4776C8.69181 36.9638 5.56823 34.4004 3.37061 31.1114C1.17298 27.8224 0 23.9556 0 20H10C10 21.9778 10.5865 23.9112 11.6853 25.5557C12.7841 27.2002 14.3459 28.4819 16.1732 29.2388C18.0004 29.9957 20.0111 30.1937 21.9509 29.8078C23.8907 29.422 25.6725 28.4696 27.0711 27.0711C28.4696 25.6725 29.422 23.8907 29.8078 21.9509C30.1937 20.0111 29.9957 18.0004 29.2388 16.1732C28.4819 14.3459 27.2002 12.7841 25.5557 11.6853Z"
-                  fill="#000" stop-color="#000"></path>
-                <path class="ccustom" fill-rule="evenodd" clip-rule="evenodd"
-                  d="M10 5.16562e-07C10 1.31322 9.74135 2.61358 9.2388 3.82683C8.73625 5.04009 7.99966 6.14248 7.07107 7.07107C6.14249 7.99966 5.0401 8.73625 3.82684 9.2388C2.61358 9.74134 1.31322 10 5.4439e-06 10L5.00679e-06 20C2.62644 20 5.22716 19.4827 7.65368 18.4776C10.0802 17.4725 12.285 15.9993 14.1421 14.1421C15.9993 12.285 17.4725 10.0802 18.4776 7.65367C19.4827 5.22715 20 2.62643 20 -3.81469e-06L10 5.16562e-07Z"
-                  fill="#000" stop-color="#000"></path>
-              </svg>
-              Builder
+        <div class="offcanvas-header border-bottom border-white border-opacity-25 p-1 ps-3 py-md-2 ps-md-0">
+
+          <div class="logo d-flex d-md-none justify-content-center align-items-center bg-white">
+            <a href="">
+              <img width="80" height="75" ngSrc="assets/images/logo.png" priority>
             </a>
-            <button type="button" (click)="toggleSideBar()" class="btn-close d-md-none" data-bs-dismiss="offcanvas"
-              aria-label="Close" data-bs-target="#sidebar-example"></button>
           </div>
+
+          <h6 class="text-start sidebar-title flex-grow-1 p-0 pt-2 pt-md-0 ps-3 m-0 ">
+            {{config.APP_NAME}}
+          </h6>
+
+          <button ng-mat-icon-button type="button" (click)="toggleSideBar()" class="d-md-none m-0"
+            data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#sidebar-example">
+            <i [ccc-icon]="'close'" class="text-white"></i>
+          </button>
         </div>
 
-        <div class="offcanvas-body">
-          <ul class="sidebar-nav">
+        <div class="offcanvas-body d-flex flex-column px-1">
+          <ul class="sidebar-nav flex-grow-1 mx-3">
             <li>
               <h6 class="sidebar-header">Getting started</h6>
             </li>
@@ -81,6 +83,13 @@
               <a class="nav-link" href="#">Messenger</a>
             </li>
           </ul>
+
+          <div class="text-end">
+            <button ng-mat-icon-button type="button" (click)="toggleSideBar()" class="d-md-none m-0"
+              data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#sidebar-example">
+              <i [ccc-icon]="'arrow-left'" class="text-white"></i>
+            </button>
+          </div>
         </div>
       </nav>
       @if (openSideBar) {

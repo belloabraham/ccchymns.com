@@ -9,6 +9,7 @@ import { Title } from '@angular/platform-browser';
 import {
   ILanguageResourceService,
   LANGUAGE_RESOURCE_TOKEN,
+  NgMaterialButtonModule,
   SharedModule,
 } from '@ccchymns.com/angular';
 import { Store } from '@ngrx/store';
@@ -16,11 +17,18 @@ import { SubSink } from 'subsink';
 import { getLanguageLoadedSelector } from '../../store/selectors';
 import { Config, DisplayService, Size } from '@ccchymns.com/common';
 import { LanguageResourceKey } from './i18n/language-resource-key';
+import { CCCIconDirective } from '@ccchymns.com/ui';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [SharedModule],
+  imports: [
+    SharedModule,
+    CCCIconDirective,
+    NgMaterialButtonModule,
+    NgOptimizedImage,
+  ],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -29,6 +37,7 @@ export class DashboardComponent implements OnDestroy, OnInit {
   private subscriptions = new SubSink();
   isMobile = false;
   openSideBar = false;
+  config = Config;
 
   constructor(
     private ngrxStore: Store,
