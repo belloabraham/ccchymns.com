@@ -25,7 +25,7 @@ export const Tooltip: Story = {
 
         //Require the import of NgMatTooltipModule from libs/angular
         //XPosition, YPosition form '@material/tooltip'
-        //I does not update dynamic properties as properties get initialized one by a script in AfterViewInit
+        //It does not update dynamic properties as properties get initialized one by a script in AfterViewInit
       `,
     },
   },

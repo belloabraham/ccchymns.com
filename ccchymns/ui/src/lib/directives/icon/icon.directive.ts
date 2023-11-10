@@ -23,7 +23,9 @@ export class CCCIconDirective implements OnChanges {
     | 'arrow-left'
     | 'menu'
     | 'logout'
-    | 'close';
+    | 'close'
+    | 'chevron-up'
+    | 'chevron-down';
   @Input() position: 'start' | 'end' = 'start';
   @Input() state: 'on' | 'off' | null = null;
 

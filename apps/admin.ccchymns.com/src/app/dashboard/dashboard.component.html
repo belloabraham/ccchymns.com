@@ -6,17 +6,23 @@
       <!--!Content -->
       <div class="d-flex flex-column w-100 h-100 position-relative bg-light">
 
-        <!-- !Mobile Header-->
-        <nav class="navbar p-0 sticky-top"
-          style="background-color: var(--bs-content-bg); border-bottom: var(--bs-border-width) solid var(--bs-content-border-color); min-height: 2.9rem;">
-          <div class="container-md px-3 px-sm-4 px-xl-5 py-1 justify-content-start">
-            <button ng-mat-icon-button class="d-md-none" type="button" (click)="toggleSideBar()"
-              data-bs-toggle="offcanvas" data-bs-target="#sidebar-example">
-              <i [ccc-icon]="'menu'"></i>
+        <!-- !Header-->
+        <nav class="navbar p-0 sticky-top border-bottom bg-body-secondary user-select-none">
+          <div class="container px-md-3 justify-content-between">
+
+            <button type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar-example" (click)="toggleSideBar()"
+              class="btn btn-secondary icon-button d-md-none d-flex align-items-center flex-nowrap text-start position-relative">
+              <i class="flex-shrink-0 icon-button" [ccc-icon]="'menu'"></i>
+            </button>
+            <span></span>
+
+            <button type="button"
+              class="btn btn-secondary icon-button d-flex align-items-center flex-nowrap text-start position-relative">
+              <i class="flex-shrink-0 icon-button" [ccc-icon]="'logout'"></i>
+              {{t(languageResourceKey.LOGOUT)}}
             </button>
           </div>
         </nav>
-
 
         <div class="container d-flex align-items-center justify-content-center flex-grow-1">
           <div class="specific-w-100 m-2 rounded">
@@ -28,11 +34,11 @@
       <!--!End Content -->
 
       <!-- !Side nav -->
-      <nav class="sidebar text-light vh-100 offcanvas-start offcanvas-md position-absolute" [class.show]="openSideBar"
-        tabindex="-1" id="sidebar-example" data-bs-scroll="true" [attr.aria-modal]="openSideBar ? 'true': null"
-        [attr.role]="openSideBar ? 'dialog': null">
+      <nav class="sidebar user-select-none text-light vh-100 offcanvas-start offcanvas-md position-absolute"
+        [class.show]="openSideBar" tabindex="-1" id="sidebar-example" data-bs-scroll="true"
+        [attr.aria-modal]="openSideBar ? 'true': null" [attr.role]="openSideBar ? 'dialog': null">
 
-        <div class="offcanvas-header border-bottom border-white border-opacity-25 p-1 ps-3 py-md-2 ps-md-0">
+        <div class="offcanvas-header border-bottom border-white border-opacity-25 p-1 ps-3 ps-md-0 py-md-2">
 
           <div class="logo d-flex d-md-none justify-content-center align-items-center bg-white">
             <a href="">
@@ -40,7 +46,7 @@
             </a>
           </div>
 
-          <h6 class="text-start sidebar-title flex-grow-1 p-0 pt-2 pt-md-0 ps-3 m-0 ">
+          <h6 class="text-start sidebar-title text-white flex-grow-1 p-0 pt-2 pt-md-0 ps-3 m-0">
             {{config.APP_NAME}}
           </h6>
 
@@ -50,7 +56,112 @@
           </button>
         </div>
 
-        <div class="offcanvas-body d-flex flex-column px-1">
+        <div class="offcanvas-body d-flex flex-column px-1 align-items-stretch justify-content-between">
+          <div class="pt-2 ">
+            <div class="d-flex gap-2 align-items-center ps-2">
+              <i [ccc-icon]="'menu'" style="font-size: 1.3rem;" class="text-white"></i>
+              <button ng-mat-button style="font-size: 1.1rem; font-weight: 500;" (click)="openLyrics = !openLyrics"
+                class="text-white" data-bs-toggle="collapse" data-bs-target="#lyrics-collapse"
+                [class.collapsed]="openLyrics" [attr.aria-expanded]="openLyrics" aria-expanded="true"
+                aria-controls="collapse-example-1">
+                Lyrics <i [ccc-icon]="openLyrics ? 'chevron-down': 'chevron-up'" style="font-size: 1.3rem;"
+                  class="text-white"></i>
+              </button>
+            </div>
+            <div class="collapse" [class.show]="openLyrics" id="lyrics-collapse">
+              <div class="px-4 mt-2">
+                <div class="list-group border-0" id="list-tab" role="tablist">
+                  <a [routerLinkActive]="'active-link'"
+                    class="list-group-item border-0 list-group-item-action d-flex align-items-center"
+                    id="list-profile-list" data-bs-toggle="list" href="#list-profile" role="tab"
+                    aria-controls="list-profile">
+                    <i class="fa-light fa-user" style="width: 30px;"></i>
+                    Profile
+                  </a>
+                  <a [routerLinkActive]="'active-link'"
+                    class="list-group-item border-0 list-group-item-action d-flex align-items-center"
+                    id="list-billing-list" data-bs-toggle="list" href="#list-billing" role="tab"
+                    aria-controls="list-billing">
+                    <i class="fa-light fa-credit-card" style="width: 30px;"></i>
+                    Billing
+                  </a>
+                  <a [routerLinkActive]="'active-link'"
+                    class="list-group-item border-0 list-group-item-action d-flex align-items-center"
+                    id="list-messages-list" data-bs-toggle="list" href="#list-messages" role="tab"
+                    aria-controls="list-messages">
+                    <i class="fa-light fa-envelope" style="width: 30px;"></i>
+                    Messages
+                  </a>
+                  <a [routerLinkActive]="'active-link'"
+                    class="list-group-item border-0 list-group-item-action d-flex align-items-center"
+                    id="list-stats-list" data-bs-toggle="list" href="#list-stats" role="tab" aria-controls="list-stats">
+                    <i class="fa-light fa-line-chart" style="width: 30px;"></i>
+                    Stats
+                  </a>
+                  <a [routerLinkActive]="'active-link'"
+                    class="list-group-item border-0 list-group-item-action d-flex align-items-center"
+                    id="list-premium-list" data-bs-toggle="list" href="#list-premium" role="tab"
+                    aria-controls="list-premium">
+                    <i class="fa-light fa-star" style="width: 30px;"></i>
+                    Premium
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex gap-2 align-items-center ps-2 mt-2">
+              <i [ccc-icon]="'menu'" style="font-size: 1.3rem;" class="text-white"></i>
+              <button ng-mat-button style="font-size: 1.1rem; font-weight: 500;" (click)="openLyrics = !openLyrics"
+                class="text-white" data-bs-toggle="collapse" data-bs-target="#lyrics-collapse"
+                [class.collapsed]="openLyrics" [attr.aria-expanded]="openLyrics" aria-expanded="true"
+                aria-controls="collapse-example-1">
+                Audio <i [ccc-icon]="openLyrics ? 'chevron-down': 'chevron-up'" style="font-size: 1.3rem;"
+                  class="text-white"></i>
+              </button>
+            </div>
+            <div class="collapse" [class.show]="openLyrics" id="lyrics-collapse">
+              <div class="px-4 mt-2">
+                <div class="list-group border-0" id="list-tab" role="tablist">
+                  <a [routerLinkActive]="'active-link'"
+                    class="list-group-item border-0 list-group-item-action d-flex align-items-center"
+                    id="list-profile-list" data-bs-toggle="list" href="#list-profile" role="tab"
+                    aria-controls="list-profile">
+                    <i class="fa-light fa-user" style="width: 30px;"></i>
+                    Profile
+                  </a>
+                  <a [routerLinkActive]="'active-link'"
+                    class="list-group-item border-0 list-group-item-action d-flex align-items-center"
+                    id="list-billing-list" data-bs-toggle="list" href="#list-billing" role="tab"
+                    aria-controls="list-billing">
+                    <i class="fa-light fa-credit-card" style="width: 30px;"></i>
+                    Billing
+                  </a>
+                  <a [routerLinkActive]="'active-link'"
+                    class="list-group-item border-0 list-group-item-action d-flex align-items-center"
+                    id="list-messages-list" data-bs-toggle="list" href="#list-messages" role="tab"
+                    aria-controls="list-messages">
+                    <i class="fa-light fa-envelope" style="width: 30px;"></i>
+                    Messages
+                  </a>
+                  <a [routerLinkActive]="'active-link'"
+                    class="list-group-item border-0 list-group-item-action d-flex align-items-center"
+                    id="list-stats-list" data-bs-toggle="list" href="#list-stats" role="tab" aria-controls="list-stats">
+                    <i class="fa-light fa-line-chart" style="width: 30px;"></i>
+                    Stats
+                  </a>
+                  <a [routerLinkActive]="'active-link'"
+                    class="list-group-item border-0 list-group-item-action d-flex align-items-center"
+                    id="list-premium-list" data-bs-toggle="list" href="#list-premium" role="tab"
+                    aria-controls="list-premium">
+                    <i class="fa-light fa-star" style="width: 30px;"></i>
+                    Premium
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <!--
           <ul class="sidebar-nav flex-grow-1 mx-3">
             <li>
               <h6 class="sidebar-header">Getting started</h6>
@@ -82,7 +193,7 @@
             <li class="nav-item">
               <a class="nav-link" href="#">Messenger</a>
             </li>
-          </ul>
+          </ul> -->
 
           <div class="text-end">
             <button ng-mat-icon-button type="button" (click)="toggleSideBar()" class="d-md-none m-0"

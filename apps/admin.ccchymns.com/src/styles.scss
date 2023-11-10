@@ -25,7 +25,7 @@
 }
 .sidebar {
   width: 18rem !important;
-  background-color: #0D47A1 !important;
+  background-color: #01579B !important;
 }
 
 @include gerillass.breakpoint(min, medium) {
@@ -37,3 +37,4 @@
     width: 15rem !important;
   }
 }
+

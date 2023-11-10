@@ -9,6 +9,7 @@ import { Title } from '@angular/platform-browser';
 import {
   ILanguageResourceService,
   LANGUAGE_RESOURCE_TOKEN,
+  NgMatTooltipModule,
   NgMaterialButtonModule,
   SharedModule,
 } from '@ccchymns.com/angular';
@@ -19,6 +20,7 @@ import { Config, DisplayService, Size } from '@ccchymns.com/common';
 import { LanguageResourceKey } from './i18n/language-resource-key';
 import { CCCIconDirective } from '@ccchymns.com/ui';
 import { NgOptimizedImage } from '@angular/common';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -28,6 +30,9 @@ import { NgOptimizedImage } from '@angular/common';
     CCCIconDirective,
     NgMaterialButtonModule,
     NgOptimizedImage,
+    NgMatTooltipModule,
+    RouterLinkActive,
+    RouterLink
   ],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
@@ -38,6 +43,8 @@ export class DashboardComponent implements OnDestroy, OnInit {
   isMobile = false;
   openSideBar = false;
   config = Config;
+  languageResourceKey = LanguageResourceKey;
+  openLyrics = true;
 
   constructor(
     private ngrxStore: Store,

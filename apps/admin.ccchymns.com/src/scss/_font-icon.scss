@@ -24,6 +24,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.ccci-chevron-down:before {
+  content: "\e904";
+}
+.ccci-chevron-up:before {
+  content: "\e905";
+}
 .ccci-logout:before {
   content: "\e900";
 }
