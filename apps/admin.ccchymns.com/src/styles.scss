@@ -25,7 +25,7 @@
 }
 .sidebar {
   width: 18rem !important;
-  background-color: #01579B !important;
+  background-color: #01579b !important;
 }
 
 @include gerillass.breakpoint(min, medium) {
@@ -37,6 +37,6 @@
     width: 15rem !important;
   }
 }
-.list-group-item{
-  font-size: .9rem;
+.list-group-item {
+  font-size: 0.9rem;
 }
