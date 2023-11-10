@@ -21,6 +21,7 @@ import { LanguageResourceKey } from './i18n/language-resource-key';
 import { CCCIconDirective } from '@ccchymns.com/ui';
 import { NgOptimizedImage } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { RootLanguageResourceKey } from '../../core/i18n/language-resource-key';
 
 @Component({
   selector: 'app-dashboard',
@@ -32,7 +33,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
     NgOptimizedImage,
     NgMatTooltipModule,
     RouterLinkActive,
-    RouterLink
+    RouterLink,
   ],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
@@ -44,7 +45,13 @@ export class DashboardComponent implements OnDestroy, OnInit {
   openSideBar = false;
   config = Config;
   languageResourceKey = LanguageResourceKey;
+  rootLanguageResourceKey = RootLanguageResourceKey;
+
   openLyrics = true;
+  openAudio = false;
+  openTonicSolfa = false;
+  openBibleReference = false;
+  openAudioSpace = false;
 
   constructor(
     private ngrxStore: Store,

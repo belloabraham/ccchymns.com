@@ -19,13 +19,23 @@
   }
 }
 
+.collapse-btn {
+  i {
+    font-size: 1.1rem;
+  }
+  button {
+    font-weight: 600;
+    font-size: .9rem;
+  }
+}
+
 .sidebar-title {
   font-size: 1.5rem;
   font-weight: 400;
 }
 
 .list-group-item {
-  color: colors.$neutral-300;
+  color: colors.$neutral-200;
 }
 
 .active-link {
@@ -34,10 +44,14 @@
   border-radius: 0;
 }
 
+.space {
+  width: 30px;
+}
+
 .active-link::before {
   content: '';
   position: absolute;
-  left: 1.4rem;
+  left: 1.2rem;
   width: 0.2rem;
   height: 0.9rem;
   background-color: white;

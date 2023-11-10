@@ -25,7 +25,14 @@ export class CCCIconDirective implements OnChanges {
     | 'logout'
     | 'close'
     | 'chevron-up'
-    | 'chevron-down';
+    | 'chevron-down'
+    | 'chevron-right'
+    | 'bible'
+    | 'audio'
+    | 'book-edit'
+    | 'audio-hymns'
+    | 'all-hymns'
+    | 'music-clef';
   @Input() position: 'start' | 'end' = 'start';
   @Input() state: 'on' | 'off' | null = null;
 
