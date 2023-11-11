@@ -1,7 +1,9 @@
 @forward 'global';
 @forward './scss/font';
+@forward './scss/font-icon';
 @forward './scss/variables/vendor/taiga-ui';
 @use 'material/ccchymns';
+@use 'gerillass';
 
 .logo {
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
@@ -15,4 +17,26 @@
     font-weight: 500;
     font-size: 1.5rem;
   }
+}
+
+:root {
+  --bs-sidebar-width: 18rem;
+  --bs-padding-sbwidth: 18rem;
+}
+.sidebar {
+  width: 18rem !important;
+  background-color: #01579b !important;
+}
+
+@include gerillass.breakpoint(min, medium) {
+  :root {
+    --bs-sidebar-width: 15rem;
+    --bs-padding-sbwidth: 15rem;
+  }
+  .sidebar {
+    width: 15rem !important;
+  }
+}
+.list-group-item {
+  font-size: 0.9rem;
 }

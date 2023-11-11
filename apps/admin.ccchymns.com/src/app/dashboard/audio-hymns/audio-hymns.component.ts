@@ -2,11 +2,11 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { SharedModule } from '@ccchymns.com/angular';
 
 @Component({
-  selector: 'app-audio',
+  selector: 'app-audio-hymns',
   standalone: true,
   imports: [SharedModule],
-  templateUrl: './audio.component.html',
-  styleUrls: ['./audio.component.scss'],
+  templateUrl: './audio-hymns.component.html',
+  styleUrl: './audio-hymns.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AudioComponent {}
+export class AudioHymnsComponent {}

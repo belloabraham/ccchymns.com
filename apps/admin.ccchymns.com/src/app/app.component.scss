@@ -2,3 +2,7 @@
 @forward 'indeterminate-progress-bar';
 @forward 'app-component';
 @forward 'warning-panel';
+
+.indeterminate {
+  z-index: 1 !important;
+}

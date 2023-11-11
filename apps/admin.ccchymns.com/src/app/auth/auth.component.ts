@@ -15,12 +15,11 @@ import {
 import { SubSink } from 'subsink';
 import { AUTH_TOKEN, IAuth } from '../../core/auth';
 import { Router } from '@angular/router';
-import { Route } from '../../core/data/route';
 import { Store } from '@ngrx/store';
 import { Title } from '@angular/platform-browser';
 import { getLanguageLoadedSelector } from '../../store/selectors';
 import { LanguageResourceKey } from './i18n/language-resource-key';
-import { Config, DisplayService } from '@ccchymns.com/common';
+import { Config, DisplayService, Route } from '@ccchymns.com/common';
 import { NgOptimizedImage } from '@angular/common';
 import {
   FormControl,
