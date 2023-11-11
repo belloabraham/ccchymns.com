@@ -31,9 +31,9 @@ const routes: Routes = [
     //         map((userIsAuthenticated) => (userIsAuthenticated ? true : false))
     //       ),
     // ],
-    loadComponent: () =>
-      import('./dashboard/dashboard.component').then(
-        (mod) => mod.DashboardComponent
+    loadChildren: () =>
+      import('./dashboard/dashboard.routes').then(
+        (mod) => mod.DASHBOARD_ROUTES
       ),
   },
   {

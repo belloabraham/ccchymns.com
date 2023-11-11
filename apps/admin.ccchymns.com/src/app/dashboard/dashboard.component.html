@@ -25,10 +25,8 @@
         </nav>
 
         <!-- *Body-->
-        <div class="container d-flex align-items-center justify-content-center flex-grow-1">
-          <div class="specific-w-100 m-2 rounded">
-            <p class="mb-2">Dashboard works</p>
-          </div>
+        <div class="container">
+          <router-outlet></router-outlet>
         </div>
 
       </div>
@@ -248,7 +246,7 @@
           </div>
         </div>
       </nav>
-      <!-- !End bar -->
+      <!-- !End Side bar -->
 
       @if (openSideBar) {
       <div (click)="toggleSideBar()" class="offcanvas-backdrop fade show"></div>

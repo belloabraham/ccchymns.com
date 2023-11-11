@@ -20,7 +20,7 @@ import { Config, DisplayService, Size } from '@ccchymns.com/common';
 import { LanguageResourceKey } from './i18n/language-resource-key';
 import { CCCIconDirective } from '@ccchymns.com/ui';
 import { NgOptimizedImage } from '@angular/common';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { RootLanguageResourceKey } from '../../core/i18n/language-resource-key';
 
 @Component({
@@ -34,6 +34,7 @@ import { RootLanguageResourceKey } from '../../core/i18n/language-resource-key';
     NgMatTooltipModule,
     RouterLinkActive,
     RouterLink,
+    RouterOutlet
   ],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],

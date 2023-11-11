@@ -2,7 +2,7 @@
 @use '../animations/bounce-in';
 
 .warning-panel {
-  z-index: 100;
+  z-index: 6000;
   font-size: .9rem;
   background-color: colors.$warn-400;
   @include bounce-in.bounce-in();
