@@ -5,6 +5,13 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Inject,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import {
   ILanguageResourceService,
@@ -67,9 +74,17 @@ export class DashboardComponent implements OnDestroy, OnInit {
     private languageResourceService: ILanguageResourceService,
     private title: Title,
     private displayService: DisplayService
+    private title: Title,
+    private displayService: DisplayService
   ) {}
 
   ngOnInit(): void {
+    this.subscriptions.sink = this.displayService.size$.subscribe(
+      (displaySize) => {
+        this.isMobile =
+          displaySize === Size.Small || displaySize === Size.XSmall;
+      }
+    );
     this.subscriptions.sink = this.displayService.size$.subscribe(
       (displaySize) => {
         this.isMobile =
