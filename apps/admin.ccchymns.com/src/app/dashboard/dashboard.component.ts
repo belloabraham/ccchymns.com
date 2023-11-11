@@ -20,7 +20,12 @@ import { Config, DisplayService, Route, Size } from '@ccchymns.com/common';
 import { LanguageResourceKey } from './i18n/language-resource-key';
 import { CCCIconDirective } from '@ccchymns.com/ui';
 import { NgOptimizedImage } from '@angular/common';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import {
+  Router,
+  RouterLink,
+  RouterLinkActive,
+  RouterOutlet,
+} from '@angular/router';
 import { RootLanguageResourceKey } from '../../core/i18n/language-resource-key';
 
 @Component({
@@ -57,6 +62,7 @@ export class DashboardComponent implements OnDestroy, OnInit {
 
   constructor(
     private ngrxStore: Store,
+    private router: Router,
     @Inject(LANGUAGE_RESOURCE_TOKEN)
     private languageResourceService: ILanguageResourceService,
     private title: Title,
@@ -73,7 +79,9 @@ export class DashboardComponent implements OnDestroy, OnInit {
     this.onLanguageResourceLoad();
   }
 
-  goBack() {}
+  goBack() {
+    this.router.navigate(['..']);
+  }
 
   onLanguageResourceLoad() {
     this.subscriptions.sink = this.ngrxStore

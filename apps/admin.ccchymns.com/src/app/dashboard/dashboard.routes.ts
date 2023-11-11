@@ -15,36 +15,34 @@ export const DASHBOARD_ROUTES: Routes = [
       {
         path: Route.LYRICS,
         loadChildren: () =>
-          import('./lyrics/lyrics.routes').then(
-            (mod) => mod.LYRICS_ROUTES
-          ),
+          import('./lyrics/lyrics.routes').then((mod) => mod.LYRICS_ROUTES),
       },
       {
         path: Route.BIBLE_REFERENCES,
-        loadComponent: () =>
-          import('./bible-references/bible-references.component').then(
-            (mod) => mod.BibleReferencesComponent
+        loadChildren: () =>
+          import('./bible-references/bible-references.routes').then(
+            (mod) => mod.BIBLE_REFERENCES_ROUTES
           ),
       },
       {
         path: Route.TONIC_SOLFA,
-        loadComponent: () =>
-          import('./tonic-solfa/tonic-solfa.component').then(
-            (mod) => mod.TonicSolfaComponent
+        loadChildren: () =>
+          import('./tonic-solfa/tonic-solfa.routes').then(
+            (mod) => mod.TONIC_SOLFA_ROUTES
           ),
       },
       {
         path: Route.AUDIO_HYMNS,
-        loadComponent: () =>
-          import('./audio-hymns/audio-hymns.component').then(
-            (mod) => mod.AudioHymnsComponent
+        loadChildren: () =>
+          import('./audio-hymns/audio-hymns.routes').then(
+            (mod) => mod.AUDIO_HYMNS_ROUTES
           ),
       },
       {
         path: Route.AUDIO_SPACE,
-        loadComponent: () =>
-          import('./audio-space/audio-space.component').then(
-            (mod) => mod.AudioSpaceComponent
+        loadChildren: () =>
+          import('./audio-space/audio-space.routes').then(
+            (mod) => mod.AUDIO_SPACE_ROUTES
           ),
       },
       {
