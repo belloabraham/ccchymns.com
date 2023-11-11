@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { Route } from '@ccchymns.com/common';
 import { LyricsComponent } from '../lyrics/lyrics.component';
 
-export const LYRICS_ROUTES: Routes = [
+export const BIBLE_REFERENCES_ROUTES: Routes = [
   {
     path: Route.ROOT,
     component: LyricsComponent,

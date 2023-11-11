@@ -8,4 +8,7 @@ export class Route {
   static readonly AUDIO_HYMNS = 'audio-hymns';
   static readonly AUDIO_SPACE = 'audio-space';
   static readonly LYRICS = 'lyrics';
+  static readonly YORUBA = 'yoruba';
+  static readonly ENGLISH = 'english';
+  static readonly FRENCH = 'french';
 }

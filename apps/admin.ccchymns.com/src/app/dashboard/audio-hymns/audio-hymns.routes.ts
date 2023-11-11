@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { Route } from '@ccchymns.com/common';
 import { LyricsComponent } from '../lyrics/lyrics.component';
 
-export const LYRICS_ROUTES: Routes = [
+export const AUDIO_HYMNS_ROUTES: Routes = [
   {
     path: Route.ROOT,
     component: LyricsComponent,

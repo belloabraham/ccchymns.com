@@ -16,7 +16,7 @@ import {
 import { Store } from '@ngrx/store';
 import { SubSink } from 'subsink';
 import { getLanguageLoadedSelector } from '../../store/selectors';
-import { Config, DisplayService, Size } from '@ccchymns.com/common';
+import { Config, DisplayService, Route, Size } from '@ccchymns.com/common';
 import { LanguageResourceKey } from './i18n/language-resource-key';
 import { CCCIconDirective } from '@ccchymns.com/ui';
 import { NgOptimizedImage } from '@angular/common';
@@ -34,7 +34,7 @@ import { RootLanguageResourceKey } from '../../core/i18n/language-resource-key';
     NgMatTooltipModule,
     RouterLinkActive,
     RouterLink,
-    RouterOutlet
+    RouterOutlet,
   ],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
@@ -47,6 +47,7 @@ export class DashboardComponent implements OnDestroy, OnInit {
   config = Config;
   languageResourceKey = LanguageResourceKey;
   rootLanguageResourceKey = RootLanguageResourceKey;
+  route = Route;
 
   openLyrics = true;
   openAudio = false;
@@ -72,9 +73,7 @@ export class DashboardComponent implements OnDestroy, OnInit {
     this.onLanguageResourceLoad();
   }
 
-  goBack(){
-    
-  }
+  goBack() {}
 
   onLanguageResourceLoad() {
     this.subscriptions.sink = this.ngrxStore

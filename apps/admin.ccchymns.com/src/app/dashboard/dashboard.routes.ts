@@ -8,7 +8,7 @@ export const DASHBOARD_ROUTES: Routes = [
     component: DashboardComponent,
     children: [
       {
-        path: '',
+        path: Route.ROOT,
         pathMatch: 'full',
         redirectTo: Route.LYRICS,
       },
