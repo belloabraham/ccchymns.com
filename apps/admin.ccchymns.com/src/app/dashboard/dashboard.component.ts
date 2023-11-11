@@ -5,13 +5,6 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Inject,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import {
   ILanguageResourceService,
@@ -28,12 +21,18 @@ import { LanguageResourceKey } from './i18n/language-resource-key';
 import { CCCIconDirective } from '@ccchymns.com/ui';
 import { NgOptimizedImage } from '@angular/common';
 import {
+  ActivatedRoute,
+  NavigationCancel,
+  NavigationEnd,
+  NavigationError,
+  NavigationStart,
   Router,
   RouterLink,
   RouterLinkActive,
   RouterOutlet,
 } from '@angular/router';
 import { RootLanguageResourceKey } from '../../core/i18n/language-resource-key';
+import { Observable, filter, map, merge } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -61,11 +60,13 @@ export class DashboardComponent implements OnDestroy, OnInit {
   rootLanguageResourceKey = RootLanguageResourceKey;
   route = Route;
 
-  openLyrics = true;
+  openLyrics = false;
   openAudio = false;
   openTonicSolfa = false;
   openBibleReference = false;
   openAudioSpace = false;
+
+  routerIsNavigating$!: Observable<boolean>;
 
   constructor(
     private ngrxStore: Store,
@@ -73,25 +74,71 @@ export class DashboardComponent implements OnDestroy, OnInit {
     @Inject(LANGUAGE_RESOURCE_TOKEN)
     private languageResourceService: ILanguageResourceService,
     private title: Title,
-    private displayService: DisplayService
-    private title: Title,
-    private displayService: DisplayService
+    private displayService: DisplayService,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.subscriptions.sink = this.displayService.size$.subscribe(
-      (displaySize) => {
-        this.isMobile =
-          displaySize === Size.Small || displaySize === Size.XSmall;
-      }
+    this.getIsDeviceDisplayMobileAsync();
+
+    const routerNavigationStartEvent$ = this.router.events.pipe(
+      filter((e) => e instanceof NavigationStart),
+      map(() => true)
     );
-    this.subscriptions.sink = this.displayService.size$.subscribe(
-      (displaySize) => {
-        this.isMobile =
-          displaySize === Size.Small || displaySize === Size.XSmall;
-      }
+
+    const routerNavigationStoppedEvent$ = this.router.events.pipe(
+      filter(
+        (e) =>
+          e instanceof NavigationEnd ||
+          e instanceof NavigationCancel ||
+          e instanceof NavigationError
+      ),
+      map(() => false)
     );
+
+    this.routerIsNavigating$ = merge(
+      routerNavigationStoppedEvent$,
+      routerNavigationStartEvent$
+    );
+
+    this.toggleSidebarDropdownForActivatedRoute();
     this.onLanguageResourceLoad();
+    this.collapseMobileSideBarOnNavigating(routerNavigationStartEvent$);
+  }
+
+  getIsDeviceDisplayMobileAsync() {
+    this.subscriptions.sink = this.displayService.size$.subscribe(
+      (displaySize) => {
+        this.isMobile =
+          displaySize === Size.Small || displaySize === Size.XSmall;
+      }
+    );
+  }
+
+  toggleSidebarDropdownForActivatedRoute() {
+    this.subscriptions.sink = this.activatedRoute.firstChild?.url.subscribe(
+      (childUrlSegments) => {
+        const initialChildRoutePath = childUrlSegments
+          .map((segment) => segment.path)
+          .join('');
+        this.openLyrics = initialChildRoutePath === Route.LYRICS;
+        this.openAudio = initialChildRoutePath === Route.AUDIO_HYMNS;
+        this.openBibleReference =
+          initialChildRoutePath === Route.BIBLE_REFERENCES;
+        this.openTonicSolfa = initialChildRoutePath === Route.TONIC_SOLFA;
+        this.openAudioSpace = initialChildRoutePath === Route.AUDIO_SPACE;
+      }
+    );
+  }
+
+  collapseMobileSideBarOnNavigating(
+    routerNavigationStartEvent$: Observable<boolean>
+  ) {
+    this.subscriptions.sink = routerNavigationStartEvent$.subscribe(() => {
+      if (this.isMobile && this.openSideBar) {
+        this.openSideBar = false;
+      }
+    });
   }
 
   goBack() {

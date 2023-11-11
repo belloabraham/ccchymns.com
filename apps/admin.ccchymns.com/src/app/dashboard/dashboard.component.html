@@ -28,6 +28,13 @@
           </div>
         </nav>
 
+        @if (routerIsNavigating$ | async) {
+        <div>
+          <p class="indeterminate-progress-bar"></p>
+        </div>
+        }
+
+
         <!-- *Body-->
         <div class="container">
           <router-outlet></router-outlet>
