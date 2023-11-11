@@ -3,7 +3,7 @@ import { Router, RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './auth/auth.component';
 import { AUTH_TOKEN } from '../core/auth';
 import { map } from 'rxjs';
-import { Route } from '../core/data/route';
+import { Route } from '@ccchymns.com/common';
 
 const routes: Routes = [
   // {

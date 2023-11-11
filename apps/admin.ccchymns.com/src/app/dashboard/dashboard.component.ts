@@ -72,6 +72,10 @@ export class DashboardComponent implements OnDestroy, OnInit {
     this.onLanguageResourceLoad();
   }
 
+  goBack(){
+    
+  }
+
   onLanguageResourceLoad() {
     this.subscriptions.sink = this.ngrxStore
       .select(getLanguageLoadedSelector())

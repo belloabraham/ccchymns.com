@@ -8,13 +8,17 @@
 
         <!-- *Header-->
         <nav class="navbar p-0 sticky-top border-bottom bg-body-secondary user-select-none">
-          <div class="container px-md-3 justify-content-between">
+          <div class="container pe-md-3 justify-content-between">
 
             <button type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar-example" (click)="toggleSideBar()"
-              class="btn btn-secondary icon-button d-md-none d-flex align-items-center flex-nowrap text-start position-relative">
+              class="btn btn-secondary icon-button d-md-none d-flex align-items-center flex-nowrap position-relative">
               <i class="flex-shrink-0 icon-button" [ccc-icon]="'menu'"></i>
             </button>
-            <span></span>
+
+            <button type="button" (click)="goBack()"
+              class="btn btn-secondary d-none d-md-flex align-items-center flex-nowrap text-start position-relative">
+              <i class="flex-shrink-0 fw-bolder" [ccc-icon]="'arrow-left'"></i>
+            </button>
 
             <button type="button"
               class="btn btn-secondary icon-button d-flex align-items-center flex-nowrap text-start position-relative">

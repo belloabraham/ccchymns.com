@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
-import { Route } from '../../core/data/route';
+import { Route } from '@ccchymns.com/common';
 
 export const DASHBOARD_ROUTES: Routes = [
   {
@@ -8,11 +8,15 @@ export const DASHBOARD_ROUTES: Routes = [
     component: DashboardComponent,
     children: [
       {
-        pathMatch: 'full',
         path: '',
-        loadComponent: () =>
-          import('./lyrics/lyrics.component').then(
-            (mod) => mod.LyricsComponent
+        pathMatch: 'full',
+        redirectTo: Route.LYRICS,
+      },
+      {
+        path: Route.LYRICS,
+        loadChildren: () =>
+          import('./lyrics/lyrics.routes').then(
+            (mod) => mod.LYRICS_ROUTES
           ),
       },
       {
