@@ -159,7 +159,7 @@ export class DashboardComponent implements OnDestroy, OnInit {
   }
 
   goBack() {
-    this.router.navigate(['..']);
+    window.history.back();
   }
 
   onLanguageResourceLoaded() {
