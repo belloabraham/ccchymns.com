@@ -1,11 +1,13 @@
 import { Routes } from '@angular/router';
 import { Route } from '@ccchymns.com/common';
-import { LyricsComponent } from '../lyrics/lyrics.component';
+import { BibleReferencesComponent } from './bible-references.component';
+import { RootLanguageResourceKey } from '../../../core/i18n/language-resource-key';
+
 
 export const BIBLE_REFERENCES_ROUTES: Routes = [
   {
     path: Route.ROOT,
-    component: LyricsComponent,
+    component: BibleReferencesComponent,
     children: [
       {
         path: Route.ROOT,
@@ -14,7 +16,9 @@ export const BIBLE_REFERENCES_ROUTES: Routes = [
       },
       {
         path: Route.YORUBA,
-        pathMatch: 'full',
+        data: {
+          breadcrumb: RootLanguageResourceKey.YORUBA,
+        },
         loadComponent: () =>
           import('./yoruba/yoruba.component').then(
             (mod) => mod.YorubaComponent
@@ -22,6 +26,9 @@ export const BIBLE_REFERENCES_ROUTES: Routes = [
       },
       {
         path: Route.ENGLISH,
+        data: {
+          breadcrumb: RootLanguageResourceKey.ENGLISH,
+        },
         loadComponent: () =>
           import('./english/english.component').then(
             (mod) => mod.EnglishComponent
@@ -29,6 +36,9 @@ export const BIBLE_REFERENCES_ROUTES: Routes = [
       },
       {
         path: Route.FRENCH,
+        data: {
+          breadcrumb: RootLanguageResourceKey.FRENCH,
+        },
         loadComponent: () =>
           import('./french/french.component').then(
             (mod) => mod.FrenchComponent

@@ -1,11 +1,12 @@
 import { Routes } from '@angular/router';
 import { Route } from '@ccchymns.com/common';
-import { LyricsComponent } from '../lyrics/lyrics.component';
+import { RootLanguageResourceKey } from '../../../core/i18n/language-resource-key';
+import { AudioHymnsComponent } from './audio-hymns.component';
 
 export const AUDIO_HYMNS_ROUTES: Routes = [
   {
     path: Route.ROOT,
-    component: LyricsComponent,
+    component: AudioHymnsComponent,
     children: [
       {
         path: Route.ROOT,
@@ -14,7 +15,9 @@ export const AUDIO_HYMNS_ROUTES: Routes = [
       },
       {
         path: Route.YORUBA,
-        pathMatch: 'full',
+        data: {
+          breadcrumb: RootLanguageResourceKey.YORUBA,
+        },
         loadComponent: () =>
           import('./yoruba/yoruba.component').then(
             (mod) => mod.YorubaComponent
@@ -22,6 +25,9 @@ export const AUDIO_HYMNS_ROUTES: Routes = [
       },
       {
         path: Route.ENGLISH,
+        data: {
+          breadcrumb: RootLanguageResourceKey.ENGLISH,
+        },
         loadComponent: () =>
           import('./english/english.component').then(
             (mod) => mod.EnglishComponent
@@ -29,6 +35,9 @@ export const AUDIO_HYMNS_ROUTES: Routes = [
       },
       {
         path: Route.FRENCH,
+        data: {
+          breadcrumb: RootLanguageResourceKey.FRENCH,
+        },
         loadComponent: () =>
           import('./french/french.component').then(
             (mod) => mod.FrenchComponent

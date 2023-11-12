@@ -10,15 +10,25 @@
         <nav class="navbar p-0 sticky-top border-bottom bg-body-secondary user-select-none">
           <div class="container pe-md-3 justify-content-between">
 
-            <button type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar-example" (click)="toggleSideBar()"
-              class="btn btn-secondary icon-button d-md-none d-flex align-items-center flex-nowrap position-relative">
-              <i class="flex-shrink-0 icon-button" [ccc-icon]="'menu'"></i>
-            </button>
+            <div class="d-flex gap-3 align-items-center">
+              <button type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar-example"
+                (click)="toggleSideBar()"
+                class="btn btn-secondary icon-button d-md-none d-flex align-items-center flex-nowrap position-relative">
+                <i class="flex-shrink-0 icon-button" [ccc-icon]="'menu'"></i>
+              </button>
+              <button type="button" (click)="goBack()"
+                class="btn btn-secondary d-none d-md-flex align-items-center flex-nowrap text-start position-relative">
+                <i class="flex-shrink-0 fw-bolder" [ccc-icon]="'arrow-left'"></i>
+              </button>
 
-            <button type="button" (click)="goBack()"
-              class="btn btn-secondary d-none d-md-flex align-items-center flex-nowrap text-start position-relative">
-              <i class="flex-shrink-0 fw-bolder" [ccc-icon]="'arrow-left'"></i>
-            </button>
+              <ol class="breadcrumb m-0">
+                @for (breadcrumb of breadcrumbs; track breadcrumb.url) {
+                <li class="breadcrumb-item"><a class="link-secondary link-opacity-50-hover"
+                    [routerLink]="[breadcrumb.url]">{{breadcrumb.label}}</a></li>
+                }
+              </ol>
+
+            </div>
 
             <button type="button"
               class="btn btn-secondary icon-button d-flex align-items-center flex-nowrap text-start position-relative">
@@ -28,7 +38,7 @@
           </div>
         </nav>
 
-        @if (routerIsNavigating$ | async) {
+        @if (routerIsNavigating()) {
         <div>
           <p class="indeterminate-progress-bar"></p>
         </div>
@@ -45,20 +55,20 @@
 
       <!-- !Side bar -->
       <nav class="sidebar user-select-none text-light vh-100 offcanvas-start offcanvas-md position-absolute"
-        [class.show]="openSideBar" tabindex="-1" id="sidebar" data-bs-scroll="true"
-        [attr.aria-modal]="openSideBar ? 'true': null" [attr.role]="openSideBar ? 'dialog': null">
+        [class.show]="openSideBar()" tabindex="-1" id="sidebar" data-bs-scroll="true"
+        [attr.aria-modal]="openSideBar() ? 'true': null" [attr.role]="openSideBar() ? 'dialog': null">
 
         <!-- *Side bar Header -->
-        <div class="offcanvas-header border-bottom border-white border-opacity-25 p-1 ps-3 ps-md-0 py-md-2">
+        <div class="offcanvas-header border-bottom border-white border-opacity-25 p-1 ps-3 py-md-2">
 
-          <div class="logo d-flex d-md-none justify-content-center align-items-center bg-white">
-            <a href="">
+          <div class="logo d-flex justify-content-center align-items-center bg-white">
+            <a [routerLink]="[route.ROOT]">
               <img width="80" height="75" ngSrc="assets/images/logo.png" priority>
             </a>
           </div>
-
           <h6 class="text-start sidebar-title text-white flex-grow-1 p-0 pt-2 pt-md-0 ps-3 m-0">
-            {{config.APP_NAME}}
+            <a [routerLink]="[route.ROOT]" class="text-white">
+              {{config.APP_NAME}}</a>
           </h6>
 
           <button ng-mat-icon-button type="button" (click)="toggleSideBar()" class="d-md-none m-0"
@@ -70,16 +80,18 @@
         <!-- *Side bar body -->
         <div class="offcanvas-body d-flex flex-column px-1 align-items-stretch justify-content-between">
           <div class="pt-2">
+
+            <!-- *Lyrics Collapse Button-->
             <div class="d-flex gap-2 align-items-center ps-2 collapse-btn">
               <i [ccc-icon]="'book-edit'" class="text-white"></i>
-              <button ng-mat-button (click)="openLyrics = !openLyrics" class="text-white" data-bs-toggle="collapse"
-                data-bs-target="#lyrics-collapse" [class.collapsed]="openLyrics" [attr.aria-expanded]="openLyrics"
+              <button ng-mat-button (click)="openLyrics.set(!openLyrics())" class="text-white" data-bs-toggle="collapse"
+                data-bs-target="#lyrics-collapse" [class.collapsed]="openLyrics()" [attr.aria-expanded]="openLyrics()"
                 aria-expanded="true" aria-controls="collapse">
                 {{t(rootLanguageResourceKey.LYRICS)}}
-                <i [ccc-icon]="openLyrics ? 'chevron-down': 'chevron-right'" class="text-white"></i>
+                <i [ccc-icon]="openLyrics() ? 'chevron-down': 'chevron-right'" class="text-white"></i>
               </button>
             </div>
-            <div class="collapse" [class.show]="openLyrics" id="lyrics-collapse">
+            <div class="collapse" [class.show]="openLyrics()" id="lyrics-collapse">
               <div class="px-4 mt-2">
                 <div class="list-group border-0" id="list-tab" role="tablist">
                   <a [routerLinkActive]="'active-link'"
@@ -104,16 +116,17 @@
               </div>
             </div>
 
+            <!-- *Bible References Collapse Button-->
             <div class="d-flex gap-2 align-items-center ps-2 mt-2 collapse-btn">
               <i [ccc-icon]="'bible'" class="text-white"></i>
-              <button ng-mat-button (click)="openBibleReference = !openBibleReference" class="text-white"
-                data-bs-toggle="collapse" data-bs-target="#lyrics-collapse" [class.collapsed]="openBibleReference"
-                [attr.aria-expanded]="openBibleReference" aria-expanded="true" aria-controls="collapse-button">
+              <button ng-mat-button (click)="openBibleReference.set(!openBibleReference())" class="text-white"
+                data-bs-toggle="collapse" data-bs-target="#lyrics-collapse" [class.collapsed]="openBibleReference()"
+                [attr.aria-expanded]="openBibleReference()" aria-expanded="true" aria-controls="collapse-button">
                 {{t(rootLanguageResourceKey.BIBLE_REFERENCES)}}
-                <i [ccc-icon]="openBibleReference ? 'chevron-down': 'chevron-right'" class="text-white"></i>
+                <i [ccc-icon]="openBibleReference() ? 'chevron-down': 'chevron-right'" class="text-white"></i>
               </button>
             </div>
-            <div class="collapse" [class.show]="openBibleReference" id="lyrics-collapse">
+            <div class="collapse" [class.show]="openBibleReference()" id="lyrics-collapse">
               <div class="px-4 mt-2">
                 <div class="list-group border-0" id="list-tab" role="tablist">
                   <a [routerLinkActive]="'active-link'"
@@ -138,16 +151,17 @@
               </div>
             </div>
 
+            <!-- *Tonic Solfa Collapse Button-->
             <div class="d-flex gap-2 align-items-center ps-2 mt-2 collapse-btn">
               <i [ccc-icon]="'music-clef'" class="text-white"></i>
-              <button ng-mat-button (click)="openTonicSolfa = !openTonicSolfa" class="text-white"
-                data-bs-toggle="collapse" data-bs-target="#lyrics-collapse" [class.collapsed]="openTonicSolfa"
-                [attr.aria-expanded]="openTonicSolfa" aria-expanded="true" aria-controls="collapse-button">
+              <button ng-mat-button (click)="openTonicSolfa.set(!openTonicSolfa())" class="text-white"
+                data-bs-toggle="collapse" data-bs-target="#lyrics-collapse" [class.collapsed]="openTonicSolfa()"
+                [attr.aria-expanded]="openTonicSolfa()" aria-expanded="true" aria-controls="collapse-button">
                 {{t(rootLanguageResourceKey.TONIC_SOLFA)}}
-                <i [ccc-icon]="openTonicSolfa ? 'chevron-down': 'chevron-right'" class="text-white"></i>
+                <i [ccc-icon]="openTonicSolfa() ? 'chevron-down': 'chevron-right'" class="text-white"></i>
               </button>
             </div>
-            <div class="collapse" [class.show]="openTonicSolfa" id="lyrics-collapse">
+            <div class="collapse" [class.show]="openTonicSolfa()" id="lyrics-collapse">
               <div class="px-4 mt-2">
                 <div class="list-group border-0" id="list-tab" role="tablist">
                   <a [routerLinkActive]="'active-link'"
@@ -172,16 +186,17 @@
               </div>
             </div>
 
+            <!-- *Audio Hymns Collapse Button-->
             <div class="d-flex gap-2 align-items-center ps-2 mt-2 collapse-btn">
               <i [ccc-icon]="'audio-hymns'" class="text-white"></i>
-              <button ng-mat-button (click)="openAudio = !openAudio" class="text-white" data-bs-toggle="collapse"
-                data-bs-target="#lyrics-collapse" [class.collapsed]="openAudio" [attr.aria-expanded]="openAudio"
+              <button ng-mat-button (click)="openAudio.set(!openAudio())" class="text-white" data-bs-toggle="collapse"
+                data-bs-target="#lyrics-collapse" [class.collapsed]="openAudio()" [attr.aria-expanded]="openAudio()"
                 aria-expanded="true" aria-controls="collapse-button">
                 {{t(rootLanguageResourceKey.AUDIO_HYMNS)}}
-                <i [ccc-icon]="openAudio ? 'chevron-down': 'chevron-right'" class="text-white"></i>
+                <i [ccc-icon]="openAudio() ? 'chevron-down': 'chevron-right'" class="text-white"></i>
               </button>
             </div>
-            <div class="collapse" [class.show]="openAudio" id="lyrics-collapse">
+            <div class="collapse" [class.show]="openAudio()" id="lyrics-collapse">
               <div class="px-4 mt-2">
                 <div class="list-group border-0" id="list-tab" role="tablist">
                   <a [routerLinkActive]="'active-link'"
@@ -206,16 +221,17 @@
               </div>
             </div>
 
+            <!-- *Audio Space Collapse Button-->
             <div class="d-flex gap-2 align-items-center ps-2 mt-2 collapse-btn">
               <i [ccc-icon]="'audio'" class="text-white"></i>
-              <button ng-mat-button (click)="openAudioSpace = !openAudioSpace" class="text-white"
-                data-bs-toggle="collapse" data-bs-target="#lyrics-collapse" [class.collapsed]="openAudioSpace"
-                [attr.aria-expanded]="openAudioSpace" aria-expanded="true" aria-controls="collapse-button">
+              <button ng-mat-button (click)="openAudioSpace.set(!openAudioSpace())" class="text-white"
+                data-bs-toggle="collapse" data-bs-target="#lyrics-collapse" [class.collapsed]="openAudioSpace()"
+                [attr.aria-expanded]="openAudioSpace()" aria-expanded="true" aria-controls="collapse-button">
                 {{t(rootLanguageResourceKey.AUDIO_SPACE)}}
-                <i [ccc-icon]="openAudioSpace ? 'chevron-down': 'chevron-right'" class="text-white"></i>
+                <i [ccc-icon]="openAudioSpace() ? 'chevron-down': 'chevron-right'" class="text-white"></i>
               </button>
             </div>
-            <div class="collapse" [class.show]="openAudioSpace" id="lyrics-collapse">
+            <div class="collapse" [class.show]="openAudioSpace()" id="lyrics-collapse">
               <div class="px-4 mt-2">
                 <div class="list-group border-0" id="list-tab" role="tablist">
                   <a [routerLinkActive]="'active-link'"
@@ -240,12 +256,13 @@
               </div>
             </div>
 
+            <!-- *All Hymns Button-->
             <div class="d-flex gap-2 align-items-center ps-2 mt-2 collapse-btn">
               <i [ccc-icon]="'all-hymns'" class="text-white"></i>
-              <button ng-mat-button class="text-white">
+              <a ng-mat-button [routerLink]="[route.ALL_HYMNS]" class="text-white">
                 {{t(rootLanguageResourceKey.ALL_HYMNS)}}
                 <i [ccc-icon]="'chevron-right'" class="text-white"></i>
-              </button>
+              </a>
             </div>
 
           </div>
@@ -260,7 +277,7 @@
       </nav>
       <!-- !End Side bar -->
 
-      @if (openSideBar) {
+      @if (openSideBar()) {
       <div (click)="toggleSideBar()" class="offcanvas-backdrop fade show"></div>
       }
     </div>

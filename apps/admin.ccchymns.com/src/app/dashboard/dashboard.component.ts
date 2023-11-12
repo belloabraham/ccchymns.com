@@ -4,12 +4,13 @@ import {
   Inject,
   OnDestroy,
   OnInit,
+  Signal,
+  signal,
 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import {
   ILanguageResourceService,
   LANGUAGE_RESOURCE_TOKEN,
-  NgMatTooltipModule,
   NgMaterialButtonModule,
   SharedModule,
 } from '@ccchymns.com/angular';
@@ -32,7 +33,13 @@ import {
   RouterOutlet,
 } from '@angular/router';
 import { RootLanguageResourceKey } from '../../core/i18n/language-resource-key';
-import { Observable, filter, map, merge } from 'rxjs';
+import { Observable, distinctUntilChanged, filter, map, merge } from 'rxjs';
+import { toSignal } from '@angular/core/rxjs-interop';
+
+export interface IBreadCrumb {
+  label: string;
+  url: string;
+}
 
 @Component({
   selector: 'app-dashboard',
@@ -42,7 +49,6 @@ import { Observable, filter, map, merge } from 'rxjs';
     CCCIconDirective,
     NgMaterialButtonModule,
     NgOptimizedImage,
-    NgMatTooltipModule,
     RouterLinkActive,
     RouterLink,
     RouterOutlet,
@@ -54,19 +60,21 @@ import { Observable, filter, map, merge } from 'rxjs';
 export class DashboardComponent implements OnDestroy, OnInit {
   private subscriptions = new SubSink();
   isMobile = false;
-  openSideBar = false;
+  openSideBar = signal(false);
   config = Config;
   languageResourceKey = LanguageResourceKey;
   rootLanguageResourceKey = RootLanguageResourceKey;
   route = Route;
 
-  openLyrics = false;
-  openAudio = false;
-  openTonicSolfa = false;
-  openBibleReference = false;
-  openAudioSpace = false;
+  openLyrics = signal(false);
+  openAudio = signal(false);
+  openTonicSolfa = signal(false);
+  openBibleReference = signal(false);
+  openAudioSpace = signal(false);
 
-  routerIsNavigating$!: Observable<boolean>;
+  routerIsNavigating!: Signal<boolean | undefined>;
+  breadcrumbs: IBreadCrumb[] = [];
+  readonly BREADCRUMB_ROUTE_DATA_KEY = 'breadcrumb';
 
   constructor(
     private ngrxStore: Store,
@@ -76,10 +84,16 @@ export class DashboardComponent implements OnDestroy, OnInit {
     private title: Title,
     private displayService: DisplayService,
     private activatedRoute: ActivatedRoute
-  ) {}
+  ) {
+    this.toggleSidebarDropdownForActivatedRoute();
+    const onNavigationEnd = this.router.events.pipe(
+      filter((event) => event instanceof NavigationEnd),
+      distinctUntilChanged()
+    );
 
-  ngOnInit(): void {
-    this.getIsDeviceDisplayMobileAsync();
+    onNavigationEnd.subscribe(() => {
+      this.breadcrumbs = this.createBreadCrumbs(this.activatedRoute);
+    });
 
     const routerNavigationStartEvent$ = this.router.events.pipe(
       filter((e) => e instanceof NavigationStart),
@@ -96,14 +110,16 @@ export class DashboardComponent implements OnDestroy, OnInit {
       map(() => false)
     );
 
-    this.routerIsNavigating$ = merge(
-      routerNavigationStoppedEvent$,
-      routerNavigationStartEvent$
+    this.routerIsNavigating = toSignal(
+      merge(routerNavigationStoppedEvent$, routerNavigationStartEvent$)
     );
 
-    this.toggleSidebarDropdownForActivatedRoute();
-    this.onLanguageResourceLoad();
     this.collapseMobileSideBarOnNavigating(routerNavigationStartEvent$);
+  }
+
+  ngOnInit(): void {
+    this.getIsDeviceDisplayMobileAsync();
+    this.onLanguageResourceLoaded();
   }
 
   getIsDeviceDisplayMobileAsync() {
@@ -121,12 +137,13 @@ export class DashboardComponent implements OnDestroy, OnInit {
         const initialChildRoutePath = childUrlSegments
           .map((segment) => segment.path)
           .join('');
-        this.openLyrics = initialChildRoutePath === Route.LYRICS;
-        this.openAudio = initialChildRoutePath === Route.AUDIO_HYMNS;
-        this.openBibleReference =
-          initialChildRoutePath === Route.BIBLE_REFERENCES;
-        this.openTonicSolfa = initialChildRoutePath === Route.TONIC_SOLFA;
-        this.openAudioSpace = initialChildRoutePath === Route.AUDIO_SPACE;
+        this.openLyrics.set(initialChildRoutePath === Route.LYRICS);
+        this.openAudio.set(initialChildRoutePath === Route.AUDIO_HYMNS);
+        this.openBibleReference.set(
+          initialChildRoutePath === Route.BIBLE_REFERENCES
+        );
+        this.openTonicSolfa.set(initialChildRoutePath === Route.TONIC_SOLFA);
+        this.openAudioSpace.set(initialChildRoutePath === Route.AUDIO_SPACE);
       }
     );
   }
@@ -136,7 +153,7 @@ export class DashboardComponent implements OnDestroy, OnInit {
   ) {
     this.subscriptions.sink = routerNavigationStartEvent$.subscribe(() => {
       if (this.isMobile && this.openSideBar) {
-        this.openSideBar = false;
+        this.openSideBar.set(false);
       }
     });
   }
@@ -145,14 +162,82 @@ export class DashboardComponent implements OnDestroy, OnInit {
     this.router.navigate(['..']);
   }
 
-  onLanguageResourceLoad() {
+  onLanguageResourceLoaded() {
     this.subscriptions.sink = this.ngrxStore
       .select(getLanguageLoadedSelector())
       .subscribe((loaded) => {
         if (loaded) {
           this.setPageTitle();
+          this.getStringResourceForFirstRouteBreadcrumb();
         }
       });
+  }
+
+  createBreadCrumbs(
+    route: ActivatedRoute,
+    url = '',
+    breadcrumbs: IBreadCrumb[] = []
+  ): IBreadCrumb[] {
+    //If no routeConfig is available we are on the root path
+    let path = route.routeConfig ? route.routeConfig.path : '';
+
+    let label =
+      route.routeConfig && route.routeConfig.data
+        ? route.routeConfig.data[this.BREADCRUMB_ROUTE_DATA_KEY]
+        : '';
+
+    //If label is not empty
+    if (label) {
+      label = this.languageResourceService.getString(label);
+    }
+
+    // If path contains a dynamic route such as ':id', get :id from path
+    const dynamicRouteInPath = path?.split('/').pop();
+    const isDynamicRoute = dynamicRouteInPath?.startsWith(':');
+
+    if (isDynamicRoute && route.snapshot) {
+      //Get id from :id
+      const paramName = dynamicRouteInPath?.split(':')[1];
+      //Get parameter of :id e.g like 2
+      const dynamicRouteParameter = route.snapshot.params[paramName!];
+      //Change path from lyrics/:id to lyrics/2
+      path = path?.replace(dynamicRouteInPath!, dynamicRouteParameter);
+      //Change label from Lyrics to Lyrics/2
+      label = `${label}/${dynamicRouteParameter}`;
+    }
+
+    //In the routeConfig the complete path is not available,
+    //so we rebuild it each time
+    const nextUrl = path ? `${url}/${path}` : url;
+
+    const breadcrumb: IBreadCrumb = {
+      label: label,
+      url: nextUrl,
+    };
+    // Add only route with non-empty label to array of breadcrumb
+    const newBreadcrumbs = breadcrumb.label
+      ? [...breadcrumbs, breadcrumb]
+      : [...breadcrumbs];
+    const thereAreMoreChildRoutes = !!route.firstChild;
+    if (thereAreMoreChildRoutes) {
+      return this.createBreadCrumbs(route.firstChild, nextUrl, newBreadcrumbs);
+    }
+    return newBreadcrumbs;
+  }
+
+  private getStringResourceForFirstRouteBreadcrumb() {
+    const newBreadCrumbs: IBreadCrumb[] = [];
+    for (let index = 0; index < this.breadcrumbs.length; index++) {
+      const breadcrumb = this.breadcrumbs[index];
+      const languageResourceLabel = this.languageResourceService.getString(
+        breadcrumb.label
+      );
+      newBreadCrumbs.push({
+        ...breadcrumb,
+        label: languageResourceLabel,
+      });
+    }
+    this.breadcrumbs = newBreadCrumbs;
   }
 
   private setPageTitle() {
@@ -164,7 +249,7 @@ export class DashboardComponent implements OnDestroy, OnInit {
   }
 
   toggleSideBar() {
-    this.openSideBar = !this.openSideBar;
+    this.openSideBar.set(!this.openSideBar());
   }
 
   ngOnDestroy(): void {
