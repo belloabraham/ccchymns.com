@@ -85,15 +85,16 @@ export class DashboardComponent implements OnDestroy, OnInit {
     private displayService: DisplayService,
     private activatedRoute: ActivatedRoute
   ) {
-    this.toggleSidebarDropdownForActivatedRoute();
-    const onNavigationEnd = this.router.events.pipe(
-      filter((event) => event instanceof NavigationEnd),
-      distinctUntilChanged()
-    );
+    this.openSidebarCollapseButtonForTheInitialRoute();
 
-    onNavigationEnd.subscribe(() => {
-      this.breadcrumbs = this.createBreadCrumbs(this.activatedRoute);
-    });
+    this.subscriptions.sink = this.router.events
+      .pipe(
+        filter((event) => event instanceof NavigationEnd),
+        distinctUntilChanged()
+      )
+      .subscribe(() => {
+        this.breadcrumbs = this.createBreadCrumbs(this.activatedRoute);
+      });
 
     const routerNavigationStartEvent$ = this.router.events.pipe(
       filter((e) => e instanceof NavigationStart),
@@ -131,7 +132,7 @@ export class DashboardComponent implements OnDestroy, OnInit {
     );
   }
 
-  toggleSidebarDropdownForActivatedRoute() {
+  openSidebarCollapseButtonForTheInitialRoute() {
     this.subscriptions.sink = this.activatedRoute.firstChild?.url.subscribe(
       (childUrlSegments) => {
         const initialChildRoutePath = childUrlSegments
@@ -158,7 +159,7 @@ export class DashboardComponent implements OnDestroy, OnInit {
     });
   }
 
-  goBack() {
+  navigateBack() {
     window.history.back();
   }
 
@@ -173,7 +174,7 @@ export class DashboardComponent implements OnDestroy, OnInit {
       });
   }
 
-  createBreadCrumbs(
+  private createBreadCrumbs(
     route: ActivatedRoute,
     url = '',
     breadcrumbs: IBreadCrumb[] = []
@@ -226,6 +227,7 @@ export class DashboardComponent implements OnDestroy, OnInit {
   }
 
   private getStringResourceForFirstRouteBreadcrumb() {
+    /* This is required after the string resources loads to translate the breadcrumb key to value as the breadcrumb for the initial route will not be translated, because language resource is not loaded yet */
     const newBreadCrumbs: IBreadCrumb[] = [];
     for (let index = 0; index < this.breadcrumbs.length; index++) {
       const breadcrumb = this.breadcrumbs[index];

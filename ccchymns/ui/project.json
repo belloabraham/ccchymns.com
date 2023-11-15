@@ -3,7 +3,7 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "ccchymns/ui/src",
   "prefix": "ccc",
-  "tags": [],
+  "tags": ["type:ccchymns", "scope:ui"],
   "projectType": "library",
   "implicitDependencies": ["angular"],
   "targets": {

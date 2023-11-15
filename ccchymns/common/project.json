@@ -3,7 +3,7 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "ccchymns/common/src",
   "prefix": "ccc",
-  "tags": [],
+  "tags": ["type:ccchymns", "scope:common"],
   "projectType": "library",
   "targets": {
     "test": {
