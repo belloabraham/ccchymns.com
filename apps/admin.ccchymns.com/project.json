@@ -82,10 +82,10 @@
       },
       "configurations": {
         "production": {
-          "browserTarget": "admin.ccchymns.com:build:production"
+          "buildTarget": "admin.ccchymns.com:build:production"
         },
         "development": {
-          "browserTarget": "admin.ccchymns.com:build:development"
+          "buildTarget": "admin.ccchymns.com:build:development"
         }
       },
       "defaultConfiguration": "development"
@@ -93,7 +93,7 @@
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "browserTarget": "admin.ccchymns.com:build"
+        "buildTarget": "admin.ccchymns.com:build"
       }
     },
     "lint": {
@@ -133,7 +133,7 @@
       "executor": "@angular/fire:deploy",
       "options": {
         "version": 2,
-        "browserTarget": "admin.ccchymns.com:build:production"
+        "buildTarget": "admin.ccchymns.com:build:production"
       }
     }
   }
