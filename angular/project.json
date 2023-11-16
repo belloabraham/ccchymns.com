@@ -52,7 +52,7 @@
       "options": {
         "port": 4400,
         "configDir": "angular/.storybook",
-        "buildTarget": "angular:build-storybook",
+        "browserTarget": "angular:build-storybook",
         "compodoc": false
       },
       "configurations": {
@@ -67,7 +67,7 @@
       "options": {
         "outputDir": "dist/storybook/angular",
         "configDir": "angular/.storybook",
-        "buildTarget": "angular:build-storybook",
+        "browserTarget": "angular:build-storybook",
         "compodoc": false,
         "styles": ["angular/src/styles.scss"],
         "stylePreprocessorOptions": {
@@ -83,12 +83,12 @@
     "static-storybook": {
       "executor": "@nx/web:file-server",
       "options": {
-        "buildTarget": "angular:build-storybook",
+        "browserTarget": "angular:build-storybook",
         "staticFilePath": "dist/storybook/angular"
       },
       "configurations": {
         "ci": {
-          "buildTarget": "angular:build-storybook:ci"
+          "browserTarget": "angular:build-storybook:ci"
         }
       }
     }

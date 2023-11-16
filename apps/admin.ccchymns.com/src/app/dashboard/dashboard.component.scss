@@ -2,6 +2,11 @@
 @use 'colors';
 @forward 'indeterminate-progress-bar';
 
+.child-routes{
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
 .root {
   z-index: 10;
   position: relative;

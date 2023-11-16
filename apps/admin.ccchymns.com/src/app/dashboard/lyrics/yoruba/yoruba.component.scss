@@ -1,0 +1,33 @@
+@use 'colors';
+@use 'gerillass';
+
+.card {
+  width: 100%;
+  margin-top: 3rem;
+  .title {
+    font-weight: 600;
+    font-size: 1.2rem;
+  }
+  @include gerillass.breakpoint(min, large) {
+    width: 40rem;
+  }
+}
+.pagination {
+  .navigation-icon {
+    font-weight: 700;
+  }
+  .page-link {
+    font-weight: 600;
+  }
+  .navigation-link {
+    padding-top: 3px;
+    padding-bottom: 0.5px;
+    @include gerillass.breakpoint(min, large) {
+      padding-top: 4px;
+      padding-bottom: 0;
+    }
+  }
+}
+.add {
+  color: colors.$error-red-500;
+}

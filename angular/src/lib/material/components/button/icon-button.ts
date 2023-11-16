@@ -7,8 +7,7 @@ import {
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: `
-    button[ng-mat-icon-button], button[ng-mat-icon-button],
-    button[ng-mat-icon-button], a[ng-mat-icon-button], a[ng-mat-icon-button],
+    button[ng-mat-icon-button],
     a[ng-mat-icon-button]
   `,
   standalone: true,
