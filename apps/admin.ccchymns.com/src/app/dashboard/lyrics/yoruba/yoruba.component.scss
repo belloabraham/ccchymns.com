@@ -9,7 +9,7 @@
     font-size: 1.2rem;
   }
   @include gerillass.breakpoint(min, large) {
-    width: 40rem;
+    width: 50rem;
   }
 }
 .pagination {
@@ -23,8 +23,8 @@
     padding-top: 3px;
     padding-bottom: 0.5px;
     @include gerillass.breakpoint(min, large) {
-      padding-top: 4px;
-      padding-bottom: 0;
+      padding-top: 7px;
+      padding-bottom: 1px;
     }
   }
 }

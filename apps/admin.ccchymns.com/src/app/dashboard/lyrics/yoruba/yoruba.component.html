@@ -1,19 +1,100 @@
 <div class="d-flex flex-column justify-content-center align-items-center">
 
   <div class="card">
-    <div class="card-header py-0 pe-1 card-header-blue d-flex justify-content-between align-items-center"> <span
-        class="title">Yorùbá
+    <div class="card-header py-0 pe-1 bg-body-secondary d-flex justify-content-between align-items-center"> <span
+        class="title mt-1">Yorùbá
         Lyrics</span>
-      <button ng-mat-icon-button class="add">
-        <i [ccc-icon]="'plus-circle'"></i>
-      </button>
+
+      <div class="d-flex align-items-center">
+        <button type="button" ng-mat-tooltip id="previous-page"
+          class="btn btn-secondary mt-1 d-flex align-items-center flex-nowrap text-start position-relative">
+          <i class="flex-shrink-0 fw-bolder" [ccc-icon]="'arrow-left'"></i>
+        </button>
+
+        <div ng-mat-tooltip id="previous-page">Previous pages</div>
+
+        <button type="button" ng-mat-tooltip id="next-page"
+          class="btn btn-secondary mt-1 mx-2 me-3 d-flex align-items-center flex-nowrap text-start position-relative">
+          <i class="flex-shrink-0 fw-bolder" [ccc-icon]="'arrow-right'"></i>
+        </button>
+
+        <div ng-mat-tooltip id="next-page">Next pages</div>
+
+
+        <button ng-mat-icon-button class="add" ng-mat-tooltip id="add-hymn">
+          <i [ccc-icon]="'plus-circle'"></i>
+        </button>
+
+        <div ng-mat-tooltip id="add-hymn">Add a hymn</div>
+
+      </div>
+
     </div>
     <div class="card-body overflow-x-scroll">
-      Some quick example content for the body of the card.
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of loopArray; let i = index">
+            <th scope="row">1</th>
+            <td>1: E ba wa yo, ara ninu Kristi,
+              Fun o ri rere ta ni,
+              Wakati buburu na de,
+              Ti o mu aiye yi gbona,
+              Elese ronupiwada,
+              Ni ‘jo Mimo yi.
+              2: Ogbun nla si sile nisisiyi,
+              Lati t’eruku jade,
+              Bo ko ba fe jeni egbe,
+              Si odo Olugbala Re,
+              Romo Kristi ‘nu Ijo Mimo yi,
+              Yio ran o lowo.
+              3: Laipe, baba ki yio mo omo,
+              Tab’ omo mo baba mo baba re,
+              K’aiye sile sa to Kristi,
+              O duro loke Mimo Re,
+              Rukerudo ‘parun nla mbo,
+              Ya ronupiwada.
+              4: Mo si tun nduro ninu anu mi,
+              Npe awon elese,
+              Wakati yi e pawada,
+              Laipe anu yio dopin,
+              Fi ‘ka, aje, orisa sile,
+
+              Kristi yio, gba wa la.
+              5: Gbogbo ekun aiye ti se simi,
+              Sibe nko bikita,
+              Nko ro ewa ti Orun,
+              Kika ni irun yin,
+              Lomu Emi Kristi jiya na,
+              Emi ni, wa, ki o ye.
+              6: Niti iparun ti aiye yi,
+              Mo fi anu fa sehin,
+              Sibe aigbagbo nposi,
+              Nwon nsin orisa, aje,
+              Nwon lo arakan ati ika,
+              Fi won le wa ‘do Mi.
+              7: Mo ti pese ohun rere fun o,
+              Ade didan iye na,
+              Bugbe re nduro de o,
+              Lori ile didara na,
+              F’aiye sile, wa sodo Mi,
+              Emi o tewo gba o.
+
+            </td>
+            <td>Gates</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
     <div class="card-footer d-flex justify-content-end">
-      <nav aria-label="Page navigation example">
-        <ul class="pagination pagination-sm pb-0 mb-0">
+      <nav aria-label="Page navigation">
+        <ul class="pagination pb-0 mb-0" [class.pagination-sm]="!isDesktop">
           <li class="page-item disabled">
             <a class="page-link navigation-link" aria-label="Previous">
               <span aria-hidden="true">
@@ -32,6 +113,12 @@
           <li class="page-item"><a class="page-link" href="#">8</a></li>
           <li class="page-item"><a class="page-link" href="#">9</a></li>
           <li class="page-item"><a class="page-link" href="#">10</a></li>
+          <li class="page-item"><a class="page-link" href="#">11</a></li>
+          <li class="page-item"><a class="page-link" href="#">12</a></li>
+          <li class="page-item"><a class="page-link" href="#">13</a></li>
+          <li class="page-item"><a class="page-link" href="#">14</a></li>
+          <li class="page-item"><a class="page-link" href="#">15</a></li>
+
           <li class="page-item">
             <a class="page-link navigation-link" href="#" aria-label="Next">
               <span aria-hidden="true">
