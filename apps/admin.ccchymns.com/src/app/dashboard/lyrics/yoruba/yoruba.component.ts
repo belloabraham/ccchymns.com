@@ -4,6 +4,7 @@ import { CCCIconDirective } from '@ccchymns.com/ui';
 import { NgMatTooltipModule, NgMaterialButtonModule } from '@ccchymns.com/angular';
 import { SubSink } from 'subsink';
 import { DisplayService, Size } from '@ccchymns.com/common';
+import { LyricsTableComponent } from '../shared/lyrics-table/lyrics-table.component';
 
 @Component({
   selector: 'app-lyrics-yoruba',
@@ -13,13 +14,13 @@ import { DisplayService, Size } from '@ccchymns.com/common';
     CCCIconDirective,
     NgMaterialButtonModule,
     NgMatTooltipModule,
+    LyricsTableComponent
   ],
   templateUrl: './yoruba.component.html',
   styleUrl: './yoruba.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class YorubaComponent implements OnDestroy {
-  loopArray = new Array(70);
   private subscriptions = new SubSink();
   isDesktop = false;
 

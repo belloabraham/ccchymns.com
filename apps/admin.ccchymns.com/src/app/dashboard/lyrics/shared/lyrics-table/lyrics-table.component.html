@@ -1,0 +1,21 @@
+<table class="table table-striped" cdk-table [dataSource]="data">
+
+  <ng-container [cdkColumnDef]="firstColumn">
+    <th cdk-header-cell *cdkHeaderCellDef scope="col">{{firstColumn | titlecase}}</th>
+    <td cdk-cell *cdkCellDef="let element">{{element[firstColumn]}}</td>
+  </ng-container>
+
+  <ng-container [cdkColumnDef]="secondColumn">
+    <th cdk-header-cell *cdkHeaderCellDef scope="col">{{secondColumn | titlecase}}</th>
+    <td cdk-cell *cdkCellDef="let element">{{element[secondColumn]}}</td>
+  </ng-container>
+
+  <ng-container [cdkColumnDef]="thirdColumn">
+    <th cdk-header-cell *cdkHeaderCellDef scope="col">{{thirdColumn | titlecase}}</th>
+    <td cdk-cell *cdkCellDef="let element">{{element[thirdColumn]}}</td>
+  </ng-container>
+
+  <tr cdk-header-row *cdkHeaderRowDef="columnNames"></tr>
+  <tr cdk-row *cdkRowDef="let row; columns: columnNames;"></tr>
+
+</table>
