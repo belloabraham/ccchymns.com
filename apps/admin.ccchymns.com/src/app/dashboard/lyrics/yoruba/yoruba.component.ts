@@ -15,6 +15,7 @@ import { LyricsPlaceholderComponent } from '../shared/lyrics-placeholder/lyrics-
 import { LYRICS } from '../shared/mock/lyrics';
 import { LanguageResourceKey } from '../i18n/language-resource-key';
 import { RootLanguageResourceKey } from '../../../../core/i18n/language-resource-key';
+import { DashboardLanguageResourceKey } from '../../i18n/language-resource-key';
 
 @Component({
   selector: 'app-lyrics-yoruba',
@@ -38,6 +39,7 @@ export class YorubaComponent implements OnDestroy {
   data = LYRICS;
   languageResourceKey = LanguageResourceKey;
   rootLanguageResourceKey = RootLanguageResourceKey;
+  dashboardLanguageResourceKey = DashboardLanguageResourceKey;
 
   constructor(private displayService: DisplayService) {
     this.getIsDeviceDisplayDesktopAsync();

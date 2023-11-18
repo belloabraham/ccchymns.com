@@ -1,3 +1,3 @@
 export class LanguageResourceKey {
-  static readonly EDIT = 'edit';
+  static readonly ADD_A_HYMN='add_a_hymn'
 }

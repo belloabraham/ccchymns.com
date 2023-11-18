@@ -10,9 +10,10 @@ import { TranslocoModule } from '@ngneat/transloco';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { HymnLyricsUIState } from '@ccchymns.com/common';
-import { NgMatTooltipModule, NgMaterialButtonModule, NgMaterialIconButtonComponent } from '@ccchymns.com/angular';
+import { NgMatTooltipModule, NgMaterialButtonModule } from '@ccchymns.com/angular';
 import { CCCIconDirective } from '@ccchymns.com/ui';
 import { LanguageResourceKey } from '../../i18n/language-resource-key';
+import { DashboardLanguageResourceKey } from '../../../i18n/language-resource-key';
 
 const hymnLyricsUIState: HymnLyricsUIState = {
   no: 0,
@@ -36,6 +37,7 @@ export const COLUMN_NAMES = [...Object.keys(hymnLyricsUIState), 'tools'];
 })
 export class LyricsTableComponent<T> implements OnInit {
   languageResourceKey = LanguageResourceKey;
+  dashboardLanguageResourceKey = DashboardLanguageResourceKey;
 
   @Input({ required: true }) data: T[] = [];
   @Input() filterBy?: string;
