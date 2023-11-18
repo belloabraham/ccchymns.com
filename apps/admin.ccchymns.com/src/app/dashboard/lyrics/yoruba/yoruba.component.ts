@@ -4,7 +4,8 @@ import { CCCIconDirective } from '@ccchymns.com/ui';
 import { NgMatTooltipModule, NgMaterialButtonModule } from '@ccchymns.com/angular';
 import { SubSink } from 'subsink';
 import { DisplayService, Size } from '@ccchymns.com/common';
-import { LyricsTableComponent } from '../shared/lyrics-table/lyrics-table.component';
+import { COLUMN_NAMES, LyricsTableComponent } from '../shared/lyrics-table/lyrics-table.component';
+import { LyricsPlaceholderComponent } from '../shared/lyrics-placeholder/lyrics-placeholder.component';
 
 @Component({
   selector: 'app-lyrics-yoruba',
@@ -14,7 +15,8 @@ import { LyricsTableComponent } from '../shared/lyrics-table/lyrics-table.compon
     CCCIconDirective,
     NgMaterialButtonModule,
     NgMatTooltipModule,
-    LyricsTableComponent
+    LyricsTableComponent,
+    LyricsPlaceholderComponent,
   ],
   templateUrl: './yoruba.component.html',
   styleUrl: './yoruba.component.scss',
@@ -23,6 +25,7 @@ import { LyricsTableComponent } from '../shared/lyrics-table/lyrics-table.compon
 export class YorubaComponent implements OnDestroy {
   private subscriptions = new SubSink();
   isDesktop = false;
+  columnNames = COLUMN_NAMES;
 
   constructor(private displayService: DisplayService) {
     this.getIsDeviceDisplayDesktopAsync();
