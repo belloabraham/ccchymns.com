@@ -1,4 +1,4 @@
-<table *transloco="let t" class="table table-striped" cdk-table recycleRows [dataSource]="data">
+<table *transloco="let t" class="table table-striped" cdk-table recycleRows [dataSource]="data" [trackBy]="trackByFn">
 
   <ng-container [cdkColumnDef]="columnNames[0]">
     <th cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[0])}}</th>
@@ -12,10 +12,15 @@
 
   <ng-container [cdkColumnDef]="columnNames[2]">
     <th cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[2])}}</th>
-    <td cdk-cell *cdkCellDef="let row">{{row[columnNames[2]]}}</td>
+    <td cdk-cell *cdkCellDef="let row">
+      <button ng-mat-icon-button ng-mat-tooltip [id]="row.no" type="button">
+        <i [ccc-icon]="'pencil-outline'"></i>
+      </button>
+      <div ng-mat-tooltip [id]="row.no">{{languageResourceKey.EDIT}}</div>
+    </td>
   </ng-container>
 
   <tr cdk-header-row *cdkHeaderRowDef="columnNames"></tr>
-  <tr cdk-row *cdkRowDef="let row; columns: columnNames; trackBy: trackByFn"></tr>
+  <tr cdk-row *cdkRowDef="let row; columns: columnNames;"></tr>
 
 </table>
