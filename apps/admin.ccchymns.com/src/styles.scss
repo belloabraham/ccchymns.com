@@ -5,7 +5,8 @@
 @use 'material/ccchymns';
 @use 'gerillass';
 
-.logo, .card {
+.logo,
+.card {
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 1px 3px 1px !important;
 }
@@ -17,6 +18,13 @@
     font-weight: 500;
     font-size: 1.5rem;
   }
+}
+
+.circle {
+  height: 2.2rem;
+  width: 2.2rem;
+  border-radius: 50%;
+  display: inline-block;
 }
 
 :root {
