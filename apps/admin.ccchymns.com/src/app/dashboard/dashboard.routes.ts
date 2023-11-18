@@ -2,14 +2,14 @@ import { Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { Route } from '@ccchymns.com/common';
 import { RootLanguageResourceKey } from '../../core/i18n/language-resource-key';
-import { LanguageResourceKey } from './i18n/language-resource-key';
+import { DashboardLanguageResourceKey } from './i18n/language-resource-key';
 
 export const DASHBOARD_ROUTES: Routes = [
   {
     path: Route.ROOT,
     component: DashboardComponent,
     data: {
-      breadcrumb: LanguageResourceKey.DASHBOARD,
+      breadcrumb: DashboardLanguageResourceKey.DASHBOARD,
     },
     children: [
       {

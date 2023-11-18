@@ -18,7 +18,7 @@ import { Store } from '@ngrx/store';
 import { SubSink } from 'subsink';
 import { getLanguageLoadedSelector } from '../../store/selectors';
 import { Config, DisplayService, Route, Size } from '@ccchymns.com/common';
-import { LanguageResourceKey } from './i18n/language-resource-key';
+import { DashboardLanguageResourceKey } from './i18n/language-resource-key';
 import { CCCIconDirective } from '@ccchymns.com/ui';
 import { NgOptimizedImage } from '@angular/common';
 import {
@@ -62,7 +62,7 @@ export class DashboardComponent implements OnDestroy, OnInit {
   isMobile = false;
   openSideBar = signal(false);
   config = Config;
-  languageResourceKey = LanguageResourceKey;
+  languageResourceKey = DashboardLanguageResourceKey;
   rootLanguageResourceKey = RootLanguageResourceKey;
   route = Route;
 
@@ -244,7 +244,7 @@ export class DashboardComponent implements OnDestroy, OnInit {
 
   private setPageTitle() {
     const pageTitle = this.languageResourceService.getStringWithParameter(
-      LanguageResourceKey.PAGE_TITLE,
+      DashboardLanguageResourceKey.PAGE_TITLE,
       { value: Config.APP_NAME }
     );
     this.title.setTitle(pageTitle);
