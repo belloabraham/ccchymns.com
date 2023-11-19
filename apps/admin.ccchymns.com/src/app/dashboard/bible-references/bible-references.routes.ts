@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
-import { Route } from '@ccchymns.com/common';
+import { RootLanguageResourceKey, Route } from '@ccchymns.com/common';
 import { BibleReferencesComponent } from './bible-references.component';
-import { RootLanguageResourceKey } from '../../../core/i18n/language-resource-key';
 
 
 export const BIBLE_REFERENCES_ROUTES: Routes = [

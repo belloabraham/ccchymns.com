@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
-import { Route } from '@ccchymns.com/common';
-import { RootLanguageResourceKey } from '../../core/i18n/language-resource-key';
+import { RootLanguageResourceKey, Route } from '@ccchymns.com/common';
 import { DashboardLanguageResourceKey } from './i18n/language-resource-key';
 
 export const DASHBOARD_ROUTES: Routes = [

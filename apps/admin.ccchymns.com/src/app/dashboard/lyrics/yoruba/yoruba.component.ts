@@ -10,7 +10,7 @@ import {
   NgMaterialButtonModule,
 } from '@ccchymns.com/angular';
 import { SubSink } from 'subsink';
-import { DisplayService, Size } from '@ccchymns.com/common';
+import { DisplayService, RootLanguageResourceKey, Size } from '@ccchymns.com/common';
 import {
   COLUMN_NAMES,
   LyricsTableComponent,
@@ -18,7 +18,6 @@ import {
 import { LyricsPlaceholderComponent } from '../shared/lyrics-placeholder/lyrics-placeholder.component';
 import { LYRICS } from '../shared/mock/lyrics';
 import { LanguageResourceKey } from '../i18n/language-resource-key';
-import { RootLanguageResourceKey } from '../../../../core/i18n/language-resource-key';
 import { DashboardLanguageResourceKey } from '../../i18n/language-resource-key';
 
 @Component({

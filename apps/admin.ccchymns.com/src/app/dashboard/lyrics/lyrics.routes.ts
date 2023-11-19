@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
-import { Route } from '@ccchymns.com/common';
+import { RootLanguageResourceKey, Route } from '@ccchymns.com/common';
 import { LyricsComponent } from '../lyrics/lyrics.component';
-import { RootLanguageResourceKey } from '../../../core/i18n/language-resource-key';
 
 export const LYRICS_ROUTES: Routes = [
   {

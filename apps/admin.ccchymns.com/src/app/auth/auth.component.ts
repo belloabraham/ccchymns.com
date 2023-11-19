@@ -19,7 +19,7 @@ import { Store } from '@ngrx/store';
 import { Title } from '@angular/platform-browser';
 import { getLanguageLoadedSelector } from '../../store/selectors';
 import { LanguageResourceKey } from './i18n/language-resource-key';
-import { Config, DisplayService, Route } from '@ccchymns.com/common';
+import { Config, DisplayService, RootLanguageResourceKey, Route } from '@ccchymns.com/common';
 import { NgOptimizedImage } from '@angular/common';
 import {
   FormControl,
@@ -29,7 +29,6 @@ import {
 } from '@angular/forms';
 import { AlertDialog, LoggerUtil, Regex, Shield } from '@ccchymns.com/core';
 import { Preference } from '../../core/data/preference';
-import { RootLanguageResourceKey } from '../../core/i18n/language-resource-key';
 import { AuthError } from '../../core/auth/auth-error';
 
 @Component({

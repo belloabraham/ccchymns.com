@@ -17,7 +17,7 @@ import {
 import { Store } from '@ngrx/store';
 import { SubSink } from 'subsink';
 import { getLanguageLoadedSelector } from '../../store/selectors';
-import { Config, DisplayService, Route, Size } from '@ccchymns.com/common';
+import { Config, DisplayService, RootLanguageResourceKey, Route, Size } from '@ccchymns.com/common';
 import { DashboardLanguageResourceKey } from './i18n/language-resource-key';
 import { CCCIconDirective } from '@ccchymns.com/ui';
 import { NgOptimizedImage } from '@angular/common';
@@ -32,7 +32,6 @@ import {
   RouterLinkActive,
   RouterOutlet,
 } from '@angular/router';
-import { RootLanguageResourceKey } from '../../core/i18n/language-resource-key';
 import { Observable, distinctUntilChanged, filter, map, merge } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 

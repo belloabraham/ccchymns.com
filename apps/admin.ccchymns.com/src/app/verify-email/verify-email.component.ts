@@ -17,7 +17,7 @@ import { Store } from '@ngrx/store';
 import { Title } from '@angular/platform-browser';
 import { getLanguageLoadedSelector } from '../../store/selectors';
 import { LanguageResourceKey } from './i18n/language-resource-key';
-import { Config, DisplayService, Route } from '@ccchymns.com/common';
+import { Config, DisplayService, RootLanguageResourceKey, Route } from '@ccchymns.com/common';
 import { Preference } from '../../core/data/preference';
 import { AUTH_TOKEN, IAuth } from '../../core/auth';
 import { Router, RouterLink } from '@angular/router';
@@ -29,7 +29,6 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { NgOptimizedImage } from '@angular/common';
-import { RootLanguageResourceKey } from '../../core/i18n/language-resource-key';
 import { AuthError } from '../../core/auth/auth-error';
 
 @Component({
