@@ -18,6 +18,8 @@ import { LanguageResourceKey } from '../../i18n/language-resource-key';
 import { DashboardLanguageResourceKey } from '../../../i18n/language-resource-key';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { SortOrder } from '../../../shared';
+import { Order } from '../../../shared';
 
 const hymnLyricsUIState: HymnLyricsUIState = {
   no: 0,
@@ -63,7 +65,7 @@ export class HymnLyricsDataSource extends DataSource<HymnLyricsUIState> {
     }
   }
 
-  sortDataBy(columnId: string, order: 'asc' | 'desc'): void {
+  sortDataBy(columnId: string, order: SortOrder): void {
     //Use filteredData if available, otherwise use the original data
     const data = this.filteredData.length
       ? this.filteredData
@@ -77,7 +79,7 @@ export class HymnLyricsDataSource extends DataSource<HymnLyricsUIState> {
         typeof firstRowSortByValue === 'number' &&
         typeof secondRowSortByValue === 'number';
       if (sortColumnValueIsANumber) {
-        return order === 'asc'
+        return order === Order.ASC
           ? firstRowSortByValue - secondRowSortByValue
           : secondRowSortByValue - firstRowSortByValue;
       } else {
@@ -87,7 +89,7 @@ export class HymnLyricsDataSource extends DataSource<HymnLyricsUIState> {
         const secondRowStringSortByValue = secondRowSortByValue
           .toString()
           .toLowerCase();
-        return order === 'asc'
+        return order === Order.ASC
           ? firstRowStringSortByValue.localeCompare(secondRowStringSortByValue)
           : secondRowStringSortByValue.localeCompare(firstRowStringSortByValue);
       }
@@ -150,7 +152,7 @@ export class LyricsTableComponent implements OnChanges, OnInit {
     return item.no;
   }
 
-  sortDataBy(sortBy: string, order: 'asc' | 'desc') {
+  sortDataBy(sortBy: string, order: SortOrder) {
     this.dataSource.sortDataBy(sortBy, order);
   }
 

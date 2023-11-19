@@ -1,16 +1,16 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnDestroy,
-} from '@angular/core';
-import { SharedModule } from '../../shared/shared.module';
+import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
+import { SharedModule } from '../../shared';
 import { CCCIconDirective } from '@ccchymns.com/ui';
 import {
   NgMatTooltipModule,
   NgMaterialButtonModule,
 } from '@ccchymns.com/angular';
 import { SubSink } from 'subsink';
-import { DisplayService, RootLanguageResourceKey, Size } from '@ccchymns.com/common';
+import {
+  DisplayService,
+  RootLanguageResourceKey,
+  Size,
+} from '@ccchymns.com/common';
 import {
   COLUMN_NAMES,
   LyricsTableComponent,
@@ -44,13 +44,12 @@ export class YorubaComponent implements OnDestroy {
   rootLanguageResourceKey = RootLanguageResourceKey;
   dashboardLanguageResourceKey = DashboardLanguageResourceKey;
   filterBy?: string;
+  sortOrderIsAscending = true;
 
-  constructor(
-    private displayService: DisplayService,
-  ) {
+  constructor(private displayService: DisplayService) {
     this.getIsDeviceDisplayDesktopAsync();
   }
-
+  
   getIsDeviceDisplayDesktopAsync() {
     this.subscriptions.sink = this.displayService.size$.subscribe(
       (displaySize) => {

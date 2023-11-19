@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { SharedModule } from '../../shared/shared.module';
+import { SharedModule } from '../../shared';
 
 @Component({
   selector: 'app-lyrics-english',
