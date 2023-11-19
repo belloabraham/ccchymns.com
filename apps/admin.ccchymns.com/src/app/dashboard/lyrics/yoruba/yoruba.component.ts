@@ -1,4 +1,8 @@
-import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+} from '@angular/core';
 import { SharedModule } from '../../shared/shared.module';
 import { CCCIconDirective } from '@ccchymns.com/ui';
 import {
@@ -40,8 +44,11 @@ export class YorubaComponent implements OnDestroy {
   languageResourceKey = LanguageResourceKey;
   rootLanguageResourceKey = RootLanguageResourceKey;
   dashboardLanguageResourceKey = DashboardLanguageResourceKey;
+  filterBy?: string;
 
-  constructor(private displayService: DisplayService) {
+  constructor(
+    private displayService: DisplayService,
+  ) {
     this.getIsDeviceDisplayDesktopAsync();
   }
 
@@ -51,6 +58,10 @@ export class YorubaComponent implements OnDestroy {
         this.isDesktop = displaySize === Size.Large;
       }
     );
+  }
+
+  onFilterTextChanged(event: any) {
+    this.filterBy = event.target.value;
   }
 
   ngOnDestroy(): void {

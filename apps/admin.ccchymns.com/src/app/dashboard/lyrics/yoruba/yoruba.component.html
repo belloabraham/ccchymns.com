@@ -1,75 +1,82 @@
 <div *transloco="let t" class="d-flex flex-column justify-content-center align-items-center">
 
-  <div class="card">
-    <div class="card-header py-0 pe-1 bg-body-secondary d-flex justify-content-between align-items-center"> <span
-        class="title mt-1"> {{t(rootLanguageResourceKey.YORUBA)}} {{t(rootLanguageResourceKey.LYRICS)}}</span>
+  <div class="table-container">
+    <input type="text" (keyup)="onFilterTextChanged($event)" class="form-control w-50" [placeholder]="t(languageResourceKey.FILTER_HYMN_MSG)">
+    <div class="card w-100">
+      <div class="card-header py-0 pe-1 bg-body-secondary d-flex justify-content-between align-items-center">
 
-      <div class="d-flex align-items-center">
-        <button type="button" ng-mat-tooltip id="previous-page"
-          class="btn btn-secondary mt-1 d-flex align-items-center flex-nowrap text-start position-relative">
-          <i class="flex-shrink-0 fw-bolder" [ccc-icon]="'arrow-left'"></i>
-        </button>
+        <span class="title mt-1"> {{t(rootLanguageResourceKey.YORUBA)}} {{t(rootLanguageResourceKey.LYRICS)}}</span>
 
-        <div ng-mat-tooltip id="previous-page">{{t(dashboardLanguageResourceKey.PREVIOUS_PAGE)}}</div>
+        <div class="d-flex align-items-center">
+          <button type="button" ng-mat-tooltip id="previous-page"
+            class="btn btn-secondary mt-1 d-flex align-items-center flex-nowrap text-start position-relative">
+            <i class="flex-shrink-0 fw-bolder" [ccc-icon]="'arrow-left'"></i>
+          </button>
 
-        <button type="button" ng-mat-tooltip id="next-page"
-          class="btn btn-secondary mt-1 mx-2 me-3 d-flex align-items-center flex-nowrap text-start position-relative">
-          <i class="flex-shrink-0 fw-bolder" [ccc-icon]="'arrow-right'"></i>
-        </button>
+          <div ng-mat-tooltip id="previous-page">{{t(dashboardLanguageResourceKey.PREVIOUS_PAGE)}}</div>
 
-        <div ng-mat-tooltip id="next-page">{{t(dashboardLanguageResourceKey.NEXT_PAGE)}}</div>
+          <button type="button" ng-mat-tooltip id="next-page"
+            class="btn btn-secondary mt-1 mx-2 me-3 d-flex align-items-center flex-nowrap text-start position-relative">
+            <i class="flex-shrink-0 fw-bolder" [ccc-icon]="'arrow-right'"></i>
+          </button>
 
+          <div ng-mat-tooltip id="next-page">{{t(dashboardLanguageResourceKey.NEXT_PAGE)}}</div>
 
-        <button ng-mat-icon-button class="add" ng-mat-tooltip id="add-hymn">
-          <i [ccc-icon]="'plus-circle'"></i>
-        </button>
+          <button [ccc-icon]="'sort'" ng-mat-icon-button ng-mat-tooltip id="sort" class="mx-2">
+          </button>
+          <div ng-mat-tooltip id="sort">{{t(dashboardLanguageResourceKey.SORT_MSG)}}</div>
 
-        <div ng-mat-tooltip id="add-hymn">{{t(languageResourceKey.ADD_A_HYMN)}}</div>
+          <button ng-mat-icon-button class="add" [ccc-icon]="'plus-circle'" ng-mat-tooltip id="add-hymn">
+          </button>
+
+          <div ng-mat-tooltip id="add-hymn">{{t(languageResourceKey.ADD_A_HYMN)}}</div>
+
+        </div>
 
       </div>
+      <div class="card-body overflow-x-scroll">
+        <app-lyrics-table [columnNames]="columnNames" [data]="data" [filterBy]="filterBy" />
+        <!-- <app-lyrics-placeholder [columnNames]="columnNames"/> -->
+      </div>
 
-    </div>
-    <div class="card-body overflow-x-scroll">
-      <app-lyrics-table [columnNames]="columnNames" [data]="data" />
-      <!-- <app-lyrics-placeholder [columnNames]="columnNames"/> -->
-    </div>
+      <div class="card-footer d-flex justify-content-end">
+        <nav aria-label="Page navigation">
+          <ul class="pagination pb-0 mb-0" [class.pagination-sm]="!isDesktop">
+            <li class="page-item disabled">
+              <a class="page-link navigation-link" aria-label="Previous">
+                <span aria-hidden="true">
+                  <i [ccc-icon]="'arrow-left'" class="navigation-icon"></i>
+                </span>
+              </a>
+            </li>
+            <li class="page-item active" aria-current="page"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">4</a></li>
+            <li class="page-item"><a class="page-link" href="#">5</a></li>
+            <li class="page-item"><a class="page-link" href="#">6</a></li>
+            <li class="page-item"><a class="page-link" href="#">7</a></li>
+            <li class="page-item"><a class="page-link" href="#">8</a></li>
+            <li class="page-item"><a class="page-link" href="#">9</a></li>
+            <li class="page-item"><a class="page-link" href="#">10</a></li>
+            <li class="page-item"><a class="page-link" href="#">11</a></li>
+            <li class="page-item"><a class="page-link" href="#">12</a></li>
+            <li class="page-item"><a class="page-link" href="#">13</a></li>
+            <li class="page-item"><a class="page-link" href="#">14</a></li>
+            <li class="page-item"><a class="page-link" href="#">15</a></li>
 
-    <div class="card-footer d-flex justify-content-end">
-      <nav aria-label="Page navigation">
-        <ul class="pagination pb-0 mb-0" [class.pagination-sm]="!isDesktop">
-          <li class="page-item disabled">
-            <a class="page-link navigation-link" aria-label="Previous">
-              <span aria-hidden="true">
-                <i [ccc-icon]="'arrow-left'" class="navigation-icon"></i>
-              </span>
-            </a>
-          </li>
-          <li class="page-item active" aria-current="page"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#">4</a></li>
-          <li class="page-item"><a class="page-link" href="#">5</a></li>
-          <li class="page-item"><a class="page-link" href="#">6</a></li>
-          <li class="page-item"><a class="page-link" href="#">7</a></li>
-          <li class="page-item"><a class="page-link" href="#">8</a></li>
-          <li class="page-item"><a class="page-link" href="#">9</a></li>
-          <li class="page-item"><a class="page-link" href="#">10</a></li>
-          <li class="page-item"><a class="page-link" href="#">11</a></li>
-          <li class="page-item"><a class="page-link" href="#">12</a></li>
-          <li class="page-item"><a class="page-link" href="#">13</a></li>
-          <li class="page-item"><a class="page-link" href="#">14</a></li>
-          <li class="page-item"><a class="page-link" href="#">15</a></li>
-
-          <li class="page-item">
-            <a class="page-link navigation-link" href="#" aria-label="Next">
-              <span aria-hidden="true">
-                <i [ccc-icon]="'arrow-right'" class="navigation-icon"></i>
-              </span>
-            </a>
-          </li>
-        </ul>
-      </nav>
+            <li class="page-item">
+              <a class="page-link navigation-link" href="#" aria-label="Next">
+                <span aria-hidden="true">
+                  <i [ccc-icon]="'arrow-right'" class="navigation-icon"></i>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </div>
   </div>
+
 
 </div>

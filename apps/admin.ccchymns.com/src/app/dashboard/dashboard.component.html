@@ -71,9 +71,8 @@
               {{config.APP_NAME}}</a>
           </h6>
 
-          <button ng-mat-icon-button type="button" (click)="toggleSideBar()" class="d-md-none m-0"
+          <button ng-mat-icon-button [ccc-icon]="'close'" type="button" (click)="toggleSideBar()" class="text-white d-md-none m-0"
             data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#sidebar">
-            <i [ccc-icon]="'close'" class="text-white"></i>
           </button>
         </div>
 
@@ -268,9 +267,8 @@
           </div>
 
           <div class="text-end">
-            <button ng-mat-icon-button type="button" (click)="toggleSideBar()" class="d-md-none m-0"
+            <button ng-mat-icon-button [ccc-icon]="'arrow-left'" type="button" (click)="toggleSideBar()" class="text-white d-md-none m-0"
               data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#sidebar">
-              <i [ccc-icon]="'arrow-left'" class="text-white"></i>
             </button>
           </div>
         </div>

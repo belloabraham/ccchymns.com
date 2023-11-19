@@ -1,4 +1,4 @@
-<table *transloco="let t" class="table table-striped" cdk-table recycleRows [dataSource]="data" [trackBy]="trackByFn">
+<table *transloco="let t" class="table table-striped" cdk-table recycleRows [dataSource]="dataSource" [trackBy]="trackByFn">
 
   <ng-container [cdkColumnDef]="columnNames[0]">
     <th cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[0])}}</th>
