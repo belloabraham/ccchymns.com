@@ -3,5 +3,13 @@
   "dest": "../dist/angular",
   "lib": {
     "entryFile": "src/index.ts"
-  }
+  },
+  "allowedNonPeerDependencies": [
+    "@material/button",
+    "@material/elevation",
+    "@material/icon-button",
+    "@material/ripple",
+    "@material/theme",
+    "@material/tooltip"
+  ]
 }
