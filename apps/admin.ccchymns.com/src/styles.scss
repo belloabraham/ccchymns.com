@@ -38,13 +38,14 @@
 
 @include gerillass.breakpoint(min, medium) {
   :root {
-    --bs-sidebar-width: 15rem;
-    --bs-padding-sbwidth: 15rem;
+    --bs-sidebar-width: 14rem;
+    --bs-padding-sbwidth: 14rem;
   }
   .sidebar {
-    width: 15rem !important;
+    width: 14rem !important;
   }
 }
+
 .list-group-item {
   font-size: 0.9rem;
 }

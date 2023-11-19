@@ -22,7 +22,7 @@
 
           <div ng-mat-tooltip id="next-page">{{t(dashboardLanguageResourceKey.NEXT_PAGE)}}</div>
 
-          <button [ccc-icon]="'sort'" ng-mat-icon-button ng-mat-tooltip id="sort" class="mx-2">
+          <button [ccc-icon]="'sort'" (click)="lyricsTable.sortDataBy('no', 'desc')"  ng-mat-icon-button ng-mat-tooltip id="sort" class="mx-2">
           </button>
           <div ng-mat-tooltip id="sort">{{t(dashboardLanguageResourceKey.SORT_MSG)}}</div>
 
@@ -35,7 +35,7 @@
 
       </div>
       <div class="card-body overflow-x-scroll">
-        <app-lyrics-table [columnNames]="columnNames" [data]="data" [filterBy]="filterBy" />
+        <app-lyrics-table [columnNames]="columnNames" #lyricsTable='lyricsTable' [data]="data" [filterBy]="filterBy" />
         <!-- <app-lyrics-placeholder [columnNames]="columnNames"/> -->
       </div>
 

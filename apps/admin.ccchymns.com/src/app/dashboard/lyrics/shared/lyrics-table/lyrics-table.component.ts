@@ -18,6 +18,7 @@ import { LanguageResourceKey } from '../../i18n/language-resource-key';
 import { DashboardLanguageResourceKey } from '../../../i18n/language-resource-key';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { or } from '@angular/fire/firestore';
 
 const hymnLyricsUIState: HymnLyricsUIState = {
   no: 0,
@@ -25,7 +26,7 @@ const hymnLyricsUIState: HymnLyricsUIState = {
 };
 export const COLUMN_NAMES = [...Object.keys(hymnLyricsUIState), 'tools'];
 export class HymnLyricsDataSource extends DataSource<HymnLyricsUIState> {
-  data$!: BehaviorSubject<HymnLyricsUIState[]>;
+  private data$!: BehaviorSubject<HymnLyricsUIState[]>;
   private filteredData: HymnLyricsUIState[] = [];
   private data: HymnLyricsUIState[] = [];
 
@@ -50,16 +51,52 @@ export class HymnLyricsDataSource extends DataSource<HymnLyricsUIState> {
     }
 
     if (!filterBy) {
+      this.filteredData = [];
       this.data$.next(this.data);
     }
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  disconnect() {}
+  sortDataBy(columnId: string, order: 'asc' | 'desc'): void {
+    //Use filteredData if available, otherwise use the original data
+    const data = this.filteredData.length
+      ? this.filteredData
+      : this.data.slice();
+
+    const sortedData = data.sort((firstRow, secondRow) => {
+      const firstRowSortByValue = firstRow[columnId];
+      const secondRowSortByValue = secondRow[columnId];
+
+      const sortColumnValueIsANumber =
+        typeof firstRowSortByValue === 'number' &&
+        typeof secondRowSortByValue === 'number';
+      if (sortColumnValueIsANumber) {
+        return order === 'asc'
+          ? firstRowSortByValue - secondRowSortByValue
+          : secondRowSortByValue - firstRowSortByValue;
+      } else {
+        const firstRowStringSortByValue = firstRowSortByValue
+          .toString()
+          .toLowerCase();
+        const secondRowStringSortByValue = secondRowSortByValue
+          .toString()
+          .toLowerCase();
+        return order === 'asc'
+          ? firstRowStringSortByValue.localeCompare(secondRowStringSortByValue)
+          : secondRowStringSortByValue.localeCompare(firstRowStringSortByValue);
+      }
+    });
+
+    this.data$.next(sortedData);
+  }
+
+  disconnect() {
+    this.data$.complete();
+  }
 }
 @Component({
   selector: 'app-lyrics-table',
   standalone: true,
+  exportAs: 'lyricsTable',
   imports: [
     CdkTableModule,
     TranslocoModule,
@@ -91,6 +128,10 @@ export class LyricsTableComponent implements OnChanges, OnInit {
 
   trackByFn(index: number, item: any): any {
     return item.no;
+  }
+
+  sortDataBy(sortBy: string, order: 'asc' | 'desc') {
+    this.dataSource.sortDataBy(sortBy, order);
   }
 
   filterTableData(filterBy?: string) {
