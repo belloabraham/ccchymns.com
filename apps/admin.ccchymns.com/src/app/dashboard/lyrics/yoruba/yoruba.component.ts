@@ -5,20 +5,13 @@ import {
   NgMatTooltipModule,
   NgMaterialButtonModule,
 } from '@ccchymns.com/angular';
-import { SubSink } from 'subsink';
 import {
-  DisplayService,
   RootLanguageResourceKey,
-  Size,
 } from '@ccchymns.com/common';
-import {
-  COLUMN_NAMES,
-  LyricsTableComponent,
-} from '../shared/lyrics-table/lyrics-table.component';
-import { LyricsPlaceholderComponent } from '../shared/lyrics-placeholder/lyrics-placeholder.component';
 import { LYRICS } from '../shared/mock/lyrics';
 import { LanguageResourceKey } from '../i18n/language-resource-key';
 import { DashboardLanguageResourceKey } from '../../i18n/language-resource-key';
+import { COLUMN_NAMES, LyricsPlaceholderComponent, LyricsTableComponent } from '../shared';
 
 @Component({
   selector: 'app-lyrics-yoruba',
@@ -35,9 +28,7 @@ import { DashboardLanguageResourceKey } from '../../i18n/language-resource-key';
   styleUrl: './yoruba.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class YorubaComponent implements OnDestroy {
-  private subscriptions = new SubSink();
-  isDesktop = false;
+export class YorubaComponent {
   columnNames = COLUMN_NAMES;
   data = LYRICS;
   languageResourceKey = LanguageResourceKey;
@@ -46,26 +37,9 @@ export class YorubaComponent implements OnDestroy {
   filterBy?: string;
   sortOrderIsAscending = true;
   sortWithColumnId = COLUMN_NAMES[0];
-  pagination = Array(14);
-  currentPageIndex = 0;
-
-  constructor(private displayService: DisplayService) {
-    this.getIsDeviceDisplayDesktopAsync();
-  }
-
-  getIsDeviceDisplayDesktopAsync() {
-    this.subscriptions.sink = this.displayService.size$.subscribe(
-      (displaySize) => {
-        this.isDesktop = displaySize === Size.Large;
-      }
-    );
-  }
 
   onFilterTextChanged(event: any) {
     this.filterBy = event.target.value;
   }
 
-  ngOnDestroy(): void {
-    this.subscriptions.unsubscribe();
-  }
 }

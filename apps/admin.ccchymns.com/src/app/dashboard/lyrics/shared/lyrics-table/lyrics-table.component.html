@@ -1,17 +1,17 @@
 <table *transloco="let t" class="table table-striped" cdk-table [dataSource]="dataSource" [trackBy]="trackByFn">
 
-  <ng-container [cdkColumnDef]="columnNames[0]">
-    <th cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[0])}}</th>
+  <ng-container  [cdkColumnDef]="columnNames[0]">
+    <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[0])}}</th>
     <td cdk-cell *cdkCellDef="let row">{{row[columnNames[0]]}}</td>
   </ng-container>
 
   <ng-container [cdkColumnDef]="columnNames[1]">
-    <th cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[1])}}</th>
+    <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[1])}}</th>
     <td cdk-cell *cdkCellDef="let row">{{row[columnNames[1]]}}</td>
   </ng-container>
 
   <ng-container [cdkColumnDef]="columnNames[2]">
-    <th cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[2])}}</th>
+    <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[2])}}</th>
     <td cdk-cell *cdkCellDef="let row">
       <button ng-mat-icon-button ng-mat-tooltip [id]="row.no" type="button">
         <i [ccc-icon]="'pencil-outline'"></i>
@@ -24,3 +24,28 @@
   <tr cdk-row *cdkRowDef="let row; columns: columnNames;"></tr>
 
 </table>
+
+<div class="card-footer d-flex justify-content-end">
+  <nav aria-label="Page navigation">
+    <ul class="pagination pb-0 mb-0" [class.pagination-sm]="!isDesktop">
+      <li class="page-item" >
+        <button [class.disabled]="getCurrentPageIndex()===0"  (click)="previousPage()" class="page-link navigation-link" aria-label="Previous">
+          <span aria-hidden="true">
+            <i [ccc-icon]="'arrow-left'" class="navigation-icon"></i>
+          </span>
+        </button>
+      </li>
+      @for(page of pagination; track page; let index = $index){
+      <li class="page-item" [class.active]="getCurrentPageIndex() === index"><a class="page-link"
+          (click)="goToPage(index)">{{index+1}}</a></li>
+      }
+      <li class="page-item">
+        <button  [class.disabled]="endOfPage()" (click)="nextPage()" class="page-link navigation-link" href="#" aria-label="Next">
+          <span aria-hidden="true">
+            <i [ccc-icon]="'arrow-right'" class="navigation-icon"></i>
+          </span>
+        </button>
+      </li>
+    </ul>
+  </nav>
+</div>

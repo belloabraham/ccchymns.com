@@ -6,9 +6,9 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
-import { CdkTableModule, DataSource } from '@angular/cdk/table';
+import { CdkTableModule } from '@angular/cdk/table';
 import { TranslocoModule } from '@ngneat/transloco';
-import { HymnLyricsUIState } from '@ccchymns.com/common';
+import { DisplayService, HymnLyricsUIState, Size } from '@ccchymns.com/common';
 import {
   NgMatTooltipModule,
   NgMaterialButtonModule,
@@ -16,116 +16,17 @@ import {
 import { CCCIconDirective } from '@ccchymns.com/ui';
 import { LanguageResourceKey } from '../../i18n/language-resource-key';
 import { DashboardLanguageResourceKey } from '../../../i18n/language-resource-key';
-import { BehaviorSubject, Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { SortOrder } from '../../../shared';
-import { Order } from '../../../shared';
+import { SubSink } from 'subsink';
+import { HymnLyricsDataSource } from '../datasource/lyrics-datasource';
 
 const hymnLyricsUIState: HymnLyricsUIState = {
   no: 0,
   hymn: '',
 };
 export const COLUMN_NAMES = [...Object.keys(hymnLyricsUIState), 'tools'];
-export class HymnLyricsDataSource extends DataSource<HymnLyricsUIState> {
-  private data$!: BehaviorSubject<HymnLyricsUIState[]>;
-  private filteredData: HymnLyricsUIState[] = [];
-  private data: HymnLyricsUIState[] = [];
-  private paginatedData: HymnLyricsUIState[] = [];
 
-  private pageSize = 3; // Number of items per page
-  private pageIndex = 0; // Current page index
-
-  constructor(data: HymnLyricsUIState[]) {
-    super();
-    this.data = data;
-    this.data$ = new BehaviorSubject<HymnLyricsUIState[]>([]);
-  }
-
-  connect(): Observable<HymnLyricsUIState[]> {
-    const startIndex = this.pageIndex * this.pageSize;
-    const endIndex = startIndex + this.pageSize;
-    this.paginatedData = this.data.slice(startIndex, endIndex);
-    this.data$.next(this.paginatedData);
-    return this.data$;
-  }
-
-  filterTableData(filterBy?: string): void {
-    if (filterBy) {
-      const filterValue = filterBy.toLowerCase();
-      this.filteredData = this.data.filter((item) => {
-        const stringToSearch = `${item.no} ${item.hymn.toLowerCase()}`;
-        return stringToSearch.includes(filterValue);
-      });
-      this.data$.next(this.filteredData);
-    }
-
-    if (!filterBy) {
-      this.filteredData = [];
-      this.data$.next(this.paginatedData);
-    }
-  }
-
-  sortDataBy(columnId: string, order: SortOrder): void {
-    //Use filteredData if available, otherwise use the original data
-    const data = this.paginatedData;
-
-    const sortedData = data.sort((firstRow, secondRow) => {
-      const firstRowSortByValue = firstRow[columnId];
-      const secondRowSortByValue = secondRow[columnId];
-
-      const sortColumnValueIsANumber =
-        typeof firstRowSortByValue === 'number' &&
-        typeof secondRowSortByValue === 'number';
-      if (sortColumnValueIsANumber) {
-        return order === Order.ASC
-          ? firstRowSortByValue - secondRowSortByValue
-          : secondRowSortByValue - firstRowSortByValue;
-      } else {
-        const firstRowStringSortByValue = firstRowSortByValue
-          .toString()
-          .toLowerCase();
-        const secondRowStringSortByValue = secondRowSortByValue
-          .toString()
-          .toLowerCase();
-        return order === Order.ASC
-          ? firstRowStringSortByValue.localeCompare(secondRowStringSortByValue)
-          : secondRowStringSortByValue.localeCompare(firstRowStringSortByValue);
-      }
-    });
-
-    this.data$.next(sortedData);
-  }
-
-  goToPage(pageIndex: number): void {
-    // Update the page index and notify subscribers
-    this.pageIndex = pageIndex;
-    this.paginatedData = this.getDataForCurrentPage(this.pageIndex);
-    this.data$.next(this.paginatedData);
-  }
-
-  nextPage() {
-    const pageIndex = this.pageIndex + 1;
-    this.goToPage(pageIndex);
-  }
-
-  previousPage() {
-    const pageIndex = this.pageIndex - 1;
-    if (pageIndex >= 0) {
-      this.goToPage(pageIndex);
-    }
-  }
-
-  private getDataForCurrentPage(pageIndex: number): HymnLyricsUIState[] {
-    const startIndex = pageIndex * this.pageSize;
-    const endIndex = startIndex + this.pageSize;
-    console.error(endIndex);
-    return this.data.slice(startIndex, endIndex);
-  }
-
-  disconnect() {
-    this.data$.complete();
-  }
-}
 @Component({
   selector: 'app-lyrics-table',
   standalone: true,
@@ -145,11 +46,18 @@ export class HymnLyricsDataSource extends DataSource<HymnLyricsUIState> {
 export class LyricsTableComponent implements OnChanges, OnInit {
   languageResourceKey = LanguageResourceKey;
   dashboardLanguageResourceKey = DashboardLanguageResourceKey;
+  pagination = Array(14);
+  private subscriptions = new SubSink();
+  isDesktop = false;
 
   @Input({ required: true }) data: HymnLyricsUIState[] = [];
   @Input() filterBy: string | undefined;
-  @Input({ required: true }) columnNames: string[] = [];
+  columnNames: string[] = COLUMN_NAMES;
   dataSource = new HymnLyricsDataSource(this.data);
+
+  constructor(private displayService: DisplayService) {
+    this.getIsDeviceDisplayDesktopAsync();
+  }
 
   ngOnInit(): void {
     this.dataSource = new HymnLyricsDataSource(this.data);
@@ -157,6 +65,22 @@ export class LyricsTableComponent implements OnChanges, OnInit {
 
   ngOnChanges(changes: SimpleChanges): void {
     this.filterTableData(this.filterBy);
+  }
+
+  endOfPage() {
+   return this.dataSource.endOfPage();
+  }
+
+  getIsDeviceDisplayDesktopAsync() {
+    this.subscriptions.sink = this.displayService.size$.subscribe(
+      (displaySize) => {
+        this.isDesktop = displaySize === Size.Large;
+      }
+    );
+  }
+
+  getCurrentPageIndex() {
+    return this.dataSource.getCurrentPageIndex();
   }
 
   trackByFn(index: number, item: any): any {

@@ -9,14 +9,14 @@
         <span class="title mt-1"> {{t(rootLanguageResourceKey.YORUBA)}} {{t(rootLanguageResourceKey.LYRICS)}}</span>
 
         <div class="d-flex align-items-center">
-          <button type="button" ng-mat-tooltip id="previous-page" (click)="lyricsTable.previousPage()"
+          <button  [disabled]="lyricsTable.getCurrentPageIndex()===0" type="button" ng-mat-tooltip id="previous-page" (click)="lyricsTable.previousPage()"
             class="btn btn-secondary mt-1 d-flex align-items-center flex-nowrap text-start position-relative">
             <i class="flex-shrink-0 fw-bolder" [ccc-icon]="'arrow-left'"></i>
           </button>
 
           <div ng-mat-tooltip id="previous-page">{{t(dashboardLanguageResourceKey.PREVIOUS_PAGE)}}</div>
 
-          <button type="button" ng-mat-tooltip (click)="lyricsTable.nextPage()" id="next-page"
+          <button [disabled]="lyricsTable.endOfPage()" type="button" ng-mat-tooltip (click)="lyricsTable.nextPage()" id="next-page"
             class="btn btn-secondary mt-1 mx-2 me-3 d-flex align-items-center flex-nowrap text-start position-relative">
             <i class="flex-shrink-0 fw-bolder" [ccc-icon]="'arrow-right'"></i>
           </button>
@@ -39,35 +39,8 @@
 
       </div>
       <div class="card-body overflow-x-scroll">
-        <app-lyrics-table [columnNames]="columnNames" #lyricsTable='lyricsTable' [data]="data" [filterBy]="filterBy" />
+        <app-lyrics-table  #lyricsTable='lyricsTable' [data]="data" [filterBy]="filterBy" />
         <!-- <app-lyrics-placeholder [columnNames]="columnNames"/> -->
-      </div>
-
-      <div class="card-footer d-flex justify-content-end">
-        <nav aria-label="Page navigation">
-          <ul class="pagination pb-0 mb-0" [class.pagination-sm]="!isDesktop">
-            <li class="page-item" [class.disabled]="currentPageIndex===0">
-              <a class="page-link navigation-link" aria-label="Previous">
-                <span aria-hidden="true">
-                  <i [ccc-icon]="'arrow-left'" class="navigation-icon"></i>
-                </span>
-              </a>
-            </li>
-
-            @for(page of pagination; track page; let index = $index){
-            <li class="page-item" [class.active]="currentPageIndex === index"><a class="page-link"
-                (click)="lyricsTable.goToPage(index)" (click)="currentPageIndex = index">{{index+1}}</a></li>
-            }
-
-            <li class="page-item">
-              <a class="page-link navigation-link" href="#" aria-label="Next">
-                <span aria-hidden="true">
-                  <i [ccc-icon]="'arrow-right'" class="navigation-icon"></i>
-                </span>
-              </a>
-            </li>
-          </ul>
-        </nav>
       </div>
     </div>
   </div>

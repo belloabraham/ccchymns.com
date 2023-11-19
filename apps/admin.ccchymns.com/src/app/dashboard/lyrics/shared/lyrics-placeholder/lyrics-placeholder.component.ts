@@ -11,6 +11,6 @@ import { TranslocoModule } from '@ngneat/transloco';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LyricsPlaceholderComponent {
-  placeholders = Array(10);
+  placeholders = Array(72);
   @Input({ required: true }) columnNames: string[] = [];
 }
