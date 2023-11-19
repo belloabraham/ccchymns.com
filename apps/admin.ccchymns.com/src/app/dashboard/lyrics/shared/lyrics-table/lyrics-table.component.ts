@@ -33,7 +33,7 @@ export class HymnLyricsDataSource extends DataSource<HymnLyricsUIState> {
   private paginatedData: HymnLyricsUIState[] = [];
 
   private pageSize = 3; // Number of items per page
-  private pageIndex = 1; // Current page index
+  private pageIndex = 0; // Current page index
 
   constructor(data: HymnLyricsUIState[]) {
     super();
@@ -67,9 +67,7 @@ export class HymnLyricsDataSource extends DataSource<HymnLyricsUIState> {
 
   sortDataBy(columnId: string, order: SortOrder): void {
     //Use filteredData if available, otherwise use the original data
-    const data = this.filteredData.length
-      ? this.filteredData
-      : this.data.slice();
+    const data = this.paginatedData;
 
     const sortedData = data.sort((firstRow, secondRow) => {
       const firstRowSortByValue = firstRow[columnId];
@@ -105,9 +103,22 @@ export class HymnLyricsDataSource extends DataSource<HymnLyricsUIState> {
     this.data$.next(this.paginatedData);
   }
 
+  nextPage() {
+    const pageIndex = this.pageIndex + 1;
+    this.goToPage(pageIndex);
+  }
+
+  previousPage() {
+    const pageIndex = this.pageIndex - 1;
+    if (pageIndex >= 0) {
+      this.goToPage(pageIndex);
+    }
+  }
+
   private getDataForCurrentPage(pageIndex: number): HymnLyricsUIState[] {
     const startIndex = pageIndex * this.pageSize;
     const endIndex = startIndex + this.pageSize;
+    console.error(endIndex);
     return this.data.slice(startIndex, endIndex);
   }
 
@@ -158,5 +169,17 @@ export class LyricsTableComponent implements OnChanges, OnInit {
 
   filterTableData(filterBy?: string) {
     this.dataSource.filterTableData(filterBy);
+  }
+
+  nextPage() {
+    this.dataSource.nextPage();
+  }
+
+  goToPage(pageIndex: number) {
+    this.dataSource.goToPage(pageIndex);
+  }
+
+  previousPage() {
+    this.dataSource.previousPage();
   }
 }

@@ -45,11 +45,14 @@ export class YorubaComponent implements OnDestroy {
   dashboardLanguageResourceKey = DashboardLanguageResourceKey;
   filterBy?: string;
   sortOrderIsAscending = true;
+  sortWithColumnId = COLUMN_NAMES[0];
+  pagination = Array(14);
+  currentPageIndex = 0;
 
   constructor(private displayService: DisplayService) {
     this.getIsDeviceDisplayDesktopAsync();
   }
-  
+
   getIsDeviceDisplayDesktopAsync() {
     this.subscriptions.sink = this.displayService.size$.subscribe(
       (displaySize) => {
