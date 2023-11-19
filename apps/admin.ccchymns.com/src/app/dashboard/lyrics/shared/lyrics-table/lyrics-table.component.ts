@@ -18,7 +18,6 @@ import { LanguageResourceKey } from '../../i18n/language-resource-key';
 import { DashboardLanguageResourceKey } from '../../../i18n/language-resource-key';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { or } from '@angular/fire/firestore';
 
 const hymnLyricsUIState: HymnLyricsUIState = {
   no: 0,
@@ -29,14 +28,22 @@ export class HymnLyricsDataSource extends DataSource<HymnLyricsUIState> {
   private data$!: BehaviorSubject<HymnLyricsUIState[]>;
   private filteredData: HymnLyricsUIState[] = [];
   private data: HymnLyricsUIState[] = [];
+  private paginatedData: HymnLyricsUIState[] = [];
+
+  private pageSize = 3; // Number of items per page
+  private pageIndex = 1; // Current page index
 
   constructor(data: HymnLyricsUIState[]) {
     super();
     this.data = data;
-    this.data$ = new BehaviorSubject<HymnLyricsUIState[]>(this.data);
+    this.data$ = new BehaviorSubject<HymnLyricsUIState[]>([]);
   }
 
   connect(): Observable<HymnLyricsUIState[]> {
+    const startIndex = this.pageIndex * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    this.paginatedData = this.data.slice(startIndex, endIndex);
+    this.data$.next(this.paginatedData);
     return this.data$;
   }
 
@@ -52,7 +59,7 @@ export class HymnLyricsDataSource extends DataSource<HymnLyricsUIState> {
 
     if (!filterBy) {
       this.filteredData = [];
-      this.data$.next(this.data);
+      this.data$.next(this.paginatedData);
     }
   }
 
@@ -87,6 +94,19 @@ export class HymnLyricsDataSource extends DataSource<HymnLyricsUIState> {
     });
 
     this.data$.next(sortedData);
+  }
+
+  goToPage(pageIndex: number): void {
+    // Update the page index and notify subscribers
+    this.pageIndex = pageIndex;
+    this.paginatedData = this.getDataForCurrentPage(this.pageIndex);
+    this.data$.next(this.paginatedData);
+  }
+
+  private getDataForCurrentPage(pageIndex: number): HymnLyricsUIState[] {
+    const startIndex = pageIndex * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    return this.data.slice(startIndex, endIndex);
   }
 
   disconnect() {
