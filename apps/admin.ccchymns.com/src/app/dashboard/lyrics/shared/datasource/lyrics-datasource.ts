@@ -1,6 +1,6 @@
 import { BehaviorSubject, Observable } from 'rxjs';
 import { DataSource } from '@angular/cdk/table';
-import { Order, SortOrder } from '../../../shared';
+import { Order, PAGE_SIZE, SortOrder } from '../../../shared';
 import { HymnLyricsUIState } from '@ccchymns.com/common';
 
 export class HymnLyricsDataSource extends DataSource<HymnLyricsUIState> {
@@ -9,9 +9,8 @@ export class HymnLyricsDataSource extends DataSource<HymnLyricsUIState> {
   private data: HymnLyricsUIState[] = [];
   private paginatedData: HymnLyricsUIState[] = [];
 
-  private pageSize = 72; // Number of items per page
+  private pageSize = PAGE_SIZE; // Number of items per page
   private pageIndex = 0; // Current page index
-  private totalPageSize = 1000;
 
   constructor(data: HymnLyricsUIState[]) {
     super();
@@ -20,11 +19,12 @@ export class HymnLyricsDataSource extends DataSource<HymnLyricsUIState> {
   }
 
   endOfPage() {
+    const totalPageSize = this.data.length;
     const startIndex = this.pageIndex * this.pageSize;
     const endIndex = startIndex + this.pageSize;
     console.error(startIndex);
     console.error(endIndex);
-    return startIndex >= this.totalPageSize || endIndex >= this.totalPageSize;
+    return startIndex >= totalPageSize || endIndex >= totalPageSize;
   }
 
   connect(): Observable<HymnLyricsUIState[]> {
@@ -88,7 +88,7 @@ export class HymnLyricsDataSource extends DataSource<HymnLyricsUIState> {
 
   goToPage(pageIndex: number): void {
     // Update the page index and notify subscribers
-    this.pageIndex = pageIndex
+    this.pageIndex = pageIndex;
     this.paginatedData = this.getDataForCurrentPage(this.pageIndex);
     this.data$.next(this.paginatedData);
   }

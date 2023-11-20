@@ -1,4 +1,4 @@
-import { HymnLyricsUIState } from "@ccchymns.com/common";
+import { HymnLyricsUIState } from '@ccchymns.com/common';
 
 const hymnLyricsUIState: HymnLyricsUIState = {
   no: 0,

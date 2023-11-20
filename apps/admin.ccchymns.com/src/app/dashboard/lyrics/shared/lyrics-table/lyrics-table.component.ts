@@ -17,7 +17,7 @@ import { CCCIconDirective } from '@ccchymns.com/ui';
 import { LanguageResourceKey } from '../../i18n/language-resource-key';
 import { DashboardLanguageResourceKey } from '../../../i18n/language-resource-key';
 import { CommonModule } from '@angular/common';
-import { SortOrder } from '../../../shared';
+import { PAGE_SIZE, SortOrder } from '../../../shared';
 import { SubSink } from 'subsink';
 import { HymnLyricsDataSource } from '../datasource/lyrics-datasource';
 import { COLUMN_NAMES_FOR_LYRICS_TABLE } from '../data';
@@ -41,7 +41,7 @@ import { COLUMN_NAMES_FOR_LYRICS_TABLE } from '../data';
 export class LyricsTableComponent implements OnChanges, OnInit {
   languageResourceKey = LanguageResourceKey;
   dashboardLanguageResourceKey = DashboardLanguageResourceKey;
-  pagination = Array(14);
+  pagination = Array(0);
   private subscriptions = new SubSink();
   isDesktop = false;
 
@@ -56,6 +56,7 @@ export class LyricsTableComponent implements OnChanges, OnInit {
 
   ngOnInit(): void {
     this.dataSource = new HymnLyricsDataSource(this.data);
+    this.pagination = Array(this.data.length / PAGE_SIZE);
   }
 
   ngOnChanges(changes: SimpleChanges): void {

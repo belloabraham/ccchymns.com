@@ -1,6 +1,6 @@
 <table *transloco="let t" class="table table-striped" cdk-table [dataSource]="dataSource" [trackBy]="trackByFn">
 
-  <ng-container  [cdkColumnDef]="columnNames[0]">
+  <ng-container [cdkColumnDef]="columnNames[0]">
     <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[0])}}</th>
     <td cdk-cell *cdkCellDef="let row">{{row[columnNames[0]]}}</td>
   </ng-container>
@@ -25,11 +25,13 @@
 
 </table>
 
+@if(pagination.length > 0){
 <div class="card-footer d-flex justify-content-end">
   <nav aria-label="Page navigation">
     <ul class="pagination pb-0 mb-0" [class.pagination-sm]="!isDesktop">
-      <li class="page-item" >
-        <button [class.disabled]="getCurrentPageIndex()===0"  (click)="previousPage()" class="page-link navigation-link" aria-label="Previous">
+      <li class="page-item">
+        <button [class.disabled]="getCurrentPageIndex()===0" (click)="previousPage()" class="page-link navigation-link"
+          aria-label="Previous">
           <span aria-hidden="true">
             <i [ccc-icon]="'arrow-left'" class="navigation-icon"></i>
           </span>
@@ -40,7 +42,8 @@
           (click)="goToPage(index)">{{index+1}}</a></li>
       }
       <li class="page-item">
-        <button  [class.disabled]="endOfPage()" (click)="nextPage()" class="page-link navigation-link" href="#" aria-label="Next">
+        <button [class.disabled]="endOfPage()" (click)="nextPage()" class="page-link navigation-link" href="#"
+          aria-label="Next">
           <span aria-hidden="true">
             <i [ccc-icon]="'arrow-right'" class="navigation-icon"></i>
           </span>
@@ -49,3 +52,5 @@
     </ul>
   </nav>
 </div>
+
+}
