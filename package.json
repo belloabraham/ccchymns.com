@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "cy:ccchymns.com": "nx e2e ccchymns.com-e2e",
+    "cy:admin.ccchymns.com": "nx e2e admin.ccchymns.com-e2e",
+    "cy:all": "pnpm run cy:admin.ccchymns.com && pnpm run cy:ccchymns.com",
     "lint:core": "nx run core:lint",
     "lint:ui": "nx run ui:lint",
     "lint:angular": "nx run angular:lint",
