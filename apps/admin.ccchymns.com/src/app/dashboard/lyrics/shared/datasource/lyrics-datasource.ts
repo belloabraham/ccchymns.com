@@ -1,6 +1,6 @@
 import { BehaviorSubject, Observable } from 'rxjs';
 import { DataSource } from '@angular/cdk/table';
-import { Order, PAGE_SIZE, SortOrder } from '../../../shared';
+import { Order, TABLE_PAGE_SIZE, SortOrder } from '../../../shared';
 import { HymnLyricsUIState } from '@ccchymns.com/common';
 
 export class HymnLyricsDataSource extends DataSource<HymnLyricsUIState> {
@@ -9,7 +9,7 @@ export class HymnLyricsDataSource extends DataSource<HymnLyricsUIState> {
   private data: HymnLyricsUIState[] = [];
   private paginatedData: HymnLyricsUIState[] = [];
 
-  private pageSize = PAGE_SIZE; // Number of items per page
+  private pageSize = TABLE_PAGE_SIZE; // Number of items per page
   private pageIndex = 0; // Current page index
 
   constructor(data: HymnLyricsUIState[]) {
@@ -18,7 +18,7 @@ export class HymnLyricsDataSource extends DataSource<HymnLyricsUIState> {
     this.data$ = new BehaviorSubject<HymnLyricsUIState[]>([]);
   }
 
-  endOfPage() {
+  isEndOfPagination() {
     const totalPageSize = this.data.length;
     const startIndex = this.pageIndex * this.pageSize;
     const endIndex = startIndex + this.pageSize;
@@ -51,12 +51,11 @@ export class HymnLyricsDataSource extends DataSource<HymnLyricsUIState> {
     }
   }
 
-  getCurrentPageIndex() {
+  getCurrentPaginationIndex() {
     return this.pageIndex;
   }
 
   sortDataBy(columnId: string, order: SortOrder): void {
-    //Use filteredData if available, otherwise use the original data
     const data = this.paginatedData;
 
     const sortedData = data.sort((firstRow, secondRow) => {
@@ -87,7 +86,6 @@ export class HymnLyricsDataSource extends DataSource<HymnLyricsUIState> {
   }
 
   goToPage(pageIndex: number): void {
-    // Update the page index and notify subscribers
     this.pageIndex = pageIndex;
     this.paginatedData = this.getDataForCurrentPage(this.pageIndex);
     this.data$.next(this.paginatedData);

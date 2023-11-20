@@ -5,4 +5,4 @@ export class Order {
   static readonly DESC: SortOrder = 'desc';
 }
 // Number of items per table page
-export const PAGE_SIZE = 50;
+export const TABLE_PAGE_SIZE = 50;

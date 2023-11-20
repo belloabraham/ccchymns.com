@@ -28,9 +28,9 @@
 @if(pagination.length > 0){
 <div class="card-footer d-flex justify-content-end">
   <nav aria-label="Page navigation">
-    <ul class="pagination pb-0 mb-0" [class.pagination-sm]="!isDesktop">
+    <ul class="pagination pb-0 mb-0" [class.pagination-sm]="!displayIsDesktop">
       <li class="page-item">
-        <button [class.disabled]="getCurrentPageIndex()===0" (click)="previousPage()" class="page-link navigation-link"
+        <button [class.disabled]="getCurrentPaginationIndex()===0" (click)="previousPage()" class="page-link navigation-link"
           aria-label="Previous">
           <span aria-hidden="true">
             <i [ccc-icon]="'arrow-left'" class="navigation-icon"></i>
@@ -38,11 +38,11 @@
         </button>
       </li>
       @for(page of pagination; track page; let index = $index){
-      <li class="page-item" [class.active]="getCurrentPageIndex() === index"><a class="page-link"
+      <li class="page-item" [class.active]="getCurrentPaginationIndex() === index"><a class="page-link"
           (click)="goToPage(index)">{{index+1}}</a></li>
       }
       <li class="page-item">
-        <button [class.disabled]="endOfPage()" (click)="nextPage()" class="page-link navigation-link" href="#"
+        <button [class.disabled]="isEndOfPagination()" (click)="nextPage()" class="page-link navigation-link" href="#"
           aria-label="Next">
           <span aria-hidden="true">
             <i [ccc-icon]="'arrow-right'" class="navigation-icon"></i>
@@ -52,5 +52,4 @@
     </ul>
   </nav>
 </div>
-
 }

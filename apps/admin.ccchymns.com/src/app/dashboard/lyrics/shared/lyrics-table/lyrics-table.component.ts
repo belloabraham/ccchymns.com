@@ -17,7 +17,7 @@ import { CCCIconDirective } from '@ccchymns.com/ui';
 import { LanguageResourceKey } from '../../i18n/language-resource-key';
 import { DashboardLanguageResourceKey } from '../../../i18n/language-resource-key';
 import { CommonModule } from '@angular/common';
-import { PAGE_SIZE, SortOrder } from '../../../shared';
+import { TABLE_PAGE_SIZE, SortOrder } from '../../../shared';
 import { SubSink } from 'subsink';
 import { HymnLyricsDataSource } from '../datasource/lyrics-datasource';
 import { COLUMN_NAMES_FOR_LYRICS_TABLE } from '../data';
@@ -43,12 +43,12 @@ export class LyricsTableComponent implements OnChanges, OnInit {
   dashboardLanguageResourceKey = DashboardLanguageResourceKey;
   pagination = Array(0);
   private subscriptions = new SubSink();
-  isDesktop = false;
+  displayIsDesktop = false;
 
   @Input({ required: true }) data: HymnLyricsUIState[] = [];
   @Input() filterBy: string | undefined;
   columnNames: string[] = COLUMN_NAMES_FOR_LYRICS_TABLE;
-  dataSource = new HymnLyricsDataSource(this.data);
+  dataSource = new HymnLyricsDataSource([]);
 
   constructor(private displayService: DisplayService) {
     this.getIsDeviceDisplayDesktopAsync();
@@ -56,27 +56,27 @@ export class LyricsTableComponent implements OnChanges, OnInit {
 
   ngOnInit(): void {
     this.dataSource = new HymnLyricsDataSource(this.data);
-    this.pagination = Array(this.data.length / PAGE_SIZE);
+    this.pagination = Array(this.data.length / TABLE_PAGE_SIZE);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.filterTableData(this.filterBy);
   }
 
-  endOfPage() {
-    return this.dataSource.endOfPage();
+  isEndOfPagination() {
+    return this.dataSource.isEndOfPagination();
   }
 
   getIsDeviceDisplayDesktopAsync() {
     this.subscriptions.sink = this.displayService.size$.subscribe(
       (displaySize) => {
-        this.isDesktop = displaySize === Size.Large;
+        this.displayIsDesktop = displaySize === Size.Large;
       }
     );
   }
 
-  getCurrentPageIndex() {
-    return this.dataSource.getCurrentPageIndex();
+  getCurrentPaginationIndex() {
+    return this.dataSource.getCurrentPaginationIndex();
   }
 
   trackByFn(index: number, item: any): any {

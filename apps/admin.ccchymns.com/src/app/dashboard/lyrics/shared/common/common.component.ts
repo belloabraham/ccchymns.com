@@ -2,7 +2,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   Input,
-  OnDestroy,
 } from '@angular/core';
 import { SharedModule } from '../../../shared';
 import { CCCIconDirective } from '@ccchymns.com/ui';
@@ -10,8 +9,10 @@ import {
   NgMatTooltipModule,
   NgMaterialButtonModule,
 } from '@ccchymns.com/angular';
-import { RootLanguageResourceKey } from '@ccchymns.com/common';
-import { MOCK_HYMN_LYRICS } from '../../shared/mock/lyrics';
+import {
+  HymnLyricsUIState,
+  RootLanguageResourceKey,
+} from '@ccchymns.com/common';
 import { LanguageResourceKey } from '../../i18n/language-resource-key';
 import { DashboardLanguageResourceKey } from '../../../i18n/language-resource-key';
 import { LyricsPlaceholderComponent } from '../lyrics-placeholder/lyrics-placeholder.component';
@@ -35,7 +36,6 @@ import { COLUMN_NAMES_FOR_LYRICS_TABLE } from '../data';
 })
 export class CommonComponent {
   columnNames = COLUMN_NAMES_FOR_LYRICS_TABLE;
-  data = MOCK_HYMN_LYRICS;
   languageResourceKey = LanguageResourceKey;
   rootLanguageResourceKey = RootLanguageResourceKey;
   dashboardLanguageResourceKey = DashboardLanguageResourceKey;
@@ -43,6 +43,7 @@ export class CommonComponent {
   sortOrderIsAscending = true;
   columnIdForSorting = COLUMN_NAMES_FOR_LYRICS_TABLE[0];
   @Input({ required: true }) titleKey!: string;
+  @Input({ required: true }) data: HymnLyricsUIState[]=[];
 
   onFilterTextChanged(event: any) {
     this.filterBy = event.target.value;

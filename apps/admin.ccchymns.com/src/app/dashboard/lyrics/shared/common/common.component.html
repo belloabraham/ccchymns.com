@@ -1,7 +1,7 @@
 <div *transloco="let t" class="d-flex flex-column justify-content-center align-items-center">
 
   <div class="table-container">
-    <input type="text" (keyup)="onFilterTextChanged($event)" class="form-control w-50"
+    <input type="text" class="form-control w-50" [disabled]="data.length === 0" (keyup)="onFilterTextChanged($event)"
       [placeholder]="t(languageResourceKey.FILTER_HYMN_MSG)">
 
     <div class="card w-100">
@@ -10,24 +10,24 @@
         <span class="title mt-1">{{t(titleKey)}}</span>
 
         <div class="d-flex align-items-center">
-          <button [disabled]="lyricsTable.getCurrentPageIndex()===0" type="button" ng-mat-tooltip id="previous-page"
-            (click)="lyricsTable.previousPage()"
+          <button [disabled]="lyricsTable.getCurrentPaginationIndex()===0" type="button" ng-mat-tooltip
+            id="previous-page" (click)="lyricsTable.previousPage()"
             class="btn btn-secondary mt-1 d-flex align-items-center flex-nowrap text-start position-relative">
             <i class="flex-shrink-0 fw-bolder" [ccc-icon]="'arrow-left'"></i>
           </button>
 
           <div ng-mat-tooltip id="previous-page">{{t(dashboardLanguageResourceKey.PREVIOUS_PAGE)}}</div>
 
-          <button [disabled]="lyricsTable.endOfPage()" type="button" ng-mat-tooltip (click)="lyricsTable.nextPage()"
-            id="next-page"
+          <button [disabled]="lyricsTable.isEndOfPagination()" type="button" ng-mat-tooltip
+            (click)="lyricsTable.nextPage()" id="next-page"
             class="btn btn-secondary mt-1 mx-2 me-3 d-flex align-items-center flex-nowrap text-start position-relative">
             <i class="flex-shrink-0 fw-bolder" [ccc-icon]="'arrow-right'"></i>
           </button>
 
           <div ng-mat-tooltip id="next-page">{{t(dashboardLanguageResourceKey.NEXT_PAGE)}}</div>
 
-          <button [ccc-icon]="sortOrderIsAscending? 'sort-asc': 'sort-desc'"
-            (click)="lyricsTable.sortDataBy('no', sortOrderIsAscending ? 'desc' : 'asc')"
+          <button [disabled]="data.length === 0" [ccc-icon]="sortOrderIsAscending? 'sort-asc': 'sort-desc'"
+            (click)="lyricsTable.sortDataBy(columnIdForSorting, sortOrderIsAscending ? 'desc' : 'asc')"
             (click)="sortOrderIsAscending = !sortOrderIsAscending" ng-mat-icon-button ng-mat-tooltip id="sort"
             class="mx-2">
           </button>
@@ -42,8 +42,8 @@
 
       </div>
       <div class="card-body overflow-x-scroll">
-        <app-lyrics-table #lyricsTable='lyricsTable' [data]="data" [filterBy]="filterBy" />
-        <!-- <app-lyrics-placeholder [columnNames]="columnNames"/> -->
+        <app-lyrics-table class="d-none" #lyricsTable='lyricsTable' [data]="data" [filterBy]="filterBy" />
+        <app-lyrics-placeholder [columnNames]="columnNames" />
       </div>
     </div>
 

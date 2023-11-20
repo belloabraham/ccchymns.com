@@ -58,7 +58,7 @@ export interface IBreadCrumb {
 })
 export class DashboardComponent implements OnDestroy, OnInit {
   private subscriptions = new SubSink();
-  isMobile = false;
+  displayIsMobile = false;
   openSideBar = signal(false);
   config = Config;
   languageResourceKey = DashboardLanguageResourceKey;
@@ -125,7 +125,7 @@ export class DashboardComponent implements OnDestroy, OnInit {
   getIsDeviceDisplayMobileAsync() {
     this.subscriptions.sink = this.displayService.size$.subscribe(
       (displaySize) => {
-        this.isMobile =
+        this.displayIsMobile =
           displaySize === Size.Small || displaySize === Size.XSmall;
       }
     );
@@ -152,7 +152,7 @@ export class DashboardComponent implements OnDestroy, OnInit {
     routerNavigationStartEvent$: Observable<boolean>
   ) {
     this.subscriptions.sink = routerNavigationStartEvent$.subscribe(() => {
-      if (this.isMobile && this.openSideBar) {
+      if (this.displayIsMobile && this.openSideBar) {
         this.openSideBar.set(false);
       }
     });
