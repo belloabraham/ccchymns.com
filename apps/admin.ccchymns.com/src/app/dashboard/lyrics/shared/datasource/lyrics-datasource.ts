@@ -22,8 +22,6 @@ export class HymnLyricsDataSource extends DataSource<HymnLyricsUIState> {
     const totalPageSize = this.data.length;
     const startIndex = this.pageIndex * this.pageSize;
     const endIndex = startIndex + this.pageSize;
-    console.error(startIndex);
-    console.error(endIndex);
     return startIndex >= totalPageSize || endIndex >= totalPageSize;
   }
 
@@ -102,7 +100,6 @@ export class HymnLyricsDataSource extends DataSource<HymnLyricsUIState> {
   private getDataForCurrentPage(pageIndex: number): HymnLyricsUIState[] {
     const startIndex = pageIndex * this.pageSize;
     const endIndex = startIndex + this.pageSize;
-    console.error(endIndex);
     return this.data.slice(startIndex, endIndex);
   }
 

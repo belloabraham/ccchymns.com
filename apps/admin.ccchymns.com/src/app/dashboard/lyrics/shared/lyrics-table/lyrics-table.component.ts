@@ -56,7 +56,10 @@ export class LyricsTableComponent implements OnChanges, OnInit {
 
   ngOnInit(): void {
     this.dataSource = new HymnLyricsDataSource(this.data);
-    this.pagination = Array(this.data.length / TABLE_PAGE_SIZE);
+    const paginationLength = this.data.length / TABLE_PAGE_SIZE;
+    this.pagination = Array(
+      paginationLength < 1 ? 0 : Math.round(paginationLength)
+    );
   }
 
   ngOnChanges(changes: SimpleChanges): void {

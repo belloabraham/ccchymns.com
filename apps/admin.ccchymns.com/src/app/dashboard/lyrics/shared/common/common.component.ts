@@ -1,9 +1,5 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-} from '@angular/core';
-import { SharedModule } from '../../../shared';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { EmptySateComponent, SharedModule } from '../../../shared';
 import { CCCIconDirective } from '@ccchymns.com/ui';
 import {
   NgMatTooltipModule,
@@ -29,6 +25,7 @@ import { COLUMN_NAMES_FOR_LYRICS_TABLE } from '../data';
     NgMatTooltipModule,
     LyricsTableComponent,
     LyricsPlaceholderComponent,
+    EmptySateComponent,
   ],
   templateUrl: './common.component.html',
   styleUrl: './common.component.scss',
@@ -43,7 +40,7 @@ export class CommonComponent {
   sortOrderIsAscending = true;
   columnIdForSorting = COLUMN_NAMES_FOR_LYRICS_TABLE[0];
   @Input({ required: true }) titleKey!: string;
-  @Input({ required: true }) data: HymnLyricsUIState[]=[];
+  @Input({ required: true }) data: HymnLyricsUIState[] = [];
 
   onFilterTextChanged(event: any) {
     this.filterBy = event.target.value;
