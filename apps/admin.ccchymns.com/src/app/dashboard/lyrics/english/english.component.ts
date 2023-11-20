@@ -1,12 +1,14 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { SharedModule } from '../../shared';
+import { CommonComponent } from '../shared/common/common.component';
 
 @Component({
   selector: 'app-lyrics-english',
   standalone: true,
-  imports: [SharedModule],
+  imports: [CommonComponent],
   templateUrl: './english.component.html',
   styleUrl: './english.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EnglishComponent {}
+export class EnglishComponent {
+  titleKey = 'english_lyrics';
+}

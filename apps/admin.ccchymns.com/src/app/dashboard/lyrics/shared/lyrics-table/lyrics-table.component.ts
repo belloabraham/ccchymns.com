@@ -20,12 +20,7 @@ import { CommonModule } from '@angular/common';
 import { SortOrder } from '../../../shared';
 import { SubSink } from 'subsink';
 import { HymnLyricsDataSource } from '../datasource/lyrics-datasource';
-
-const hymnLyricsUIState: HymnLyricsUIState = {
-  no: 0,
-  hymn: '',
-};
-export const COLUMN_NAMES = [...Object.keys(hymnLyricsUIState), 'tools'];
+import { COLUMN_NAMES_FOR_LYRICS_TABLE } from '../data';
 
 @Component({
   selector: 'app-lyrics-table',
@@ -52,7 +47,7 @@ export class LyricsTableComponent implements OnChanges, OnInit {
 
   @Input({ required: true }) data: HymnLyricsUIState[] = [];
   @Input() filterBy: string | undefined;
-  columnNames: string[] = COLUMN_NAMES;
+  columnNames: string[] = COLUMN_NAMES_FOR_LYRICS_TABLE;
   dataSource = new HymnLyricsDataSource(this.data);
 
   constructor(private displayService: DisplayService) {
@@ -68,7 +63,7 @@ export class LyricsTableComponent implements OnChanges, OnInit {
   }
 
   endOfPage() {
-   return this.dataSource.endOfPage();
+    return this.dataSource.endOfPage();
   }
 
   getIsDeviceDisplayDesktopAsync() {
