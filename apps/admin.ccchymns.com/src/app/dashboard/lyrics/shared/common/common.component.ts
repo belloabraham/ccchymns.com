@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { EmptySateComponent, SharedModule } from '../../../shared';
+import { EmptyStateComponent, SharedModule } from '../../../shared';
 import { CCCIconDirective } from '@ccchymns.com/ui';
 import {
   NgMatTooltipModule,
@@ -25,7 +25,7 @@ import { COLUMN_NAMES_FOR_LYRICS_TABLE } from '../data';
     NgMatTooltipModule,
     LyricsTableComponent,
     LyricsPlaceholderComponent,
-    EmptySateComponent,
+    EmptyStateComponent,
   ],
   templateUrl: './common.component.html',
   styleUrl: './common.component.scss',

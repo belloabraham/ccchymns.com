@@ -7,11 +7,11 @@ import { DashboardLanguageResourceKey } from '../../i18n/language-resource-key';
   selector: 'app-empty-sate',
   standalone: true,
   imports: [NgOptimizedImage, TranslocoModule],
-  templateUrl: './empty-sate.component.html',
-  styleUrl: './empty-sate.component.scss',
+  templateUrl: './empty-state.component.html',
+  styleUrl: './empty-state.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EmptySateComponent {
+export class EmptyStateComponent {
   @Input({ required: true }) descriptionKey!: string;
   dashboardLanguageResourceKey = DashboardLanguageResourceKey;
 }
