@@ -1,0 +1,13 @@
+<div *transloco="let t" class="d-flex flex-column justify-content-center align-items-center gap-4 p-4 px-1 px-md-4">
+  <img class="error-state user-select-none" width="80" height="52" ngSrc="assets/images/error-state.svg" priority>
+
+  <div class="text-center">
+    <p>
+      {{t(dashboardLanguageResourceKey.ERROR_STATE_DESC)}}
+    </p>
+    <button class="retry mt-2" ng-mat-raised-button (click)="onRetry()">
+      {{t(dashboardLanguageResourceKey.TRY_AGAIN)}}
+    </button>
+  </div>
+
+</div>

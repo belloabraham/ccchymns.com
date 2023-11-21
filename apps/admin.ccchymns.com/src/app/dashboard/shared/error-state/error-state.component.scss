@@ -1,0 +1,13 @@
+@use 'gerillass';
+
+.error-state {
+  width: 11rem;
+  height: auto;
+  color: lightgray;
+}
+.retry {
+  width: 100%;
+  @include gerillass.breakpoint(min, medium) {
+    width: 15rem;
+  }
+}

@@ -14,6 +14,7 @@ import { DashboardLanguageResourceKey } from '../../../i18n/language-resource-ke
 import { LyricsPlaceholderComponent } from '../lyrics-placeholder/lyrics-placeholder.component';
 import { LyricsTableComponent } from '../lyrics-table/lyrics-table.component';
 import { COLUMN_NAMES_FOR_LYRICS_TABLE } from '../data';
+import { ErrorStateComponent } from '../../../shared/error-state/error-state.component';
 
 @Component({
   selector: 'app-lyrics-common',
@@ -26,6 +27,7 @@ import { COLUMN_NAMES_FOR_LYRICS_TABLE } from '../data';
     LyricsTableComponent,
     LyricsPlaceholderComponent,
     EmptyStateComponent,
+    ErrorStateComponent,
   ],
   templateUrl: './common.component.html',
   styleUrl: './common.component.scss',
@@ -45,4 +47,7 @@ export class CommonComponent {
   onFilterTextChanged(event: any) {
     this.filterBy = event.target.value;
   }
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  retry() {}
 }

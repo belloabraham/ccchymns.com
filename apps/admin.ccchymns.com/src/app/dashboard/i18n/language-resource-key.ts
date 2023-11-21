@@ -7,4 +7,6 @@ export class DashboardLanguageResourceKey {
   static readonly EDIT = 'edit';
   static readonly SORT_MSG = 'sort_msg';
   static readonly EMPTY_STATE_TITLE = 'empty_state_title';
+  static readonly TRY_AGAIN = 'try_again';
+  static readonly ERROR_STATE_DESC = 'error_state_description';
 }
