@@ -15,6 +15,10 @@ import { LyricsPlaceholderComponent } from '../lyrics-placeholder/lyrics-placeho
 import { LyricsTableComponent } from '../lyrics-table/lyrics-table.component';
 import { COLUMN_NAMES_FOR_LYRICS_TABLE } from '../data';
 import { ErrorStateComponent } from '../../../shared/error-state/error-state.component';
+import { Inject, Injector } from '@angular/core';
+import { TuiDialogService } from '@taiga-ui/core';
+import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
+import { AddLyricsDialogComponent } from '../add-lyrics-dialog/add-lyrics-dialog.component';
 
 @Component({
   selector: 'app-lyrics-common',
@@ -50,4 +54,25 @@ export class CommonComponent {
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   retry() {}
+
+  private readonly dialog = this.dialogService.open<boolean>(
+    new PolymorpheusComponent(AddLyricsDialogComponent, this.injector),
+    { dismissible: true, label: 'Yes?' }
+  );
+
+  constructor(
+    @Inject(TuiDialogService) private readonly dialogService: TuiDialogService,
+    @Inject(Injector) private readonly injector: Injector
+  ) {}
+
+  showDialog() {
+    this.dialog.subscribe({
+      next: (data) => {
+        console.log('Dialog emitted data = ' + data);
+      },
+      complete: () => {
+        console.log('Dialog closed');
+      },
+    });
+  }
 }
