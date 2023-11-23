@@ -25,6 +25,27 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.ccci-minus:before {
+  content: "\e912";
+}
+.ccci-plus:before {
+  content: "\e913";
+}
+.ccci-sort-asc:before {
+  content: "\e910";
+}
+.ccci-sort-desc:before {
+  content: "\e911";
+}
+.ccci-pencil-outline:before {
+  content: "\e90f";
+}
+.ccci-arrow-right:before {
+  content: "\e90d";
+}
+.ccci-plus-circle:before {
+  content: "\e90e";
+}
 .ccci-music-clef:before {
   content: "\e90c";
 }

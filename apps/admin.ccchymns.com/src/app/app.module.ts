@@ -1,4 +1,4 @@
-import { TuiRootModule, TuiDialogModule } from '@taiga-ui/core';
+import { TuiDialogModule, TuiRootModule } from '@taiga-ui/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -22,13 +22,14 @@ import { getRemoteConfig, provideRemoteConfig } from '@angular/fire/remote-confi
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     TranslocoRootModule,
     AppRoutingModule,
     StoreModule.forRoot({}),
     StoreModule.forFeature(languageLoadedFeature),
     environment.imports,
-    BrowserAnimationsModule,
+    //Comes after BrowserAnimationsModule
     TuiRootModule,
     TuiDialogModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
@@ -37,10 +38,10 @@ import { getRemoteConfig, provideRemoteConfig } from '@angular/fire/remote-confi
     //   const provider = new ReCaptchaEnterpriseProvider(environment.reCAPTCHAEnterpriseKey);
     //   return initializeAppCheck(undefined, { provider, isTokenAutoRefreshEnabled: true });
     // }),
-  //  provideFirestore(() => getFirestore()),
-   // provideFunctions(() => getFunctions()),
+    //  provideFirestore(() => getFirestore()),
+    // provideFunctions(() => getFunctions()),
     //provideStorage(() => getStorage()),
-   // provideRemoteConfig(() => getRemoteConfig()),
+    // provideRemoteConfig(() => getRemoteConfig()),
   ],
   bootstrap: [AppComponent],
 })

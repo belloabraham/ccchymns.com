@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
-import { Route } from '@ccchymns.com/common';
-import { RootLanguageResourceKey } from '../../../core/i18n/language-resource-key';
+import { RootLanguageResourceKey, Route } from '@ccchymns.com/common';
 import { TonicSolfaComponent } from './tonic-solfa.component';
 
 export const TONIC_SOLFA_ROUTES: Routes = [

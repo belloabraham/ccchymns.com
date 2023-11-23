@@ -5,7 +5,14 @@
 @use 'material/ccchymns';
 @use 'gerillass';
 
-.logo {
+tui-dialog[data-appearance='bg-light'] {
+  div.t-content {
+    background-color: hsl(218, 5%, 90%);
+  }
+}
+
+.logo,
+.card {
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 1px 3px 1px !important;
 }
@@ -19,6 +26,15 @@
   }
 }
 
+// Lyrics placeholder
+.circle {
+  height: 2.2rem;
+  width: 2.2rem;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+// Sidebar
 :root {
   --bs-sidebar-width: 18rem;
   --bs-padding-sbwidth: 18rem;
@@ -30,13 +46,14 @@
 
 @include gerillass.breakpoint(min, medium) {
   :root {
-    --bs-sidebar-width: 15rem;
-    --bs-padding-sbwidth: 15rem;
+    --bs-sidebar-width: 14rem;
+    --bs-padding-sbwidth: 14rem;
   }
   .sidebar {
-    width: 15rem !important;
+    width: 14rem !important;
   }
 }
+
 .list-group-item {
   font-size: 0.9rem;
 }

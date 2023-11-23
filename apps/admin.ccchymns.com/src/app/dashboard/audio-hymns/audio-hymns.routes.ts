@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
-import { Route } from '@ccchymns.com/common';
-import { RootLanguageResourceKey } from '../../../core/i18n/language-resource-key';
+import { RootLanguageResourceKey, Route } from '@ccchymns.com/common';
 import { AudioHymnsComponent } from './audio-hymns.component';
 
 export const AUDIO_HYMNS_ROUTES: Routes = [

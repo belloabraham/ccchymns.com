@@ -32,7 +32,14 @@ export class CCCIconDirective implements OnChanges {
     | 'book-edit'
     | 'audio-hymns'
     | 'all-hymns'
-    | 'music-clef';
+    | 'music-clef'
+    | 'plus-circle'
+    | 'arrow-right'
+    | 'pencil-outline'
+    | 'sort-asc'
+    | 'sort-desc'
+    | 'plus'
+    | 'minus';
   @Input() position: 'start' | 'end' = 'start';
   @Input() state: 'on' | 'off' | null = null;
 

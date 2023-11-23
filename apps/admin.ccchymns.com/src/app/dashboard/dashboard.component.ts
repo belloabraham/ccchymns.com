@@ -17,8 +17,8 @@ import {
 import { Store } from '@ngrx/store';
 import { SubSink } from 'subsink';
 import { getLanguageLoadedSelector } from '../../store/selectors';
-import { Config, DisplayService, Route, Size } from '@ccchymns.com/common';
-import { LanguageResourceKey } from './i18n/language-resource-key';
+import { Config, DisplayService, RootLanguageResourceKey, Route, Size } from '@ccchymns.com/common';
+import { DashboardLanguageResourceKey } from './i18n/language-resource-key';
 import { CCCIconDirective } from '@ccchymns.com/ui';
 import { NgOptimizedImage } from '@angular/common';
 import {
@@ -32,7 +32,6 @@ import {
   RouterLinkActive,
   RouterOutlet,
 } from '@angular/router';
-import { RootLanguageResourceKey } from '../../core/i18n/language-resource-key';
 import { Observable, distinctUntilChanged, filter, map, merge } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 
@@ -59,10 +58,10 @@ export interface IBreadCrumb {
 })
 export class DashboardComponent implements OnDestroy, OnInit {
   private subscriptions = new SubSink();
-  isMobile = false;
+  displayIsMobile = false;
   openSideBar = signal(false);
   config = Config;
-  languageResourceKey = LanguageResourceKey;
+  languageResourceKey = DashboardLanguageResourceKey;
   rootLanguageResourceKey = RootLanguageResourceKey;
   route = Route;
 
@@ -126,7 +125,7 @@ export class DashboardComponent implements OnDestroy, OnInit {
   getIsDeviceDisplayMobileAsync() {
     this.subscriptions.sink = this.displayService.size$.subscribe(
       (displaySize) => {
-        this.isMobile =
+        this.displayIsMobile =
           displaySize === Size.Small || displaySize === Size.XSmall;
       }
     );
@@ -153,7 +152,7 @@ export class DashboardComponent implements OnDestroy, OnInit {
     routerNavigationStartEvent$: Observable<boolean>
   ) {
     this.subscriptions.sink = routerNavigationStartEvent$.subscribe(() => {
-      if (this.isMobile && this.openSideBar) {
+      if (this.displayIsMobile && this.openSideBar) {
         this.openSideBar.set(false);
       }
     });
@@ -244,7 +243,7 @@ export class DashboardComponent implements OnDestroy, OnInit {
 
   private setPageTitle() {
     const pageTitle = this.languageResourceService.getStringWithParameter(
-      LanguageResourceKey.PAGE_TITLE,
+      DashboardLanguageResourceKey.PAGE_TITLE,
       { value: Config.APP_NAME }
     );
     this.title.setTitle(pageTitle);

@@ -1,0 +1,23 @@
+<form class="d-flex flex-column gap-3" *transloco="let t">
+
+  <span class="title">{{t(dashboardLanguageResourceKey.ADD_HYMN)}}
+  </span>
+
+  <div class="input-group hymn-number">
+    <button type="button" class="input-group-text fw-bolder" [ccc-icon]="'minus'"></button>
+    <input type="number" class="form-control" [placeholder]="t(dashboardLanguageResourceKey.HYMN_NO)">
+    <button [ccc-icon]="'plus'" type="button" class="input-group-text fw-bolder"></button>
+  </div>
+
+  <div>
+    <textarea cdkTextareaAutosize cdkAutosizeMinRows="3" cdkAutosizeMaxRows="7" class="form-control"
+      [placeholder]="t(rootLanguageResourceKey.LYRICS)"></textarea>
+  </div>
+
+  <div class="text-end">
+    <button class="w-100" ng-mat-raised-button>
+      {{t(rootLanguageResourceKey.SAVE)}}
+    </button>
+  </div>
+
+</form>
