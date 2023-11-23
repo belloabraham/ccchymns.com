@@ -12,4 +12,5 @@ export class RootLanguageResourceKey {
   static readonly ALL_HYMNS = 'all_hymns';
   static readonly TONIC_SOLFA = 'tonic_solfa';
   static readonly LYRICS = 'lyrics';
+  static readonly SAVE = 'save';
 }

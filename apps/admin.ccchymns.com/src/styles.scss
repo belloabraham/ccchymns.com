@@ -5,6 +5,12 @@
 @use 'material/ccchymns';
 @use 'gerillass';
 
+tui-dialog[data-appearance='bg-light'] {
+  div.t-content {
+    background-color: hsl(218, 5%, 90%);
+  }
+}
+
 .logo,
 .card {
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
@@ -20,6 +26,7 @@
   }
 }
 
+// Lyrics placeholder
 .circle {
   height: 2.2rem;
   width: 2.2rem;
@@ -27,6 +34,7 @@
   display: inline-block;
 }
 
+// Sidebar
 :root {
   --bs-sidebar-width: 18rem;
   --bs-padding-sbwidth: 18rem;

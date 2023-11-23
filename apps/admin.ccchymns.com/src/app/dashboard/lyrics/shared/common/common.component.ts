@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
 import { EmptyStateComponent, SharedModule } from '../../../shared';
 import { CCCIconDirective } from '@ccchymns.com/ui';
 import {
@@ -19,6 +24,7 @@ import { Inject, Injector } from '@angular/core';
 import { TuiDialogService } from '@taiga-ui/core';
 import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
 import { AddLyricsDialogComponent } from '../add-lyrics-dialog/add-lyrics-dialog.component';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-lyrics-common',
@@ -37,7 +43,7 @@ import { AddLyricsDialogComponent } from '../add-lyrics-dialog/add-lyrics-dialog
   styleUrl: './common.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CommonComponent {
+export class CommonComponent implements OnInit {
   columnNames = COLUMN_NAMES_FOR_LYRICS_TABLE;
   languageResourceKey = LanguageResourceKey;
   rootLanguageResourceKey = RootLanguageResourceKey;
@@ -55,23 +61,31 @@ export class CommonComponent {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   retry() {}
 
-  private readonly dialog = this.dialogService.open<boolean>(
-    new PolymorpheusComponent(AddLyricsDialogComponent, this.injector),
-    { dismissible: true, label: 'Yes?' }
-  );
+  private dialog!: Observable<number>;
 
   constructor(
-    @Inject(TuiDialogService) private readonly dialogService: TuiDialogService,
+    @Inject(TuiDialogService) private readonly dialogs: TuiDialogService,
     @Inject(Injector) private readonly injector: Injector
   ) {}
 
-  showDialog() {
+  ngOnInit(): void {
+    this.dialog = this.dialogs.open<number>(
+      new PolymorpheusComponent(AddLyricsDialogComponent, this.injector),
+      {
+        data: this.titleKey,
+        dismissible: true,
+        appearance: 'bg-light',
+      }
+    );
+  }
+
+  showDialog(): void {
     this.dialog.subscribe({
       next: (data) => {
-        console.log('Dialog emitted data = ' + data);
+        console.info(`Dialog emitted data = ${data}`);
       },
       complete: () => {
-        console.log('Dialog closed');
+        console.info('Dialog closed');
       },
     });
   }

@@ -25,6 +25,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.ccci-minus:before {
+  content: "\e912";
+}
+.ccci-plus:before {
+  content: "\e913";
+}
 .ccci-sort-asc:before {
   content: "\e910";
 }

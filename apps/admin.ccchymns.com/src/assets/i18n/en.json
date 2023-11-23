@@ -22,6 +22,8 @@
   "login": "Login",
   "logout": "Logout",
   "email": "Email",
+  "hymn_no": "Hymn no",
+  "save": "Save",
   "next_page": "Next page",
   "previous_page": "Previous page",
   "sort_msg": "Sort Ascending/Descending",

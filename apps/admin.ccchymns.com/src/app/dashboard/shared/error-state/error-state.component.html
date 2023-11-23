@@ -4,7 +4,7 @@
     <p>
       {{t(dashboardLanguageResourceKey.ERROR_STATE_DESC)}}
     </p>
-    <button class="retry mt-2" ng-mat-raised-button (click)="onRetry()">
+    <button class="retry mt-2" ng-mat-raised-button (click)="onRetry()" [ng-mat-elevation]="0">
       {{t(dashboardLanguageResourceKey.TRY_AGAIN)}}
     </button>
   </div>

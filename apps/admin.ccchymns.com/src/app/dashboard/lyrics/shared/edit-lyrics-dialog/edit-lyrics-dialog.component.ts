@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { SharedModule } from '../../../shared';
 
 @Component({
   selector: 'app-edit-lyrics-dialog',
   standalone: true,
-  imports: [CommonModule],
+  imports: [SharedModule],
   templateUrl: './edit-lyrics-dialog.component.html',
   styleUrl: './edit-lyrics-dialog.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
