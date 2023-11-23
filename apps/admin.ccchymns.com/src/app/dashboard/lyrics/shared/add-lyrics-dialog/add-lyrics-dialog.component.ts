@@ -29,7 +29,6 @@ import { TextFieldModule } from '@angular/cdk/text-field';
 export class AddLyricsDialogComponent {
   dashboardLanguageResourceKey = DashboardLanguageResourceKey;
   rootLanguageResourceKey = RootLanguageResourceKey;
-  titleKey = this.context.data;
   constructor(
     @Inject(TuiDialogService) private readonly dialogs: TuiDialogService,
     @Inject(POLYMORPHEUS_CONTEXT)

@@ -13,4 +13,5 @@ export class RootLanguageResourceKey {
   static readonly TONIC_SOLFA = 'tonic_solfa';
   static readonly LYRICS = 'lyrics';
   static readonly SAVE = 'save';
+  static readonly UPDATE = 'update';
 }

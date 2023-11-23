@@ -25,6 +25,7 @@ import { TuiDialogService } from '@taiga-ui/core';
 import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
 import { AddLyricsDialogComponent } from '../add-lyrics-dialog/add-lyrics-dialog.component';
 import { Observable } from 'rxjs';
+import { EditLyricsDialogComponent } from '../edit-lyrics-dialog/edit-lyrics-dialog.component';
 
 @Component({
   selector: 'app-lyrics-common',
@@ -70,7 +71,7 @@ export class CommonComponent implements OnInit {
 
   ngOnInit(): void {
     this.dialog = this.dialogs.open<number>(
-      new PolymorpheusComponent(AddLyricsDialogComponent, this.injector),
+      new PolymorpheusComponent(EditLyricsDialogComponent, this.injector),
       {
         data: this.titleKey,
         dismissible: true,

@@ -1,3 +1,22 @@
-<div  *transloco="let t">
+<form class="d-flex flex-column gap-3" *transloco="let t">
 
-</div>
+  <span class="title">{{t(dashboardLanguageResourceKey.EDIT_HYMN)}}
+  </span>
+
+  <div class="input-group hymn-number">
+    <span class="input-group-text fw-semibold">{{t(dashboardLanguageResourceKey.HYMN_NO)}}</span>
+    <input type="number" readonly disabled value="1"  class="form-control">
+  </div>
+
+  <div>
+    <textarea cdkTextareaAutosize cdkAutosizeMinRows="3" cdkAutosizeMaxRows="10" class="form-control"
+      [placeholder]="t(rootLanguageResourceKey.LYRICS)"></textarea>
+  </div>
+
+  <div class="text-end">
+    <button class="w-100" ng-mat-raised-button>
+      {{t(rootLanguageResourceKey.UPDATE)}}
+    </button>
+  </div>
+
+</form>

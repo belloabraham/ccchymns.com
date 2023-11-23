@@ -10,4 +10,6 @@ export class DashboardLanguageResourceKey {
   static readonly TRY_AGAIN = 'try_again';
   static readonly ERROR_STATE_DESC = 'error_state_description';
   static readonly HYMN_NO = 'hymn_no';
+  static readonly EDIT_HYMN = 'edit_hymn';
+  static readonly ADD_HYMN = 'add_hymn';
 }
