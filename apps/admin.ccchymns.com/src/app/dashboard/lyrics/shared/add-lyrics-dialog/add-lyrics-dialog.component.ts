@@ -7,7 +7,6 @@ import {
 import { SharedModule } from '../../../shared';
 import { TuiDialogContext, TuiDialogService } from '@taiga-ui/core';
 import { POLYMORPHEUS_CONTEXT } from '@tinkoff/ng-polymorpheus';
-import { CCCIconDirective } from '@ccchymns.com/ui';
 import { DashboardLanguageResourceKey } from '../../../i18n/language-resource-key';
 import { NgMaterialButtonModule } from '@ccchymns.com/angular';
 import { RootLanguageResourceKey } from '@ccchymns.com/common';
@@ -18,7 +17,6 @@ import { TextFieldModule } from '@angular/cdk/text-field';
   standalone: true,
   imports: [
     SharedModule,
-    CCCIconDirective,
     NgMaterialButtonModule,
     TextFieldModule,
   ],

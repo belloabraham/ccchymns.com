@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
 import { EmptyStateComponent, SharedModule } from '../../shared';
 import { CCCIconDirective } from '@ccchymns.com/ui';
 import {
@@ -32,13 +37,12 @@ import { AddBibleReferenceDialogComponent } from '../shared/add-bible-reference-
     ErrorStateComponent,
     BibleReferencesTableComponent,
     BibleReferencesPlaceholderComponent,
-    BibleReferencesPlaceholderComponent,
   ],
   templateUrl: './common.component.html',
   styleUrl: './common.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CommonComponent {
+export class CommonComponent implements OnInit {
   languageResourceKey = LanguageResourceKey;
   @Input({ required: true }) titleKey!: string;
   rootLanguageResourceKey = RootLanguageResourceKey;
@@ -47,19 +51,15 @@ export class CommonComponent {
   columnNames = COLUMN_NAMES_FOR_BIBLE_REFERENCES_TABLE;
   filterBy?: string;
   @Input({ required: true }) data: BibleReferenceUIState[] = [];
-  private dialog!: Observable<number>;
+  private dialog!: Observable<string>;
 
   constructor(
     @Inject(TuiDialogService) private readonly dialogs: TuiDialogService,
     @Inject(Injector) private readonly injector: Injector
   ) {}
 
-  onFilterTextChanged(event: any) {
-    this.filterBy = event.target.value;
-  }
-
-  openAddBibleReferenceDialog() {
-    this.dialog = this.dialogs.open<number>(
+  ngOnInit(): void {
+    this.dialog = this.dialogs.open<string>(
       new PolymorpheusComponent(
         AddBibleReferenceDialogComponent,
         this.injector
@@ -72,5 +72,21 @@ export class CommonComponent {
     );
   }
 
+  onFilterTextChanged(event: any) {
+    this.filterBy = event.target.value;
+  }
+
+  openAddBibleReferenceDialog() {
+    this.dialog.subscribe({
+      next: (data) => {
+        console.info(`Dialog emitted data = ${data}`);
+      },
+      complete: () => {
+        console.info('Dialog closed');
+      },
+    });
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   retry() {}
 }

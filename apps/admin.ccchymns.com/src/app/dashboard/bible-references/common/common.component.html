@@ -1,7 +1,7 @@
 <div *transloco="let t" class="d-flex flex-column justify-content-center align-items-center">
 
   <div class="table-container">
-    <input type="text" class="form-control w-50" [disabled]="data.length === 0" (keyup)="onFilterTextChanged($event)"
+    <input type="text" class="form-control w-75 w-md-50" [disabled]="data.length === 0" (keyup)="onFilterTextChanged($event)"
       [placeholder]="t(languageResourceKey.BIBLE_REFERENCE_SEARCH_MSG)">
 
     <div class="card w-100">
@@ -15,7 +15,6 @@
             class="btn btn-secondary mt-1 d-flex align-items-center flex-nowrap text-start position-relative">
             <i class="flex-shrink-0 fw-bolder" [ccc-icon]="'arrow-left'"></i>
           </button>
-
           <div ng-mat-tooltip id="previous-page">{{t(dashboardLanguageResourceKey.PREVIOUS_PAGE)}}</div>
 
           <button [disabled]="bibleReferenceTable.isEndOfPagination()" type="button" ng-mat-tooltip
@@ -23,25 +22,22 @@
             class="btn btn-secondary mt-1 mx-2 me-md-3 d-flex align-items-center flex-nowrap text-start position-relative">
             <i class="flex-shrink-0 fw-bolder" [ccc-icon]="'arrow-right'"></i>
           </button>
-
           <div ng-mat-tooltip id="next-page">{{t(dashboardLanguageResourceKey.NEXT_PAGE)}}</div>
 
-          <div ng-mat-tooltip id="sort">{{t(dashboardLanguageResourceKey.SORT_MSG)}}</div>
 
           <button (click)="openAddBibleReferenceDialog()" ng-mat-icon-button class="add" [ccc-icon]="'plus-circle'" ng-mat-tooltip
             id="add-hymn">
           </button>
-
           <div ng-mat-tooltip id="add-hymn">{{t(languageResourceKey.ADD_A_BIBLE_REFERENCE)}}</div>
 
         </div>
 
       </div>
       <div class="card-body overflow-x-scroll">
-        <app-bible-references-table #bibleReferenceTable='bibleReferenceTable' [data]="data" [filterBy]="filterBy" />
+        <app-bible-references-table  class="d-none" #bibleReferenceTable='bibleReferenceTable' [data]="data" [filterBy]="filterBy" />
         <!-- <app-bible-references-placeholder [columnNames]="columnNames" /> -->
         <!-- <app-empty-sate [descriptionKey]="languageResourceKey.BIBLE_REFERENCE_EMPTY_STATE_DESCRIPTION"/> -->
-        <!-- <app-error-state (retry)="retry()" /> -->
+        <app-error-state (retry)="retry()" />
       </div>
     </div>
 

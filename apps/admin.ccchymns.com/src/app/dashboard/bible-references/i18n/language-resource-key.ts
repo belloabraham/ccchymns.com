@@ -3,4 +3,6 @@ export class LanguageResourceKey {
   static readonly BIBLE_REFERENCE_SEARCH_MSG = 'bible_reference_search_msg';
   static readonly BIBLE_REFERENCE_EMPTY_STATE_DESCRIPTION =
     'bible_reference_empty_state_description';
+  static readonly VERSES = 'verses';
+  static readonly BIBLE_REFERENCE_PLACEHOLDER = 'bible_reference_placeholder';
 }
