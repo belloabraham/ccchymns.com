@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { CommonComponent } from '../shared/common/common.component';
+import { CommonComponent } from '../common/common.component';
 import { MOCK_HYMN_LYRICS } from '../shared';
 
 @Component({

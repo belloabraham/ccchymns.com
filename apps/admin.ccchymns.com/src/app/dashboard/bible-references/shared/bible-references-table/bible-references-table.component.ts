@@ -1,30 +1,23 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnChanges,
-  OnInit,
-  SimpleChanges,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { CdkTableModule } from '@angular/cdk/table';
 import { TranslocoModule } from '@ngneat/transloco';
-import { DisplayService, HymnLyricsUIState, Size } from '@ccchymns.com/common';
+import { BibleReferenceUIState, DisplayService, Size } from '@ccchymns.com/common';
 import {
   NgMatTooltipModule,
   NgMaterialButtonModule,
 } from '@ccchymns.com/angular';
 import { CCCIconDirective } from '@ccchymns.com/ui';
-import { LanguageResourceKey } from '../../i18n/language-resource-key';
-import { DashboardLanguageResourceKey } from '../../../i18n/language-resource-key';
-import { TABLE_PAGE_SIZE, SortOrder } from '../../../shared';
 import { SubSink } from 'subsink';
-import { HymnLyricsDataSource } from '../datasource/lyrics-datasource';
-import { COLUMN_NAMES_FOR_LYRICS_TABLE } from '../data';
+import { COLUMN_NAMES_FOR_BIBLE_REFERENCES_TABLE } from '../data';
+import { BibleReferenceDataSource } from '../datasource/bible-reference-datasource';
+import { DashboardLanguageResourceKey } from '../../../i18n/language-resource-key';
+import { LanguageResourceKey } from '../../i18n/language-resource-key';
+import { TABLE_PAGE_SIZE } from '../../../shared';
 
 @Component({
-  selector: 'app-lyrics-table',
+  selector: 'app-bible-references-table',
   standalone: true,
-  exportAs: 'lyricsTable',
+  exportAs: 'bibleReferenceTable',
   imports: [
     CdkTableModule,
     TranslocoModule,
@@ -32,28 +25,28 @@ import { COLUMN_NAMES_FOR_LYRICS_TABLE } from '../data';
     CCCIconDirective,
     NgMatTooltipModule,
   ],
-  templateUrl: './lyrics-table.component.html',
-  styleUrl: './lyrics-table.component.scss',
+  templateUrl: './bible-references-table.component.html',
+  styleUrl: './bible-references-table.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LyricsTableComponent implements OnChanges, OnInit {
+export class BibleReferencesTableComponent implements OnChanges, OnInit {
   languageResourceKey = LanguageResourceKey;
   dashboardLanguageResourceKey = DashboardLanguageResourceKey;
   pagination = Array(0);
   private subscriptions = new SubSink();
   displayIsDesktop = false;
 
-  @Input({ required: true }) data: HymnLyricsUIState[] = [];
+  @Input({ required: true }) data: BibleReferenceUIState[] = [];
   @Input() filterBy: string | undefined;
-  columnNames: string[] = COLUMN_NAMES_FOR_LYRICS_TABLE;
-  dataSource = new HymnLyricsDataSource([]);
+  columnNames: string[] = COLUMN_NAMES_FOR_BIBLE_REFERENCES_TABLE;
+  dataSource = new BibleReferenceDataSource([]);
 
   constructor(private displayService: DisplayService) {
     this.getIsDeviceDisplayDesktopAsync();
   }
 
   ngOnInit(): void {
-    this.dataSource = new HymnLyricsDataSource(this.data);
+    this.dataSource = new BibleReferenceDataSource(this.data);
     const paginationLength = this.data.length / TABLE_PAGE_SIZE;
     this.pagination = Array(
       paginationLength < 1 ? 0 : Math.round(paginationLength)
@@ -81,11 +74,7 @@ export class LyricsTableComponent implements OnChanges, OnInit {
   }
 
   trackByFn(index: number, item: any): any {
-    return item.no;
-  }
-
-  sortDataBy(sortBy: string, order: SortOrder) {
-    this.dataSource.sortDataBy(sortBy, order);
+    return item.reference;
   }
 
   filterTableData(filterBy?: string) {

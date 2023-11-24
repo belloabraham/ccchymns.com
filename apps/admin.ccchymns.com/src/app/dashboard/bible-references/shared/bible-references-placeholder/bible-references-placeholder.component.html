@@ -1,0 +1,29 @@
+<table *transloco="let t" class="table table-striped">
+  <thead>
+    <tr>
+      <th class="user-select-none" scope="col">{{t(columnNames[0])}}</th>
+      <th class="user-select-none" scope="col">{{t(columnNames[1])}}</th>
+      <th class="user-select-none" scope="col">{{t(columnNames[2])}}</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    @for (placeholder of placeholders; track placeholder;) {
+    <tr class="placeholder-wave opacity-75">
+      <th scope="row"> <span class="placeholder rectangle"></span></th>
+      <td>
+        <span class="placeholder">Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro accusamus perferendis
+          id quos tempora optio iste veniam, facilis in dignissimos corrupti ab eum explicabo non officiis ducimus unde
+          doloribus esse?, Lorem ipsum dolor sit amet consectetur, adipisicing elit. Obcaecati, fugit ducimus at eos
+          corrupti tempora, corporis asperiores, perferendis molestiae officia quos. Aut nam beatae, adipisci eius
+          suscipit soluta maiores voluptates.</span>
+      </td>
+      <td>
+        <span class="placeholder circle">
+        </span>
+      </td>
+    </tr>
+    }
+
+  </tbody>
+</table>

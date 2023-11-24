@@ -4,65 +4,54 @@ import {
   Input,
   OnInit,
 } from '@angular/core';
-import { EmptyStateComponent, SharedModule } from '../../../shared';
+import { EmptyStateComponent, SharedModule } from '../../shared';
 import { CCCIconDirective } from '@ccchymns.com/ui';
 import {
   NgMatTooltipModule,
   NgMaterialButtonModule,
 } from '@ccchymns.com/angular';
+import { ErrorStateComponent } from '../../shared/error-state/error-state.component';
+import { DashboardLanguageResourceKey } from '../../i18n/language-resource-key';
 import {
-  HymnLyricsUIState,
+  BibleReferenceUIState,
   RootLanguageResourceKey,
 } from '@ccchymns.com/common';
-import { LanguageResourceKey } from '../../i18n/language-resource-key';
-import { DashboardLanguageResourceKey } from '../../../i18n/language-resource-key';
-import { LyricsPlaceholderComponent } from '../lyrics-placeholder/lyrics-placeholder.component';
-import { LyricsTableComponent } from '../lyrics-table/lyrics-table.component';
-import { COLUMN_NAMES_FOR_LYRICS_TABLE } from '../data';
-import { ErrorStateComponent } from '../../../shared/error-state/error-state.component';
+import { LanguageResourceKey } from '../i18n/language-resource-key';
+import { BibleReferencesTableComponent } from '../shared/bible-references-table/bible-references-table.component';
+import { BibleReferencesPlaceholderComponent } from '../shared/bible-references-placeholder/bible-references-placeholder.component';
+import { COLUMN_NAMES_FOR_BIBLE_REFERENCES_TABLE } from '../shared/data';
 import { Inject, Injector } from '@angular/core';
 import { TuiDialogService } from '@taiga-ui/core';
 import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
-import { AddLyricsDialogComponent } from '../add-lyrics-dialog/add-lyrics-dialog.component';
 import { Observable } from 'rxjs';
-import { EditLyricsDialogComponent } from '../edit-lyrics-dialog/edit-lyrics-dialog.component';
-
+import { AddBibleReferenceDialogComponent } from '../shared/add-bible-reference-dialog/add-bible-reference-dialog.component';
 @Component({
-  selector: 'app-lyrics-common',
+  selector: 'app-bible-reference-common',
   standalone: true,
   imports: [
     SharedModule,
     CCCIconDirective,
     NgMaterialButtonModule,
     NgMatTooltipModule,
-    LyricsTableComponent,
-    LyricsPlaceholderComponent,
     EmptyStateComponent,
     ErrorStateComponent,
+    BibleReferencesTableComponent,
+    BibleReferencesPlaceholderComponent,
   ],
   templateUrl: './common.component.html',
   styleUrl: './common.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CommonComponent implements OnInit {
-  columnNames = COLUMN_NAMES_FOR_LYRICS_TABLE;
   languageResourceKey = LanguageResourceKey;
+  @Input({ required: true }) titleKey!: string;
   rootLanguageResourceKey = RootLanguageResourceKey;
   dashboardLanguageResourceKey = DashboardLanguageResourceKey;
+
+  columnNames = COLUMN_NAMES_FOR_BIBLE_REFERENCES_TABLE;
   filterBy?: string;
-  sortOrderIsAscending = true;
-  columnIdForSorting = COLUMN_NAMES_FOR_LYRICS_TABLE[0];
-  @Input({ required: true }) titleKey!: string;
-  @Input({ required: true }) data: HymnLyricsUIState[] = [];
-
-  onFilterTextChanged(event: any) {
-    this.filterBy = event.target.value;
-  }
-
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  retry() {}
-
-  private dialog!: Observable<number>;
+  @Input({ required: true }) data: BibleReferenceUIState[] = [];
+  private dialog!: Observable<string>;
 
   constructor(
     @Inject(TuiDialogService) private readonly dialogs: TuiDialogService,
@@ -70,8 +59,11 @@ export class CommonComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.dialog = this.dialogs.open<number>(
-      new PolymorpheusComponent(EditLyricsDialogComponent, this.injector),
+    this.dialog = this.dialogs.open<string>(
+      new PolymorpheusComponent(
+        AddBibleReferenceDialogComponent,
+        this.injector
+      ),
       {
         data: this.titleKey,
         dismissible: true,
@@ -80,7 +72,11 @@ export class CommonComponent implements OnInit {
     );
   }
 
-  showDialog(): void {
+  onFilterTextChanged(event: any) {
+    this.filterBy = event.target.value;
+  }
+
+  openAddBibleReferenceDialog() {
     this.dialog.subscribe({
       next: (data) => {
         console.info(`Dialog emitted data = ${data}`);
@@ -90,4 +86,7 @@ export class CommonComponent implements OnInit {
       },
     });
   }
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  retry() {}
 }

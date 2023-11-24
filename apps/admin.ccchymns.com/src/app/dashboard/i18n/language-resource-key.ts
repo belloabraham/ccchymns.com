@@ -5,6 +5,7 @@ export class DashboardLanguageResourceKey {
   static readonly PREVIOUS_PAGE = 'previous_page';
   static readonly NEXT_PAGE = 'next_page';
   static readonly EDIT = 'edit';
+  static readonly DELETE = 'delete';
   static readonly SORT_MSG = 'sort_msg';
   static readonly EMPTY_STATE_TITLE = 'empty_state_title';
   static readonly TRY_AGAIN = 'try_again';

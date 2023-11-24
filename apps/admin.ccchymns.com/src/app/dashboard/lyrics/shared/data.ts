@@ -6,5 +6,5 @@ const hymnLyricsUIState: HymnLyricsUIState = {
 };
 export const COLUMN_NAMES_FOR_LYRICS_TABLE = [
   ...Object.keys(hymnLyricsUIState),
-  'tools',
+  'options',
 ];
