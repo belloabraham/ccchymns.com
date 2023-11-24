@@ -13,9 +13,9 @@
   <ng-container [cdkColumnDef]="columnNames[2]">
     <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[2])}}</th>
     <td cdk-cell *cdkCellDef="let row">
-      <button [ccc-icon]="'pencil-outline'" ng-mat-icon-button ng-mat-tooltip [id]="row.reference" type="button">
+      <button [ccc-icon]="'delete'" class="delete"    ng-mat-icon-button ng-mat-tooltip [id]="row.reference" type="button">
       </button>
-      <div ng-mat-tooltip [id]="row.reference">{{t(dashboardLanguageResourceKey.DELETE)}}</div>
+      <div ng-mat-tooltip class="delete" [id]="row.reference">{{t(dashboardLanguageResourceKey.DELETE)}}</div>
     </td>
   </ng-container>
 

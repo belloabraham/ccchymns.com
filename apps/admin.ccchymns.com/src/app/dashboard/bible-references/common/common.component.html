@@ -38,10 +38,10 @@
 
       </div>
       <div class="card-body overflow-x-scroll">
-        <app-bible-references-table class="d-none" #bibleReferenceTable='bibleReferenceTable' [data]="data" [filterBy]="filterBy" />
+        <app-bible-references-table #bibleReferenceTable='bibleReferenceTable' [data]="data" [filterBy]="filterBy" />
         <!-- <app-bible-references-placeholder [columnNames]="columnNames" /> -->
         <!-- <app-empty-sate [descriptionKey]="languageResourceKey.BIBLE_REFERENCE_EMPTY_STATE_DESCRIPTION"/> -->
-        <app-error-state (retry)="retry()" />
+        <!-- <app-error-state (retry)="retry()" /> -->
       </div>
     </div>
 

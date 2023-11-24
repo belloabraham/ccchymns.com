@@ -4,6 +4,8 @@
 @forward './scss/variables/vendor/taiga-ui';
 @use 'material/ccchymns';
 @use 'gerillass';
+@use 'colors';
+
 
 tui-dialog[data-appearance='bg-light'] {
   div.t-content {
@@ -58,6 +60,11 @@ tui-dialog[data-appearance='bg-light'] {
   font-size: 0.9rem;
 }
 
+.mdc-tooltip.delete {
+  .mdc-tooltip__surface {
+    background-color: colors.$error-red-500;
+  }
+}
 
 .pagination {
   .navigation-icon {

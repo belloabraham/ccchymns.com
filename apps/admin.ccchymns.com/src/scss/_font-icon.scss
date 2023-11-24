@@ -25,6 +25,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.ccci-delete:before {
+  content: "\e912";
+}
 .ccci-minus:before {
   content: "\e912";
 }
