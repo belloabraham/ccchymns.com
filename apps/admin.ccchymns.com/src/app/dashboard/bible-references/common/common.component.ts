@@ -4,27 +4,25 @@ import {
   Input,
   OnInit,
 } from '@angular/core';
-import { EmptyStateComponent, SharedModule } from '../../shared';
+import { EmptyStateComponent, ErrorStateComponent, SharedModule } from '../../shared';
 import { CCCIconDirective } from '@ccchymns.com/ui';
 import {
   NgMatTooltipModule,
   NgMaterialButtonModule,
 } from '@ccchymns.com/angular';
-import { ErrorStateComponent } from '../../shared/error-state/error-state.component';
 import { DashboardLanguageResourceKey } from '../../i18n/language-resource-key';
 import {
   BibleReferenceUIState,
   RootLanguageResourceKey,
 } from '@ccchymns.com/common';
 import { LanguageResourceKey } from '../i18n/language-resource-key';
-import { BibleReferencesTableComponent } from '../shared/bible-references-table/bible-references-table.component';
-import { BibleReferencesPlaceholderComponent } from '../shared/bible-references-placeholder/bible-references-placeholder.component';
 import { COLUMN_NAMES_FOR_BIBLE_REFERENCES_TABLE } from '../shared/data';
 import { Inject, Injector } from '@angular/core';
 import { TuiDialogService } from '@taiga-ui/core';
 import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
 import { Observable } from 'rxjs';
-import { AddBibleReferenceDialogComponent } from '../shared/add-bible-reference-dialog/add-bible-reference-dialog.component';
+import { AddBibleReferenceDialogComponent, BibleReferencesPlaceholderComponent, BibleReferencesTableComponent } from '../shared';
+
 @Component({
   selector: 'app-bible-reference-common',
   standalone: true,

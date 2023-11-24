@@ -4,7 +4,7 @@ import {
   Input,
   OnInit,
 } from '@angular/core';
-import { EmptyStateComponent, SharedModule } from '../../shared';
+import { EmptyStateComponent, ErrorStateComponent, SharedModule } from '../../shared';
 import { CCCIconDirective } from '@ccchymns.com/ui';
 import {
   NgMatTooltipModule,
@@ -19,7 +19,6 @@ import { DashboardLanguageResourceKey } from '../../i18n/language-resource-key';
 import { LyricsPlaceholderComponent } from '../shared/lyrics-placeholder/lyrics-placeholder.component';
 import { LyricsTableComponent } from '../shared/lyrics-table/lyrics-table.component';
 import { COLUMN_NAMES_FOR_LYRICS_TABLE } from '../shared/data';
-import { ErrorStateComponent } from '../../shared/error-state/error-state.component';
 import { Inject, Injector } from '@angular/core';
 import { TuiDialogService } from '@taiga-ui/core';
 import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
