@@ -1,14 +1,17 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { TranslocoModule } from '@ngneat/transloco';
+import { TABLE_PAGE_SIZE } from '../../../shared';
+import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-bible-references-placeholder',
   standalone: true,
-  imports: [CommonModule],
+  imports: [TranslocoModule, NgFor],
   templateUrl: './bible-references-placeholder.component.html',
   styleUrl: './bible-references-placeholder.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BibleReferencesPlaceholderComponent {
-
+  placeholders = Array(TABLE_PAGE_SIZE / 2);
+  @Input({ required: true }) columnNames: string[] = [];
 }

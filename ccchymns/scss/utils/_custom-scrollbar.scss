@@ -1,0 +1,37 @@
+@use '../variables/colors' as *;
+
+$thumb-bg-color: $neutral-300;
+$thumb-bg-color-hover: $neutral-500;
+
+$thumb-bg-color-dark: $neutral-300;
+$thumb-bg-color-dark-hover: $neutral-500;
+
+$thumb-size: 10px;
+
+//For Safari and Chrome
+::-webkit-scrollbar {
+  width: $thumb-size;
+  height: $thumb-size;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $thumb-bg-color;
+  border-radius: $thumb-size;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: $thumb-bg-color-hover;
+}
+
+//For Firefox
+@supports (scrollbar-width: thin) {
+  * {
+    scrollbar-width: thin;
+  }
+}

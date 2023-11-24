@@ -16,7 +16,6 @@ import {
 import { CCCIconDirective } from '@ccchymns.com/ui';
 import { LanguageResourceKey } from '../../i18n/language-resource-key';
 import { DashboardLanguageResourceKey } from '../../../i18n/language-resource-key';
-import { CommonModule } from '@angular/common';
 import { TABLE_PAGE_SIZE, SortOrder } from '../../../shared';
 import { SubSink } from 'subsink';
 import { HymnLyricsDataSource } from '../datasource/lyrics-datasource';
@@ -32,7 +31,6 @@ import { COLUMN_NAMES_FOR_LYRICS_TABLE } from '../data';
     NgMaterialButtonModule,
     CCCIconDirective,
     NgMatTooltipModule,
-    CommonModule,
   ],
   templateUrl: './lyrics-table.component.html',
   styleUrl: './lyrics-table.component.scss',
