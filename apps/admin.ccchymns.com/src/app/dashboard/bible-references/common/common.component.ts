@@ -4,7 +4,11 @@ import {
   Input,
   OnInit,
 } from '@angular/core';
-import { EmptyStateComponent, ErrorStateComponent, SharedModule } from '../../shared';
+import {
+  EmptyStateComponent,
+  ErrorStateComponent,
+  SharedModule,
+} from '../../shared';
 import { CCCIconDirective } from '@ccchymns.com/ui';
 import {
   NgMatTooltipModule,
@@ -21,7 +25,12 @@ import { Inject, Injector } from '@angular/core';
 import { TuiDialogService } from '@taiga-ui/core';
 import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
 import { Observable } from 'rxjs';
-import { AddBibleReferenceDialogComponent, BibleReferencesPlaceholderComponent, BibleReferencesTableComponent } from '../shared';
+import {
+  AddBibleReferenceDialogComponent,
+  BibleReferencesPlaceholderComponent,
+  BibleReferencesTableComponent,
+} from '../shared';
+import { SubSink } from 'subsink';
 
 @Component({
   selector: 'app-bible-reference-common',
@@ -45,6 +54,7 @@ export class CommonComponent implements OnInit {
   @Input({ required: true }) titleKey!: string;
   rootLanguageResourceKey = RootLanguageResourceKey;
   dashboardLanguageResourceKey = DashboardLanguageResourceKey;
+  private subscriptions = new SubSink();
 
   columnNames = COLUMN_NAMES_FOR_BIBLE_REFERENCES_TABLE;
   filterBy?: string;
@@ -75,7 +85,7 @@ export class CommonComponent implements OnInit {
   }
 
   openAddBibleReferenceDialog() {
-    this.dialog.subscribe({
+    this.subscriptions.sink = this.dialog.subscribe({
       next: (data) => {
         console.info(`Dialog emitted data = ${data}`);
       },

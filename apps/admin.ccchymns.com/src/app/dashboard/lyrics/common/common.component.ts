@@ -25,6 +25,7 @@ import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
 import { AddLyricsDialogComponent } from '../shared/add-lyrics-dialog/add-lyrics-dialog.component';
 import { Observable } from 'rxjs';
 import { EditLyricsDialogComponent } from '../shared/edit-lyrics-dialog/edit-lyrics-dialog.component';
+import { SubSink } from 'subsink';
 
 @Component({
   selector: 'app-lyrics-common',
@@ -53,6 +54,7 @@ export class CommonComponent implements OnInit {
   columnIdForSorting = COLUMN_NAMES_FOR_LYRICS_TABLE[0];
   @Input({ required: true }) titleKey!: string;
   @Input({ required: true }) data: HymnLyricsUIState[] = [];
+  private subscriptions = new SubSink();
 
   onFilterTextChanged(event: any) {
     this.filterBy = event.target.value;
@@ -80,7 +82,7 @@ export class CommonComponent implements OnInit {
   }
 
   showDialog(): void {
-    this.dialog.subscribe({
+    this.subscriptions.sink = this.dialog.subscribe({
       next: (data) => {
         console.info(`Dialog emitted data = ${data}`);
       },
