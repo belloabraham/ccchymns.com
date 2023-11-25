@@ -44,8 +44,8 @@
       </div>
       <div class="card-body overflow-x-scroll">
         <app-audio-hymns-table class="d-none" #audioHymnsTable='audioHymnsTable' [data]="data" [filterBy]="filterBy" />
-        <!-- <app-lyrics-placeholder [columnNames]="columnNames" /> -->
-        <app-empty-sate [descriptionKey]="languageResourceKey.EMPTY_STATE_DESCRIPTION"/>
+        <app-audio-hymns-placeholder [columnNames]="columnNames" />
+        <!-- <app-empty-sate [descriptionKey]="languageResourceKey.EMPTY_STATE_DESCRIPTION"/> -->
         <!-- <app-error-state (retry)="retry()" /> -->
       </div>
     </div>

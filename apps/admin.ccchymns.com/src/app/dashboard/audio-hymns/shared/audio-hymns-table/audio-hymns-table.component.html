@@ -7,15 +7,18 @@
 
   <ng-container [cdkColumnDef]="columnNames[1]">
     <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[1])}}</th>
-    <td cdk-cell *cdkCellDef="let row">{{row[columnNames[1]]}}</td>
+    <td cdk-cell *cdkCellDef="let row">{{row.url}}</td>
   </ng-container>
 
   <ng-container [cdkColumnDef]="columnNames[2]">
     <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[2])}}</th>
     <td cdk-cell *cdkCellDef="let row">
-      <button [ccc-icon]="'pencil-outline'" ng-mat-icon-button ng-mat-tooltip [id]="row.no" type="button">
+      <button [ccc-icon]="'delete'" ng-mat-icon-button ng-mat-tooltip [id]="row.url" type="button">
       </button>
-      <div ng-mat-tooltip [id]="row.no">{{t(dashboardLanguageResourceKey.EDIT)}}</div>
+      <div ng-mat-tooltip [id]="row.url">{{t(dashboardLanguageResourceKey.DELETE)}}</div>
+      <button [ccc-icon]="'cloud-upload'" ng-mat-icon-button ng-mat-tooltip [id]="row.no" type="button">
+      </button>
+      <div ng-mat-tooltip [id]="row.no">{{t(rootLanguageResourceKey.UPDATE)}}</div>
     </td>
   </ng-container>
 

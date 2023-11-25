@@ -25,6 +25,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.ccci-cloud-upload:before {
+  content: "\e913";
+}
 .ccci-delete:before {
   content: "\e912";
 }

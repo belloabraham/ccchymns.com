@@ -6,7 +6,6 @@
 @use 'gerillass';
 @use 'colors';
 
-
 tui-dialog[data-appearance='bg-light'] {
   div.t-content {
     background-color: hsl(218, 5%, 90%);
@@ -38,6 +37,13 @@ tui-dialog[data-appearance='bg-light'] {
 .placeholder.rectangle {
   height: 1.5rem;
   width: 5rem;
+  display: inline-block;
+}
+
+.placeholder.audio-rectangle {
+  height: 3.5rem;
+  width: 15rem;
+  border-radius: 3rem;
   display: inline-block;
 }
 

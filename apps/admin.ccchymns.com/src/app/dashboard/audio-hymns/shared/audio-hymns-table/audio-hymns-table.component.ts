@@ -7,7 +7,7 @@ import {
 import { CdkTableModule } from '@angular/cdk/table';
 import { TranslocoModule } from '@ngneat/transloco';
 import { CCCIconDirective } from '@ccchymns.com/ui';
-import { AudioHymnsUIState, DisplayService, Size } from '@ccchymns.com/common';
+import { AudioHymnsUIState, DisplayService, RootLanguageResourceKey, Size } from '@ccchymns.com/common';
 import { COLUMN_NAMES_FOR_AUDIO_HYMNS_TABLE } from '../data';
 import { AudioHymnsDataSource } from '../datasource/audio-hymns-datasource';
 import { SortOrder, TABLE_PAGE_SIZE } from '../../../shared';
@@ -29,8 +29,9 @@ import { DashboardLanguageResourceKey } from '../../../i18n/language-resource-ke
   styleUrl: './audio-hymns-table.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AudioHymnsTableComponent implements OnInit, OnChanges{
-  //languageResourceKey = LanguageResourceKey;
+export class AudioHymnsTableComponent implements OnInit, OnChanges {
+  // languageResourceKey = LanguageResourceKey;
+  rootLanguageResourceKey = RootLanguageResourceKey;
   dashboardLanguageResourceKey = DashboardLanguageResourceKey;
   pagination = Array(0);
   private subscriptions = new SubSink();
