@@ -1,59 +1,63 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  Inject,
+  Injector,
   Input,
   OnInit,
 } from '@angular/core';
-import { EmptyStateComponent, SharedModule } from '../../shared';
-import { CCCIconDirective } from '@ccchymns.com/ui';
+import {
+  EmptyStateComponent,
+  ErrorStateComponent,
+  SharedModule,
+} from '../../../shared';
+import {
+  AddAudioHymnDialogComponent,
+  AudioHymnsPlaceholderComponent,
+  AudioHymnsTableComponent,
+} from '..';
 import {
   NgMatTooltipModule,
   NgMaterialButtonModule,
 } from '@ccchymns.com/angular';
-import {
-  HymnLyricsUIState,
-  RootLanguageResourceKey,
-} from '@ccchymns.com/common';
-import { LanguageResourceKey } from '../i18n/language-resource-key';
-import { DashboardLanguageResourceKey } from '../../i18n/language-resource-key';
-import { LyricsPlaceholderComponent } from '../shared/lyrics-placeholder/lyrics-placeholder.component';
-import { LyricsTableComponent } from '../shared/lyrics-table/lyrics-table.component';
-import { COLUMN_NAMES_FOR_LYRICS_TABLE } from '../shared/data';
-import { ErrorStateComponent } from '../../shared/error-state/error-state.component';
-import { Inject, Injector } from '@angular/core';
+import { CCCIconDirective } from '@ccchymns.com/ui';
+import { COLUMN_NAMES_FOR_AUDIO_HYMNS_TABLE } from '../data';
+import { AudioHymnsUIState } from '@ccchymns.com/common';
+import { Observable } from 'rxjs';
 import { TuiDialogService } from '@taiga-ui/core';
 import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
-import { AddLyricsDialogComponent } from '../shared/add-lyrics-dialog/add-lyrics-dialog.component';
-import { Observable } from 'rxjs';
-import { EditLyricsDialogComponent } from '../shared/edit-lyrics-dialog/edit-lyrics-dialog.component';
+import { SubSink } from 'subsink';
+import { DashboardLanguageResourceKey } from '../../../i18n/language-resource-key';
+import { LanguageResourceKey } from '../../i18n/language-resource-key';
 
 @Component({
-  selector: 'app-lyrics-common',
+  selector: 'app-audio-hymns-common',
   standalone: true,
   imports: [
     SharedModule,
     CCCIconDirective,
     NgMaterialButtonModule,
     NgMatTooltipModule,
-    LyricsTableComponent,
-    LyricsPlaceholderComponent,
+    AudioHymnsPlaceholderComponent,
     EmptyStateComponent,
     ErrorStateComponent,
+    AudioHymnsTableComponent,
   ],
   templateUrl: './common.component.html',
   styleUrl: './common.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CommonComponent implements OnInit {
-  columnNames = COLUMN_NAMES_FOR_LYRICS_TABLE;
+  columnNames = COLUMN_NAMES_FOR_AUDIO_HYMNS_TABLE;
   languageResourceKey = LanguageResourceKey;
-  rootLanguageResourceKey = RootLanguageResourceKey;
+  // rootLanguageResourceKey = RootLanguageResourceKey;
   dashboardLanguageResourceKey = DashboardLanguageResourceKey;
   filterBy?: string;
   sortOrderIsAscending = true;
-  columnIdForSorting = COLUMN_NAMES_FOR_LYRICS_TABLE[0];
+  columnIdForSorting = COLUMN_NAMES_FOR_AUDIO_HYMNS_TABLE[0];
   @Input({ required: true }) titleKey!: string;
-  @Input({ required: true }) data: HymnLyricsUIState[] = [];
+  @Input({ required: true }) data: AudioHymnsUIState[] = [];
+  private subscriptions = new SubSink();
 
   onFilterTextChanged(event: any) {
     this.filterBy = event.target.value;
@@ -71,7 +75,7 @@ export class CommonComponent implements OnInit {
 
   ngOnInit(): void {
     this.dialog = this.dialogs.open<number>(
-      new PolymorpheusComponent(AddLyricsDialogComponent, this.injector),
+      new PolymorpheusComponent(AddAudioHymnDialogComponent, this.injector),
       {
         data: this.titleKey,
         dismissible: true,
@@ -81,7 +85,7 @@ export class CommonComponent implements OnInit {
   }
 
   showDialog(): void {
-    this.dialog.subscribe({
+    this.subscriptions.sink = this.dialog.subscribe({
       next: (data) => {
         console.info(`Dialog emitted data = ${data}`);
       },

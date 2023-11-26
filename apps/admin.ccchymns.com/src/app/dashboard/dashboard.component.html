@@ -71,8 +71,8 @@
               {{config.APP_NAME}}</a>
           </h6>
 
-          <button ng-mat-icon-button [ccc-icon]="'close'" type="button" (click)="toggleSideBar()" class="text-white d-md-none m-0"
-            data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#sidebar">
+          <button ng-mat-icon-button [ccc-icon]="'close'" type="button" (click)="toggleSideBar()"
+            class="text-white d-md-none m-0" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#sidebar">
           </button>
         </div>
 
@@ -80,12 +80,13 @@
         <div class="offcanvas-body d-flex flex-column px-1 align-items-stretch justify-content-between">
           <div class="pt-2">
 
+
             <!-- *Lyrics Collapse Button-->
             <div class="d-flex gap-2 align-items-center ps-2 collapse-btn">
               <i [ccc-icon]="'book-edit'" class="text-white"></i>
-              <button ng-mat-button (click)="openLyrics.set(!openLyrics())" class="text-white" data-bs-toggle="collapse"
-                data-bs-target="#lyrics-collapse" [class.collapsed]="openLyrics()" [attr.aria-expanded]="openLyrics()"
-                aria-expanded="true" aria-controls="collapse">
+              <button ng-mat-button (click)="openLyrics.set(!openLyrics())" class="text-white list-group-toggle"
+                data-bs-toggle="collapse" data-bs-target="#lyrics-collapse" [class.collapsed]="openLyrics()"
+                [attr.aria-expanded]="openLyrics()" aria-expanded="true" aria-controls="collapse">
                 {{t(rootLanguageResourceKey.LYRICS)}}
                 <i [ccc-icon]="openLyrics() ? 'chevron-down': 'chevron-right'" class="text-white"></i>
               </button>
@@ -108,41 +109,6 @@
                   <a [routerLinkActive]="'active-link'" [routerLink]="[route.LYRICS, route.FRENCH]"
                     class="list-group-item border-0 list-group-item-action d-flex align-items-center"
                     data-bs-toggle="list" role="tab">
-                    <i class="space"></i>
-                    {{t(rootLanguageResourceKey.FRENCH)}}
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <!-- *Bible References Collapse Button-->
-            <div class="d-flex gap-2 align-items-center ps-2 mt-2 collapse-btn">
-              <i [ccc-icon]="'bible'" class="text-white"></i>
-              <button ng-mat-button (click)="openBibleReference.set(!openBibleReference())" class="text-white"
-                data-bs-toggle="collapse" data-bs-target="#lyrics-collapse" [class.collapsed]="openBibleReference()"
-                [attr.aria-expanded]="openBibleReference()" aria-expanded="true" aria-controls="collapse-button">
-                {{t(rootLanguageResourceKey.BIBLE_REFERENCES)}}
-                <i [ccc-icon]="openBibleReference() ? 'chevron-down': 'chevron-right'" class="text-white"></i>
-              </button>
-            </div>
-            <div class="collapse" [class.show]="openBibleReference()" id="lyrics-collapse">
-              <div class="px-4 mt-2">
-                <div class="list-group border-0" id="list-tab" role="tablist">
-                  <a [routerLinkActive]="'active-link'"
-                    class="list-group-item border-0 list-group-item-action d-flex align-items-center"
-                    data-bs-toggle="list" [routerLink]="[route.BIBLE_REFERENCES, route.YORUBA]" role="tab">
-                    <i class="space"></i>
-                    {{t(rootLanguageResourceKey.YORUBA)}}
-                  </a>
-                  <a [routerLinkActive]="'active-link'"
-                    class="list-group-item border-0 list-group-item-action d-flex align-items-center"
-                    data-bs-toggle="list" [routerLink]="[route.BIBLE_REFERENCES, route.ENGLISH]" role="tab">
-                    <i class="space"></i>
-                    {{t(rootLanguageResourceKey.ENGLISH)}}
-                  </a>
-                  <a [routerLinkActive]="'active-link'"
-                    class="list-group-item border-0 list-group-item-action d-flex align-items-center"
-                    data-bs-toggle="list" [routerLink]="[route.BIBLE_REFERENCES, route.FRENCH]" role="tab">
                     <i class="space"></i>
                     {{t(rootLanguageResourceKey.FRENCH)}}
                   </a>
@@ -255,6 +221,41 @@
               </div>
             </div>
 
+            <!-- *Bible References Collapse Button-->
+            <div class="d-flex gap-2 align-items-center ps-2 mt-2 collapse-btn">
+              <i [ccc-icon]="'bible'" class="text-white"></i>
+              <button ng-mat-button (click)="openBibleReference.set(!openBibleReference())" class="text-white"
+                data-bs-toggle="collapse" data-bs-target="#lyrics-collapse" [class.collapsed]="openBibleReference()"
+                [attr.aria-expanded]="openBibleReference()" aria-expanded="true" aria-controls="collapse-button">
+                {{t(rootLanguageResourceKey.BIBLE_REFERENCES)}}
+                <i [ccc-icon]="openBibleReference() ? 'chevron-down': 'chevron-right'" class="text-white"></i>
+              </button>
+            </div>
+            <div class="collapse" [class.show]="openBibleReference()" id="lyrics-collapse">
+              <div class="px-4 mt-2">
+                <div class="list-group border-0" id="list-tab" role="tablist">
+                  <a [routerLinkActive]="'active-link'"
+                    class="list-group-item border-0 list-group-item-action d-flex align-items-center"
+                    data-bs-toggle="list" [routerLink]="[route.BIBLE_REFERENCES, route.YORUBA]" role="tab">
+                    <i class="space"></i>
+                    {{t(rootLanguageResourceKey.YORUBA)}}
+                  </a>
+                  <a [routerLinkActive]="'active-link'"
+                    class="list-group-item border-0 list-group-item-action d-flex align-items-center"
+                    data-bs-toggle="list" [routerLink]="[route.BIBLE_REFERENCES, route.ENGLISH]" role="tab">
+                    <i class="space"></i>
+                    {{t(rootLanguageResourceKey.ENGLISH)}}
+                  </a>
+                  <a [routerLinkActive]="'active-link'"
+                    class="list-group-item border-0 list-group-item-action d-flex align-items-center"
+                    data-bs-toggle="list" [routerLink]="[route.BIBLE_REFERENCES, route.FRENCH]" role="tab">
+                    <i class="space"></i>
+                    {{t(rootLanguageResourceKey.FRENCH)}}
+                  </a>
+                </div>
+              </div>
+            </div>
+
             <!-- *All Hymns Button-->
             <div class="d-flex gap-2 align-items-center ps-2 mt-2 collapse-btn">
               <i [ccc-icon]="'all-hymns'" class="text-white"></i>
@@ -267,8 +268,8 @@
           </div>
 
           <div class="text-end">
-            <button ng-mat-icon-button [ccc-icon]="'arrow-left'" type="button" (click)="toggleSideBar()" class="text-white d-md-none m-0"
-              data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#sidebar">
+            <button ng-mat-icon-button [ccc-icon]="'arrow-left'" type="button" (click)="toggleSideBar()"
+              class="text-white d-md-none m-0" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#sidebar">
             </button>
           </div>
         </div>

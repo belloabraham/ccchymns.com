@@ -1,4 +1,5 @@
 import { BibleReferenceUIState } from '@ccchymns.com/common';
+import { DashboardLanguageResourceKey } from '../../i18n/language-resource-key';
 
 const bibleReferenceUIState: BibleReferenceUIState = {
   reference: '',
@@ -6,5 +7,5 @@ const bibleReferenceUIState: BibleReferenceUIState = {
 };
 export const COLUMN_NAMES_FOR_BIBLE_REFERENCES_TABLE = [
   ...Object.keys(bibleReferenceUIState),
-  'options',
+  DashboardLanguageResourceKey.OPTIONS,
 ];

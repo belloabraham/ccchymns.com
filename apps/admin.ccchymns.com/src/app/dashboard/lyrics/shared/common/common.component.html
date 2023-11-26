@@ -42,10 +42,10 @@
 
       </div>
       <div class="card-body overflow-x-scroll">
-        <app-lyrics-table class="d-none" #lyricsTable='lyricsTable' [data]="data" [filterBy]="filterBy" />
+        <app-lyrics-table  #lyricsTable='lyricsTable' [data]="data" [filterBy]="filterBy" />
         <!-- <app-lyrics-placeholder [columnNames]="columnNames" /> -->
         <!-- <app-empty-sate [descriptionKey]="languageResourceKey.EMPTY_STATE_DESCRIPTION"/> -->
-        <app-error-state (retry)="retry()" />
+        <!-- <app-error-state (retry)="retry()" /> -->
       </div>
     </div>
 

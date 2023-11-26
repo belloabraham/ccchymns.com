@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { SharedModule } from '../../shared';
 import { MOCK_BIBLE_REFERENCE } from '../shared/mock/bible-references';
-import { CommonComponent } from '../common/common.component';
+import { CommonComponent } from '../shared/common/common.component';
+import { LanguageResourceKey } from '../i18n/language-resource-key';
 
 @Component({
   selector: 'app-bible-references-french',
@@ -12,6 +13,6 @@ import { CommonComponent } from '../common/common.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FrenchComponent {
-  titleKey = 'french_bible_references';
+  titleKey = LanguageResourceKey.FRENCH_BIBLE_REFERENCES
   data = MOCK_BIBLE_REFERENCE;
 }

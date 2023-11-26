@@ -38,7 +38,8 @@ export class CCCIconDirective implements OnChanges {
     | 'pencil-outline'
     | 'sort-asc'
     | 'sort-desc'
-    | 'delete';
+    | 'delete'
+    | 'upload-outline';
   @Input() position: 'start' | 'end' = 'start';
   @Input() state: 'on' | 'off' | null = null;
 

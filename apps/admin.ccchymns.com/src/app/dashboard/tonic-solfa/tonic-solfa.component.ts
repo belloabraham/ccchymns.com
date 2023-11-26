@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { SharedModule } from '@ccchymns.com/angular';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-tonic-solfa',
   standalone: true,
-  imports: [SharedModule],
+  imports: [RouterOutlet],
   templateUrl: './tonic-solfa.component.html',
   styleUrls: ['./tonic-solfa.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

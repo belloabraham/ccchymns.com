@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { SharedModule } from '@ccchymns.com/angular';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-audio-hymns',
   standalone: true,
-  imports: [SharedModule],
+  imports: [RouterOutlet],
   templateUrl: './audio-hymns.component.html',
   styleUrl: './audio-hymns.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

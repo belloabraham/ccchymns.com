@@ -9,10 +9,10 @@ import {
 import { CCCIconDirective } from '@ccchymns.com/ui';
 import { SubSink } from 'subsink';
 import { COLUMN_NAMES_FOR_BIBLE_REFERENCES_TABLE } from '../data';
-import { BibleReferenceDataSource } from '../datasource/bible-reference-datasource';
 import { DashboardLanguageResourceKey } from '../../../i18n/language-resource-key';
 import { LanguageResourceKey } from '../../i18n/language-resource-key';
 import { TABLE_PAGE_SIZE } from '../../../shared';
+import { BibleReferenceDataSource } from '../datasource/bible-reference-datasource';
 
 @Component({
   selector: 'app-bible-references-table',

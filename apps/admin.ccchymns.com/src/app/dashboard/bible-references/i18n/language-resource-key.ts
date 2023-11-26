@@ -5,4 +5,7 @@ export class LanguageResourceKey {
     'bible_reference_empty_state_description';
   static readonly VERSES = 'verses';
   static readonly BIBLE_REFERENCE_PLACEHOLDER = 'bible_reference_placeholder';
+  static readonly FRENCH_BIBLE_REFERENCES = 'french_bible_references';
+  static readonly ENGLISH_BIBLE_REFERENCES = 'english_bible_references';
+  static readonly YORUBA_BIBLE_REFERENCES = 'yoruba_bible_references';
 }

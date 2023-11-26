@@ -1,5 +1,4 @@
 @use 'gerillass';
-@use 'colors';
 
 .table {
   td {
@@ -7,8 +6,3 @@
     padding-bottom: 1rem;
   }
 }
-button.delete:hover {
-  color: colors.$error-red-500;
-}
-
-
