@@ -25,69 +25,81 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.ccci-e-circle:before {
+  content: '\e914';
+}
+.ccci-f-circle:before {
+  content: '\e915';
+}
+.ccci-publish:before {
+  content: '\e916';
+}
+.ccci-y-circle:before {
+  content: '\e917';
+}
 .ccci-upload-outline:before {
-  content: "\e913";
+  content: '\e913';
 }
 .ccci-delete:before {
-  content: "\e912";
+  content: '\e912';
 }
 .ccci-minus:before {
-  content: "\e912";
+  content: '\e912';
 }
 .ccci-plus:before {
-  content: "\e913";
+  content: '\e913';
 }
 .ccci-sort-asc:before {
-  content: "\e910";
+  content: '\e910';
 }
 .ccci-sort-desc:before {
-  content: "\e911";
+  content: '\e911';
 }
 .ccci-pencil-outline:before {
-  content: "\e90f";
+  content: '\e90f';
 }
 .ccci-arrow-right:before {
-  content: "\e90d";
+  content: '\e90d';
 }
 .ccci-plus-circle:before {
-  content: "\e90e";
+  content: '\e90e';
 }
 .ccci-music-clef:before {
-  content: "\e90c";
+  content: '\e90c';
 }
 .ccci-all-hymns:before {
-  content: "\e906";
+  content: '\e906';
 }
 .ccci-audio-hymns:before {
-  content: "\e907";
+  content: '\e907';
 }
 .ccci-audio:before {
-  content: "\e908";
+  content: '\e908';
 }
 .ccci-bible:before {
-  content: "\e909";
+  content: '\e909';
 }
 .ccci-book-edit:before {
-  content: "\e90a";
+  content: '\e90a';
 }
 .ccci-chevron-right:before {
-  content: "\e90b";
+  content: '\e90b';
 }
 .ccci-chevron-down:before {
-  content: "\e904";
+  content: '\e904';
 }
 .ccci-chevron-up:before {
-  content: "\e905";
+  content: '\e905';
 }
 .ccci-logout:before {
-  content: "\e900";
+  content: '\e900';
 }
 .ccci-arrow-left:before {
-  content: "\e901";
+  content: '\e901';
 }
 .ccci-close:before {
-  content: "\e902";
+  content: '\e902';
 }
 .ccci-menu:before {
-  content: "\e903";
+  content: '\e903';
 }
