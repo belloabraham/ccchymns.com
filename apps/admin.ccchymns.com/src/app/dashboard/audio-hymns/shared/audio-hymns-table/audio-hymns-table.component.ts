@@ -6,7 +6,7 @@ import {
 } from '@ccchymns.com/angular';
 import { CdkTableModule } from '@angular/cdk/table';
 import { TranslocoModule } from '@ngneat/transloco';
-import { CCCIconDirective } from '@ccchymns.com/ui';
+import { AudioPlayerComponent, CCCIconDirective } from '@ccchymns.com/ui';
 import { AudioHymnsUIState, DisplayService, RootLanguageResourceKey, Size } from '@ccchymns.com/common';
 import { COLUMN_NAMES_FOR_AUDIO_HYMNS_TABLE } from '../data';
 import { AudioHymnsDataSource } from '../datasource/audio-hymns-datasource';
@@ -24,6 +24,7 @@ import { DashboardLanguageResourceKey } from '../../../i18n/language-resource-ke
     NgMaterialButtonModule,
     CCCIconDirective,
     NgMatTooltipModule,
+    AudioPlayerComponent
   ],
   templateUrl: './audio-hymns-table.component.html',
   styleUrl: './audio-hymns-table.component.scss',

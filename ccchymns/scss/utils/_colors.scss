@@ -1,20 +1,5 @@
 @use '../variables/colors';
 
-.bg-primary-800 {
-  background-color: colors.$primary-800;
-}
-.bg-accent-400-tinted {
-  background: linear-gradient(135deg, #0055ff, #000dff);
-}
-
-.bg-primary-900 {
-  background-color: colors.$primary-900;
-}
-
-.bg-neutral-50 {
-  background-color: colors.$neutral-50;
-}
-
-.bg-accent-300 {
-  background-color: colors.$accent-300;
+.text-red {
+  color: colors.$error-red-500 !important;
 }

@@ -1,4 +1,5 @@
-<table *transloco="let t" class="table table-striped" cdk-table [dataSource]="dataSource" [trackBy]="trackByFn">
+<table *transloco="let t" class="table table-striped align-middle" cdk-table [dataSource]="dataSource"
+  [trackBy]="trackByFn">
 
   <ng-container [cdkColumnDef]="columnNames[0]">
     <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[0])}}</th>
@@ -7,18 +8,24 @@
 
   <ng-container [cdkColumnDef]="columnNames[1]">
     <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[1])}}</th>
-    <td cdk-cell *cdkCellDef="let row">{{row.url}}</td>
+    <td cdk-cell *cdkCellDef="let row">
+      <ccc-audio-player [src]="row.url" />
+    </td>
   </ng-container>
 
   <ng-container [cdkColumnDef]="columnNames[2]">
     <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[2])}}</th>
     <td cdk-cell *cdkCellDef="let row">
-      <button [ccc-icon]="'delete'" ng-mat-icon-button ng-mat-tooltip [id]="row.url" type="button">
-      </button>
-      <div ng-mat-tooltip [id]="row.url">{{t(dashboardLanguageResourceKey.DELETE)}}</div>
-      <button [ccc-icon]="'cloud-upload'" ng-mat-icon-button ng-mat-tooltip [id]="row.no" type="button">
+
+      <button [ccc-icon]="'upload-outline'" ng-mat-icon-button ng-mat-tooltip [id]="row.no" type="button">
       </button>
       <div ng-mat-tooltip [id]="row.no">{{t(rootLanguageResourceKey.UPDATE)}}</div>
+
+      <button class="delete text-red" [ccc-icon]="'delete'" ng-mat-icon-button ng-mat-tooltip [id]="row.url"
+        type="button">
+      </button>
+      <div ng-mat-tooltip class="delete" [id]="row.url">{{t(dashboardLanguageResourceKey.DELETE)}}</div>
+
     </td>
   </ng-container>
 
