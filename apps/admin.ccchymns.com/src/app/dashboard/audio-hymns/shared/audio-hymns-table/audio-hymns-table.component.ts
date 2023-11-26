@@ -31,7 +31,6 @@ import { DashboardLanguageResourceKey } from '../../../i18n/language-resource-ke
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AudioHymnsTableComponent implements OnInit, OnChanges {
-  // languageResourceKey = LanguageResourceKey;
   rootLanguageResourceKey = RootLanguageResourceKey;
   dashboardLanguageResourceKey = DashboardLanguageResourceKey;
   pagination = Array(0);

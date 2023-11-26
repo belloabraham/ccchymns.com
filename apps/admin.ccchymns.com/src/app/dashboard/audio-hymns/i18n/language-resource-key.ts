@@ -6,4 +6,5 @@ export class LanguageResourceKey {
   static readonly ENGLISH_AUDIO_HYMNS = 'english_audio_hymns';
   static readonly FRENCH_AUDIO_HYMNS = 'french_audio_hymns';
   static readonly YORUBA_AUDIO_HYMNS = 'yoruba_audio_hymns';
+  static readonly UPLOAD_AUDIO_HYMN = 'upload_audio_hymn';
 }

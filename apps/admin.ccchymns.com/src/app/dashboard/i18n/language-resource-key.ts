@@ -14,4 +14,5 @@ export class DashboardLanguageResourceKey {
   static readonly EDIT_HYMN = 'edit_hymn';
   static readonly ADD_HYMN = 'add_hymn';
   static readonly OPTIONS = 'options';
+  static readonly UPLOAD = 'upload';
 }
