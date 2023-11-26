@@ -46,7 +46,6 @@ export class AudioPlayerComponent implements OnInit, AfterViewInit {
       (entries) => {
         entries.forEach((entry) => {
           const audioIsNotInView = !entry.isIntersecting;
-          console.error(audioIsNotInView);
           if (audioIsNotInView) {
             audioPlayer.pause();
           }
