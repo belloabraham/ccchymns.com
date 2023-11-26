@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { SharedModule } from '../../shared';
 import { MOCK_BIBLE_REFERENCE } from '../shared/mock/bible-references';
-import { CommonComponent } from '../common/common.component';
+import { CommonComponent } from '../shared/common/common.component';
+import { LanguageResourceKey } from '../i18n/language-resource-key';
 
 @Component({
   selector: 'app-bible-references-yoruba',
@@ -12,6 +13,6 @@ import { CommonComponent } from '../common/common.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class YorubaComponent {
-  titleKey = 'yoruba_bible_references';
+  titleKey = LanguageResourceKey.YORUBA_BIBLE_REFERENCES
   data = MOCK_BIBLE_REFERENCE;
 }

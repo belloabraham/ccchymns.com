@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { SharedModule } from '../../shared';
 import { MOCK_AUDIO_HYMNS } from '../shared/mock/audio-hymns';
-import { CommonComponent } from '../common/common.component';
+import { CommonComponent } from '../shared/common/common.component';
+import { LanguageResourceKey } from '../i18n/language-resource-key';
 
 @Component({
   selector: 'app-audio-french',
@@ -12,6 +13,6 @@ import { CommonComponent } from '../common/common.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FrenchComponent {
-  titleKey = 'french_audio_hymns';
+  titleKey = LanguageResourceKey.FRENCH_AUDIO_HYMNS
   data = MOCK_AUDIO_HYMNS;
 }
