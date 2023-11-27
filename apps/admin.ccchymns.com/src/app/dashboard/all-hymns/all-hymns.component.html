@@ -2,7 +2,7 @@
 
   <div class="table-container">
     <input type="text" class="form-control w-50" [disabled]="data.length === 0" (keyup)="onFilterTextChanged($event)"
-      [placeholder]="t(languageResourceKey.FILTER_HYMN_MSG)">
+      [placeholder]="t(languageResourceKey.FILTER_ALL_HYMNS_MSG)">
 
     <div class="card w-100">
       <div class="card-header py-0 pe-1 bg-body-secondary d-flex justify-content-between align-items-center">
@@ -38,8 +38,8 @@
       </div>
       <div class="card-body overflow-x-scroll">
         <app-all-hymns-table #allHymnsTable='allHymnsTable' [data]="data" [filterBy]="filterBy" />
-        <!-- <app-lyrics-placeholder [columnNames]="columnNames" /> -->
-        <!-- <app-empty-sate [descriptionKey]="languageResourceKey.EMPTY_STATE_DESCRIPTION"/> -->
+        <!-- <app-all-hymns-placeholder [columnNames]="columnNames" /> -->
+        <app-empty-sate [descriptionKey]="languageResourceKey.EMPTY_STATE_DESCRIPTION"/>
         <!-- <app-error-state (retry)="retry()" /> -->
       </div>
     </div>

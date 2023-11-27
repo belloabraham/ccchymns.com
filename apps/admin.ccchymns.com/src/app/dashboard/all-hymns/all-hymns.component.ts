@@ -10,6 +10,9 @@ import { DashboardLanguageResourceKey } from '../i18n/language-resource-key';
 import { IEditorsHymn, RootLanguageResourceKey } from '@ccchymns.com/common';
 import { AllHymnsTableComponent } from './all-hymns-table/all-hymns-table.component';
 import { SubSink } from 'subsink';
+import { AllHymnsPlaceholderComponent } from './all-hymns-placeholder/all-hymns-placeholder.component';
+import { COLUMN_NAMES_FOR_ALL_HYMNS_TABLE } from './data';
+import { LanguageResourceKey } from './i18n/language-resource-key';
 
 @Component({
   selector: 'app-all-hymns',
@@ -22,19 +25,20 @@ import { SubSink } from 'subsink';
     EmptyStateComponent,
     ErrorStateComponent,
     AllHymnsTableComponent,
+    AllHymnsPlaceholderComponent,
   ],
   templateUrl: './all-hymns.component.html',
   styleUrls: ['./all-hymns.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AllHymnsComponent{
-  columnNames = COLUMN_NAMES_FOR_LYRICS_TABLE;
-  languageResourceKey = LanguageResourceKey;
+export class AllHymnsComponent {
+  columnNames = COLUMN_NAMES_FOR_ALL_HYMNS_TABLE;
+ languageResourceKey = LanguageResourceKey;
   rootLanguageResourceKey = RootLanguageResourceKey;
   dashboardLanguageResourceKey = DashboardLanguageResourceKey;
   filterBy?: string;
   sortOrderIsAscending = true;
-  columnIdForSorting = COLUMN_NAMES_FOR_LYRICS_TABLE[0];
+  columnIdForSorting = COLUMN_NAMES_FOR_ALL_HYMNS_TABLE[0];
   @Input({ required: true }) titleKey!: string;
   @Input({ required: true }) data: IEditorsHymn[] = [];
   private subscriptions = new SubSink();
@@ -43,4 +47,6 @@ export class AllHymnsComponent{
     this.filterBy = event.target.value;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  retry() {}
 }

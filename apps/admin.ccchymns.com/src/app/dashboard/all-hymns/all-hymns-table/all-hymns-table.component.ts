@@ -6,11 +6,13 @@ import {
   NgMaterialButtonModule,
 } from '@ccchymns.com/angular';
 import { CCCIconDirective } from '@ccchymns.com/ui';
-import { DisplayService, IEditorsHymn, Size } from '@ccchymns.com/common';
-import { SortOrder } from '../../shared';
+import { DisplayService, IEditorsHymn, RootLanguageResourceKey, Size } from '@ccchymns.com/common';
+import { SortOrder, TABLE_PAGE_SIZE } from '../../shared';
 import { SubSink } from 'subsink';
 import { DashboardLanguageResourceKey } from '../../i18n/language-resource-key';
 import { LanguageResourceKey } from '../i18n/language-resource-key';
+import { AllHymnsDataSource } from '../datasource/all-hymns-datasource';
+import { COLUMN_NAMES_FOR_ALL_HYMNS_TABLE } from '../data';
 
 @Component({
   selector: 'app-all-hymns-table',
@@ -30,21 +32,24 @@ import { LanguageResourceKey } from '../i18n/language-resource-key';
 export class AllHymnsTableComponent implements OnChanges, OnInit {
   languageResourceKey = LanguageResourceKey;
   dashboardLanguageResourceKey = DashboardLanguageResourceKey;
+  rootLanguageResourceKey = RootLanguageResourceKey;
+
   pagination = Array(0);
   private subscriptions = new SubSink();
   displayIsDesktop = false;
 
+  columnNames: string[] = COLUMN_NAMES_FOR_ALL_HYMNS_TABLE;
+
   @Input({ required: true }) data: IEditorsHymn[] = [];
   @Input() filterBy: string | undefined;
-  columnNames: string[] = COLUMN_NAMES_FOR_LYRICS_TABLE;
-  dataSource = new HymnLyricsDataSource([]);
+  dataSource = new AllHymnsDataSource([]);
 
   constructor(private displayService: DisplayService) {
     this.getIsDeviceDisplayDesktopAsync();
   }
 
   ngOnInit(): void {
-    this.dataSource = new HymnLyricsDataSource(this.data);
+    this.dataSource = new AllHymnsDataSource(this.data);
     const paginationLength = this.data.length / TABLE_PAGE_SIZE;
     this.pagination = Array(
       paginationLength < 1 ? 0 : Math.round(paginationLength)

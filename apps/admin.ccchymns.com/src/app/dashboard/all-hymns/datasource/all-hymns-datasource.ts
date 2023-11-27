@@ -68,10 +68,10 @@ export class AllHymnsDataSource extends DataSource<IEditorsHymn> {
           ? firstRowSortByValue - secondRowSortByValue
           : secondRowSortByValue - firstRowSortByValue;
       } else {
-        const firstRowStringSortByValue = firstRowSortByValue
+        const firstRowStringSortByValue = firstRowSortByValue!
           .toString()
           .toLowerCase();
-        const secondRowStringSortByValue = secondRowSortByValue
+        const secondRowStringSortByValue = secondRowSortByValue!
           .toString()
           .toLowerCase();
         return order === Order.ASC

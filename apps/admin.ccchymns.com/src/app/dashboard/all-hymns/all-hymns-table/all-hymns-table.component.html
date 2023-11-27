@@ -1,21 +1,59 @@
 <table *transloco="let t" class="table table-striped" cdk-table [dataSource]="dataSource" [trackBy]="trackByFn">
 
+  <!-- No -->
   <ng-container [cdkColumnDef]="columnNames[0]">
     <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[0])}}</th>
-    <td cdk-cell *cdkCellDef="let row">{{row[columnNames[0]]}}</td>
+    <td cdk-cell *cdkCellDef="let row">
+      {{row.no}}
+    </td>
   </ng-container>
 
+  <!-- Lyrics -->
   <ng-container [cdkColumnDef]="columnNames[1]">
     <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[1])}}</th>
-    <td cdk-cell *cdkCellDef="let row">{{row[columnNames[1]]}}</td>
+    <td cdk-cell *cdkCellDef="let row">
+      <i [ccc-icon]="'y-circle'" [class]="row.yoruba.lyrics ? 'text-success':'text-muted'"></i>
+      <i [ccc-icon]="'e-circle'" [class]="row.english.lyrics ? 'text-success':'text-muted'"></i>
+      <i [ccc-icon]="'f-circle'" [class]="row.french.lyrics ? 'text-success':'text-muted'"></i>
+    </td>
   </ng-container>
 
+  <!-- Tonic Solfa -->
   <ng-container [cdkColumnDef]="columnNames[2]">
     <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[2])}}</th>
     <td cdk-cell *cdkCellDef="let row">
-      <button [ccc-icon]="'pencil-outline'" ng-mat-icon-button ng-mat-tooltip [id]="row.no" type="button">
+      <i [ccc-icon]="'y-circle'" [class]="row.yoruba.tonic ? 'text-success':'text-muted'"></i>
+      <i [ccc-icon]="'e-circle'" [class]="row.english.tonic ? 'text-success':'text-muted'"></i>
+      <i [ccc-icon]="'f-circle'" [class]="row.french.tonic ? 'text-success':'text-muted'"></i>
+    </td>
+  </ng-container>
+
+  <!-- Audio Hymns -->
+  <ng-container [cdkColumnDef]="columnNames[3]">
+    <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[3])}}</th>
+    <td cdk-cell *cdkCellDef="let row">
+      <i [ccc-icon]="'y-circle'" [class]="row.yoruba.audio ? 'text-success':'text-muted'"></i>
+      <i [ccc-icon]="'e-circle'" [class]="row.english.audio ? 'text-success':'text-muted'"></i>
+      <i [ccc-icon]="'f-circle'" [class]="row.french.audio ? 'text-success':'text-muted'"></i>
+    </td>
+  </ng-container>
+
+  <!-- Audio Space -->
+  <ng-container [cdkColumnDef]="columnNames[4]">
+    <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[4])}}</th>
+    <td cdk-cell *cdkCellDef="let row">
+      <i [ccc-icon]="'y-circle'" [class]="row.yoruba.audioSpace ? 'text-success':'text-muted'"></i>
+      <i [ccc-icon]="'e-circle'" [class]="row.english.audioSpace ? 'text-success':'text-muted'"></i>
+      <i [ccc-icon]="'f-circle'" [class]="row.french.audioSpace ? 'text-success':'text-muted'"></i>
+    </td>
+  </ng-container>
+
+  <ng-container [cdkColumnDef]="columnNames[5]">
+    <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[5])}}</th>
+    <td cdk-cell *cdkCellDef="let row">
+      <button [ccc-icon]="'publish'" ng-mat-icon-button ng-mat-tooltip [id]="row.no" type="button">
       </button>
-      <div ng-mat-tooltip [id]="row.no">{{t(dashboardLanguageResourceKey.EDIT)}}</div>
+      <div ng-mat-tooltip [id]="row.no">{{t(dashboardLanguageResourceKey.PUBLISH)}}</div>
     </td>
   </ng-container>
 
