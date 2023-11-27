@@ -16,4 +16,5 @@ export class DashboardLanguageResourceKey {
   static readonly OPTIONS = 'options';
   static readonly UPLOAD = 'upload';
   static readonly PUBLISH = 'publish';
+  static readonly PUBLISHED = 'published';
 }

@@ -52,8 +52,12 @@
   <ng-container [cdkColumnDef]="columnNames[5]">
     <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[5])}}</th>
     <td cdk-cell *cdkCellDef="let row">
+
       @if(row.published){
-      <i class='icon' [ccc-icon]="'check-circle'" class="text-success"></i>
+      <button [ccc-icon]="'check-circle'" class="text-success" ng-mat-icon-button ng-mat-tooltip [id]="row.no"
+        type="button">
+      </button>
+      <div ng-mat-tooltip [id]="row.no">{{t(dashboardLanguageResourceKey.PUBLISHED)}}</div>
       }
 
       @if(!row.published){
