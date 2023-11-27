@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { CdkTableModule } from '@angular/cdk/table';
 import { TranslocoModule } from '@ngneat/transloco';
-import { BibleReferenceUIState, DisplayService, Size } from '@ccchymns.com/common';
+import { IBibleReferenceUIState, DisplayService, Size } from '@ccchymns.com/common';
 import {
   NgMatTooltipModule,
   NgMaterialButtonModule,
@@ -36,7 +36,7 @@ export class BibleReferencesTableComponent implements OnChanges, OnInit {
   private subscriptions = new SubSink();
   displayIsDesktop = false;
 
-  @Input({ required: true }) data: BibleReferenceUIState[] = [];
+  @Input({ required: true }) data: IBibleReferenceUIState[] = [];
   @Input() filterBy: string | undefined;
   columnNames: string[] = COLUMN_NAMES_FOR_BIBLE_REFERENCES_TABLE;
   dataSource = new BibleReferenceDataSource([]);

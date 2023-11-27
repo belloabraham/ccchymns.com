@@ -34,7 +34,7 @@ export class AllHymnsTableComponent implements OnChanges, OnInit {
   private subscriptions = new SubSink();
   displayIsDesktop = false;
 
-  @Input({ required: true }) data: HymnLyricsUIState[] = [];
+  @Input({ required: true }) data: IHymnLyricsUIState[] = [];
   @Input() filterBy: string | undefined;
   columnNames: string[] = COLUMN_NAMES_FOR_LYRICS_TABLE;
   dataSource = new HymnLyricsDataSource([]);

@@ -1,21 +1,21 @@
 import { BehaviorSubject, Observable } from 'rxjs';
 import { DataSource } from '@angular/cdk/table';
-import { AudioHymnsUIState } from '@ccchymns.com/common';
+import { IAudioHymnsUIState } from '@ccchymns.com/common';
 import { Order, SortOrder, TABLE_PAGE_SIZE } from '../../../shared';
 
-export class AudioHymnsDataSource extends DataSource<AudioHymnsUIState> {
-  private data$!: BehaviorSubject<AudioHymnsUIState[]>;
-  private filteredData: AudioHymnsUIState[] = [];
-  private data: AudioHymnsUIState[] = [];
-  private paginatedData: AudioHymnsUIState[] = [];
+export class AudioHymnsDataSource extends DataSource<IAudioHymnsUIState> {
+  private data$!: BehaviorSubject<IAudioHymnsUIState[]>;
+  private filteredData: IAudioHymnsUIState[] = [];
+  private data: IAudioHymnsUIState[] = [];
+  private paginatedData: IAudioHymnsUIState[] = [];
 
   private pageSize = TABLE_PAGE_SIZE; // Number of items per page
   private pageIndex = 0; // Current page index
 
-  constructor(data: AudioHymnsUIState[]) {
+  constructor(data: IAudioHymnsUIState[]) {
     super();
     this.data = data;
-    this.data$ = new BehaviorSubject<AudioHymnsUIState[]>([]);
+    this.data$ = new BehaviorSubject<IAudioHymnsUIState[]>([]);
   }
 
   isEndOfPagination() {
@@ -25,7 +25,7 @@ export class AudioHymnsDataSource extends DataSource<AudioHymnsUIState> {
     return startIndex >= totalPageSize || endIndex >= totalPageSize;
   }
 
-  connect(): Observable<AudioHymnsUIState[]> {
+  connect(): Observable<IAudioHymnsUIState[]> {
     const startIndex = this.pageIndex * this.pageSize;
     const endIndex = startIndex + this.pageSize;
     this.paginatedData = this.data.slice(startIndex, endIndex);
@@ -89,7 +89,7 @@ export class AudioHymnsDataSource extends DataSource<AudioHymnsUIState> {
     this.data$.next(this.paginatedData);
   }
 
-  private getDataForCurrentPage(pageIndex: number): AudioHymnsUIState[] {
+  private getDataForCurrentPage(pageIndex: number): IAudioHymnsUIState[] {
     const startIndex = pageIndex * this.pageSize;
     const endIndex = startIndex + this.pageSize;
     return this.data.slice(startIndex, endIndex);

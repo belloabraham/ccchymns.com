@@ -15,7 +15,7 @@ import {
   NgMaterialButtonModule,
 } from '@ccchymns.com/angular';
 import {
-  HymnLyricsUIState,
+  IHymnLyricsUIState,
   RootLanguageResourceKey,
 } from '@ccchymns.com/common';
 import { LanguageResourceKey } from '../../i18n/language-resource-key';
@@ -57,7 +57,7 @@ export class CommonComponent implements OnInit {
   sortOrderIsAscending = true;
   columnIdForSorting = COLUMN_NAMES_FOR_LYRICS_TABLE[0];
   @Input({ required: true }) titleKey!: string;
-  @Input({ required: true }) data: HymnLyricsUIState[] = [];
+  @Input({ required: true }) data: IHymnLyricsUIState[] = [];
   private subscriptions = new SubSink();
 
   onFilterTextChanged(event: any) {

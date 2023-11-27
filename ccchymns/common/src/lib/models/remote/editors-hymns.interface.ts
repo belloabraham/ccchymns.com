@@ -1,18 +1,4 @@
-export interface Hymn {
-  no: number;
-  paid: boolean;
-  yoruba: {
-    lyrics: string;
-  };
-  english: {
-    lyrics: string;
-  };
-  french: {
-    lyrics: string;
-  };
-}
-
-export interface EditorsHymn {
+export interface IEditorsHymn {
   no: number;
   paid: boolean;
   published: boolean;

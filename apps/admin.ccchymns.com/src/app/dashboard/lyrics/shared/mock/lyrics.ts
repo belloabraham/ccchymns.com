@@ -1,9 +1,9 @@
-import { HymnLyricsUIState } from '@ccchymns.com/common';
+import { IHymnLyricsUIState } from '@ccchymns.com/common';
 
-export const MOCK_HYMN_LYRICS: HymnLyricsUIState[] = [
+export const MOCK_HYMN_LYRICS: IHymnLyricsUIState[] = [
   {
     no: 1,
-    hymn: `
+    lyrics: `
     Jerih mo yah mah,
     Jerih mo yah mah;
     Awon Angeli kun f’ayo lorun,
@@ -14,7 +14,7 @@ export const MOCK_HYMN_LYRICS: HymnLyricsUIState[] = [
   },
   {
     no: 2,
-    hymn: `
+    lyrics: `
     Yah rah Sarah,
     Yah rah Samahtah,
     Yah rah Sarah,
@@ -27,7 +27,7 @@ export const MOCK_HYMN_LYRICS: HymnLyricsUIState[] = [
   },
   {
     no: 3,
-    hymn: `
+    lyrics: `
     1: K’awa elese yiwa pada,
     Jesu yio s’okale sinu wa o,
     K’awa elese yiwa pada,
@@ -50,7 +50,7 @@ export const MOCK_HYMN_LYRICS: HymnLyricsUIState[] = [
   },
   {
     no: 4,
-    hymn: `
+    lyrics: `
     1: Gbohun mi, gbohun mi,
     Tani mo ni laiye osi yi?
     Nigbati ‘re ba ko mi sile
@@ -64,7 +64,7 @@ export const MOCK_HYMN_LYRICS: HymnLyricsUIState[] = [
   },
   {
     no: 5,
-    hymn: `
+    lyrics: `
     Yah rah Sarah,
     Yah rah Samahtah,
     Yah rah Sarah,
@@ -77,7 +77,7 @@ export const MOCK_HYMN_LYRICS: HymnLyricsUIState[] = [
   },
   {
     no: 6,
-    hymn: `
+    lyrics: `
     1: K’awa elese yiwa pada,
     Jesu yio s’okale sinu wa o,
     K’awa elese yiwa pada,
@@ -100,7 +100,7 @@ export const MOCK_HYMN_LYRICS: HymnLyricsUIState[] = [
   },
   {
     no: 7,
-    hymn: `
+    lyrics: `
     1: Iwa rere mo nt’oro fun yin
     Eyin woli mi gbogbo,
     E ko iwa ilara kuro,
@@ -113,7 +113,7 @@ export const MOCK_HYMN_LYRICS: HymnLyricsUIState[] = [
   },
   {
     no: 8,
-    hymn: `
+    lyrics: `
     1: Idariji ese lantoro
     Idariji ese lantoro
     Baba Mimo, Omo Mimo,
@@ -146,7 +146,7 @@ export const MOCK_HYMN_LYRICS: HymnLyricsUIState[] = [
   },
   {
     no: 9,
-    hymn: `
+    lyrics: `
     1: E ba wa yo, ara ninu Kristi,
               Fun o ri rere ta ni,
               Wakati buburu na de,
@@ -194,7 +194,7 @@ export const MOCK_HYMN_LYRICS: HymnLyricsUIState[] = [
   },
   {
     no: 10,
-    hymn: `
+    lyrics: `
     Yah rah Sarah,
     Yah rah Samahtah,
     Yah rah Sarah,
