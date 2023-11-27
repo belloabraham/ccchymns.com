@@ -1,5 +1,5 @@
 export interface AudioHymnsUIState {
   no: number;
-  url: string;
+  audio: string;
   [key: string]: number | string;
 }

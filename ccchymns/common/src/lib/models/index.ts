@@ -1,5 +1,5 @@
-export * from './hymnlyrics-uistate';
-export * from './bible-references-uistate';
-export * from './audio-hymns-uistate';
+export * from './ui/hymn-lyrics-uistate';
+export * from './ui/bible-references-uistate';
+export * from './ui/audio-hymns-uistate';
 
 
