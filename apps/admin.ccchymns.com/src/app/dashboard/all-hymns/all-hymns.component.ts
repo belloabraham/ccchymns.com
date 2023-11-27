@@ -13,6 +13,7 @@ import { SubSink } from 'subsink';
 import { AllHymnsPlaceholderComponent } from './all-hymns-placeholder/all-hymns-placeholder.component';
 import { COLUMN_NAMES_FOR_ALL_HYMNS_TABLE } from './data';
 import { LanguageResourceKey } from './i18n/language-resource-key';
+import { ALL_HYMNS_MOCK_DATA } from './mock/all-hymns';
 
 @Component({
   selector: 'app-all-hymns',
@@ -33,14 +34,14 @@ import { LanguageResourceKey } from './i18n/language-resource-key';
 })
 export class AllHymnsComponent {
   columnNames = COLUMN_NAMES_FOR_ALL_HYMNS_TABLE;
- languageResourceKey = LanguageResourceKey;
+  languageResourceKey = LanguageResourceKey;
   rootLanguageResourceKey = RootLanguageResourceKey;
   dashboardLanguageResourceKey = DashboardLanguageResourceKey;
   filterBy?: string;
   sortOrderIsAscending = true;
   columnIdForSorting = COLUMN_NAMES_FOR_ALL_HYMNS_TABLE[0];
   @Input({ required: true }) titleKey!: string;
-  @Input({ required: true }) data: IEditorsHymn[] = [];
+  @Input({ required: true }) data: IEditorsHymn[] = ALL_HYMNS_MOCK_DATA;
   private subscriptions = new SubSink();
 
   onFilterTextChanged(event: any) {

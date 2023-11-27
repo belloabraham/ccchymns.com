@@ -1,4 +1,5 @@
-<table *transloco="let t" class="table table-striped" cdk-table [dataSource]="dataSource" [trackBy]="trackByFn">
+<table *transloco="let t" class="table table-striped align-middle" cdk-table [dataSource]="dataSource"
+  [trackBy]="trackByFn">
 
   <!-- No -->
   <ng-container [cdkColumnDef]="columnNames[0]">
@@ -12,9 +13,9 @@
   <ng-container [cdkColumnDef]="columnNames[1]">
     <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[1])}}</th>
     <td cdk-cell *cdkCellDef="let row">
-      <i [ccc-icon]="'y-circle'" [class]="row.yoruba.lyrics ? 'text-success':'text-muted'"></i>
-      <i [ccc-icon]="'e-circle'" [class]="row.english.lyrics ? 'text-success':'text-muted'"></i>
-      <i [ccc-icon]="'f-circle'" [class]="row.french.lyrics ? 'text-success':'text-muted'"></i>
+      <i class='icon' [ccc-icon]="'y-circle'" [class]="row.yoruba.lyrics ? 'text-success':'text-muted'"></i>
+      <i class='icon' [ccc-icon]="'e-circle'" [class]="row.english.lyrics ? 'text-success':'text-muted'"></i>
+      <i class='icon' [ccc-icon]="'f-circle'" [class]="row.french.lyrics ? 'text-success':'text-muted'"></i>
     </td>
   </ng-container>
 
@@ -22,9 +23,9 @@
   <ng-container [cdkColumnDef]="columnNames[2]">
     <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[2])}}</th>
     <td cdk-cell *cdkCellDef="let row">
-      <i [ccc-icon]="'y-circle'" [class]="row.yoruba.tonic ? 'text-success':'text-muted'"></i>
-      <i [ccc-icon]="'e-circle'" [class]="row.english.tonic ? 'text-success':'text-muted'"></i>
-      <i [ccc-icon]="'f-circle'" [class]="row.french.tonic ? 'text-success':'text-muted'"></i>
+      <i class='icon' [ccc-icon]="'y-circle'" [class]="row.yoruba.tonic ? 'text-success':'text-muted'"></i>
+      <i class='icon' [ccc-icon]="'e-circle'" [class]="row.english.tonic ? 'text-success':'text-muted'"></i>
+      <i class='icon' [ccc-icon]="'f-circle'" [class]="row.french.tonic ? 'text-success':'text-muted'"></i>
     </td>
   </ng-container>
 
@@ -32,9 +33,9 @@
   <ng-container [cdkColumnDef]="columnNames[3]">
     <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[3])}}</th>
     <td cdk-cell *cdkCellDef="let row">
-      <i [ccc-icon]="'y-circle'" [class]="row.yoruba.audio ? 'text-success':'text-muted'"></i>
-      <i [ccc-icon]="'e-circle'" [class]="row.english.audio ? 'text-success':'text-muted'"></i>
-      <i [ccc-icon]="'f-circle'" [class]="row.french.audio ? 'text-success':'text-muted'"></i>
+      <i class='icon' [ccc-icon]="'y-circle'" [class]="row.yoruba.audio ? 'text-success':'text-muted'"></i>
+      <i class='icon' [ccc-icon]="'e-circle'" [class]="row.english.audio ? 'text-success':'text-muted'"></i>
+      <i class='icon' [ccc-icon]="'f-circle'" [class]="row.french.audio ? 'text-success':'text-muted'"></i>
     </td>
   </ng-container>
 
@@ -42,18 +43,25 @@
   <ng-container [cdkColumnDef]="columnNames[4]">
     <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[4])}}</th>
     <td cdk-cell *cdkCellDef="let row">
-      <i [ccc-icon]="'y-circle'" [class]="row.yoruba.audioSpace ? 'text-success':'text-muted'"></i>
-      <i [ccc-icon]="'e-circle'" [class]="row.english.audioSpace ? 'text-success':'text-muted'"></i>
-      <i [ccc-icon]="'f-circle'" [class]="row.french.audioSpace ? 'text-success':'text-muted'"></i>
+      <i class='icon' [ccc-icon]="'y-circle'" [class]="row.yoruba.audioSpace ? 'text-success':'text-muted'"></i>
+      <i class='icon' [ccc-icon]="'e-circle'" [class]="row.english.audioSpace ? 'text-success':'text-muted'"></i>
+      <i class='icon' [ccc-icon]="'f-circle'" [class]="row.french.audioSpace ? 'text-success':'text-muted'"></i>
     </td>
   </ng-container>
 
   <ng-container [cdkColumnDef]="columnNames[5]">
     <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[5])}}</th>
     <td cdk-cell *cdkCellDef="let row">
+      @if(row.published){
+      <i class='icon' [ccc-icon]="'check-circle'" class="text-success"></i>
+      }
+
+      @if(!row.published){
       <button [ccc-icon]="'publish'" ng-mat-icon-button ng-mat-tooltip [id]="row.no" type="button">
       </button>
       <div ng-mat-tooltip [id]="row.no">{{t(dashboardLanguageResourceKey.PUBLISH)}}</div>
+      }
+
     </td>
   </ng-container>
 
@@ -70,7 +78,7 @@
         <button [class.disabled]="getCurrentPaginationIndex()===0" (click)="previousPage()"
           class="page-link navigation-link" aria-label="Previous">
           <span aria-hidden="true">
-            <i [ccc-icon]="'arrow-left'" class="navigation-icon"></i>
+            <i class='icon' [ccc-icon]="'arrow-left'" class="navigation-icon"></i>
           </span>
         </button>
       </li>
@@ -82,7 +90,7 @@
         <button [class.disabled]="isEndOfPagination()" (click)="nextPage()" class="page-link navigation-link" href="#"
           aria-label="Next">
           <span aria-hidden="true">
-            <i [ccc-icon]="'arrow-right'" class="navigation-icon"></i>
+            <i class='icon' [ccc-icon]="'arrow-right'" class="navigation-icon"></i>
           </span>
         </button>
       </li>

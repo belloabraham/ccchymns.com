@@ -43,7 +43,8 @@ export class CCCIconDirective implements OnChanges {
     | 'e-circle'
     | 'f-circle'
     | 'y-circle'
-    | 'publish';
+    | 'publish'
+    | 'check-circle';
   @Input() position: 'start' | 'end' = 'start';
   @Input() state: 'on' | 'off' | null = null;
 

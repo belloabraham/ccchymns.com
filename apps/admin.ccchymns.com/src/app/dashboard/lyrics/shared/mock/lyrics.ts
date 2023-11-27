@@ -1,6 +1,6 @@
 import { IHymnLyricsUIState } from '@ccchymns.com/common';
 
-export const MOCK_HYMN_LYRICS: IHymnLyricsUIState[] = [
+export const HYMN_LYRICS_MOCK_DATA: IHymnLyricsUIState[] = [
   {
     no: 1,
     lyrics: `

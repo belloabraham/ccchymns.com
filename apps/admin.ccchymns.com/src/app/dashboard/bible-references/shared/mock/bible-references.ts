@@ -1,6 +1,6 @@
 import { IBibleReferenceUIState } from '@ccchymns.com/common';
 
-export const MOCK_BIBLE_REFERENCE: IBibleReferenceUIState[] = [
+export const BIBLE_REFERENCE_MOCK_DATA: IBibleReferenceUIState[] = [
   {
     reference: 'Psalm 23:1',
     verses: 'The Lord is my shepherd; I shall not want.',

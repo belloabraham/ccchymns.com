@@ -25,6 +25,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.ccci-check-circle:before {
+  content: "\e918";
+}
 .ccci-e-circle:before {
   content: '\e914';
 }
