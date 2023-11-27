@@ -6,7 +6,7 @@ import {
   NgMaterialButtonModule,
 } from '@ccchymns.com/angular';
 import { CCCIconDirective } from '@ccchymns.com/ui';
-import { DisplayService, Size } from '@ccchymns.com/common';
+import { DisplayService, IEditorsHymn, Size } from '@ccchymns.com/common';
 import { SortOrder } from '../../shared';
 import { SubSink } from 'subsink';
 import { DashboardLanguageResourceKey } from '../../i18n/language-resource-key';
@@ -34,7 +34,7 @@ export class AllHymnsTableComponent implements OnChanges, OnInit {
   private subscriptions = new SubSink();
   displayIsDesktop = false;
 
-  @Input({ required: true }) data: IHymnLyricsUIState[] = [];
+  @Input({ required: true }) data: IEditorsHymn[] = [];
   @Input() filterBy: string | undefined;
   columnNames: string[] = COLUMN_NAMES_FOR_LYRICS_TABLE;
   dataSource = new HymnLyricsDataSource([]);

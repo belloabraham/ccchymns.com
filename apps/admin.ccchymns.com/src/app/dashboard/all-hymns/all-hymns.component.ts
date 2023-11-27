@@ -7,7 +7,7 @@ import {
 import { CCCIconDirective } from '@ccchymns.com/ui';
 import { EmptyStateComponent, ErrorStateComponent } from '../shared';
 import { DashboardLanguageResourceKey } from '../i18n/language-resource-key';
-import { RootLanguageResourceKey } from '@ccchymns.com/common';
+import { IEditorsHymn, RootLanguageResourceKey } from '@ccchymns.com/common';
 import { AllHymnsTableComponent } from './all-hymns-table/all-hymns-table.component';
 import { SubSink } from 'subsink';
 
@@ -36,7 +36,7 @@ export class AllHymnsComponent{
   sortOrderIsAscending = true;
   columnIdForSorting = COLUMN_NAMES_FOR_LYRICS_TABLE[0];
   @Input({ required: true }) titleKey!: string;
-  @Input({ required: true }) data: HymnLyricsUIState[] = [];
+  @Input({ required: true }) data: IEditorsHymn[] = [];
   private subscriptions = new SubSink();
 
   onFilterTextChanged(event: any) {
