@@ -1,1 +1,50 @@
-<p>all-hymns works!</p>
+<div *transloco="let t" class="d-flex flex-column justify-content-center align-items-center">
+
+  <div class="table-container">
+    <input type="text" class="form-control w-50" [disabled]="data.length === 0" (keyup)="onFilterTextChanged($event)"
+      [placeholder]="t(languageResourceKey.FILTER_HYMN_MSG)">
+
+    <div class="card w-100">
+      <div class="card-header py-0 pe-1 bg-body-secondary d-flex justify-content-between align-items-center">
+
+        <span class="title mt-1">{{t(rootLanguageResourceKey.ALL_HYMNS)}}</span>
+
+        <div class="d-flex align-items-center">
+          <button [disabled]="allHymnsTable.getCurrentPaginationIndex()===0" type="button" ng-mat-tooltip
+            id="previous-page" (click)="allHymnsTable.previousPage()"
+            class="btn btn-secondary mt-1 d-flex align-items-center flex-nowrap text-start position-relative">
+            <i class="flex-shrink-0 fw-bolder" [ccc-icon]="'arrow-left'"></i>
+          </button>
+
+          <div ng-mat-tooltip id="previous-page">{{t(dashboardLanguageResourceKey.PREVIOUS_PAGE)}}</div>
+
+          <button [disabled]="allHymnsTable.isEndOfPagination()" type="button" ng-mat-tooltip
+            (click)="allHymnsTable.nextPage()" id="next-page"
+            class="btn btn-secondary mt-1 mx-2 me-md-3 d-flex align-items-center flex-nowrap text-start position-relative">
+            <i class="flex-shrink-0 fw-bolder" [ccc-icon]="'arrow-right'"></i>
+          </button>
+
+          <div ng-mat-tooltip id="next-page">{{t(dashboardLanguageResourceKey.NEXT_PAGE)}}</div>
+
+          <button [disabled]="data.length === 0" [ccc-icon]="sortOrderIsAscending? 'sort-asc': 'sort-desc'"
+            (click)="allHymnsTable.sortDataBy(columnIdForSorting, sortOrderIsAscending ? 'desc' : 'asc')"
+            (click)="sortOrderIsAscending = !sortOrderIsAscending" ng-mat-icon-button ng-mat-tooltip id="sort"
+            class="mx-md-2">
+          </button>
+          <div ng-mat-tooltip id="sort">{{t(dashboardLanguageResourceKey.SORT_MSG)}}</div>
+
+        </div>
+
+      </div>
+      <div class="card-body overflow-x-scroll">
+        <app-all-hymns-table #allHymnsTable='allHymnsTable' [data]="data" [filterBy]="filterBy" />
+        <!-- <app-lyrics-placeholder [columnNames]="columnNames" /> -->
+        <!-- <app-empty-sate [descriptionKey]="languageResourceKey.EMPTY_STATE_DESCRIPTION"/> -->
+        <!-- <app-error-state (retry)="retry()" /> -->
+      </div>
+    </div>
+
+  </div>
+
+
+</div>
