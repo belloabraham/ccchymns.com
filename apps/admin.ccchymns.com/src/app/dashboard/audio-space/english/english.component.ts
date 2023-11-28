@@ -3,6 +3,7 @@ import { SharedModule } from '../../shared';
 import { LanguageResourceKey } from '../i18n/language-resource-key';
 import { AUDIO_SPACE_MOCK_DATA } from '../shared/mock/audio-space';
 import { CommonComponent } from '../shared/common/common.component';
+import { RootLanguageResourceKey } from '@ccchymns.com/common';
 
 @Component({
   selector: 'app-audio-space-english',
@@ -13,6 +14,6 @@ import { CommonComponent } from '../shared/common/common.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EnglishComponent {
-  titleKey = LanguageResourceKey.ENGLISH_AUDIO_SPACE;
+  titleKey = RootLanguageResourceKey.AUDIO_SPACE;
   data = AUDIO_SPACE_MOCK_DATA;
 }

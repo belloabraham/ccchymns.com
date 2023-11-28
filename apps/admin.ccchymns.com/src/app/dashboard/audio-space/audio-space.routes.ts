@@ -11,17 +11,7 @@ export const AUDIO_SPACE_ROUTES: Routes = [
       {
         path: Route.ROOT,
         pathMatch: 'full',
-        redirectTo: Route.YORUBA,
-      },
-      {
-        path: Route.YORUBA,
-        data: {
-          breadcrumb: RootLanguageResourceKey.YORUBA,
-        },
-        loadComponent: () =>
-          import('./yoruba/yoruba.component').then(
-            (mod) => mod.YorubaComponent
-          ),
+        redirectTo: Route.ENGLISH,
       },
       {
         path: Route.ENGLISH,
@@ -31,16 +21,6 @@ export const AUDIO_SPACE_ROUTES: Routes = [
         loadComponent: () =>
           import('./english/english.component').then(
             (mod) => mod.EnglishComponent
-          ),
-      },
-      {
-        path: Route.FRENCH,
-        data: {
-          breadcrumb: RootLanguageResourceKey.FRENCH,
-        },
-        loadComponent: () =>
-          import('./french/french.component').then(
-            (mod) => mod.FrenchComponent
           ),
       },
     ],
