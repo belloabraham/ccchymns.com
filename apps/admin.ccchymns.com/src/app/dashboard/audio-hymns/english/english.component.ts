@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { SharedModule } from '../../shared';
-import { MOCK_AUDIO_HYMNS } from '../shared/mock/audio-hymns';
+import { AUDIO_HYMNS_MOC_DATA } from '../shared/mock/audio-hymns';
 import { CommonComponent } from '../shared/common/common.component';
 import { LanguageResourceKey } from '../i18n/language-resource-key';
 
@@ -13,6 +13,6 @@ import { LanguageResourceKey } from '../i18n/language-resource-key';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EnglishComponent {
-  titleKey = LanguageResourceKey.ENGLISH_AUDIO_HYMNS
-  data = MOCK_AUDIO_HYMNS;
+  titleKey = LanguageResourceKey.ENGLISH_AUDIO_HYMNS;
+  data = AUDIO_HYMNS_MOC_DATA;
 }

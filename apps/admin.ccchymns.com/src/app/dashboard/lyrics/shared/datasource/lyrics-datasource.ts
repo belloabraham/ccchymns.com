@@ -1,21 +1,21 @@
 import { BehaviorSubject, Observable } from 'rxjs';
 import { DataSource } from '@angular/cdk/table';
 import { Order, TABLE_PAGE_SIZE, SortOrder } from '../../../shared';
-import { HymnLyricsUIState } from '@ccchymns.com/common';
+import { IHymnLyricsUIState } from '@ccchymns.com/common';
 
-export class HymnLyricsDataSource extends DataSource<HymnLyricsUIState> {
-  private data$!: BehaviorSubject<HymnLyricsUIState[]>;
-  private filteredData: HymnLyricsUIState[] = [];
-  private data: HymnLyricsUIState[] = [];
-  private paginatedData: HymnLyricsUIState[] = [];
+export class HymnLyricsDataSource extends DataSource<IHymnLyricsUIState> {
+  private data$!: BehaviorSubject<IHymnLyricsUIState[]>;
+  private filteredData: IHymnLyricsUIState[] = [];
+  private data: IHymnLyricsUIState[] = [];
+  private paginatedData: IHymnLyricsUIState[] = [];
 
   private pageSize = TABLE_PAGE_SIZE; // Number of items per page
   private pageIndex = 0; // Current page index
 
-  constructor(data: HymnLyricsUIState[]) {
+  constructor(data: IHymnLyricsUIState[]) {
     super();
     this.data = data;
-    this.data$ = new BehaviorSubject<HymnLyricsUIState[]>([]);
+    this.data$ = new BehaviorSubject<IHymnLyricsUIState[]>([]);
   }
 
   isEndOfPagination() {
@@ -25,7 +25,7 @@ export class HymnLyricsDataSource extends DataSource<HymnLyricsUIState> {
     return startIndex >= totalPageSize || endIndex >= totalPageSize;
   }
 
-  connect(): Observable<HymnLyricsUIState[]> {
+  connect(): Observable<IHymnLyricsUIState[]> {
     const startIndex = this.pageIndex * this.pageSize;
     const endIndex = startIndex + this.pageSize;
     this.paginatedData = this.data.slice(startIndex, endIndex);
@@ -37,7 +37,7 @@ export class HymnLyricsDataSource extends DataSource<HymnLyricsUIState> {
     if (filterBy) {
       const filterValue = filterBy.toLowerCase();
       this.filteredData = this.data.filter((item) => {
-        const stringToSearch = `${item.no} ${item.hymn.toLowerCase()}`;
+        const stringToSearch = `${item.no} ${item.lyrics.toLowerCase()}`;
         return stringToSearch.includes(filterValue);
       });
       this.data$.next(this.filteredData);
@@ -97,7 +97,7 @@ export class HymnLyricsDataSource extends DataSource<HymnLyricsUIState> {
     this.goToPage(--this.pageIndex);
   }
 
-  private getDataForCurrentPage(pageIndex: number): HymnLyricsUIState[] {
+  private getDataForCurrentPage(pageIndex: number): IHymnLyricsUIState[] {
     const startIndex = pageIndex * this.pageSize;
     const endIndex = startIndex + this.pageSize;
     return this.data.slice(startIndex, endIndex);

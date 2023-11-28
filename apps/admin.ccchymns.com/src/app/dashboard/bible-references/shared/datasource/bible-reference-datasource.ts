@@ -1,22 +1,22 @@
-import { BibleReferenceUIState } from "@ccchymns.com/common";
+import { IBibleReferenceUIState } from "@ccchymns.com/common";
 import { BehaviorSubject, Observable } from "rxjs";
 import { TABLE_PAGE_SIZE } from "../../../shared";
 import { DataSource } from '@angular/cdk/table';
 
 
-export class BibleReferenceDataSource extends DataSource<BibleReferenceUIState> {
-  private data$!: BehaviorSubject<BibleReferenceUIState[]>;
-  private filteredData: BibleReferenceUIState[] = [];
-  private data: BibleReferenceUIState[] = [];
-  private paginatedData: BibleReferenceUIState[] = [];
+export class BibleReferenceDataSource extends DataSource<IBibleReferenceUIState> {
+  private data$!: BehaviorSubject<IBibleReferenceUIState[]>;
+  private filteredData: IBibleReferenceUIState[] = [];
+  private data: IBibleReferenceUIState[] = [];
+  private paginatedData: IBibleReferenceUIState[] = [];
 
   private pageSize = TABLE_PAGE_SIZE; // Number of items per page
   private pageIndex = 0; // Current page index
 
-  constructor(data: BibleReferenceUIState[]) {
+  constructor(data: IBibleReferenceUIState[]) {
     super();
     this.data = data;
-    this.data$ = new BehaviorSubject<BibleReferenceUIState[]>([]);
+    this.data$ = new BehaviorSubject<IBibleReferenceUIState[]>([]);
   }
 
   isEndOfPagination() {
@@ -26,7 +26,7 @@ export class BibleReferenceDataSource extends DataSource<BibleReferenceUIState> 
     return startIndex >= totalPageSize || endIndex >= totalPageSize;
   }
 
-  connect(): Observable<BibleReferenceUIState[]> {
+  connect(): Observable<IBibleReferenceUIState[]> {
     const startIndex = this.pageIndex * this.pageSize;
     const endIndex = startIndex + this.pageSize;
     this.paginatedData = this.data.slice(startIndex, endIndex);
@@ -68,7 +68,7 @@ export class BibleReferenceDataSource extends DataSource<BibleReferenceUIState> 
     this.goToPage(--this.pageIndex);
   }
 
-  private getDataForCurrentPage(pageIndex: number): BibleReferenceUIState[] {
+  private getDataForCurrentPage(pageIndex: number): IBibleReferenceUIState[] {
     const startIndex = pageIndex * this.pageSize;
     const endIndex = startIndex + this.pageSize;
     return this.data.slice(startIndex, endIndex);

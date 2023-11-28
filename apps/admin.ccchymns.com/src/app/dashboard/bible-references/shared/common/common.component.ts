@@ -16,7 +16,7 @@ import {
 } from '@ccchymns.com/angular';
 import { DashboardLanguageResourceKey } from '../../../i18n/language-resource-key';
 import {
-  BibleReferenceUIState,
+  IBibleReferenceUIState,
   RootLanguageResourceKey,
 } from '@ccchymns.com/common';
 import { LanguageResourceKey } from '../../i18n/language-resource-key';
@@ -58,7 +58,7 @@ export class CommonComponent implements OnInit {
 
   columnNames = COLUMN_NAMES_FOR_BIBLE_REFERENCES_TABLE;
   filterBy?: string;
-  @Input({ required: true }) data: BibleReferenceUIState[] = [];
+  @Input({ required: true }) data: IBibleReferenceUIState[] = [];
   private dialog!: Observable<string>;
 
   constructor(

@@ -7,7 +7,7 @@ import {
 import { CdkTableModule } from '@angular/cdk/table';
 import { TranslocoModule } from '@ngneat/transloco';
 import { AudioPlayerComponent, CCCIconDirective } from '@ccchymns.com/ui';
-import { AudioHymnsUIState, DisplayService, RootLanguageResourceKey, Size } from '@ccchymns.com/common';
+import { IAudioHymnsUIState, DisplayService, RootLanguageResourceKey, Size } from '@ccchymns.com/common';
 import { COLUMN_NAMES_FOR_AUDIO_HYMNS_TABLE } from '../data';
 import { AudioHymnsDataSource } from '../datasource/audio-hymns-datasource';
 import { SortOrder, TABLE_PAGE_SIZE } from '../../../shared';
@@ -37,7 +37,7 @@ export class AudioHymnsTableComponent implements OnInit, OnChanges {
   private subscriptions = new SubSink();
   displayIsDesktop = false;
 
-  @Input({ required: true }) data: AudioHymnsUIState[] = [];
+  @Input({ required: true }) data: IAudioHymnsUIState[] = [];
   @Input() filterBy: string | undefined;
   columnNames: string[] = COLUMN_NAMES_FOR_AUDIO_HYMNS_TABLE;
   dataSource = new AudioHymnsDataSource([]);
@@ -50,7 +50,7 @@ export class AudioHymnsTableComponent implements OnInit, OnChanges {
     this.dataSource = new AudioHymnsDataSource(this.data);
     const paginationLength = this.data.length / TABLE_PAGE_SIZE;
     this.pagination = Array(
-      paginationLength < 1 ? 0 : Math.round(paginationLength)
+      paginationLength < 1 ? 0 : Math.ceil(paginationLength)
     );
   }
 

@@ -1,5 +1,7 @@
-export * from './hymnlyrics-uistate';
-export * from './bible-references-uistate';
-export * from './audio-hymns-uistate';
+export * from './ui/hymn-lyrics-uistate.interface';
+export * from './ui/bible-references-uistate.interface';
+export * from './ui/audio-hymns-uistate.interface';
+export * from './remote/editors-hymns.interface';
+
 
 

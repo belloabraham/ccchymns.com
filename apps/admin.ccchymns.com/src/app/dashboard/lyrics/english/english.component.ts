@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonComponent } from '../shared/common/common.component';
-import { MOCK_HYMN_LYRICS } from '../shared';
+import { HYMN_LYRICS_MOCK_DATA } from '../shared';
 import { LanguageResourceKey } from '../i18n/language-resource-key';
 
 @Component({
@@ -12,6 +12,6 @@ import { LanguageResourceKey } from '../i18n/language-resource-key';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EnglishComponent {
-  titleKey = LanguageResourceKey.ENGLISH_LYRICS
-  data = MOCK_HYMN_LYRICS;
+  titleKey = LanguageResourceKey.ENGLISH_LYRICS;
+  data = HYMN_LYRICS_MOCK_DATA;
 }

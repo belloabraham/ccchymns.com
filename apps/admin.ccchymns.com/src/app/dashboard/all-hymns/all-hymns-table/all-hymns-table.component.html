@@ -1,0 +1,112 @@
+<table *transloco="let t" class="table table-striped align-middle" cdk-table [dataSource]="dataSource"
+  [trackBy]="trackByFn">
+
+  <!-- No -->
+  <ng-container [cdkColumnDef]="columnNames[0]">
+    <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[0])}}</th>
+    <td cdk-cell *cdkCellDef="let row">
+      {{row.no}}
+    </td>
+  </ng-container>
+
+  <!-- Lyrics -->
+  <ng-container [cdkColumnDef]="columnNames[1]">
+    <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[1])}}</th>
+    <td cdk-cell *cdkCellDef="let row">
+      <i class='icon' [ccc-icon]="'y-circle'" [class]="row.yoruba.lyrics ? 'text-success':'text-neutral'"></i>
+      <i class='icon' [ccc-icon]="'e-circle'" [class]="row.english.lyrics ? 'text-success':'text-neutral'"></i>
+      <i class='icon' [ccc-icon]="'f-circle'" [class]="row.french.lyrics ? 'text-success':'text-neutral'"></i>
+    </td>
+  </ng-container>
+
+  <!-- Tonic Solfa -->
+  <ng-container [cdkColumnDef]="columnNames[2]">
+    <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[2])}}</th>
+    <td cdk-cell *cdkCellDef="let row">
+      <i class='icon' [ccc-icon]="'y-circle'" [class]="row.yoruba.tonic ? 'text-success':'text-neutral'"></i>
+      <i class='icon' [ccc-icon]="'e-circle'" [class]="row.english.tonic ? 'text-success':'text-neutral'"></i>
+      <i class='icon' [ccc-icon]="'f-circle'" [class]="row.french.tonic ? 'text-success':'text-neutral'"></i>
+    </td>
+  </ng-container>
+
+  <!-- Audio Hymns -->
+  <ng-container [cdkColumnDef]="columnNames[3]">
+    <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[3])}}</th>
+    <td cdk-cell *cdkCellDef="let row">
+      <i class='icon' [ccc-icon]="'y-circle'" [class]="row.yoruba.audio ? 'text-success':'text-neutral'"></i>
+      <i class='icon' [ccc-icon]="'e-circle'" [class]="row.english.audio ? 'text-success':'text-neutral'"></i>
+      <i class='icon' [ccc-icon]="'f-circle'" [class]="row.french.audio ? 'text-success':'text-neutral'"></i>
+    </td>
+  </ng-container>
+
+  <!-- Audio Space -->
+  <ng-container [cdkColumnDef]="columnNames[4]">
+    <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[4])}}</th>
+    <td cdk-cell *cdkCellDef="let row">
+      <i class='icon' [ccc-icon]="'y-circle'" [class]="row.yoruba.audioSpace ? 'text-success':'text-neutral'"></i>
+      <i class='icon' [ccc-icon]="'e-circle'" [class]="row.english.audioSpace ? 'text-success':'text-neutral'"></i>
+      <i class='icon' [ccc-icon]="'f-circle'" [class]="row.french.audioSpace ? 'text-success':'text-neutral'"></i>
+    </td>
+  </ng-container>
+
+  <!-- Paid -->
+  <ng-container [cdkColumnDef]="columnNames[5]">
+    <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[5])}}</th>
+    <td cdk-cell *cdkCellDef="let row">
+      <div class="form-check form-switch">
+        <input class="form-check-input" [checked]="row.paid" type="checkbox" role="switch">
+      </div>
+    </td>
+  </ng-container>
+
+  <ng-container [cdkColumnDef]="columnNames[6]">
+    <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[6])}}</th>
+    <td cdk-cell *cdkCellDef="let row">
+      @if(row.published){
+      <button [ccc-icon]="'check-circle'" class="text-success" ng-mat-icon-button ng-mat-tooltip [id]="row.no"
+        type="button">
+      </button>
+      <div ng-mat-tooltip [id]="row.no">{{t(dashboardLanguageResourceKey.PUBLISHED)}}</div>
+      }
+      @if(!row.published){
+      <button [ccc-icon]="'publish'" ng-mat-icon-button ng-mat-tooltip [id]="row.no" type="button">
+      </button>
+      <div ng-mat-tooltip [id]="row.no">{{t(languageResourceKey.PUBLISH_HYMN)}}</div>
+      }
+    </td>
+  </ng-container>
+
+  <tr cdk-header-row *cdkHeaderRowDef="columnNames"></tr>
+  <tr cdk-row *cdkRowDef="let row; columns: columnNames;"></tr>
+
+</table>
+
+@if(pagination.length > 0){
+<div class="card-footer d-flex justify-content-end">
+  <nav aria-label="Page navigation">
+    <ul class="pagination pb-0 mb-0" [class.pagination-sm]="!displayIsDesktop">
+      <li class="page-item">
+        <button [class.disabled]="getCurrentPaginationIndex()===0" (click)="previousPage()"
+          class="page-link navigation-link" aria-label="Previous">
+          <span aria-hidden="true">
+            <i class='icon' [ccc-icon]="'arrow-left'" class="navigation-icon"></i>
+          </span>
+        </button>
+      </li>
+      @for(page of pagination; track page; let index = $index){
+      <li class="page-item" [class.active]="getCurrentPaginationIndex() === index">
+        <a class="page-link" (click)="goToPage(index)">{{index+1}}</a>
+      </li>
+      }
+      <li class="page-item">
+        <button [class.disabled]="isEndOfPagination()" (click)="nextPage()" class="page-link navigation-link" href="#"
+          aria-label="Next">
+          <span aria-hidden="true">
+            <i class='icon' [ccc-icon]="'arrow-right'" class="navigation-icon"></i>
+          </span>
+        </button>
+      </li>
+    </ul>
+  </nav>
+</div>
+}

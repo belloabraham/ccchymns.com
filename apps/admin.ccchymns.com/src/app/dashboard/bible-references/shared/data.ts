@@ -1,7 +1,7 @@
-import { BibleReferenceUIState } from '@ccchymns.com/common';
+import { IBibleReferenceUIState } from '@ccchymns.com/common';
 import { DashboardLanguageResourceKey } from '../../i18n/language-resource-key';
 
-const bibleReferenceUIState: BibleReferenceUIState = {
+const bibleReferenceUIState: IBibleReferenceUIState = {
   reference: '',
   verses: '',
 };

@@ -9,5 +9,4 @@ import { RouterOutlet } from '@angular/router';
   styleUrls: ['./lyrics.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LyricsComponent {
-}
+export class LyricsComponent {}

@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { CdkTableModule } from '@angular/cdk/table';
 import { TranslocoModule } from '@ngneat/transloco';
-import { DisplayService, HymnLyricsUIState, Size } from '@ccchymns.com/common';
+import { DisplayService, IHymnLyricsUIState, Size } from '@ccchymns.com/common';
 import {
   NgMatTooltipModule,
   NgMaterialButtonModule,
@@ -43,7 +43,7 @@ export class LyricsTableComponent implements OnChanges, OnInit {
   private subscriptions = new SubSink();
   displayIsDesktop = false;
 
-  @Input({ required: true }) data: HymnLyricsUIState[] = [];
+  @Input({ required: true }) data: IHymnLyricsUIState[] = [];
   @Input() filterBy: string | undefined;
   columnNames: string[] = COLUMN_NAMES_FOR_LYRICS_TABLE;
   dataSource = new HymnLyricsDataSource([]);
@@ -56,7 +56,7 @@ export class LyricsTableComponent implements OnChanges, OnInit {
     this.dataSource = new HymnLyricsDataSource(this.data);
     const paginationLength = this.data.length / TABLE_PAGE_SIZE;
     this.pagination = Array(
-      paginationLength < 1 ? 0 : Math.round(paginationLength)
+      paginationLength < 1 ? 0 : Math.ceil(paginationLength)
     );
   }
 

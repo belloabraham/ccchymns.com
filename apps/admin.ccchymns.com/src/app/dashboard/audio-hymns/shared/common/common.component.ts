@@ -22,7 +22,7 @@ import {
 } from '@ccchymns.com/angular';
 import { CCCIconDirective } from '@ccchymns.com/ui';
 import { COLUMN_NAMES_FOR_AUDIO_HYMNS_TABLE } from '../data';
-import { AudioHymnsUIState } from '@ccchymns.com/common';
+import { IAudioHymnsUIState } from '@ccchymns.com/common';
 import { Observable } from 'rxjs';
 import { TuiDialogService } from '@taiga-ui/core';
 import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
@@ -50,13 +50,12 @@ import { LanguageResourceKey } from '../../i18n/language-resource-key';
 export class CommonComponent implements OnInit {
   columnNames = COLUMN_NAMES_FOR_AUDIO_HYMNS_TABLE;
   languageResourceKey = LanguageResourceKey;
-  // rootLanguageResourceKey = RootLanguageResourceKey;
   dashboardLanguageResourceKey = DashboardLanguageResourceKey;
   filterBy?: string;
   sortOrderIsAscending = true;
   columnIdForSorting = COLUMN_NAMES_FOR_AUDIO_HYMNS_TABLE[0];
   @Input({ required: true }) titleKey!: string;
-  @Input({ required: true }) data: AudioHymnsUIState[] = [];
+  @Input({ required: true }) data: IAudioHymnsUIState[] = [];
   private subscriptions = new SubSink();
 
   onFilterTextChanged(event: any) {
