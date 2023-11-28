@@ -49,8 +49,19 @@
     </td>
   </ng-container>
 
+  <!-- Paid -->
   <ng-container [cdkColumnDef]="columnNames[5]">
     <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[5])}}</th>
+    <td cdk-cell *cdkCellDef="let row">
+      <div class="form-check form-switch">
+        <input #paid class="form-check-input" [checked]="row.paid" type="checkbox" role="switch" value="">
+      </div>
+      {{paid.checked}}
+    </td>
+  </ng-container>
+
+  <ng-container [cdkColumnDef]="columnNames[6]">
+    <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[6])}}</th>
     <td cdk-cell *cdkCellDef="let row">
 
       @if(row.published){
@@ -63,7 +74,7 @@
       @if(!row.published){
       <button [ccc-icon]="'publish'" ng-mat-icon-button ng-mat-tooltip [id]="row.no" type="button">
       </button>
-      <div ng-mat-tooltip [id]="row.no">{{t(dashboardLanguageResourceKey.PUBLISH)}}</div>
+      <div ng-mat-tooltip [id]="row.no">{{t(languageResourceKey.PUBLISH_HYMN)}}</div>
       }
 
     </td>
@@ -88,8 +99,8 @@
       </li>
       @for(page of pagination; track page; let index = $index){
       <li class="page-item" [class.active]="getCurrentPaginationIndex() === index">
-        <a class="page-link"
-          (click)="goToPage(index)">{{index+1}}</a></li>
+        <a class="page-link" (click)="goToPage(index)">{{index+1}}</a>
+      </li>
       }
       <li class="page-item">
         <button [class.disabled]="isEndOfPagination()" (click)="nextPage()" class="page-link navigation-link" href="#"

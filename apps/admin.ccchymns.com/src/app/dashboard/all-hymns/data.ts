@@ -1,5 +1,7 @@
 import { IEditorsHymn, RootLanguageResourceKey } from '@ccchymns.com/common';
 import { DashboardLanguageResourceKey } from '../i18n/language-resource-key';
+import { DASHBOARD_ROUTES } from '../dashboard.routes';
+import { LanguageResourceKey } from './i18n/language-resource-key';
 
 const editorsHymn: IEditorsHymn = {
   no: 0,
@@ -12,5 +14,6 @@ export const COLUMN_NAMES_FOR_ALL_HYMNS_TABLE = [
   RootLanguageResourceKey.TONIC_SOLFA,
   RootLanguageResourceKey.AUDIO_HYMNS,
   RootLanguageResourceKey.AUDIO_SPACE,
+  LanguageResourceKey.PAID,
   DashboardLanguageResourceKey.OPTIONS,
 ];
