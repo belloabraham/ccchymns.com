@@ -54,29 +54,25 @@
     <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[5])}}</th>
     <td cdk-cell *cdkCellDef="let row">
       <div class="form-check form-switch">
-        <input #paid class="form-check-input" [checked]="row.paid" type="checkbox" role="switch" value="">
+        <input class="form-check-input" [checked]="row.paid" type="checkbox" role="switch">
       </div>
-      {{paid.checked}}
     </td>
   </ng-container>
 
   <ng-container [cdkColumnDef]="columnNames[6]">
     <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[6])}}</th>
     <td cdk-cell *cdkCellDef="let row">
-
       @if(row.published){
       <button [ccc-icon]="'check-circle'" class="text-success" ng-mat-icon-button ng-mat-tooltip [id]="row.no"
         type="button">
       </button>
       <div ng-mat-tooltip [id]="row.no">{{t(dashboardLanguageResourceKey.PUBLISHED)}}</div>
       }
-
       @if(!row.published){
       <button [ccc-icon]="'publish'" ng-mat-icon-button ng-mat-tooltip [id]="row.no" type="button">
       </button>
       <div ng-mat-tooltip [id]="row.no">{{t(languageResourceKey.PUBLISH_HYMN)}}</div>
       }
-
     </td>
   </ng-container>
 
