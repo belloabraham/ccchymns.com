@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { CdkTableModule } from '@angular/cdk/table';
 import { TranslocoModule } from '@ngneat/transloco';
 import {
@@ -6,7 +13,12 @@ import {
   NgMaterialButtonModule,
 } from '@ccchymns.com/angular';
 import { CCCIconDirective } from '@ccchymns.com/ui';
-import { DisplayService, IEditorsHymn, RootLanguageResourceKey, Size } from '@ccchymns.com/common';
+import {
+  DisplayService,
+  IEditorsHymn,
+  RootLanguageResourceKey,
+  Size,
+} from '@ccchymns.com/common';
 import { SortOrder, TABLE_PAGE_SIZE } from '../../shared';
 import { SubSink } from 'subsink';
 import { DashboardLanguageResourceKey } from '../../i18n/language-resource-key';
@@ -52,7 +64,7 @@ export class AllHymnsTableComponent implements OnChanges, OnInit {
     this.dataSource = new AllHymnsDataSource(this.data);
     const paginationLength = this.data.length / TABLE_PAGE_SIZE;
     this.pagination = Array(
-      paginationLength < 1 ? 0 : Math.round(paginationLength)
+      paginationLength < 1 ? 0 : Math.ceil(paginationLength)
     );
   }
 

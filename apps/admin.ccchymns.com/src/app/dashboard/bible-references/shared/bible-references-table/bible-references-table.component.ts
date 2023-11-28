@@ -49,7 +49,7 @@ export class BibleReferencesTableComponent implements OnChanges, OnInit {
     this.dataSource = new BibleReferenceDataSource(this.data);
     const paginationLength = this.data.length / TABLE_PAGE_SIZE;
     this.pagination = Array(
-      paginationLength < 1 ? 0 : Math.round(paginationLength)
+      paginationLength < 1 ? 0 : Math.ceil(paginationLength)
     );
   }
 

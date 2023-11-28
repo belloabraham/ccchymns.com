@@ -13,9 +13,9 @@
   <ng-container [cdkColumnDef]="columnNames[1]">
     <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[1])}}</th>
     <td cdk-cell *cdkCellDef="let row">
-      <i class='icon' [ccc-icon]="'y-circle'" [class]="row.yoruba.lyrics ? 'text-success':'text-muted'"></i>
-      <i class='icon' [ccc-icon]="'e-circle'" [class]="row.english.lyrics ? 'text-success':'text-muted'"></i>
-      <i class='icon' [ccc-icon]="'f-circle'" [class]="row.french.lyrics ? 'text-success':'text-muted'"></i>
+      <i class='icon' [ccc-icon]="'y-circle'" [class]="row.yoruba.lyrics ? 'text-success':'text-neutral'"></i>
+      <i class='icon' [ccc-icon]="'e-circle'" [class]="row.english.lyrics ? 'text-success':'text-neutral'"></i>
+      <i class='icon' [ccc-icon]="'f-circle'" [class]="row.french.lyrics ? 'text-success':'text-neutral'"></i>
     </td>
   </ng-container>
 
@@ -23,9 +23,9 @@
   <ng-container [cdkColumnDef]="columnNames[2]">
     <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[2])}}</th>
     <td cdk-cell *cdkCellDef="let row">
-      <i class='icon' [ccc-icon]="'y-circle'" [class]="row.yoruba.tonic ? 'text-success':'text-muted'"></i>
-      <i class='icon' [ccc-icon]="'e-circle'" [class]="row.english.tonic ? 'text-success':'text-muted'"></i>
-      <i class='icon' [ccc-icon]="'f-circle'" [class]="row.french.tonic ? 'text-success':'text-muted'"></i>
+      <i class='icon' [ccc-icon]="'y-circle'" [class]="row.yoruba.tonic ? 'text-success':'text-neutral'"></i>
+      <i class='icon' [ccc-icon]="'e-circle'" [class]="row.english.tonic ? 'text-success':'text-neutral'"></i>
+      <i class='icon' [ccc-icon]="'f-circle'" [class]="row.french.tonic ? 'text-success':'text-neutral'"></i>
     </td>
   </ng-container>
 
@@ -33,9 +33,9 @@
   <ng-container [cdkColumnDef]="columnNames[3]">
     <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[3])}}</th>
     <td cdk-cell *cdkCellDef="let row">
-      <i class='icon' [ccc-icon]="'y-circle'" [class]="row.yoruba.audio ? 'text-success':'text-muted'"></i>
-      <i class='icon' [ccc-icon]="'e-circle'" [class]="row.english.audio ? 'text-success':'text-muted'"></i>
-      <i class='icon' [ccc-icon]="'f-circle'" [class]="row.french.audio ? 'text-success':'text-muted'"></i>
+      <i class='icon' [ccc-icon]="'y-circle'" [class]="row.yoruba.audio ? 'text-success':'text-neutral'"></i>
+      <i class='icon' [ccc-icon]="'e-circle'" [class]="row.english.audio ? 'text-success':'text-neutral'"></i>
+      <i class='icon' [ccc-icon]="'f-circle'" [class]="row.french.audio ? 'text-success':'text-neutral'"></i>
     </td>
   </ng-container>
 
@@ -43,9 +43,9 @@
   <ng-container [cdkColumnDef]="columnNames[4]">
     <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[4])}}</th>
     <td cdk-cell *cdkCellDef="let row">
-      <i class='icon' [ccc-icon]="'y-circle'" [class]="row.yoruba.audioSpace ? 'text-success':'text-muted'"></i>
-      <i class='icon' [ccc-icon]="'e-circle'" [class]="row.english.audioSpace ? 'text-success':'text-muted'"></i>
-      <i class='icon' [ccc-icon]="'f-circle'" [class]="row.french.audioSpace ? 'text-success':'text-muted'"></i>
+      <i class='icon' [ccc-icon]="'y-circle'" [class]="row.yoruba.audioSpace ? 'text-success':'text-neutral'"></i>
+      <i class='icon' [ccc-icon]="'e-circle'" [class]="row.english.audioSpace ? 'text-success':'text-neutral'"></i>
+      <i class='icon' [ccc-icon]="'f-circle'" [class]="row.french.audioSpace ? 'text-success':'text-neutral'"></i>
     </td>
   </ng-container>
 
@@ -87,7 +87,8 @@
         </button>
       </li>
       @for(page of pagination; track page; let index = $index){
-      <li class="page-item" [class.active]="getCurrentPaginationIndex() === index"><a class="page-link"
+      <li class="page-item" [class.active]="getCurrentPaginationIndex() === index">
+        <a class="page-link"
           (click)="goToPage(index)">{{index+1}}</a></li>
       }
       <li class="page-item">
