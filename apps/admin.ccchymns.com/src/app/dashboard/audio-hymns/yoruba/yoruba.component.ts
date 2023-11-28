@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { SharedModule } from '../../shared';
 import { CommonComponent } from '../shared/common/common.component';
-import { AUDIO_HYMNS_MOC_DATA } from '../shared/mock/audio-hymns';
+import { AUDIO_HYMNS_MOC_DATA as AUDIO_HYMNS_MOCK_DATA } from '../shared/mock/audio-hymns';
 import { LanguageResourceKey } from '../i18n/language-resource-key';
 
 @Component({
@@ -14,5 +14,5 @@ import { LanguageResourceKey } from '../i18n/language-resource-key';
 })
 export class YorubaComponent {
   titleKey = LanguageResourceKey.YORUBA_AUDIO_HYMNS;
-  data = AUDIO_HYMNS_MOC_DATA;
+  data = AUDIO_HYMNS_MOCK_DATA;
 }

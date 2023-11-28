@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { YorubaComponent } from './yoruba.component';
+import { CommonComponent } from './common.component';
 
-describe('YorubaComponent', () => {
-  let component: YorubaComponent;
-  let fixture: ComponentFixture<YorubaComponent>;
+describe('CommonComponent', () => {
+  let component: CommonComponent;
+  let fixture: ComponentFixture<CommonComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [YorubaComponent]
+      imports: [CommonComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(YorubaComponent);
+    fixture = TestBed.createComponent(CommonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

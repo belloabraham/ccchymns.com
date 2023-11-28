@@ -22,24 +22,22 @@ import { Observable } from 'rxjs';
 import { TuiDialogService } from '@taiga-ui/core';
 import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
 import { SubSink } from 'subsink';
+import { AddAudioHymnDialogComponent, AudioHymnsPlaceholderComponent } from '../../../audio-hymns/shared';
+import { AudioSpaceTableComponent } from '../audio-space-table/audio-space-table.component';
 import { DashboardLanguageResourceKey } from '../../../i18n/language-resource-key';
 import { LanguageResourceKey } from '../../i18n/language-resource-key';
-import { AudioHymnsPlaceholderComponent } from '../audio-hymns-placeholder/audio-hymns-placeholder.component';
-import { AudioHymnsTableComponent } from '../audio-hymns-table/audio-hymns-table.component';
-import { AddAudioHymnDialogComponent } from '../add-audio-hymn-dialog/add-audio-hymn-dialog.component';
 
 @Component({
-  selector: 'app-audio-hymns-common',
+  selector: 'app-audio-space-common',
   standalone: true,
   imports: [
     SharedModule,
     CCCIconDirective,
     NgMaterialButtonModule,
     NgMatTooltipModule,
-    AudioHymnsPlaceholderComponent,
     EmptyStateComponent,
     ErrorStateComponent,
-    AudioHymnsTableComponent,
+    AudioSpaceTableComponent,
   ],
   templateUrl: './common.component.html',
   styleUrl: './common.component.scss',

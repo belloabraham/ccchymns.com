@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FrenchComponent } from './french.component';
+import { AudioSpaceTableComponent } from './audio-space-table.component';
 
-describe('FrenchComponent', () => {
-  let component: FrenchComponent;
-  let fixture: ComponentFixture<FrenchComponent>;
+describe('AudioSpaceTableComponent', () => {
+  let component: AudioSpaceTableComponent;
+  let fixture: ComponentFixture<AudioSpaceTableComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FrenchComponent]
+      imports: [AudioSpaceTableComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(FrenchComponent);
+    fixture = TestBed.createComponent(AudioSpaceTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
