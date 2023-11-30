@@ -12,11 +12,10 @@
   ul {
     gap: 2rem;
     a {
-  //    color: colors.$text-light;
       font-size: 1rem;
       &:hover {
         text-decoration: underline;
-        color: colors.$primary-500;
+        color: colors.$primary-500 !important;
       }
     }
   }
