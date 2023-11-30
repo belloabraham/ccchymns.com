@@ -1,7 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import {
-  SharedModule,
-} from '@ccchymns.com/angular';
+import { SharedModule } from '@ccchymns.com/angular';
 import { CCCIconDirective } from '@ccchymns.com/ui';
 import { Contact } from '../../core/data/contact';
 import { Config } from '../../core/data/config';
@@ -9,7 +7,7 @@ import { RouterLink } from '@angular/router';
 import { Route } from '../../core/data/route';
 import { LanguageResourceKey } from './i18n/language-resource-key';
 import { NgOptimizedImage } from '@angular/common';
-import { RootLanguageResourceKey } from '../../core/i18n/language-resource-key';
+import { RootLanguageResourceKey } from '../i18n/language-resource-key';
 
 @Component({
   selector: 'app-footer',
@@ -27,6 +25,6 @@ export class FooterComponent {
   root = Route.ROOT;
   appStoreURL = Config.APP_STORE_URL;
   playStoreURL = Config.PLAY_STORE_URL;
-  langReskey = LanguageResourceKey;
-  rootLangReskey = RootLanguageResourceKey;
+  languageResourceKey = LanguageResourceKey;
+  rootLanguageResourceKey = RootLanguageResourceKey;
 }

@@ -6,7 +6,7 @@ import { HeaderComponent } from '../header/header.component';
 import { FeaturesComponent } from '../features/features.component';
 import { NgOptimizedImage } from '@angular/common';
 import { Config } from '../../core/data/config';
-import { RootLanguageResourceKey } from '../../core/i18n/language-resource-key';
+import { RootLanguageResourceKey } from '../i18n/language-resource-key';
 import { RouterLink } from '@angular/router';
 import { Route } from '../../core/data/route';
 

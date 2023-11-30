@@ -1,0 +1,13 @@
+@use 'colors';
+.legal {
+  background-color: colors.$primary-700;
+  color: white;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  .title {
+    font-size: 3rem;
+  }
+  .last-updated {
+    color: colors.$neutral-200;
+  }
+}

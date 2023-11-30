@@ -1,12 +1,20 @@
-<app-navigation>
-  <main class="main">
-    <app-header />
+<app-navigation *transloco="let t">
+  <main class="legal">
+    <app-header [colorClass]="'text-white'" />
+    <div class="pt-5 pb-4 p-md-5 d-flex justify-content-center align-items-center position-relative">
+      <p class="title">Privacy Policy</p>
+    </div>
+    <div class="container">
+      <span class="last-updated">Last updated: 01-02-2024</span>
+    </div>
   </main>
 
-  <section class="tech-stack" id="tech-stack">
+  <div class="container">
+    <section class="tech-stack" id="tech-stack">
 
-    <!-- <header>Each section have it own header tag where h2 and possibly h3 is</header> -->
+      <!-- <header>Each section have it own header tag where h2 and possibly h3 is</header> -->
 
-  </section>
+    </section>
 
+  </div>
 </app-navigation>

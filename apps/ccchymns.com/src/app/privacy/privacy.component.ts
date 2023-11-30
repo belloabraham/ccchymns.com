@@ -16,11 +16,12 @@ import { SubSink } from 'subsink';
 import { LanguageResourceKey } from './i18n/language-resource-key';
 import { NavigationComponent } from '../navigation/navigation.component';
 import { HeaderComponent } from '../header/header.component';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-privacy',
   standalone: true,
-  imports: [SharedModule, NavigationComponent, HeaderComponent],
+  imports: [SharedModule, NavigationComponent, HeaderComponent, TranslocoModule],
   templateUrl: './privacy.component.html',
   styleUrls: ['./privacy.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -33,7 +34,8 @@ export class PrivacyComponent implements OnInit {
     private languageResourceService: ILanguageResourceService,
     private title: Title,
     private languageUseCaseService: LanguageUseCaseService
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.subscriptions.sink = this.languageResourceService
