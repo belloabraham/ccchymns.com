@@ -1,8 +1,8 @@
 @font-face {
   font-family: 'ccc-icon';
-  src: url('../assets/fonts/ccc-icon.ttf?dag2aw') format('truetype'),
-    url('../assets/fonts/ccc-icon.woff?dag2aw') format('woff'),
-    url('../assets/fonts/ccc-icon.svg?dag2aw#ccc-icon') format('svg');
+  src: url('../assets/fonts/ccc-icon.ttf?3hm0pu') format('truetype'),
+    url('../assets/fonts/ccc-icon.woff?3hm0pu') format('woff'),
+    url('../assets/fonts/ccc-icon.svg?3hm0pu#ccc-icon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -24,30 +24,33 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.ccci-star-half:before {
-  content: "\e905";
-}
-.ccci-email-fill:before {
+.ccci-close:before {
   content: "\e900";
 }
-.ccci-facebook:before {
+.ccci-email-fill:before {
   content: "\e901";
 }
-.ccci-instagram:before {
+.ccci-facebook:before {
   content: "\e902";
 }
-.ccci-phone-fill:before {
+.ccci-instagram:before {
   content: "\e903";
 }
-.ccci-star-fill:before {
+.ccci-phone-fill:before {
   content: "\e904";
 }
-.ccci-star:before {
+.ccci-star-fill:before {
+  content: "\e905";
+}
+.ccci-star-half:before {
   content: "\e906";
 }
-.ccci-x-circle:before {
+.ccci-star-outline:before {
   content: "\e907";
 }
-.ccci-youtube:before {
+.ccci-x-circle-outline:before {
   content: "\e908";
+}
+.ccci-youtube:before {
+  content: "\e909";
 }

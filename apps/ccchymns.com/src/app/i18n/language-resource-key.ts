@@ -11,4 +11,5 @@ export class RootLanguageResourceKey {
   static readonly PRIVACY_POLICY = 'privacy_policy';
   static readonly LAST_UPDATED = 'last_updated';
   static readonly TERMS_OF_USE = 'terms_of_use';
+  static readonly LEARN_MORE = 'learn_more';
 }

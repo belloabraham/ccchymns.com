@@ -1,5 +1,5 @@
 <footer *transloco="let t" class="vw-100 overflow-hidden">
-  <div class="footer row text-light">
+  <div class="footer row">
     <div class="col-12 col-sm-6 col-lg-3 download">
       <div class="logo d-flex justify-content-center align-items-center bg-white">
         <a [routerLink]="route.ROOT"><img width="80" height="75" alt="{{ t(rootLanguageResourceKey.LOGO) }}"
@@ -43,7 +43,8 @@
     <div class="col-12 col-sm-6 col-lg-2 legal">
       <h6 class="text-white">{{ t(languageResourceKey.LEGAL) }}</h6>
       <ul>
-        <li> <a class="link" [routerLink]="[root,route.PRIVACY]">{{ t(rootLanguageResourceKey.PRIVACY_POLICY) }}</a> </li>
+        <li> <a class="link" [routerLink]="[root,route.PRIVACY]">{{ t(rootLanguageResourceKey.PRIVACY_POLICY) }}</a>
+        </li>
         <li><a class="link" [routerLink]="[root,route.TERMS]">{{ t(rootLanguageResourceKey.TERMS) }}</a> </li>
         <li> <a class="link" [routerLink]="[root,route.REFUND]">{{ t(languageResourceKey.REFUND_POLICY) }}</a> </li>
       </ul>
@@ -77,4 +78,15 @@
   <div class="copyright p-2 text-neutral text-center w-100">
     {{ t(languageResourceKey.COPYRIGHT) }} &copy; {{year}}
   </div>
+
+  @if (!showCookieNotice) {
+  <div class="privacy-cookie-notice p-1 text-start text-md-center text-white w-100 position-relative">
+    <span>
+      {{ t(languageResourceKey.COOKIE_NOTICE_MSG) }}. <a [routerLink]="[root,route.PRIVACY]" target="_blank"
+        rel="noopener noreferrer">{{t(rootLanguageResourceKey.LEARN_MORE)}}</a>
+    </span>
+    <button (click)="closeCookie()" ng-mat-icon-button [ccc-icon]="'close'" class="cookie-close position-absolute">
+    </button>
+  </div>
+  }
 </footer>
