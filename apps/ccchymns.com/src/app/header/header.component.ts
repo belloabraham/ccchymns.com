@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import {
   NgMaterialButtonModule,
@@ -7,7 +7,7 @@ import {
 } from '@ccchymns.com/angular';
 import { Route } from '../../core/data/route';
 import { NgOptimizedImage } from '@angular/common';
-import { RootLanguageResourceKey } from '../../core/i18n/language-resource-key';
+import { RootLanguageResourceKey } from '../i18n/language-resource-key';
 
 @Component({
   selector: 'app-header',
@@ -26,6 +26,7 @@ import { RootLanguageResourceKey } from '../../core/i18n/language-resource-key';
 export class HeaderComponent {
   route = Route;
   root = Route.ROOT;
+  @Input() colorClass = 'text-light';
   languageResourceKey = RootLanguageResourceKey;
   download() {
     console.log();

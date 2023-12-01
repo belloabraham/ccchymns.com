@@ -2,26 +2,26 @@
   <div class="footer row text-light">
     <div class="col-12 col-sm-6 col-lg-3 download">
       <div class="logo d-flex justify-content-center align-items-center bg-white">
-        <a [routerLink]="route.ROOT"><img width="80" height="75" alt="{{ t(rootLangReskey.LOGO) }}"
+        <a [routerLink]="route.ROOT"><img width="80" height="75" alt="{{ t(rootLanguageResourceKey.LOGO) }}"
             ngSrc="assets/images/logo.png">
         </a>
       </div>
 
-      <h6 class="app-name">{{ t(rootLangReskey.FULL_APP_NAME) }}</h6>
+      <h6 class="app-name">{{ t(rootLanguageResourceKey.FULL_APP_NAME) }}</h6>
 
       <div class="download-buttons">
         <a [href]="appStoreURL"><img class="scale" width="183.35" height="54.4"
-            alt="{{ t(rootLangReskey.APPLE_APP_STORE) }}" ngSrc="assets/images/apple-store-light.svg">
+            alt="{{ t(rootLanguageResourceKey.APPLE_APP_STORE) }}" ngSrc="assets/images/apple-store-light.svg">
         </a>
         <br>
         <a [href]="playStoreURL"><img class="scale" width="183.35" height="54.4"
-            alt="{{ t(rootLangReskey.GOOGLE_PLAY_STORE) }}" ngSrc="assets/images/google-store-light.svg">
+            alt="{{ t(rootLanguageResourceKey.GOOGLE_PLAY_STORE) }}" ngSrc="assets/images/google-store-light.svg">
         </a>
       </div>
 
     </div>
     <div class="col-12 col-sm-6 col-lg-2 contact">
-      <h6 class="text-white">{{ t(langReskey.CONTACT) }}</h6>
+      <h6 class="text-white">{{ t(languageResourceKey.CONTACT) }}</h6>
       <ul>
         <li> <a [href]="'tel:'+phone">
             <i [ccc-icon]="'phone-fill'"></i>
@@ -34,23 +34,23 @@
       </ul>
     </div>
     <div class="col-12 col-sm-6 col-lg-2 quick-links">
-      <h6 class="text-white">{{ t(langReskey.QUICK_LINKS) }}</h6>
+      <h6 class="text-white">{{ t(languageResourceKey.QUICK_LINKS) }}</h6>
       <ul>
-        <li><a class="link" [routerLink]="[root]">{{ t(langReskey.HOME) }}</a> </li>
-        <li> <a class="link" [routerLink]="[root,route.ABOUT]">{{ t(langReskey.ABOUT) }}</a> </li>
+        <li><a class="link" [routerLink]="[root]">{{ t(languageResourceKey.HOME) }}</a> </li>
+        <li> <a class="link" [routerLink]="[root,route.ABOUT]">{{ t(languageResourceKey.ABOUT) }}</a> </li>
       </ul>
     </div>
     <div class="col-12 col-sm-6 col-lg-2 legal">
-      <h6 class="text-white">{{ t(langReskey.LEGAL) }}</h6>
+      <h6 class="text-white">{{ t(languageResourceKey.LEGAL) }}</h6>
       <ul>
-        <li> <a class="link" [routerLink]="[root,route.PRIVACY]">{{ t(langReskey.PRIVACY_POLICY) }}</a> </li>
-        <li><a class="link" [routerLink]="[root,route.TERMS]">{{ t(rootLangReskey.TERMS) }}</a> </li>
-        <li> <a class="link" [routerLink]="[root,route.REFUND]">{{ t(langReskey.REFUND_POLICY) }}</a> </li>
+        <li> <a class="link" [routerLink]="[root,route.PRIVACY]">{{ t(rootLanguageResourceKey.PRIVACY_POLICY) }}</a> </li>
+        <li><a class="link" [routerLink]="[root,route.TERMS]">{{ t(rootLanguageResourceKey.TERMS) }}</a> </li>
+        <li> <a class="link" [routerLink]="[root,route.REFUND]">{{ t(languageResourceKey.REFUND_POLICY) }}</a> </li>
       </ul>
 
     </div>
     <div class="col-12 col-lg-3 social">
-      <h6 class="text-white">{{ t(langReskey.FOLLOW_US) }}:</h6>
+      <h6 class="text-white">{{ t(languageResourceKey.FOLLOW_US) }}:</h6>
       <ul>
         <li>
           <a target="_blank" href="https://facebook.com/ccchymns">
@@ -74,7 +74,7 @@
 
     </div>
   </div>
-  <div class="copyright p-2 text-light text-center w-100">
-    {{ t(langReskey.COPYRIGHT) }} &copy; {{year}}
+  <div class="copyright p-2 text-neutral text-center w-100">
+    {{ t(languageResourceKey.COPYRIGHT) }} &copy; {{year}}
   </div>
 </footer>

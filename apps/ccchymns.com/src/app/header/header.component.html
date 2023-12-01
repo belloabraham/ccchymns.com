@@ -7,11 +7,10 @@
     </div>
     <nav class="nav">
       <ul class="d-flex">
-        <li><a [routerLink]="[root]">{{ t(languageResourceKey.HOME) }}</a></li>
-        <li><a [routerLink]="[root,route.ABOUT]">{{ t(languageResourceKey.ABOUT) }}</a></li>
-        <li><a [routerLink]="[root,route.PRIVACY]">{{ t(languageResourceKey.PRIVACY) }}</a> </li>
+        <li><a  [class]="colorClass" [routerLink]="[root]">{{ t(languageResourceKey.HOME) }}</a></li>
+        <li><a  [class]="colorClass" [routerLink]="[root,route.ABOUT]">{{ t(languageResourceKey.ABOUT) }}</a></li>
+        <li><a  [class]="colorClass" [routerLink]="[root,route.PRIVACY]">{{ t(languageResourceKey.PRIVACY) }}</a> </li>
       </ul>
     </nav>
-
   </div>
 </header>

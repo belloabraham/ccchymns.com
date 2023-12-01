@@ -8,6 +8,5 @@ export class LanguageResourceKey {
   static readonly ABOUT = 'about';
   static readonly COPYRIGHT = 'copyright';
   static readonly FOLLOW_US = 'follow_us_on';
-  static readonly PRIVACY_POLICY = 'privacy_policy';
   static readonly REFUND_POLICY = 'refund_policy';
 }

@@ -8,4 +8,7 @@ export class RootLanguageResourceKey {
   static readonly FULL_APP_NAME = 'full_app_name';
   static readonly GOOGLE_PLAY_STORE = 'google_play_store';
   static readonly TERMS = 'terms';
+  static readonly PRIVACY_POLICY = 'privacy_policy';
+  static readonly LAST_UPDATED = 'last_updated';
+  static readonly TERMS_OF_USE = 'terms_of_use';
 }
