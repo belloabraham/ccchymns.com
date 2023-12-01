@@ -22,6 +22,28 @@
   }
 }
 
+.cookie-close {
+  right: 0;
+  top: -8px !important;
+  font-size: 1.2rem;
+  @include gerillass.breakpoint(min, medium) {
+    right: 1rem;
+  }
+}
+
+.privacy-cookie-notice {
+  background-color: black;
+  font-size: 0.8rem;
+  padding-right: 3rem !important;
+  padding-left: 0.5rem !important;
+  a {
+    font-size: 0.8rem;
+  }
+  @include gerillass.breakpoint(min, medium) {
+    padding-right: 4rem !important;
+  }
+}
+
 .copyright {
   background-color: #050f30;
   font-size: 0.9rem;

@@ -9,4 +9,5 @@ export class LanguageResourceKey {
   static readonly COPYRIGHT = 'copyright';
   static readonly FOLLOW_US = 'follow_us_on';
   static readonly REFUND_POLICY = 'refund_policy';
+  static readonly COOKIE_NOTICE_MSG = 'cookie_notice_msg';
 }
