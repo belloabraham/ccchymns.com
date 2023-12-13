@@ -1,0 +1,13 @@
+@if (hasBackdrop) {
+<div class="ccc-drawer-backdrop" (click)="onBackdropClicked()" [class.ccc-drawer-shown]="isShowingBackdrop()"></div>
+}
+
+<ng-content select="ccc-sidenav"></ng-content>
+<ng-content select="ccc-sidenav-content">
+</ng-content>
+
+@if (!content) {
+<ccc-sidenav-content>
+  <ng-content></ng-content>
+</ccc-sidenav-content>
+}

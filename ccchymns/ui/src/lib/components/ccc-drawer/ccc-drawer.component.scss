@@ -1,0 +1,155 @@
+@use '@angular/cdk';
+
+@mixin fill {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+}
+$swift-ease-out-duration: 400ms !default;
+$swift-ease-out-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1) !default;
+
+$drawer-content-z-index: 1;
+$drawer-side-drawer-z-index: 2;
+$drawer-backdrop-z-index: 3;
+$drawer-over-drawer-z-index: 4;
+
+@mixin drawer-stacking-context($z-index: 1) {
+  position: relative;
+
+  z-index: $z-index;
+}
+
+.ccc-drawer-container {
+  @include drawer-stacking-context();
+
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+
+  display: block;
+
+  overflow: hidden;
+
+  &[fullscreen] {
+    @include fill();
+
+    &.ccc-drawer-container-has-open {
+      overflow: hidden;
+    }
+  }
+
+  &.ccc-drawer-container-explicit-backdrop .ccc-drawer-side {
+    z-index: $drawer-backdrop-z-index;
+  }
+
+  &.ng-animate-disabled,
+  .ng-animate-disabled & {
+    .ccc-drawer-backdrop,
+    .ccc-drawer-content {
+      transition: none;
+    }
+  }
+}
+
+.ccc-drawer-backdrop {
+  @include fill();
+
+  display: block;
+
+  z-index: $drawer-backdrop-z-index;
+
+  visibility: hidden;
+
+  &.ccc-drawer-shown {
+    visibility: visible;
+  }
+
+  .ccc-drawer-transition & {
+    transition: {
+      duration: $swift-ease-out-duration;
+      timing-function: $swift-ease-out-timing-function;
+      property: background-color, visibility;
+    }
+  }
+  background-color: rgba($color: #000000, $alpha: 0.6);
+}
+
+.ccc-drawer-content {
+  @include drawer-stacking-context($drawer-content-z-index);
+
+  display: block;
+  height: 100%;
+  overflow: auto;
+
+  .ccc-drawer-transition & {
+    transition: {
+      duration: $swift-ease-out-duration;
+      timing-function: $swift-ease-out-timing-function;
+      property: transform, margin-left, margin-right;
+    }
+  }
+}
+
+.ccc-drawer {
+  $high-contrast-border: solid 1px currentColor;
+
+  @include drawer-stacking-context($drawer-over-drawer-z-index);
+
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 3;
+  outline: 0;
+  box-sizing: border-box;
+  overflow-y: auto;
+  transform: translate3d(-100%, 0, 0);
+
+  &,
+  [dir='rtl'] &.ccc-drawer-end {
+    @include cdk.high-contrast(active, off) {
+      border-right: $high-contrast-border;
+    }
+  }
+
+  [dir='rtl'] &,
+  &.ccc-drawer-end {
+    @include cdk.high-contrast(active, off) {
+      border-left: $high-contrast-border;
+      border-right: none;
+    }
+  }
+
+  &.ccc-drawer-side {
+    z-index: $drawer-side-drawer-z-index;
+  }
+
+  &.ccc-drawer-end {
+    right: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+
+  [dir='rtl'] & {
+    transform: translate3d(100%, 0, 0);
+
+    &.ccc-drawer-end {
+      left: 0;
+      right: auto;
+      transform: translate3d(-100%, 0, 0);
+    }
+  }
+  &[style*='visibility: hidden'] {
+    display: none;
+  }
+}
+.ccc-drawer-inner-container {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.ccc-sidenav-fixed {
+  position: fixed;
+}

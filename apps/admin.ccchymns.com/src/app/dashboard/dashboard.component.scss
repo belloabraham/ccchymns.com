@@ -7,10 +7,6 @@
   padding-bottom: 1rem;
 }
 
-.root {
-  z-index: 10;
-  position: relative;
-}
 .navbar {
   min-height: 2.9rem;
 }
@@ -42,9 +38,12 @@ i.icon-button {
   }
 }
 
-.sidebar-title {
-  font-size: 1.5rem;
+.sidenav-title {
+  font-size: 1.2rem;
   font-weight: 400;
+  @include gerillass.breakpoint(min, large) {
+    font-size: 1.3rem;
+  }
 }
 
 .list-group-item {

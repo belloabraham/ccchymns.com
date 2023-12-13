@@ -19,7 +19,7 @@ import { SubSink } from 'subsink';
 import { getLanguageLoadedSelector } from '../../store/selectors';
 import { Config, DisplayService, RootLanguageResourceKey, Route, Size } from '@ccchymns.com/common';
 import { DashboardLanguageResourceKey } from './i18n/language-resource-key';
-import { CCCIconDirective } from '@ccchymns.com/ui';
+import { CCCIconDirective, SidenavModule } from '@ccchymns.com/ui';
 import { NgOptimizedImage } from '@angular/common';
 import {
   ActivatedRoute,
@@ -51,15 +51,15 @@ export interface IBreadCrumb {
     RouterLinkActive,
     RouterLink,
     RouterOutlet,
+    SidenavModule
   ],
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss'],
+  styleUrls: ['./dashboard.component.scss', './toggle-arrow.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardComponent implements OnDestroy, OnInit {
   private subscriptions = new SubSink();
   displayIsMobile = false;
-  openSideBar = signal(false);
   config = Config;
   languageResourceKey = DashboardLanguageResourceKey;
   rootLanguageResourceKey = RootLanguageResourceKey;
@@ -114,7 +114,6 @@ export class DashboardComponent implements OnDestroy, OnInit {
       merge(routerNavigationStoppedEvent$, routerNavigationStartEvent$)
     );
 
-    this.collapseMobileSideBarOnNavigating(routerNavigationStartEvent$);
   }
 
   ngOnInit(): void {
@@ -146,16 +145,6 @@ export class DashboardComponent implements OnDestroy, OnInit {
         this.openAudioSpace.set(initialChildRoutePath === Route.AUDIO_SPACE);
       }
     );
-  }
-
-  collapseMobileSideBarOnNavigating(
-    routerNavigationStartEvent$: Observable<boolean>
-  ) {
-    this.subscriptions.sink = routerNavigationStartEvent$.subscribe(() => {
-      if (this.displayIsMobile && this.openSideBar) {
-        this.openSideBar.set(false);
-      }
-    });
   }
 
   navigateBack() {
@@ -247,10 +236,6 @@ export class DashboardComponent implements OnDestroy, OnInit {
       { value: Config.APP_NAME }
     );
     this.title.setTitle(pageTitle);
-  }
-
-  toggleSideBar() {
-    this.openSideBar.set(!this.openSideBar());
   }
 
   ngOnDestroy(): void {

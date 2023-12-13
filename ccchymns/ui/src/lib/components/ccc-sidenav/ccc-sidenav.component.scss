@@ -1,0 +1,17 @@
+@use 'gerillass';
+
+.ccc-sidenav-container {
+  height: 100vh !important;
+}
+
+.ccc-drawer,
+.ccc-nav-footer {
+  width: 14rem;
+}
+
+.ccc-sidenav-minimize {
+  width: 3.5rem !important;
+  .ccc-nav-footer {
+    width: 3.5rem !important;
+  }
+}

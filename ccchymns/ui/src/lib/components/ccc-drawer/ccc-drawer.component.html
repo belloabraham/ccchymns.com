@@ -1,0 +1,24 @@
+<aside [attr.align]="null" class="ccc-drawer-inner-container position-relative" [class]="sideNavClasses" cdkScrollable
+  #content>
+  @if(showHeader){
+  <header>
+    @if(!deviceDisplayIsSmall()){
+    <ng-content select="[header]"></ng-content>
+    }
+    @if(deviceDisplayIsSmall()){
+    <ng-content select="[mobile-header]"></ng-content>
+    }
+  </header>
+  }
+
+  <ng-content></ng-content>
+
+  <footer class="ccc-nav-footer fixed-bottom left-0">
+    @if(!deviceDisplayIsSmall()){
+    <ng-content select="[footer]"></ng-content>
+    }
+    @if(deviceDisplayIsSmall()){
+    <ng-content select="[mobile-footer]"></ng-content>
+    }
+  </footer>
+</aside>

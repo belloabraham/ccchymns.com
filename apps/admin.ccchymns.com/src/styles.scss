@@ -56,27 +56,12 @@ audio::-webkit-media-controls-panel {
   background-color: colors.$primary-50;
 }
 
-// Sidebar
-:root {
-  --bs-sidebar-width: 18rem;
-  --bs-padding-sbwidth: 18rem;
-}
-.sidebar {
-  width: 18rem !important;
+.sidenav-background {
   background-color: #01579b !important;
 }
 
-@include gerillass.breakpoint(min, medium) {
-  :root {
-    --bs-sidebar-width: 14rem;
-    --bs-padding-sbwidth: 14rem;
-  }
-  .sidebar {
-    width: 14rem !important;
-  }
-}
-
-.list-group-toggle, .list-group-item {
+.list-group-toggle,
+.list-group-item {
   font-size: 0.9rem;
 }
 
