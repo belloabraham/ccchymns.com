@@ -12,24 +12,18 @@ import {
   CCCSidenavContentComponent,
 } from './components/ccc-sidenav/ccc-sidenav.component';
 
+const COMPONENTS = [
+  CCCDrawerComponent,
+  CCCDrawerContainerComponent,
+  CCCDrawerContentComponent,
+  CCCSidenavContainerComponent,
+  CCCSidenavContentComponent,
+  CCCSidenavComponent,
+];
+
 @NgModule({
   imports: [CommonModule, CdkScrollableModule],
-  exports: [
-    CdkScrollableModule,
-    CCCDrawerComponent,
-    CCCDrawerContainerComponent,
-    CCCDrawerContentComponent,
-    CCCSidenavContainerComponent,
-    CCCSidenavContentComponent,
-    CCCSidenavComponent,
-  ],
-  declarations: [
-    CCCDrawerComponent,
-    CCCDrawerContainerComponent,
-    CCCDrawerContentComponent,
-    CCCSidenavContainerComponent,
-    CCCSidenavContentComponent,
-    CCCSidenavComponent,
-  ],
+  exports: [CdkScrollableModule, ...COMPONENTS],
+  declarations: [...COMPONENTS],
 })
 export class SidenavModule {}
