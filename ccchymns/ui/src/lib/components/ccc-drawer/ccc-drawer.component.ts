@@ -24,7 +24,6 @@ import {
   DoCheck,
   ElementRef,
   EventEmitter,
-  Host,
   HostBinding,
   HostListener,
   Inject,
@@ -33,7 +32,6 @@ import {
   NgZone,
   OnChanges,
   OnDestroy,
-  OnInit,
   Optional,
   Output,
   QueryList,
@@ -62,7 +60,7 @@ import {
   ViewportRuler,
 } from '@angular/cdk/scrolling';
 import { Directionality } from '@angular/cdk/bidi';
-import { NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 
 export function throwMatDuplicatedDrawerError(position: string) {
   throw Error(`A drawer was already declared for 'position="${position}"'`);
@@ -147,7 +145,7 @@ export class CCCDrawerContentComponent
   encapsulation: ViewEncapsulation.None,
 })
 export class CCCDrawerComponent
-  implements AfterViewInit, AfterContentChecked, OnDestroy, OnChanges, OnInit
+  implements AfterViewInit, AfterContentChecked, OnDestroy, OnChanges
 {
   animationState: 'open-instant' | 'open' | 'void' = 'void';
 
@@ -217,8 +215,6 @@ export class CCCDrawerComponent
   /** Anchor node used to restore the drawer to its initial position. */
   private anchor: Comment | null = null;
   @Input() sideNavColor?: 'light' | 'dark';
-
-  @Input() openForLargeDisplay = false;
 
   /** The side that the drawer is attached to. */
   @Input()
@@ -416,7 +412,6 @@ export class CCCDrawerComponent
       )
       .subscribe((event: AnimationEvent) => {
         const { fromState, toState } = event;
-
         if (
           (toState.indexOf('open') === 0 && fromState === 'void') ||
           (toState === 'void' && fromState.indexOf('open') === 0)
@@ -431,19 +426,6 @@ export class CCCDrawerComponent
     );
 
     this.collapseMobileSideBarOnNavigating(routerNavigationEndEvent$);
-  }
-  ngOnInit(): void {
-    if (this.openForLargeDisplay && !this.deviceDisplayIsSmall()) {
-      this.open();
-    }
-    this.breakPointSubscription = this.breakpointObserver
-      .observe([Breakpoints.Small, Breakpoints.XSmall])
-      .subscribe((state) => {
-        const displayIsLarge = !state.matches;
-        if (this.openForLargeDisplay && displayIsLarge) {
-          this.open();
-        }
-      });
   }
 
   @HostBinding('class') sideNavClasses = this.getSidenavClass();
