@@ -12,7 +12,10 @@ import { NgMaterialButtonModule } from '@ccchymns.com/angular';
   standalone: true,
   imports: [SharedModule, NgMaterialButtonModule],
   templateUrl: './add-audio-space-dialog.component.html',
-  styleUrls: ['./add-audio-space-dialog.component.scss', '../../../dialog.scss'],
+  styleUrls: [
+    './add-audio-space-dialog.component.scss',
+    '../../../dialog.scss',
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddAudioSpaceDialogComponent implements OnInit {
@@ -21,8 +24,20 @@ export class AddAudioSpaceDialogComponent implements OnInit {
   languageResourceKey = LanguageResourceKey;
 
   audioSpaceForm!: FormGroup<IAudioSpaceForm>;
-  hymnNoFC = new FormControl<number | null>(null, [Validators.required]);
+  hymnNoFC = new FormControl<number | null>(null, [
+    Validators.required,
+    Validators.min(1),
+  ]);
   audioFC = new FormControl<FileList | null>(null, [Validators.required]);
+  formSubmitted = false;
+
+  hymnNoIsInvalid() {
+    return this.formSubmitted && this.hymnNoFC.invalid;
+  }
+
+  audioSpaceIsInvalid() {
+    return this.formSubmitted && this.audioFC.invalid;
+  }
 
   ngOnInit(): void {
     this.createAudioSpaceForm();
@@ -33,5 +48,9 @@ export class AddAudioSpaceDialogComponent implements OnInit {
       no: this.hymnNoFC,
       audio: this.audioFC,
     });
+  }
+
+  onSubmit() {
+    this.formSubmitted = true;
   }
 }

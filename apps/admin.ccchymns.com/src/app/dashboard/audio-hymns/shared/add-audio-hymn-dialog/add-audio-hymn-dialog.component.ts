@@ -21,8 +21,20 @@ export class AddAudioHymnDialogComponent implements OnInit {
   dashboardLanguageResourceKey = DashboardLanguageResourceKey;
 
   audioHymnForm!: FormGroup<IAudioHymnForm>;
-  hymnNoFC = new FormControl<number | null>(null, [Validators.required]);
+  hymnNoFC = new FormControl<number | null>(null, [
+    Validators.required,
+    Validators.min(1),
+  ]);
   audioFC = new FormControl<FileList | null>(null, [Validators.required]);
+  formSubmitted = false;
+
+  hymnNoIsInvalid() {
+    return this.formSubmitted && this.hymnNoFC.invalid;
+  }
+
+  audioHymnIsInvalid() {
+    return this.formSubmitted && this.audioFC.invalid;
+  }
 
   ngOnInit(): void {
     this.createAudioSpaceForm();
@@ -33,5 +45,9 @@ export class AddAudioHymnDialogComponent implements OnInit {
       no: this.hymnNoFC,
       audio: this.audioFC,
     });
+  }
+
+  onSubmit() {
+    this.formSubmitted = true;
   }
 }

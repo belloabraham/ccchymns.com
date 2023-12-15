@@ -6,6 +6,7 @@ import { NgMaterialButtonModule } from '@ccchymns.com/angular';
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IBibleReferenceForm } from '../form';
+import { Regex } from '@ccchymns.com/core';
 @Component({
   selector: 'app-add-bible-reference-dialog',
   standalone: true,
@@ -19,8 +20,20 @@ export class AddBibleReferenceDialogComponent implements OnInit {
   rootLanguageResourceKey = RootLanguageResourceKey;
 
   bibleReferenceForm!: FormGroup<IBibleReferenceForm>;
-  referenceFC = new FormControl<string | null>(null, [Validators.required]);
+  referenceFC = new FormControl<string | null>(null, [
+    Validators.required,
+    Validators.pattern(Regex.BIBLE_REFERENCE),
+  ]);
   versesFC = new FormControl<string | null>(null, [Validators.required]);
+  formSubmitted = false;
+
+  referenceIsInvalid() {
+    return this.formSubmitted && this.referenceFC.invalid;
+  }
+
+  versesIsInvalid() {
+    return this.formSubmitted && this.versesFC.invalid;
+  }
 
   ngOnInit(): void {
     this.createBibleReferenceForm();
@@ -31,5 +44,9 @@ export class AddBibleReferenceDialogComponent implements OnInit {
       reference: this.referenceFC,
       verses: this.versesFC,
     });
+  }
+
+  onSubmit(){
+    this.formSubmitted = true
   }
 }

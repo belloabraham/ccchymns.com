@@ -1,16 +1,26 @@
-<form class="d-flex flex-column gap-3" *transloco="let t">
+<form class="d-flex flex-column gap-3" *transloco="let t" (ngSubmit)="onSubmit()">
 
   <span class="title">{{t(languageResourceKey.UPLOAD_AUDIO_SPACE)}}
   </span>
 
-  <div class="input-group hymn-number">
-    <button type="button" class="input-group-text fw-bolder">-</button>
-    <input type="number" formControlName="no" class="form-control" [placeholder]="t(dashboardLanguageResourceKey.HYMN_NO)">
-    <button type="button" class="input-group-text fw-bolder">+</button>
+  <div class="hymn-number">
+    <input type="number" formControlName="no" class="form-control" [class.is-invalid]="hymnNoIsInvalid()"
+      [placeholder]="t(dashboardLanguageResourceKey.HYMN_NO)">
+    @if (hymnNoIsInvalid()) {
+    <div class="invalid-feedback">
+      {{t(dashboardLanguageResourceKey.VALID_HYMN_NO_MSG)}}
+    </div>
+    }
   </div>
 
   <div class="mb-2">
-    <input formControlName="audio" class="form-control w-100" type="file">
+    <input formControlName="audio" class="form-control w-100" [multiple]="false" [max]="1" [accept]="'audio/mpeg'"
+      [class.is-invalid]="audioSpaceIsInvalid()" type="file">
+    @if (audioSpaceIsInvalid()) {
+    <div class="invalid-feedback">
+      {{t(languageResourceKey.AUDIO_SPACE_REQUIRED_MSG)}}
+    </div>
+    }
   </div>
 
   <div class="text-end">

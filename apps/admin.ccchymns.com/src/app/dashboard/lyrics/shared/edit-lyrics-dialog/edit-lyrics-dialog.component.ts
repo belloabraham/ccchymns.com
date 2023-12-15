@@ -20,7 +20,10 @@ export class EditLyricsDialogComponent implements OnInit {
   dashboardLanguageResourceKey = DashboardLanguageResourceKey;
   rootLanguageResourceKey = RootLanguageResourceKey;
   lyricsForm!: FormGroup<ILyricsForm>;
-  hymnNoFC = new FormControl<number | null>(null, [Validators.required]);
+  hymnNoFC = new FormControl<number | null>(null, [
+    Validators.required,
+    Validators.min(1),
+  ]);
   lyricsFC = new FormControl<string | null>(null, [Validators.required]);
 
   constructor(
