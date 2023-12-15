@@ -5,11 +5,11 @@
 
   <div class="input-group hymn-number">
     <span class="input-group-text fw-semibold">{{t(dashboardLanguageResourceKey.HYMN_NO)}}</span>
-    <input type="number" readonly value="1"  class="form-control">
+    <input type="number" readonly value="1"  class="form-control" formControlName="no" >
   </div>
 
   <div>
-    <textarea cdkTextareaAutosize cdkAutosizeMinRows="3" cdkAutosizeMaxRows="10" class="form-control"
+    <textarea formControlName="lyrics" cdkTextareaAutosize cdkAutosizeMinRows="3" cdkAutosizeMaxRows="10" class="form-control"
       [placeholder]="t(rootLanguageResourceKey.LYRICS)"></textarea>
   </div>
 

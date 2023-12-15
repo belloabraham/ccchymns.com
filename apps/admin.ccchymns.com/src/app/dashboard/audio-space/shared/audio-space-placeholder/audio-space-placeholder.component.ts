@@ -1,14 +1,17 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {  NgFor } from '@angular/common';
+import { TABLE_PAGE_SIZE } from '../../../shared';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-audio-space-placeholder',
   standalone: true,
-  imports: [CommonModule],
+  imports: [TranslocoModule, NgFor],
   templateUrl: './audio-space-placeholder.component.html',
   styleUrl: './audio-space-placeholder.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AudioSpacePlaceholderComponent {
-
+  placeholders = Array(TABLE_PAGE_SIZE / 2);
+  @Input({ required: true }) columnNames: string[] = [];
 }

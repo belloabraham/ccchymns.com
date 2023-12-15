@@ -5,13 +5,14 @@
 
   <div class="input-group hymn-number">
     <button type="button" class="input-group-text fw-bolder">-</button>
-    <input type="number" class="form-control" [placeholder]="t(dashboardLanguageResourceKey.HYMN_NO)">
+    <input type="number" class="form-control" formControlName="no"
+      [placeholder]="t(dashboardLanguageResourceKey.HYMN_NO)">
     <button type="button" class="input-group-text fw-bolder">+</button>
   </div>
 
   <div>
-    <textarea cdkTextareaAutosize cdkAutosizeMinRows="3" cdkAutosizeMaxRows="7" class="form-control"
-      [placeholder]="t(rootLanguageResourceKey.LYRICS)"></textarea>
+    <textarea formControlName="lyrics" cdkTextareaAutosize cdkAutosizeMinRows="3" cdkAutosizeMaxRows="7"
+      class="form-control" [placeholder]="t(rootLanguageResourceKey.LYRICS)"></textarea>
   </div>
 
   <div class="text-end">

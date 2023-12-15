@@ -53,7 +53,7 @@ export class AuthComponent implements OnDestroy, OnInit {
 
   formSubmitted = false;
   loginForm!: FormGroup;
-  emailFormControl = new FormControl(undefined, [
+  emailFC = new FormControl(undefined, [
     Validators.required,
     Validators.pattern(Regex.EMAIL),
   ]);
@@ -84,12 +84,12 @@ export class AuthComponent implements OnDestroy, OnInit {
 
   private createLoginForm() {
     this.loginForm = new FormGroup({
-      email: this.emailFormControl,
+      email: this.emailFC,
     });
   }
 
   emailIsInvalid() {
-    return this.formSubmitted && this.emailFormControl.invalid;
+    return this.formSubmitted && this.emailFC.invalid;
   }
 
   onLanguageResourceLoad() {
