@@ -1,19 +1,10 @@
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
-  ContentChild,
-  ContentChildren,
   HostBinding,
   Input,
-  QueryList,
   ViewEncapsulation,
 } from '@angular/core';
-import {
-  CCCDrawerComponent,
-  CCCDrawerContentComponent,
-  CCC_DRAWER_CONTAINER,
-} from '../ccc-drawer/ccc-drawer.component';
 import {
   BooleanInput,
   NumberInput,
@@ -21,48 +12,8 @@ import {
   coerceNumberProperty,
 } from '@angular/cdk/coercion';
 import { cccDrawerAnimations } from '../ccc-drawer/drawer-animations';
-import { CCCDrawerContainerComponent } from '../ccc-drawer/ccc-drawer.component';
-import { CdkScrollable, ScrollDispatcher } from '@angular/cdk/scrolling';
-import { ElementRef, forwardRef, Inject, NgZone } from '@angular/core';
+import { CCCDrawerComponent } from '../ccc-drawer/ccc-drawer.component';
 
-@Component({
-  selector: 'ccc-sidenav-content',
-  template: '<ng-content></ng-content>',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
-  providers: [
-    {
-      provide: CdkScrollable,
-      useExisting: CCCSidenavContentComponent,
-    },
-  ],
-})
-export class CCCSidenavContentComponent extends CCCDrawerContentComponent {
-  @HostBinding('attr.ngSkipHydration') _ngSkipHydrationAttribute = '';
-
-  @HostBinding('class') get _content() {
-    return 'ccc-drawer-content ccc-sidenav-content';
-  }
-
-  @HostBinding('style.margin-left.px') get _contentMarginLeft() {
-    return this.container.contentMargins.left;
-  }
-
-  @HostBinding('style.margin-right.px') get _contentMarginRight() {
-    return this.container.contentMargins.right;
-  }
-
-  constructor(
-    changeDetectorRef: ChangeDetectorRef,
-    @Inject(forwardRef(() => CCCSidenavContainerComponent))
-    container: CCCSidenavContainerComponent,
-    elementRef: ElementRef<HTMLElement>,
-    scrollDispatcher: ScrollDispatcher,
-    ngZone: NgZone
-  ) {
-    super(changeDetectorRef, container, elementRef, scrollDispatcher, ngZone);
-  }
-}
 
 @Component({
   selector: 'ccc-sidenav',
@@ -133,40 +84,3 @@ export class CCCSidenavComponent extends CCCDrawerComponent {
   private _fixedBottomGap = 0;
 }
 
-@Component({
-  selector: 'ccc-sidenav-container',
-  exportAs: 'cccSidenavContainer',
-  templateUrl: './ccc-sidenav-container.component.html',
-  styleUrls: [
-    '../ccc-drawer/ccc-drawer.component.scss',
-    './ccc-sidenav.component.scss',
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
-  providers: [
-    {
-      provide: CCC_DRAWER_CONTAINER,
-      useExisting: CCCSidenavContainerComponent,
-    },
-  ],
-})
-export class CCCSidenavContainerComponent extends CCCDrawerContainerComponent {
-  @HostBinding('attr.ngSkipHydration') _ngSkipHydrationAttribute = '';
-
-  @ContentChildren(CCCSidenavComponent, {
-    descendants: true,
-  })
-  override allDrawers: QueryList<CCCSidenavComponent> = undefined!;
-
-  @ContentChild(CCCSidenavContentComponent)
-  override content: CCCSidenavContentComponent = undefined!;
-
-  @HostBinding('class') get _container() {
-    return 'ccc-drawer-container ccc-sidenav-container';
-  }
-
-  @HostBinding('class.ccc-drawer-container-explicit-backdrop')
-  get _backdrop() {
-    return this.backdropOverride;
-  }
-}
