@@ -1,5 +1,5 @@
-@forward '../../scss/mobile-menu';
-@forward '../../scss/bugger-button';
+@use '../../scss/mobile-menu';
+@use '../../scss/bugger-button';
 @use 'gerillass';
 
 .opened {

@@ -1,7 +1,7 @@
-@forward 'global';
-@forward './scss/font';
-@forward './scss/font-icon';
-@forward './scss/variables/vendor/taiga-ui';
+@use 'global';
+@use './scss/font';
+@use './scss/font-icon';
+@use './scss/variables/vendor/taiga-ui';
 @use 'material/ccchymns';
 @use 'gerillass';
 @use 'colors';

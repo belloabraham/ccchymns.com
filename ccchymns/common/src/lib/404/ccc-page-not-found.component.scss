@@ -1,5 +1,5 @@
-@forward '../../../../scss/animations/burning-candle';
-@forward '../../../../scss/utils/colors';
+@use '../../../../scss/animations/burning-candle';
+@use '../../../../scss/utils/colors';
 
 .logo {
   border-radius: 1.7rem;
