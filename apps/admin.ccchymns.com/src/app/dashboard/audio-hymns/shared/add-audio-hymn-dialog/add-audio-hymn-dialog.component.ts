@@ -49,5 +49,8 @@ export class AddAudioHymnDialogComponent implements OnInit {
 
   onSubmit() {
     this.formSubmitted = true;
+    if(this.audioHymnForm.valid){
+      //TODO
+    }
   }
 }

@@ -52,5 +52,8 @@ export class AddAudioSpaceDialogComponent implements OnInit {
 
   onSubmit() {
     this.formSubmitted = true;
+    if(this.audioSpaceForm.valid){
+      //TODO
+    }
   }
 }

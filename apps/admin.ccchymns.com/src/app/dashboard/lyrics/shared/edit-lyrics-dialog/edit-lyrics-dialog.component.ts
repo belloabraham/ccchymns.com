@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Inject,
+  OnInit,
+} from '@angular/core';
 import { SharedModule } from '../../../shared';
 import { NgMaterialButtonModule } from '@ccchymns.com/angular';
 import { RootLanguageResourceKey } from '@ccchymns.com/common';
@@ -8,6 +13,8 @@ import { POLYMORPHEUS_CONTEXT } from '@tinkoff/ng-polymorpheus';
 import { DashboardLanguageResourceKey } from '../../../i18n/language-resource-key';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ILyricsForm } from '../form';
+import { LanguageResourceKey } from '../../i18n/language-resource-key';
+
 @Component({
   selector: 'app-edit-lyrics-dialog',
   standalone: true,
@@ -25,6 +32,12 @@ export class EditLyricsDialogComponent implements OnInit {
     Validators.min(1),
   ]);
   lyricsFC = new FormControl<string | null>(null, [Validators.required]);
+  formSubmitted = false;
+  languageResourceKey = LanguageResourceKey;
+
+  lyricsIsInvalid() {
+    return this.formSubmitted && this.lyricsFC.invalid;
+  }
 
   constructor(
     @Inject(TuiDialogService) private readonly dialogs: TuiDialogService,
@@ -41,5 +54,13 @@ export class EditLyricsDialogComponent implements OnInit {
       no: this.hymnNoFC,
       lyrics: this.lyricsFC,
     });
+  }
+
+  onSubmit(): void {
+    this.formSubmitted = true;
+
+    if (this.lyricsForm.valid) {
+      //TODO
+    }
   }
 }

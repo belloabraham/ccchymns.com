@@ -1,4 +1,4 @@
-<form class="d-flex flex-column gap-3" *transloco="let t" (ngSubmit)="onSubmit()">
+<form class="d-flex flex-column gap-3" *transloco="let t" [formGroup]="lyricsForm" (ngSubmit)="onSubmit()">
 
   <span class="title text-capitalize">{{t(dashboardLanguageResourceKey.ADD_HYMN)}}
   </span>
@@ -26,7 +26,7 @@
   </div>
 
   <div class="text-end">
-    <button class="w-100" ng-mat-raised-button>
+    <button class="w-100" ng-mat-raised-button type="submit">
       {{t(rootLanguageResourceKey.SAVE)}}
     </button>
   </div>

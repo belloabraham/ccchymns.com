@@ -63,9 +63,10 @@ export class AddLyricsDialogComponent implements OnInit {
   }
 
   onSubmit(): void {
-    // if (this.value !== null) {
-    this.context.completeWith('');
-    //  }
+    this.formSubmitted = true;
+    if (this.lyricsForm.valid) {
+      //TODO
+    }
   }
 
   showDialog(content: TemplateRef<TuiDialogContext>): void {
