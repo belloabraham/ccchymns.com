@@ -31,6 +31,9 @@
         "{projectRoot}/tsconfig.storybook.json"
       ],
       "cache": true
+    },
+    "server": {
+      "cache": true
     }
   },
   "namedInputs": {

@@ -10,7 +10,7 @@
       "executor": "@angular-devkit/build-angular:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/ccchymns.com",
+        "outputPath": "dist/apps/ccchymns.com/browser",
         "index": "apps/ccchymns.com/src/index.html",
         "main": "apps/ccchymns.com/src/main.ts",
         "polyfills": ["zone.js"],
@@ -123,6 +123,76 @@
         "version": 2,
         "browserTarget": "ccchymns.com:build:production"
       }
+    },
+    "server": {
+      "dependsOn": ["build"],
+      "executor": "@angular-devkit/build-angular:server",
+      "options": {
+        "outputPath": "dist/apps/ccchymns.com/server",
+        "main": "apps/ccchymns.com/server.ts",
+        "tsConfig": "apps/ccchymns.com/tsconfig.server.json",
+        "stylePreprocessorOptions": {
+          "includePaths": [
+            "ccchymns/scss",
+            "apps/ccchymns.com/src/scss",
+            "angular/scss",
+            "ccchymns/scss/mixins",
+            "ccchymns/scss/transitions",
+            "ccchymns/scss/variables",
+            "ccchymns/scss/animations"
+          ]
+        }
+      },
+      "configurations": {
+        "production": {
+          "outputHashing": "media",
+          "fileReplacements": [
+            {
+              "replace": "apps/ccchymns.com/src/environments/environment.ts",
+              "with": "apps/ccchymns.com/src/environments/environment.prod.ts"
+            }
+          ]
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "sourceMap": true,
+          "extractLicenses": false,
+          "vendorChunk": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve-ssr": {
+      "executor": "@angular-devkit/build-angular:ssr-dev-server",
+      "configurations": {
+        "development": {
+          "browserTarget": "ccchymns.com:build:development",
+          "serverTarget": "ccchymns.com:server:development"
+        },
+        "production": {
+          "browserTarget": "ccchymns.com:build:production",
+          "serverTarget": "ccchymns.com:server:production"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "prerender": {
+      "executor": "@angular-devkit/build-angular:prerender",
+      "options": {
+        "routes": ["/"]
+      },
+      "configurations": {
+        "development": {
+          "browserTarget": "ccchymns.com:build:development",
+          "serverTarget": "ccchymns.com:server:development"
+        },
+        "production": {
+          "browserTarget": "ccchymns.com:build:production",
+          "serverTarget": "ccchymns.com:server:production"
+        }
+      },
+      "defaultConfiguration": "production"
     }
   }
 }
