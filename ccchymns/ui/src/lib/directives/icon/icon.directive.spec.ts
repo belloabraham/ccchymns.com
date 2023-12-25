@@ -1,8 +1,8 @@
-import { IconDirective } from './icon.directive';
+import { CCCIconDirective } from './icon.directive';
 
-describe('IconDirective', () => {
+describe('CCCIconDirective', () => {
   it('should create an instance', () => {
-    const directive = new IconDirective();
+    const directive = new CCCIconDirective();
     expect(directive).toBeTruthy();
   });
 });

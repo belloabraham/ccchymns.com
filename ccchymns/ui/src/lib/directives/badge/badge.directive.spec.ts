@@ -1,8 +1,8 @@
-import { BadgeDirective } from './badge.directive';
+import { CCCBadgeDirective } from './badge.directive';
 
-describe('BadgeDirective', () => {
+describe('CCCBadgeDirective', () => {
   it('should create an instance', () => {
-    const directive = new BadgeDirective();
+    const directive = new CCCBadgeDirective();
     expect(directive).toBeTruthy();
   });
 });

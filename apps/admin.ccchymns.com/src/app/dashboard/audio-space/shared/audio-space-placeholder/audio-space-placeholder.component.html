@@ -1,1 +1,28 @@
-<p>audio-space-placeholder works!</p>
+<table *transloco="let t" class="table table-striped">
+  <thead>
+    <tr>
+      <th class="user-select-none" scope="col">{{t(columnNames[0])}}</th>
+      <th class="user-select-none" scope="col">{{t(columnNames[1])}}</th>
+      <th class="user-select-none" scope="col">{{t(columnNames[2])}}</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    @for (placeholder of placeholders; track placeholder; let i = $index) {
+    <tr class="placeholder-wave opacity-75">
+      <th scope="row"> <span class="placeholder">{{i+1}}</span></th>
+      <td>
+        <span class="placeholder audio-rectangle">
+        </span>
+      </td>
+      <td>
+        <span class="placeholder circle d-block">
+        </span>
+        <span class="placeholder circle d-block mt-3">
+        </span>
+      </td>
+    </tr>
+    }
+
+  </tbody>
+</table>

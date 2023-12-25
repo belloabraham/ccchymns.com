@@ -1,6 +1,6 @@
 @use 'gerillass';
 @use 'colors';
-@forward 'indeterminate-progress-bar';
+@use 'indeterminate-progress-bar';
 
 .child-routes {
   padding-top: 1rem;

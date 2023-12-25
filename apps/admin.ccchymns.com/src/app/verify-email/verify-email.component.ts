@@ -17,14 +17,18 @@ import { Store } from '@ngrx/store';
 import { Title } from '@angular/platform-browser';
 import { getLanguageLoadedSelector } from '../../store/selectors';
 import { LanguageResourceKey } from './i18n/language-resource-key';
-import { Config, DisplayService, RootLanguageResourceKey, Route } from '@ccchymns.com/common';
+import {
+  Config,
+  DisplayService,
+  RootLanguageResourceKey,
+  Route,
+} from '@ccchymns.com/common';
 import { Preference } from '../../core/data/preference';
 import { AUTH_TOKEN, IAuth } from '../../core/auth';
 import { Router, RouterLink } from '@angular/router';
 import { AlertDialog, LoggerUtil, Regex, Shield } from '@ccchymns.com/core';
 import {
   FormControl,
-  FormGroup,
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
@@ -54,8 +58,7 @@ export class VerifyEmailComponent implements OnInit, OnDestroy {
   root = Route.ROOT;
 
   formSubmitted = false;
-  verifyEmailForm!: FormGroup;
-  emailFormControl = new FormControl(undefined, [
+  emailFC = new FormControl<string | null>(null, [
     Validators.required,
     Validators.pattern(Regex.EMAIL),
   ]);
@@ -77,11 +80,10 @@ export class VerifyEmailComponent implements OnInit, OnDestroy {
     if (this.signInMail) {
       this.verifyEmail(this.signInMail);
     }
-    this.createVerifyEmailForm();
   }
 
   emailIsValid() {
-    return this.formSubmitted && this.emailFormControl.invalid;
+    return this.formSubmitted && this.emailFC.invalid;
   }
 
   private async verifyEmail(email: string) {
@@ -105,16 +107,10 @@ export class VerifyEmailComponent implements OnInit, OnDestroy {
 
   async onSubmit() {
     this.formSubmitted = true;
-    if (this.verifyEmailForm.valid) {
-      const email = this.verifyEmailForm.value.email.trim();
-      this.verifyEmail(email);
+    if (this.emailFC.valid) {
+      const email = this.emailFC.value?.trim();
+      this.verifyEmail(email!);
     }
-  }
-
-  private createVerifyEmailForm() {
-    this.verifyEmailForm = new FormGroup({
-      email: this.emailFormControl,
-    });
   }
 
   onLanguageResourceLoad() {

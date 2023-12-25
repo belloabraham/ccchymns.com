@@ -5,4 +5,5 @@ export class LanguageResourceKey {
   static readonly ENGLISH_LYRICS = 'english_lyrics';
   static readonly YORUBA_LYRICS = 'yoruba_lyrics';
   static readonly FRENCH_LYRICS = 'french_lyrics';
+  static readonly REQUIRED_LYRICS_MSG = 'required_lyrics_msg';
 }

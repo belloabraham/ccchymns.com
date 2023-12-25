@@ -8,4 +8,7 @@ export class LanguageResourceKey {
   static readonly FRENCH_BIBLE_REFERENCES = 'french_bible_references';
   static readonly ENGLISH_BIBLE_REFERENCES = 'english_bible_references';
   static readonly YORUBA_BIBLE_REFERENCES = 'yoruba_bible_references';
+  static readonly REQUIRED_BIBLE_REF_MSG = 'required_bible_ref_msg';
+  static readonly REQUIRED_BIBLE_VERSE_MSG = 'required_bible_verse_msg';
+  static readonly REFERENCE = 'reference';
 }

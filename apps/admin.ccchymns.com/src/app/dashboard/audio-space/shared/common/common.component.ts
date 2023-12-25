@@ -22,10 +22,11 @@ import { Observable } from 'rxjs';
 import { TuiDialogService } from '@taiga-ui/core';
 import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
 import { SubSink } from 'subsink';
-import { AddAudioHymnDialogComponent, AudioHymnsPlaceholderComponent } from '../../../audio-hymns/shared';
 import { AudioSpaceTableComponent } from '../audio-space-table/audio-space-table.component';
 import { DashboardLanguageResourceKey } from '../../../i18n/language-resource-key';
 import { LanguageResourceKey } from '../../i18n/language-resource-key';
+import { AddAudioSpaceDialogComponent } from '../add-audio-space-dialog/add-audio-space-dialog.component';
+import { AudioSpacePlaceholderComponent } from '../audio-space-placeholder/audio-space-placeholder.component';
 
 @Component({
   selector: 'app-audio-space-common',
@@ -38,6 +39,7 @@ import { LanguageResourceKey } from '../../i18n/language-resource-key';
     EmptyStateComponent,
     ErrorStateComponent,
     AudioSpaceTableComponent,
+    AudioSpacePlaceholderComponent
   ],
   templateUrl: './common.component.html',
   styleUrl: './common.component.scss',
@@ -70,7 +72,7 @@ export class CommonComponent implements OnInit {
 
   ngOnInit(): void {
     this.dialog = this.dialogs.open<number>(
-      new PolymorpheusComponent(AddAudioHymnDialogComponent, this.injector),
+      new PolymorpheusComponent(AddAudioSpaceDialogComponent, this.injector),
       {
         data: this.titleKey,
         dismissible: true,

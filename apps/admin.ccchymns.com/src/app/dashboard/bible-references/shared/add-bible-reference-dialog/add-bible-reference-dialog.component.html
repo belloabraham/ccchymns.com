@@ -1,18 +1,31 @@
-<form class="d-flex flex-column gap-3" *transloco="let t">
+<form class="d-flex flex-column gap-3" [formGroup]="bibleReferenceForm" *transloco="let t" (ngSubmit)="onSubmit()" >
   <span class="title">{{t(languageResourceKey.ADD_A_BIBLE_REFERENCE)}}
   </span>
 
   <div class="input-group w-100 w-md-50">
-    <span class="input-group-text">Reference</span>
-    <input type="text" class="form-control" [placeholder]="t(languageResourceKey.BIBLE_REFERENCE_PLACEHOLDER)">
+    <span class="input-group-text">{{t(languageResourceKey.REFERENCE)}}
+    </span>
+    <input type="text" formControlName="reference"  class="form-control" [class.is-invalid]="referenceIsInvalid()"
+      [placeholder]="t(languageResourceKey.BIBLE_REFERENCE_PLACEHOLDER)">
+    @if (referenceIsInvalid()) {
+    <div class="invalid-feedback">
+      {{t(languageResourceKey.REQUIRED_BIBLE_REF_MSG)}}
+    </div>
+    }
   </div>
+
   <div>
-    <textarea cdkTextareaAutosize cdkAutosizeMinRows="3" cdkAutosizeMaxRows="7" class="form-control"
-      [placeholder]="t(languageResourceKey.VERSES)"></textarea>
+    <textarea [class.is-invalid]="versesIsInvalid()" cdkTextareaAutosize cdkAutosizeMinRows="3" cdkAutosizeMaxRows="7"
+      class="form-control" formControlName="verses" [placeholder]="t(languageResourceKey.VERSES)"></textarea>
+    @if (versesIsInvalid()) {
+    <div class="invalid-feedback">
+      {{t(languageResourceKey.REQUIRED_BIBLE_VERSE_MSG)}}
+    </div>
+    }
   </div>
 
   <div class="text-end">
-    <button class="w-100" ng-mat-raised-button>
+    <button type="submit" class="w-100" ng-mat-raised-button>
       {{t(rootLanguageResourceKey.SAVE)}}
     </button>
   </div>

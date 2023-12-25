@@ -1,21 +1,32 @@
-<form class="d-flex flex-column gap-3" *transloco="let t">
+<form class="d-flex flex-column gap-3" *transloco="let t" [formGroup]="lyricsForm" (ngSubmit)="onSubmit()">
 
   <span class="title text-capitalize">{{t(dashboardLanguageResourceKey.ADD_HYMN)}}
   </span>
 
   <div class="input-group hymn-number">
-    <button type="button" class="input-group-text fw-bolder">-</button>
-    <input type="number" class="form-control" [placeholder]="t(dashboardLanguageResourceKey.HYMN_NO)">
-    <button type="button" class="input-group-text fw-bolder">+</button>
+    <input type="number" class="form-control" formControlName="no" [class.is-invalid]="hymnNoIsInvalid()"
+      [placeholder]="t(dashboardLanguageResourceKey.HYMN_NO)">
+    @if (hymnNoIsInvalid()) {
+    <div class="invalid-feedback">
+      {{t(dashboardLanguageResourceKey.VALID_HYMN_NO_MSG)}}
+    </div>
+    }
   </div>
 
   <div>
-    <textarea cdkTextareaAutosize cdkAutosizeMinRows="3" cdkAutosizeMaxRows="7" class="form-control"
-      [placeholder]="t(rootLanguageResourceKey.LYRICS)"></textarea>
+    <textarea [class.is-invalid]="lyricsIsInvalid()" formControlName="lyrics" cdkTextareaAutosize cdkAutosizeMinRows="3"
+      cdkAutosizeMaxRows="7" class="form-control" [placeholder]="t(rootLanguageResourceKey.LYRICS)"></textarea>
+
+    @if (lyricsIsInvalid()) {
+    <div class="invalid-feedback">
+      {{t(languageResourceKey.REQUIRED_LYRICS_MSG)}}
+    </div>
+    }
+
   </div>
 
   <div class="text-end">
-    <button class="w-100" ng-mat-raised-button>
+    <button class="w-100" ng-mat-raised-button type="submit">
       {{t(rootLanguageResourceKey.SAVE)}}
     </button>
   </div>

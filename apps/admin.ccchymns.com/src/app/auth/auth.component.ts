@@ -19,11 +19,15 @@ import { Store } from '@ngrx/store';
 import { Title } from '@angular/platform-browser';
 import { getLanguageLoadedSelector } from '../../store/selectors';
 import { LanguageResourceKey } from './i18n/language-resource-key';
-import { Config, DisplayService, RootLanguageResourceKey, Route } from '@ccchymns.com/common';
+import {
+  Config,
+  DisplayService,
+  RootLanguageResourceKey,
+  Route,
+} from '@ccchymns.com/common';
 import { NgOptimizedImage } from '@angular/common';
 import {
   FormControl,
-  FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
@@ -52,8 +56,8 @@ export class AuthComponent implements OnDestroy, OnInit {
   rootLanguageResourceKey = RootLanguageResourceKey;
 
   formSubmitted = false;
-  loginForm!: FormGroup;
-  emailFormControl = new FormControl(undefined, [
+  // loginForm!: FormGroup;
+  emailFC = new FormControl<string | null>(null, [
     Validators.required,
     Validators.pattern(Regex.EMAIL),
   ]);
@@ -78,18 +82,11 @@ export class AuthComponent implements OnDestroy, OnInit {
   }
 
   ngOnInit(): void {
-    this.createLoginForm();
     this.onLanguageResourceLoad();
   }
 
-  private createLoginForm() {
-    this.loginForm = new FormGroup({
-      email: this.emailFormControl,
-    });
-  }
-
   emailIsInvalid() {
-    return this.formSubmitted && this.emailFormControl.invalid;
+    return this.formSubmitted && this.emailFC.invalid;
   }
 
   onLanguageResourceLoad() {
@@ -122,9 +119,9 @@ export class AuthComponent implements OnDestroy, OnInit {
 
   async onSubmit() {
     this.formSubmitted = true;
-    if (this.loginForm.valid) {
-      const email = this.loginForm.value.email.trim();
-      this.sendLoginLinkTo(email);
+    if (this.emailFC.valid) {
+      const email = this.emailFC.value?.trim();
+      this.sendLoginLinkTo(email!);
     }
   }
 

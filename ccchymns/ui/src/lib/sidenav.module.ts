@@ -5,12 +5,10 @@ import {
   CCCDrawerComponent,
   CCCDrawerContainerComponent,
   CCCDrawerContentComponent,
-} from './components/ccc-drawer/ccc-drawer.component';
-import {
   CCCSidenavComponent,
   CCCSidenavContainerComponent,
   CCCSidenavContentComponent,
-} from './components/ccc-sidenav/ccc-sidenav.component';
+} from './components';
 
 const COMPONENTS = [
   CCCDrawerComponent,
@@ -24,6 +22,6 @@ const COMPONENTS = [
 @NgModule({
   imports: [CommonModule, CdkScrollableModule],
   exports: [CdkScrollableModule, ...COMPONENTS],
-  declarations: [...COMPONENTS],
+  declarations: COMPONENTS,
 })
 export class SidenavModule {}
