@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CccPageNotFoundComponent } from './ccc-page-not-found.component';
+import { CCCPageNotFoundComponent } from './ccc-page-not-found.component';
 
-describe('CccPageNotFoundComponent', () => {
-  let component: CccPageNotFoundComponent;
-  let fixture: ComponentFixture<CccPageNotFoundComponent>;
+describe('CCCPageNotFoundComponent', () => {
+  let component: CCCPageNotFoundComponent;
+  let fixture: ComponentFixture<CCCPageNotFoundComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CccPageNotFoundComponent],
+      imports: [CCCPageNotFoundComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CccPageNotFoundComponent);
+    fixture = TestBed.createComponent(CCCPageNotFoundComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
