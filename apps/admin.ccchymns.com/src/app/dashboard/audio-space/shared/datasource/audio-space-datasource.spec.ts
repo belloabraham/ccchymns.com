@@ -1,4 +1,4 @@
-import { AudioSpaceDatasource } from './audio-space-datasource';
+import { AudioSpaceDataSource } from './audio-space-datasource';
 
 describe('AudioSpaceDatasource', () => {
   it('should create an instance', () => {

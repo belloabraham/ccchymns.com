@@ -1,7 +1,7 @@
-import { AudioHymnsDatasource } from './audio-hymns-datasource';
+import { AudioHymnsDataSource } from './audio-hymns-datasource';
 
 describe('AudioHymnsDatasource', () => {
   it('should create an instance', () => {
-    expect(new AudioHymnsDatasource()).toBeTruthy();
+    expect(new AudioHymnsDataSource()).toBeTruthy();
   });
 });
