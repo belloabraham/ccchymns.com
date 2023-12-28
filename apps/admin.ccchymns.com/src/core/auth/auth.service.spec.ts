@@ -1,12 +1,15 @@
 import { TestBed } from '@angular/core/testing';
 
 import { AuthService } from './auth.service';
+import { EmailAuthService } from './firebase/email.service';
 
 describe('AuthService', () => {
   let service: AuthService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [EmailAuthService],
+    });
     service = TestBed.inject(AuthService);
   });
 

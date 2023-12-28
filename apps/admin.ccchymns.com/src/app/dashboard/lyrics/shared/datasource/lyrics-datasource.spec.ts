@@ -1,7 +1,7 @@
-import { LyricsDatasource } from './lyrics-datasource';
+import { HymnLyricsDataSource } from './lyrics-datasource';
 
-describe('LyricsDatasource', () => {
+describe('HymnLyricsDataSource', () => {
   it('should create an instance', () => {
-    expect(new LyricsDatasource()).toBeTruthy();
+    expect(new HymnLyricsDataSource([])).toBeTruthy();
   });
 });

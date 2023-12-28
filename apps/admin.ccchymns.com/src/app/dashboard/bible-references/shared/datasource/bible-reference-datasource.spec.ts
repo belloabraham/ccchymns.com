@@ -1,7 +1,7 @@
-import { BibleReferenceDatasource } from './bible-reference-datasource';
+import { BibleReferenceDataSource } from './bible-reference-datasource';
 
-describe('BibleReferenceDatasource', () => {
+describe('BibleReferenceDataSource', () => {
   it('should create an instance', () => {
-    expect(new BibleReferenceDatasource()).toBeTruthy();
+    expect(new BibleReferenceDataSource([])).toBeTruthy();
   });
 });

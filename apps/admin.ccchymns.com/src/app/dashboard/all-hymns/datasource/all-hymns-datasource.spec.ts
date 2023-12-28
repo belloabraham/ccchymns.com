@@ -1,7 +1,7 @@
-import { AllHymnsDatasource } from './all-hymns-datasource';
+import { AllHymnsDataSource } from './all-hymns-datasource';
 
-describe('AllHymnsDatasource', () => {
+describe('AllHymnsDataSource', () => {
   it('should create an instance', () => {
-    expect(new AllHymnsDatasource()).toBeTruthy();
+    expect(new AllHymnsDataSource([])).toBeTruthy();
   });
 });

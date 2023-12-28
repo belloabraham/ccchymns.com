@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FrenchComponent } from './french.component';
+import { CommonComponent } from '../shared/common/common.component';
 
 describe('FrenchComponent', () => {
   let component: FrenchComponent;
@@ -8,10 +9,10 @@ describe('FrenchComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FrenchComponent]
+      imports: [FrenchComponent, CommonComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(FrenchComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
