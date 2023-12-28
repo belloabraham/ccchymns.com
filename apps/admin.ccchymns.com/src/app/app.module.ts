@@ -11,27 +11,37 @@ import { StoreModule } from '@ngrx/store';
 import { languageLoadedFeature } from '../store/selectors/language-resource.selector';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
-import { initializeAppCheck, ReCaptchaEnterpriseProvider, provideAppCheck } from '@angular/fire/app-check';
+import {
+  initializeAppCheck,
+  ReCaptchaEnterpriseProvider,
+  provideAppCheck,
+} from '@angular/fire/app-check';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getFunctions, provideFunctions } from '@angular/fire/functions';
 import { getStorage, provideStorage } from '@angular/fire/storage';
-import { getRemoteConfig, provideRemoteConfig } from '@angular/fire/remote-config';
+import {
+  getRemoteConfig,
+  provideRemoteConfig,
+} from '@angular/fire/remote-config';
 
+const MODULES = [
+  BrowserModule,
+  BrowserAnimationsModule,
+  HttpClientModule,
+  TranslocoRootModule,
+  AppRoutingModule,
+  environment.imports,
+  //Should come after BrowserAnimationsModule
+  TuiRootModule,
+  TuiDialogModule,
+];
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    TranslocoRootModule,
-    AppRoutingModule,
+    ...MODULES,
     StoreModule.forRoot({}),
     StoreModule.forFeature(languageLoadedFeature),
-    environment.imports,
-    //Comes after BrowserAnimationsModule
-    TuiRootModule,
-    TuiDialogModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     // provideAppCheck(() => {
@@ -44,5 +54,6 @@ import { getRemoteConfig, provideRemoteConfig } from '@angular/fire/remote-confi
     // provideRemoteConfig(() => getRemoteConfig()),
   ],
   bootstrap: [AppComponent],
+  exports: MODULES,
 })
 export class AppModule {}

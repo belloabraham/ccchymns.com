@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Providers } from '../providers';
-import { LanguageResourceService } from '../i18n/language-resource.service';
 import { Language } from '../i18n/language';
+import { LanguageResourceService } from '../i18n';
 
 @Injectable({
   providedIn: Providers.ROOT,
