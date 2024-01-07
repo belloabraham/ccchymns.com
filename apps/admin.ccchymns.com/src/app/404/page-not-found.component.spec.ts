@@ -3,7 +3,6 @@ import { PageNotFoundComponent } from './page-not-found.component';
 import { Store, StoreModule } from '@ngrx/store';
 import { Title } from '@angular/platform-browser';
 import { LANGUAGE_RESOURCE_TOKEN, LanguageResourceService } from '@ccchymns.com/angular';
-
 import {
   TranslocoTestingModule,
   TranslocoTestingOptions,
