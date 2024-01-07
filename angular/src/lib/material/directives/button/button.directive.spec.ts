@@ -1,13 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { ButtonDirective } from './button.directive';
+import { NgMaterialButtonDirective } from './button.directive';
 
 @Component({
   standalone: true,
-  imports: [ButtonDirective],
+  imports: [NgMaterialButtonDirective],
   template:
-    '<button ccc-button [variant]="variant" [size]="size" [outlined]="outlined" [color]="color"></button>',
+    '<button ng-mat-button [variant]="variant" [size]="size" [outlined]="outlined" [color]="color"></button>',
 })
 class TestComponent {
   variant = 'btn';
@@ -16,7 +16,7 @@ class TestComponent {
   color = 'primary';
 }
 
-describe('ButtonDirective', () => {
+describe('NgMaterialBaseButtonDirective', () => {
   let fixture: ComponentFixture<TestComponent>;
   let buttonElement: DebugElement;
 
@@ -27,7 +27,7 @@ describe('ButtonDirective', () => {
 
     fixture = TestBed.createComponent(TestComponent);
     fixture.detectChanges();
-    buttonElement = fixture.debugElement.query(By.directive(ButtonDirective));
+    buttonElement = fixture.debugElement.query(By.directive(NgMaterialButtonDirective));
   });
 
   it('should add default classes to host element', () => {
@@ -77,7 +77,7 @@ describe('ButtonDirective', () => {
       fixture.detectChanges();
 
       const hostElement = buttonElement.nativeElement as HTMLButtonElement;
-      //*Check if string values are anagrams as ButtonDirective @Hostbinding
+      //*Check if string values are anagrams as NgMaterialBaseButtonDirective @Hostbinding
       //*binds classes to host element in random order
       expect(getSortStringWithoutWhiteSpaces(hostElement.classList.value)).toBe(
         getSortStringWithoutWhiteSpaces(testCase.expectedClass)
