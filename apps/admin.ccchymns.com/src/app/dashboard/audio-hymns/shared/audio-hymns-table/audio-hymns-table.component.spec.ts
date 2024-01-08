@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AudioHymnsTableComponent } from './audio-hymns-table.component';
+import { getTranslocoTestingModule } from '../../../../mock';
 
 describe('AudioHymnsTableComponent', () => {
   let component: AudioHymnsTableComponent;
@@ -8,10 +9,10 @@ describe('AudioHymnsTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AudioHymnsTableComponent]
+      imports: [AudioHymnsTableComponent, getTranslocoTestingModule()]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(AudioHymnsTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

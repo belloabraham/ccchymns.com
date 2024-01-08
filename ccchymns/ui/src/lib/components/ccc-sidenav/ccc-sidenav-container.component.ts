@@ -35,7 +35,7 @@ export class CCCSidenavContainerComponent extends CCCDrawerContainerComponent {
   @ContentChildren(CCCSidenavComponent, {
     descendants: true,
   })
-  override allDrawers: QueryList<CCCSidenavComponent> = undefined!;
+  override drawers: QueryList<CCCSidenavComponent> = undefined!;
 
   @ContentChild(CCCSidenavContentComponent)
   override content: CCCSidenavContentComponent = undefined!;

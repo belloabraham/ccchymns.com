@@ -1,23 +1,24 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PageNotFoundComponent } from './page-not-found.component';
-import { Store, StoreModule } from '@ngrx/store';
-import { Title } from '@angular/platform-browser';
-import { LANGUAGE_RESOURCE_TOKEN, LanguageResourceService } from '@ccchymns.com/angular';
-
+import { provideMockStore } from '@ngrx/store/testing';
+import {
+  LANGUAGE_RESOURCE_TOKEN,
+  LanguageResourceService,
+} from '@ccchymns.com/angular';
+import { getTranslocoTestingModule, initialState } from '../mock';
 describe('PageNotFoundComponent', () => {
   let component: PageNotFoundComponent;
   let fixture: ComponentFixture<PageNotFoundComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PageNotFoundComponent, StoreModule.forRoot({})],
+      imports: [PageNotFoundComponent, getTranslocoTestingModule()],
       providers: [
-        Title,
-        Store,
         {
           provide: LANGUAGE_RESOURCE_TOKEN,
           useClass: LanguageResourceService,
         },
+        provideMockStore({ initialState }),
       ],
     }).compileComponents();
 

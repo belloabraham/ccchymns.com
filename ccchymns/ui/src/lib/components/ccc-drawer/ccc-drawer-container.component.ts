@@ -22,6 +22,7 @@ import {
   QueryList,
   ViewChild,
   ViewEncapsulation,
+  forwardRef,
   isDevMode,
 } from '@angular/core';
 import {  merge, Subject } from 'rxjs';
@@ -69,12 +70,7 @@ export class CCCDrawerContainerComponent
     return this.backdropOverride;
   }
 
-  @ContentChildren(CCCDrawerComponent, {
-    descendants: true,
-  })
-  allDrawers?: QueryList<CCCDrawerComponent>;
-
-  /** Drawers that belong to this container. */
+  @ContentChildren(forwardRef(() => CCCDrawerComponent))
   drawers = new QueryList<CCCDrawerComponent>();
 
   @ContentChild(CCCDrawerContentComponent)
@@ -171,8 +167,8 @@ export class CCCDrawerContainerComponent
   }
 
   ngAfterContentInit() {
-    this.allDrawers?.changes
-      .pipe(startWith(this.allDrawers), takeUntil(this.destroyed))
+    this.drawers?.changes
+      .pipe(startWith(this.drawers), takeUntil(this.destroyed))
       .subscribe((drawer: QueryList<CCCDrawerComponent>) => {
         this.drawers.reset(
           drawer.filter((item) => !item.container || item.container === this)

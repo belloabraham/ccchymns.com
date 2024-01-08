@@ -28,7 +28,6 @@ import { TuiDialogService } from '@taiga-ui/core';
 import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
 import { AddLyricsDialogComponent } from '../add-lyrics-dialog/add-lyrics-dialog.component';
 import { Observable } from 'rxjs';
-import { EditLyricsDialogComponent } from '../edit-lyrics-dialog/edit-lyrics-dialog.component';
 import { SubSink } from 'subsink';
 
 @Component({

@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CCCSidenavComponent } from './ccc-sidenav.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('CCCSidenavComponent', () => {
   let component: CCCSidenavComponent;
@@ -8,7 +9,8 @@ describe('CCCSidenavComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CCCSidenavComponent]
+      declarations: [CCCSidenavComponent],
+      imports:[BrowserAnimationsModule]
     })
     .compileComponents();
 

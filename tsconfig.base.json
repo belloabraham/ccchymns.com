@@ -1,6 +1,10 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    //Transloco
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    //End Transloco
     "rootDir": ".",
     "sourceMap": true,
     "declaration": false,

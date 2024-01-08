@@ -1,28 +1,30 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { NxWelcomeComponent } from './nx-welcome.component';
 import { RouterTestingModule } from '@angular/router/testing';
+import { useDeviceLanguage } from '@angular/fire/auth';
+import { LANGUAGE_RESOURCE_TOKEN, LanguageResourceService } from '@ccchymns.com/angular';
+import { getTranslocoTestingModule } from './mock';
 
 describe('AppComponent', () => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
-      declarations: [AppComponent, NxWelcomeComponent],
+      imports: [RouterTestingModule,getTranslocoTestingModule() ],
+      declarations: [AppComponent],
+      providers: [
+        {
+          provide: LANGUAGE_RESOURCE_TOKEN,
+          useClass: LanguageResourceService,
+        },
+      ],
     }).compileComponents();
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
     fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain(
-      'Welcome ccchymns.com'
-    );
   });
 
-  it(`should have as title 'ccchymns.com'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('ccchymns.com');
+  it('should create', () => {
+    expect(component).toBeTruthy();
   });
 });

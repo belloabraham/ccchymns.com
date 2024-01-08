@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RefundComponent } from './refund.component';
+import { getTranslocoTestingModule } from '../mock';
 
 describe('RefundComponent', () => {
   let component: RefundComponent;
@@ -7,7 +8,7 @@ describe('RefundComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RefundComponent],
+      imports: [RefundComponent, getTranslocoTestingModule()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(RefundComponent);

@@ -1,8 +1,8 @@
-import { ElevationDirective } from './elevation.directive';
+import { NgMaterialElevationDirective } from './elevation.directive';
 
-describe('ElevationDirective', () => {
+describe('NgMaterialElevationDirective', () => {
   it('should create an instance', () => {
-    const directive = new ElevationDirective();
+    const directive = new NgMaterialElevationDirective();
     expect(directive).toBeTruthy();
   });
 });

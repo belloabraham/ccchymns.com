@@ -4,7 +4,8 @@ import * as DOMPurify from 'dompurify';
 
 if (window.trustedTypes && window.trustedTypes.createPolicy) {
   window.trustedTypes.createPolicy('default', {
-    createHTML: (string, sink) => DOMPurify.sanitize(string),
+    createHTML: (string,
+      sink) => DOMPurify.sanitize(string),
   });
 }
 

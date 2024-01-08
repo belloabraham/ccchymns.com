@@ -8,7 +8,10 @@ describe('EmailAuthService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers:[Auth]
+      providers:[{
+        provide:Auth,
+        useValue:{}
+      }]
     });
     service = TestBed.inject(EmailAuthService);
   });

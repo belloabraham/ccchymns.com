@@ -2,17 +2,19 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppModule } from './app.module';
-import { Store, StoreModule } from '@ngrx/store';
-import { languageLoadedFeature } from '../store/selectors/language-resource.selector';
-import { Router } from '@angular/router';
 import { DisplayService } from '@ccchymns.com/common';
-import { BreakpointObserver } from '@angular/cdk/layout';
+import { BreakpointObserver, LayoutModule } from '@angular/cdk/layout';
 import {
   LANGUAGE_RESOURCE_TOKEN,
   LanguageResourceService,
 } from '@ccchymns.com/angular';
 import { CONNECTION_UTIL_TOKEN } from '../core/di/connection-service.token';
 import { ConnectionUtil } from '@ccchymns.com/core';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TuiDialogModule, TuiRootModule } from '@taiga-ui/core';
+import { provideMockStore } from '@ngrx/store/testing';
+import { initialState } from './mock';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -23,15 +25,17 @@ describe('AppComponent', () => {
       imports: [
         RouterTestingModule,
         AppModule,
-        StoreModule.forRoot({}),
-        StoreModule.forFeature(languageLoadedFeature),
+        HttpClientTestingModule,
+        LayoutModule,
+        BrowserAnimationsModule,
+        TuiRootModule,
+        TuiDialogModule,
       ],
       declarations: [AppComponent],
       providers: [
-        Router,
         DisplayService,
         BreakpointObserver,
-        Store,
+        provideMockStore({ initialState }),
         {
           provide: CONNECTION_UTIL_TOKEN,
           useClass: ConnectionUtil,

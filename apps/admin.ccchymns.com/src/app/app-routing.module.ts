@@ -22,7 +22,7 @@ const routes: Routes = [
   }, */
   {
     path: Route.ROOT,
-  /*   canMatch: [
+   /*  canMatch: [
       //Match route only if authenticated user exist
       () =>
         inject(AUTH_TOKEN)

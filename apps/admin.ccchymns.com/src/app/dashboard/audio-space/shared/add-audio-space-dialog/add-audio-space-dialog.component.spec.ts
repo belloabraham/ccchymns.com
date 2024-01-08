@@ -3,7 +3,25 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AddAudioSpaceDialogComponent } from './add-audio-space-dialog.component';
 import { SharedModule } from '../../../shared';
 import { NgMaterialButtonModule } from '@ccchymns.com/angular';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import {
+  TranslocoTestingModule,
+  TranslocoTestingOptions,
+} from '@ngneat/transloco';
+import en from '../../../../../assets/i18n/en.json';
+
+export function getTranslocoTestingModule(
+  options: TranslocoTestingOptions = {}
+) {
+  return TranslocoTestingModule.forRoot({
+    langs: { en },
+    translocoConfig: {
+      availableLangs: ['en'],
+      defaultLang: 'en',
+    },
+    preloadLangs: true,
+    ...options,
+  });
+}
 
 describe('AddAudioSpaceDialogComponent', () => {
   let component: AddAudioSpaceDialogComponent;
@@ -14,7 +32,7 @@ describe('AddAudioSpaceDialogComponent', () => {
       imports: [
         AddAudioSpaceDialogComponent,
         SharedModule,
-        NgMaterialButtonModule, HttpClientTestingModule
+        NgMaterialButtonModule, getTranslocoTestingModule()
       ],
     }).compileComponents();
 

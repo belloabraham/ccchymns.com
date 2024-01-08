@@ -54,6 +54,7 @@ export class AudioHymnsTableComponent implements OnInit, OnChanges {
     );
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   ngOnChanges(changes: SimpleChanges): void {
     this.filterTableData(this.filterBy);
   }
