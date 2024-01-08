@@ -6,7 +6,7 @@ import { map } from 'rxjs';
 import { Route } from '@ccchymns.com/common';
 
 const routes: Routes = [
-  {
+ /*  {
     path: Route.ROOT,
     pathMatch: 'full',
     canMatch: [
@@ -19,10 +19,10 @@ const routes: Routes = [
           ),
     ],
     component: AuthComponent,
-  },
+  }, */
   {
     path: Route.ROOT,
-    canMatch: [
+   /*  canMatch: [
       //Match route only if authenticated user exist
       () =>
         inject(AUTH_TOKEN)
@@ -30,7 +30,7 @@ const routes: Routes = [
           .pipe(
             map((userIsAuthenticated) => (userIsAuthenticated ? true : false))
           ),
-    ],
+    ], */
     loadChildren: () =>
       import('./dashboard/dashboard.routes').then(
         (mod) => mod.DASHBOARD_ROUTES

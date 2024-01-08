@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TermsComponent } from './terms.component';
+import { getTranslocoTestingModule } from '../mock';
 
 describe('TermsComponent', () => {
   let component: TermsComponent;
@@ -7,7 +8,7 @@ describe('TermsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TermsComponent],
+      imports: [TermsComponent, getTranslocoTestingModule()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(TermsComponent);

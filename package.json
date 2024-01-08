@@ -12,7 +12,7 @@
     "lint:common": "nx run common:lint",
     "lint:ccchymns.com": "nx run ccchymns.com:lint",
     "lint:admin.ccchymns.com": "nx run admin.ccchymns.com:lint",
-    "lint:ccchymns": "pnpm run lint:core && pnpm run lint:angular && pnpm run lint:ui && pnpm run lint:common && pnpm run lint:ccchymns.com && pnpm run lint:admin.ccchymns.com",
+    "lint:all": "pnpm run lint:core && pnpm run lint:angular && pnpm run lint:ui && pnpm run lint:common && pnpm run lint:ccchymns.com && pnpm run lint:admin.ccchymns.com",
     "serve:ccchymns.com": "nx run ccchymns.com:serve:development",
     "serve:admin.ccchymns.com": "nx run admin.ccchymns.com:serve:development",
     "serve:ccchymns": "pnpm run serve:admin.ccchymns.com && pnpm run serve:ccchymns.com",
@@ -23,9 +23,9 @@
     "test:ccchymns.com": "nx run ccchymns.com:test",
     "test:ui": "nx run ui:test",
     "test:core": "nx run core:test",
-    "test:common": "nx run core:common",
+    "test:common": "nx run common:test",
     "test:angular": "nx run angular:test",
-    "test:ccchymns": "pnpm run test:core && pnpm run test:angular && pnpm run test:ui && pnpm run test:common && pnpm run test:ccchymns.com && pnpm run test:admin.ccchymns.com"
+    "test:all": "pnpm run test:core && pnpm run test:angular && pnpm run test:ui && pnpm run test:common && pnpm run test:ccchymns.com && pnpm run test:admin.ccchymns.com"
   },
   "private": true,
   "dependencies": {
@@ -34,7 +34,7 @@
     "@angular/common": "~17.0.0",
     "@angular/compiler": "~17.0.0",
     "@angular/core": "~17.0.0",
-    "@angular/fire": "^16.0.0",
+    "@angular/fire": "^17.0.0",
     "@angular/forms": "~17.0.0",
     "@angular/platform-browser": "~17.0.0",
     "@angular/platform-browser-dynamic": "~17.0.0",
@@ -48,7 +48,7 @@
     "@material/theme": "^14.0.0",
     "@material/tooltip": "^14.0.0",
     "@ngneat/transloco": "^6.0.0",
-    "@ngrx/store": "^16.3.0",
+    "@ngrx/store": "^17.0.1",
     "@ngrx/store-devtools": "^16.3.0",
     "@storybook/addon-storysource": "7.5.3",
     "@taiga-ui/addon-mobile": "3.55.0",
