@@ -3,21 +3,12 @@ import { TestBed } from '@angular/core/testing';
 import { AuthService } from './auth.service';
 import { EmailAuthService } from './firebase/email.service';
 
-global.TextDecoder = jest.fn(() => ({
-  decode: jest.fn(),
-})) as any;
-
-xdescribe('AuthService', () => {
+describe('AuthService', () => {
   let service: AuthService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [
-        {
-          provide: EmailAuthService,
-          useValue: {},
-        },
-      ],
+      providers: [EmailAuthService, AuthService],
     });
     service = TestBed.inject(AuthService);
   });
