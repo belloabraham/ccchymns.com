@@ -11,9 +11,7 @@ import {
 } from '@angular/core';
 import { MDCRipple } from '@material/ripple';
 
-@Directive({
-  standalone:true
-})
+@Directive()
 export class NgMaterialBaseButtonDirective implements AfterViewInit, OnChanges {
   constructor(private el: ElementRef) {}
 
