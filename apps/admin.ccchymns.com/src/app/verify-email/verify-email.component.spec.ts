@@ -2,13 +2,18 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { VerifyEmailComponent } from './verify-email.component';
 import { NgOptimizedImage } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
-import { LANGUAGE_RESOURCE_TOKEN, LanguageResourceService, NgMaterialButtonModule, NgMaterialElevationDirective } from '@ccchymns.com/angular';
+import {
+  LANGUAGE_RESOURCE_TOKEN,
+  LanguageResourceService,
+  NgMaterialButtonModule,
+  NgMaterialElevationDirective,
+} from '@ccchymns.com/angular';
 import { SharedModule } from '@ccchymns.com/angular';
 import { DisplayService } from '@ccchymns.com/common';
-import { Title } from '@angular/platform-browser';
-import { Store } from '@ngrx/store';
 import { AUTH_TOKEN, AuthService } from '../../core/auth';
+import { provideMockStore } from '@ngrx/store/testing';
+import { getTranslocoTestingModule, initialState } from '../mock';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('VerifyEmailComponent', () => {
   let component: VerifyEmailComponent;
@@ -23,13 +28,12 @@ describe('VerifyEmailComponent', () => {
         NgMaterialElevationDirective,
         NgOptimizedImage,
         ReactiveFormsModule,
-        RouterLink,
+        RouterTestingModule,
+        getTranslocoTestingModule(),
       ],
       providers: [
         DisplayService,
-        Router,
-        Title,
-        Store,
+        provideMockStore({ initialState }),
         {
           provide: AUTH_TOKEN,
           useValue: AuthService,

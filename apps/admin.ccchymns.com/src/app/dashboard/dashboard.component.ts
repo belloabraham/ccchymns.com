@@ -32,7 +32,7 @@ import {
   RouterLinkActive,
   RouterOutlet,
 } from '@angular/router';
-import { Observable, distinctUntilChanged, filter, map, merge } from 'rxjs';
+import { distinctUntilChanged, filter, map, merge } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 
 export interface IBreadCrumb {

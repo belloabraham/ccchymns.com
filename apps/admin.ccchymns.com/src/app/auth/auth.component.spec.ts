@@ -10,10 +10,11 @@ import {
 import { NgOptimizedImage } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DisplayService } from '@ccchymns.com/common';
-import { Router } from '@angular/router';
-import { AUTH_TOKEN, AuthService } from '../../core/auth';
-import { Title } from '@angular/platform-browser';
-import { Store } from '@ngrx/store';
+import { AUTH_TOKEN } from '../../core/auth';
+import { RouterTestingModule } from '@angular/router/testing';
+import { getTranslocoTestingModule, initialState } from '../mock';
+import { provideMockStore } from '@ngrx/store/testing';
+import { of } from 'rxjs';
 
 describe('AuthComponent', () => {
   let component: AuthComponent;
@@ -28,19 +29,23 @@ describe('AuthComponent', () => {
         NgMaterialElevationDirective,
         NgOptimizedImage,
         ReactiveFormsModule,
+        RouterTestingModule,
+        getTranslocoTestingModule(),
       ],
       providers: [
+        provideMockStore({ initialState }),
         DisplayService,
-        Router,
-        Title,
-        Store,
         {
           provide: AUTH_TOKEN,
-          useClass: AuthService,
+          useValue: {
+            getAuthSate$: () => {
+              return of(null);
+            },
+          },
         },
         {
           provide: LANGUAGE_RESOURCE_TOKEN,
-          useClass:LanguageResourceService
+          useClass: LanguageResourceService,
         },
       ],
     }).compileComponents();

@@ -3,6 +3,7 @@ export default {
   displayName: 'admin.ccchymns.com',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
+  setupFiles: ['./jest.polyfills.js'],
   coverageDirectory: '../../coverage/apps/admin.ccchymns.com',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [

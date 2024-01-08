@@ -56,7 +56,6 @@ export class AuthComponent implements OnDestroy, OnInit {
   rootLanguageResourceKey = RootLanguageResourceKey;
 
   formSubmitted = false;
-  // loginForm!: FormGroup;
   emailFC = new FormControl<string | null>(null, [
     Validators.required,
     Validators.pattern(Regex.EMAIL),
