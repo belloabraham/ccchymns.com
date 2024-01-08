@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { SharedModule } from '../../shared';
-import { LanguageResourceKey } from '../i18n/language-resource-key';
 import { AUDIO_SPACE_MOCK_DATA } from '../shared/mock/audio-space';
 import { CommonComponent } from '../shared/common/common.component';
 import { RootLanguageResourceKey } from '@ccchymns.com/common';

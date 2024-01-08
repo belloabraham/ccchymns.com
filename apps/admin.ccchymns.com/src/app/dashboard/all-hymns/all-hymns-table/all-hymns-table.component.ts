@@ -68,6 +68,7 @@ export class AllHymnsTableComponent implements OnChanges, OnInit {
     );
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   ngOnChanges(changes: SimpleChanges): void {
     this.filterTableData(this.filterBy);
   }

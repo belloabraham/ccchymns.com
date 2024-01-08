@@ -23,6 +23,7 @@ import {
   getRemoteConfig,
   provideRemoteConfig,
 } from '@angular/fire/remote-config';
+import { SidenavModule } from '@ccchymns.com/ui';
 
 const MODULES = [
   BrowserModule,

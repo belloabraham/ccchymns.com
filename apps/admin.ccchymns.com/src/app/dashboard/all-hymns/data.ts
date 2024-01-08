@@ -1,6 +1,5 @@
 import { IEditorsHymn, RootLanguageResourceKey } from '@ccchymns.com/common';
 import { DashboardLanguageResourceKey } from '../i18n/language-resource-key';
-import { DASHBOARD_ROUTES } from '../dashboard.routes';
 import { LanguageResourceKey } from './i18n/language-resource-key';
 
 const editorsHymn: IEditorsHymn = {

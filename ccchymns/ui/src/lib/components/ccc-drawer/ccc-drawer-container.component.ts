@@ -22,6 +22,7 @@ import {
   QueryList,
   ViewChild,
   ViewEncapsulation,
+  forwardRef,
   isDevMode,
 } from '@angular/core';
 import {  merge, Subject } from 'rxjs';
@@ -69,9 +70,7 @@ export class CCCDrawerContainerComponent
     return this.backdropOverride;
   }
 
-  @ContentChildren(CCCDrawerComponent, {
-    descendants: true,
-  })
+  @ContentChildren(forwardRef(() => CCCDrawerComponent))
   drawers = new QueryList<CCCDrawerComponent>();
 
   @ContentChild(CCCDrawerContentComponent)

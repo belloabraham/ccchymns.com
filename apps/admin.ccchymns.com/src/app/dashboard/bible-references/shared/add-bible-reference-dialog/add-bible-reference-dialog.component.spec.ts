@@ -4,7 +4,6 @@ import { AddBibleReferenceDialogComponent } from './add-bible-reference-dialog.c
 import { SharedModule } from '../../../shared';
 import {
   NgMaterialButtonModule,
-  TranslocoRootModule,
 } from '@ccchymns.com/angular';
 import { TextFieldModule } from '@angular/cdk/text-field';
 import {
