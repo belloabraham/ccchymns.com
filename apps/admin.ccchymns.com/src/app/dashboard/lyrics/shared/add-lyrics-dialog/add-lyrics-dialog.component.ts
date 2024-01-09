@@ -10,11 +10,12 @@ import { TuiDialogContext, TuiDialogService } from '@taiga-ui/core';
 import { POLYMORPHEUS_CONTEXT } from '@tinkoff/ng-polymorpheus';
 import { DashboardLanguageResourceKey } from '../../../i18n/language-resource-key';
 import { NgMaterialButtonModule } from '@ccchymns.com/angular';
-import { RootLanguageResourceKey } from '@ccchymns.com/common';
+import { IHymnLyricsUIState, RootLanguageResourceKey } from '@ccchymns.com/common';
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ILyricsForm } from '../form';
 import { LanguageResourceKey } from '../../i18n/language-resource-key';
+import { JSON } from '@ccchymns.com/core';
 
 @Component({
   selector: 'app-add-lyrics-dialog',
@@ -65,6 +66,10 @@ export class AddLyricsDialogComponent implements OnInit {
   onSubmit(): void {
     this.formSubmitted = true;
     if (this.lyricsForm.valid) {
+       const hymnLyrics: IHymnLyricsUIState = {
+         no: this.hymnNoFC.value!,
+         lyrics: JSON.escapeSpecialCharacters(this.lyricsFC.value!),
+       };
       //TODO
     }
   }

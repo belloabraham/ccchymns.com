@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { RootLanguageResourceKey } from '@ccchymns.com/common';
+import { IBibleReferenceUIState, RootLanguageResourceKey } from '@ccchymns.com/common';
 import { LanguageResourceKey } from '../../i18n/language-resource-key';
 import { SharedModule } from '../../../shared';
 import { NgMaterialButtonModule } from '@ccchymns.com/angular';
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IBibleReferenceForm } from '../form';
-import { Regex } from '@ccchymns.com/core';
+import { JSON, Regex } from '@ccchymns.com/core';
 @Component({
   selector: 'app-add-bible-reference-dialog',
   standalone: true,
@@ -48,5 +48,12 @@ export class AddBibleReferenceDialogComponent implements OnInit {
 
   onSubmit(){
     this.formSubmitted = true
+    if(this.bibleReferenceForm.valid){
+      const bibleReference: IBibleReferenceUIState = {
+        reference: JSON.escapeSpecialCharacters(this.referenceFC.value!),
+        verses: JSON.escapeSpecialCharacters(this.versesFC.value!),
+      };
+      //TODO
+    }
   }
 }
