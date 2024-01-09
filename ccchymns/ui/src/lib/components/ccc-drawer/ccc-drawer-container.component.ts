@@ -70,7 +70,9 @@ export class CCCDrawerContainerComponent
     return this.backdropOverride;
   }
 
-  @ContentChildren(forwardRef(() => CCCDrawerComponent))
+  @ContentChildren(forwardRef(() => CCCDrawerComponent), {
+    descendants: true,
+  })
   drawers = new QueryList<CCCDrawerComponent>();
 
   @ContentChild(CCCDrawerContentComponent)

@@ -6,3 +6,9 @@
 <ng-content select="ccc-drawer-content">
 </ng-content>
 
+@if (!content) {
+<ccc-drawer-content>
+  <ng-content></ng-content>
+</ccc-drawer-content>
+}
+
