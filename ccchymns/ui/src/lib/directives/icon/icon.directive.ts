@@ -13,7 +13,7 @@ export type Icon =
   | 'star-half'
   | 'facebook'
   | 'instagram'
-  | 'x-circle'
+  | 'x-circle-outline'
   | 'youtube'
   | 'arrow-left'
   | 'menu'
