@@ -1,4 +1,4 @@
-export interface IEditorsHymn {
+export interface IEditorsHymn{
   no: number;
   paid: boolean;
   published: boolean;
@@ -7,6 +7,7 @@ export interface IEditorsHymn {
   french?: Hymn | undefined;
   [key: string]: string | number | boolean | undefined | Hymn;
 }
+
 interface Hymn {
   lyrics?: string;
   audio?: string;
