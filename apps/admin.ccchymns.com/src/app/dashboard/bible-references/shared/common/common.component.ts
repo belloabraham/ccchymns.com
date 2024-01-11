@@ -74,7 +74,7 @@ export class CommonComponent implements OnInit {
       ),
       {
         data: this.titleKey,
-        dismissible: true,
+        dismissible: false,
         appearance: 'bg-light',
       }
     );

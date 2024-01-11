@@ -75,7 +75,7 @@ export class CommonComponent implements OnInit {
       new PolymorpheusComponent(AddAudioHymnDialogComponent, this.injector),
       {
         data: this.titleKey,
-        dismissible: true,
+        dismissible: false,
         appearance: 'bg-light',
       }
     );
