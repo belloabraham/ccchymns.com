@@ -1,9 +1,7 @@
 <table *transloco="let t" class="table table-striped">
   <thead>
     <tr>
-      <th class="user-select-none" scope="col">{{t(columnNames[0])}}</th>
-      <th class="user-select-none" scope="col">{{t(columnNames[1])}}</th>
-      <th class="user-select-none" scope="col">{{t(columnNames[2])}}</th>
+      <th *ngFor="let name of columnNames" class="user-select-none" scope="col">{{t(name)}}</th>
     </tr>
   </thead>
   <tbody>
