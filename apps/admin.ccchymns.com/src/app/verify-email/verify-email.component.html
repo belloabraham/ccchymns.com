@@ -2,20 +2,20 @@
   class="vw-100 vh-100 bg-light d-flex flex-column justify-content-center align-items-center position-relative">
 
   <div class="logo d-flex justify-content-center align-items-center bg-white position-fixed">
-    <a [routerLink]="root"><img class="scale" width="50" height="40" ngSrc="assets/images/logo.png" priority>
+    <a [routerLink]="root"><img class="scale" data-testid="app-logo" width="50" height="40" ngSrc="assets/images/logo.png" priority>
     </a>
   </div>
 
   <div class="p-3 verify-email" >
-    <p class="title text-center">{{t(languageResourceKey.EMAIL_VERIFICATION_TITLE)}}</p>
-    <label for="email" class="form-label">{{t(rootLanguageResourceKey.EMAIL)}}
+    <p data-testid="login-title" class="title text-center">{{t(languageResourceKey.EMAIL_VERIFICATION_TITLE)}}</p>
+    <label data-testid="email-label" for="email" class="form-label">{{t(rootLanguageResourceKey.EMAIL)}}
     </label>
-    <input type="email" [formControl]="emailFC"  [class.is-invalid]="emailIsValid()" class="form-control w-100"
+    <input data-testid="email-input" type="email" [formControl]="emailFC"  [class.is-invalid]="emailIsValid()" class="form-control w-100"
       id="email" placeholder="name@example.com">
-    <div class="invalid-feedback" *ngIf="emailIsValid()">
+    <div data-testid="email-input-feedback" class="invalid-feedback" *ngIf="emailIsValid()">
       {{t(rootLanguageResourceKey.INVALID_EMAIL_MGS)}}
     </div>
-    <button class="mt-3 w-100" ng-mat-raised-button (click)="onSubmit()">
+    <button data-testid="email-verify-button" class="mt-3 w-100" ng-mat-raised-button (click)="onSubmit()">
       {{t(languageResourceKey.VERIFY_EMAIL)}}
     </button>
   </div>
