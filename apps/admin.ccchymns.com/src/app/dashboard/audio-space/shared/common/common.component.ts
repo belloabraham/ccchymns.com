@@ -4,6 +4,7 @@ import {
   Inject,
   Injector,
   Input,
+  OnDestroy,
   OnInit,
 } from '@angular/core';
 import {
@@ -39,13 +40,13 @@ import { AudioSpacePlaceholderComponent } from '../audio-space-placeholder/audio
     EmptyStateComponent,
     ErrorStateComponent,
     AudioSpaceTableComponent,
-    AudioSpacePlaceholderComponent
+    AudioSpacePlaceholderComponent,
   ],
   templateUrl: './common.component.html',
   styleUrl: './common.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CommonComponent implements OnInit {
+export class CommonComponent implements OnInit, OnDestroy {
   columnNames = COLUMN_NAMES_FOR_AUDIO_HYMNS_TABLE;
   languageResourceKey = LanguageResourceKey;
   dashboardLanguageResourceKey = DashboardLanguageResourceKey;
@@ -90,5 +91,9 @@ export class CommonComponent implements OnInit {
         console.info('Dialog closed');
       },
     });
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 }

@@ -67,36 +67,10 @@
                 <!-- *Tonic Solfa Collapse Button-->
                 <div class="d-flex gap-2 align-items-center ps-2 mt-2 collapse-btn">
                   <i [ccc-icon]="'music-clef'" class="text-white"></i>
-                  <button ng-mat-button (click)="openTonicSolfa.set(!openTonicSolfa())" class="text-white"
-                    data-bs-toggle="collapse" data-bs-target="#lyrics-collapse" [class.collapsed]="openTonicSolfa()"
-                    [attr.aria-expanded]="openTonicSolfa()" aria-expanded="true" aria-controls="collapse-button">
+                  <a ng-mat-button [routerLink]="[route.TONIC_SOLFA]" class="text-white">
                     {{t(rootLanguageResourceKey.TONIC_SOLFA)}}
-                    <i [ccc-icon]="openTonicSolfa() ? 'chevron-down': 'chevron-right'" class="text-white"></i>
-                  </button>
-                </div>
-                <div class="collapse" [class.show]="openTonicSolfa()" id="lyrics-collapse">
-                  <div class="px-4 mt-2">
-                    <div class="list-group border-0" id="list-tab" role="tablist">
-                      <a [routerLinkActive]="'active-link'"
-                        class="list-group-item border-0 list-group-item-action d-flex align-items-center"
-                        data-bs-toggle="list" [routerLink]="[route.TONIC_SOLFA, route.YORUBA]" role="tab">
-                        <i class="space"></i>
-                        {{t(rootLanguageResourceKey.YORUBA)}}
-                      </a>
-                      <a [routerLinkActive]="'active-link'"
-                        class="list-group-item border-0 list-group-item-action d-flex align-items-center"
-                        data-bs-toggle="list" [routerLink]="[route.TONIC_SOLFA, route.ENGLISH]" role="tab">
-                        <i class="space"></i>
-                        {{t(rootLanguageResourceKey.ENGLISH)}}
-                      </a>
-                      <a [routerLinkActive]="'active-link'"
-                        class="list-group-item border-0 list-group-item-action d-flex align-items-center"
-                        data-bs-toggle="list" [routerLink]="[route.TONIC_SOLFA, route.FRENCH]" role="tab">
-                        <i class="space"></i>
-                        {{t(rootLanguageResourceKey.FRENCH)}}
-                      </a>
-                    </div>
-                  </div>
+                    <i [ccc-icon]="'chevron-right'" class="text-white"></i>
+                  </a>
                 </div>
 
                 <!-- *Audio Hymns Collapse Button-->

@@ -6,23 +6,23 @@ import { map } from 'rxjs';
 import { Route } from '@ccchymns.com/common';
 
 const routes: Routes = [
+  // {
+  //   path: Route.ROOT,
+  //   pathMatch: 'full',
+  // /*  canMatch: [
+  //     //Match route if authenticated user does not exist
+  //     () =>
+  //       inject(AUTH_TOKEN)
+  //         .getAuthSate$()
+  //         .pipe(
+  //           map((userIsAuthenticated) => (userIsAuthenticated ? false : true))
+  //         ),
+  //   ],*/
+  //   component: AuthComponent,
+  // },
   {
     path: Route.ROOT,
-    pathMatch: 'full',
-  /*  canMatch: [
-      //Match route if authenticated user does not exist
-      () =>
-        inject(AUTH_TOKEN)
-          .getAuthSate$()
-          .pipe(
-            map((userIsAuthenticated) => (userIsAuthenticated ? false : true))
-          ),
-    ],*/
-    component: AuthComponent,
-  },
-  {
-    path: Route.ROOT,
-   /*  canMatch: [
+    /*  canMatch: [
       //Match route only if authenticated user exist
       () =>
         inject(AUTH_TOKEN)

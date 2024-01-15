@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   Input,
+  OnDestroy,
   OnInit,
 } from '@angular/core';
 import {
@@ -47,7 +48,7 @@ import { SubSink } from 'subsink';
   styleUrl: './common.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CommonComponent implements OnInit {
+export class CommonComponent implements OnInit, OnDestroy {
   columnNames = COLUMN_NAMES_FOR_LYRICS_TABLE;
   languageResourceKey = LanguageResourceKey;
   rootLanguageResourceKey = RootLanguageResourceKey;
@@ -93,5 +94,9 @@ export class CommonComponent implements OnInit {
         console.info('Dialog closed');
       },
     });
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 }

@@ -39,9 +39,9 @@ export const DASHBOARD_ROUTES: Routes = [
         data: {
           breadcrumb: RootLanguageResourceKey.TONIC_SOLFA,
         },
-        loadChildren: () =>
-          import('./tonic-solfa/tonic-solfa.routes').then(
-            (mod) => mod.TONIC_SOLFA_ROUTES
+        loadComponent: () =>
+          import('./tonic-solfa/tonic-solfa.component').then(
+            (mod) => mod.TonicSolfaComponent
           ),
       },
       {

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EnglishComponent } from './english.component';
+import { TonicSolfaTableComponent } from './tonic-solfa-table.component';
 
-describe('EnglishComponent', () => {
-  let component: EnglishComponent;
-  let fixture: ComponentFixture<EnglishComponent>;
+describe('TonicSolfaTableComponent', () => {
+  let component: TonicSolfaTableComponent;
+  let fixture: ComponentFixture<TonicSolfaTableComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EnglishComponent]
+      imports: [TonicSolfaTableComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(EnglishComponent);
+    fixture = TestBed.createComponent(TonicSolfaTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

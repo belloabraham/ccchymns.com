@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   Input,
+  OnDestroy,
   OnInit,
 } from '@angular/core';
 import {
@@ -49,7 +50,7 @@ import { SubSink } from 'subsink';
   styleUrl: './common.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CommonComponent implements OnInit {
+export class CommonComponent implements OnInit, OnDestroy {
   languageResourceKey = LanguageResourceKey;
   @Input({ required: true }) titleKey!: string;
   rootLanguageResourceKey = RootLanguageResourceKey;
@@ -97,4 +98,8 @@ export class CommonComponent implements OnInit {
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   retry() {}
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
+  }
 }
