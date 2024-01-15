@@ -9,7 +9,6 @@ import { CdkScrollable, ScrollDispatcher } from '@angular/cdk/scrolling';
 import { ElementRef, forwardRef, Inject, NgZone } from '@angular/core';
 import { CCCDrawerContentComponent } from '../ccc-drawer/ccc-drawer-content.component';
 import { CCCSidenavContainerComponent } from './ccc-sidenav-container.component';
-import { CCC_DRAWER_CONTAINER } from '../ccc-drawer/drawer.token';
 
 @Component({
   selector: 'ccc-sidenav-content',

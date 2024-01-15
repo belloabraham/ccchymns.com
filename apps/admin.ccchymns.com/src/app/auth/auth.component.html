@@ -1,19 +1,14 @@
 <div *transloco="let t"
   class="vw-100 vh-100 bg-light d-flex flex-column gap-4 justify-content-center align-items-center">
   <div class="logo d-flex justify-content-center align-items-center bg-white">
-    <img width="80" height="75" ngSrc="assets/images/logo.png" priority>
+    <img data-testid="app-logo" width="80" height="75" ngSrc="assets/images/logo.png" priority>
   </div>
   <div class="p-3 login">
-    <p class="title text-center">{{t(languageResourceKey.AUTH_LOGIN_MGS)}}</p>
-    <label for="email" class="form-label">{{t(rootLanguageResourceKey.EMAIL)}}
-    </label>
-    <input type="email" [formControl]="emailFC" [class.is-invalid]="emailIsInvalid()" class="form-control w-100"
-      id="email" placeholder="name@example.com">
-    <div class="invalid-feedback" *ngIf="emailIsInvalid()">
-      {{t(rootLanguageResourceKey.INVALID_EMAIL_MGS)}}
-    </div>
-    <button class="mt-3 w-100" ng-mat-raised-button (click)="onSubmit()">
-      {{t(languageResourceKey.LOGIN)}}
-    </button>
+    <p data-testid="login-title" class="title text-center">{{t(languageResourceKey.AUTH_LOGIN_MGS)}}</p>
+    <label data-testid="email-label" for="email" class="form-label">{{t(rootLanguageResourceKey.EMAIL)}}</label>
+    <input data-testid="email-input" type="email" [formControl]="emailFC" [class.is-invalid]="emailIsInvalid()"
+      class="form-control w-100" id="email" placeholder="name@example.com">
+    <div data-testid="email-input-feedback" class="invalid-feedback" *ngIf="emailIsInvalid()">{{t(rootLanguageResourceKey.INVALID_EMAIL_MGS)}}</div>
+    <button data-testid="email-submit-button" class="mt-3 w-100" ng-mat-raised-button (click)="onSubmit()">{{t(languageResourceKey.LOGIN)}}</button>
   </div>
 </div>
