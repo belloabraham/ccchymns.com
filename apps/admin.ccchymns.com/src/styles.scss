@@ -6,6 +6,13 @@
 @use 'gerillass';
 @use 'colors';
 
+.table {
+  td {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+}
+
 tui-dialog[data-appearance='bg-light'] {
   div.t-content {
     background-color: hsl(218, 5%, 90%);

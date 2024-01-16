@@ -1,1 +1,25 @@
-<p>tonic-solfa-placeholder works!</p>
+<table *transloco="let t" class="table table-striped">
+  <thead>
+    <tr>
+      <th *ngFor="let name of columnNames" class="user-select-none" scope="col">{{t(name)}}</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    @for (placeholder of placeholders; track placeholder; let i = $index) {
+    <tr class="placeholder-wave opacity-75">
+      <th scope="row"> <span class="placeholder">{{i+1}}</span></th>
+      <td>
+        <span class="placeholder audio-rectangle">
+        </span>
+      </td>
+      <td>
+        <span class="placeholder circle d-block">
+        </span>
+        <span class="placeholder circle d-block mt-3">
+        </span>
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>
