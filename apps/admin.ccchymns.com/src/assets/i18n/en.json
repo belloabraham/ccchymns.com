@@ -87,5 +87,7 @@
   "email_verification_title": "Let's Confirm Your Email",
   "verify_email": "Verify Email",
   "search_tonic_solfa":"Search tonic sol-fa",
-  "add_tonic_solfa":"Add tonic solfa"
+  "add_tonic_solfa":"Add tonic solfa",
+  "upload_tonic_solfa":"Upload tonic solfa",
+  "tonic_solfa_req_msg":"Tonic solfa is required"
 }

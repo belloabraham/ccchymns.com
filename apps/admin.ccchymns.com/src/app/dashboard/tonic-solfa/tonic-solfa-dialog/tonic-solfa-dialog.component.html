@@ -1,1 +1,32 @@
-<p>tonic-solfa-dialog works!</p>
+<form class="d-flex flex-column gap-3" [formGroup]="audioHymnForm" *transloco="let t" (ngSubmit)="onSubmit()">
+
+  <span class="title">{{t(languageResourceKey.UPLOAD_TONIC_SOLFA)}}
+  </span>
+
+  <div class="hymn-number">
+    <input type="number" formControlName="no" class="form-control" [class.is-invalid]="hymnNoIsInvalid()"
+      [placeholder]="t(dashboardLanguageResourceKey.HYMN_NO)">
+    @if (hymnNoIsInvalid()) {
+    <div class="invalid-feedback">
+      {{t(dashboardLanguageResourceKey.VALID_HYMN_NO_MSG)}}
+    </div>
+    }
+  </div>
+
+  <div class="mb-2">
+    <input class="form-control w-100" formControlName="audio" type="file" [multiple]="false" [max]="1"
+      [accept]="'audio/mpeg'" [class.is-invalid]="audioHymnIsInvalid()">
+    @if (audioHymnIsInvalid()) {
+    <div class="invalid-feedback">
+      {{t(languageResourceKey.TONIC_SOLFA_REQUIRED_MSG)}}
+    </div>
+    }
+  </div>
+
+  <div class="text-end">
+    <button class="w-100" ng-mat-raised-button type="submit">
+      {{t(dashboardLanguageResourceKey.UPLOAD)}}
+    </button>
+  </div>
+
+</form>
