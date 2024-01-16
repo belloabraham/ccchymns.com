@@ -37,10 +37,10 @@ export class AddAudioHymnDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.createAudioSpaceForm();
+    this.createAudioHymnForm();
   }
 
-  private createAudioSpaceForm() {
+  private createAudioHymnForm() {
     this.audioHymnForm = new FormGroup<IAudioHymnForm>({
       no: this.hymnNoFC,
       audio: this.audioFC,

@@ -1,4 +1,4 @@
-<form class="d-flex flex-column gap-3" [formGroup]="audioHymnForm" *transloco="let t" (ngSubmit)="onSubmit()">
+<form class="d-flex flex-column gap-3" [formGroup]="tonicSolfaForm" *transloco="let t" (ngSubmit)="onSubmit()">
 
   <span class="title">{{t(languageResourceKey.UPLOAD_TONIC_SOLFA)}}
   </span>
@@ -14,9 +14,9 @@
   </div>
 
   <div class="mb-2">
-    <input class="form-control w-100" formControlName="audio" type="file" [multiple]="false" [max]="1"
-      [accept]="'audio/mpeg'" [class.is-invalid]="audioHymnIsInvalid()">
-    @if (audioHymnIsInvalid()) {
+    <input class="form-control w-100" formControlName="tonic" type="file" [multiple]="false" [max]="1"
+      [accept]="'application/pdf'" [class.is-invalid]="tonicSolfaIsInvalid()">
+    @if (tonicSolfaIsInvalid()) {
     <div class="invalid-feedback">
       {{t(languageResourceKey.TONIC_SOLFA_REQUIRED_MSG)}}
     </div>

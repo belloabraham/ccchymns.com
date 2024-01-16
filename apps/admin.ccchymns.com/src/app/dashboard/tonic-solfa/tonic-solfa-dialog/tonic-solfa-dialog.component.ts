@@ -12,7 +12,7 @@ import { LanguageResourceKey } from '../i18n/language-resource-key';
   standalone: true,
   imports: [SharedModule, NgMaterialButtonModule],
   templateUrl: './tonic-solfa-dialog.component.html',
-  styleUrl: './tonic-solfa-dialog.component.scss',
+  styleUrls:['./tonic-solfa-dialog.component.scss', '../../dialog.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TonicSolfaDialogComponent implements OnInit {
@@ -20,36 +20,36 @@ export class TonicSolfaDialogComponent implements OnInit {
   languageResourceKey = LanguageResourceKey;
   dashboardLanguageResourceKey = DashboardLanguageResourceKey;
 
-  audioHymnForm!: FormGroup<ITonicSolfaForm>;
+  tonicSolfaForm!: FormGroup<ITonicSolfaForm>;
   hymnNoFC = new FormControl<number | null>(null, [
     Validators.required,
     Validators.min(1),
   ]);
-  audioFC = new FormControl<FileList | null>(null, [Validators.required]);
+  tonicFC = new FormControl<FileList | null>(null, [Validators.required]);
   formSubmitted = false;
 
   hymnNoIsInvalid() {
     return this.formSubmitted && this.hymnNoFC.invalid;
   }
 
-  audioHymnIsInvalid() {
-    return this.formSubmitted && this.audioFC.invalid;
+  tonicSolfaIsInvalid() {
+    return this.formSubmitted && this.tonicFC.invalid;
   }
 
   ngOnInit(): void {
-    this.createAudioSpaceForm();
+    this.createTonicSolfaForm();
   }
 
-  private createAudioSpaceForm() {
-    this.audioHymnForm = new FormGroup<ITonicSolfaForm>({
+  private createTonicSolfaForm() {
+    this.tonicSolfaForm = new FormGroup<ITonicSolfaForm>({
       no: this.hymnNoFC,
-      tonic: this.audioFC,
+      tonic: this.tonicFC,
     });
   }
 
   onSubmit() {
     this.formSubmitted = true;
-    if (this.audioHymnForm.valid) {
+    if (this.tonicSolfaForm.valid) {
       //TODO
     }
   }
