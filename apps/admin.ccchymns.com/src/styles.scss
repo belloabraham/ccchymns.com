@@ -7,9 +7,10 @@
 @use 'colors';
 
 .table {
-  td {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+  td,
+  th {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
   }
 }
 
@@ -56,6 +57,13 @@ tui-dialog[data-appearance='bg-light'] {
   height: 0.7rem;
   border-radius: 10px 10px 10px 10px;
   width: 2.4rem;
+  display: inline-block;
+}
+
+.placeholder.file {
+  height: 2.2rem;
+  border-radius: 0 5px 0 0;
+  width: 1.8rem;
   display: inline-block;
 }
 

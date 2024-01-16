@@ -39,7 +39,8 @@ export type Icon =
   | 'f-circle'
   | 'y-circle'
   | 'publish'
-  | 'check-circle';
+  | 'check-circle'
+  | 'file-document';
 
 @Directive({
   selector: '[ccc-icon]',

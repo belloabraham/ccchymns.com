@@ -56,6 +56,7 @@ export class TonicSolfaComponent implements OnInit, OnDestroy {
   rootLanguageResourceKey = RootLanguageResourceKey;
   languageResourceKey = LanguageResourceKey;
   sortOrderIsAscending = true;
+  columnNames = COLUMN_NAMES_FOR_TONIC_SOLFA_TABLE;
   columnIdForSorting = COLUMN_NAMES_FOR_TONIC_SOLFA_TABLE[0];
   private subscriptions = new SubSink();
   @Input({ required: true }) data: ITonicSolfaUIState[] = TONIC_SOLFA_MOCK_DATA;
