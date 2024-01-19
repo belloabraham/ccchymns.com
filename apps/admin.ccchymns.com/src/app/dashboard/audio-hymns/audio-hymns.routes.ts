@@ -42,6 +42,14 @@ export const AUDIO_HYMNS_ROUTES: Routes = [
             (mod) => mod.FrenchComponent
           ),
       },
+      {
+        path: Route.EGUN,
+        data: {
+          breadcrumb: RootLanguageResourceKey.EGUN,
+        },
+        loadComponent: () =>
+          import('./egun/egun.component').then((mod) => mod.EgunComponent),
+      },
     ],
   },
 ];

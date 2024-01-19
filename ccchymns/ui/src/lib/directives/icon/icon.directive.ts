@@ -40,7 +40,8 @@ export type Icon =
   | 'y-circle'
   | 'publish'
   | 'check-circle'
-  | 'file-document';
+  | 'file-document'
+  | 'e-circle-outline';
 
 @Directive({
   selector: '[ccc-icon]',

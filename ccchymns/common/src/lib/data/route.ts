@@ -11,4 +11,5 @@ export class Route {
   static readonly YORUBA = 'yoruba';
   static readonly ENGLISH = 'english';
   static readonly FRENCH = 'french';
+  static readonly EGUN = 'egun';
 }

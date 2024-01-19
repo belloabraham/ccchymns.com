@@ -6,6 +6,7 @@ export class RootLanguageResourceKey {
   static readonly YORUBA = 'yoruba';
   static readonly ENGLISH = 'english';
   static readonly FRENCH = 'french';
+  static readonly EGUN = 'egun';
   static readonly AUDIO_HYMNS = 'audio_hymns';
   static readonly BIBLE_REFERENCES = 'bible_references';
   static readonly AUDIO_SPACE = 'audio_space';

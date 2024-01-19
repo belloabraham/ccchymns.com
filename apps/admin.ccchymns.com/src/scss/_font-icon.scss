@@ -25,6 +25,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.ccci-e-circle-outline:before {
+  content: "\e91b";
+}
 .ccci-file-document:before {
   content: "\e900";
 }

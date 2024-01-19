@@ -60,6 +60,12 @@
                         <i class="space"></i>
                         {{t(rootLanguageResourceKey.FRENCH)}}
                       </a>
+                      <a [routerLinkActive]="'active-link'" [routerLink]="[route.LYRICS, route.EGUN]"
+                        class="list-group-item border-0 list-group-item-action d-flex align-items-center"
+                        data-bs-toggle="list" role="tab">
+                        <i class="space"></i>
+                        {{t(rootLanguageResourceKey.EGUN)}}
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -103,6 +109,12 @@
                         data-bs-toggle="list" [routerLink]="[route.AUDIO_HYMNS, route.FRENCH]" role="tab">
                         <i class="space"></i>
                         {{t(rootLanguageResourceKey.FRENCH)}}
+                      </a>
+                      <a [routerLinkActive]="'active-link'"
+                        class="list-group-item border-0 list-group-item-action d-flex align-items-center"
+                        data-bs-toggle="list" [routerLink]="[route.AUDIO_HYMNS, route.EGUN]" role="tab">
+                        <i class="space"></i>
+                        {{t(rootLanguageResourceKey.EGUN)}}
                       </a>
                     </div>
                   </div>
@@ -195,8 +207,7 @@
               <div class="container pe-md-3 justify-content-between">
 
                 <div class="d-flex gap-3 align-items-center">
-                  <button type="button"
-                    (click)="sidenav.toggle()"
+                  <button type="button" (click)="sidenav.toggle()"
                     class="btn btn-secondary icon-button d-lg-none d-flex align-items-center flex-nowrap position-relative">
                     <i class="flex-shrink-0 icon-button" [ccc-icon]="'menu'"></i>
                   </button>
