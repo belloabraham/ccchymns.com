@@ -7,24 +7,24 @@ $box_shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
 /* Define keyframes for changing background colors */
 @keyframes changeBackground {
   0% {
-    background-image: url('../assets/images/splash.png');
+    background-image: url('../assets/images/splash-screen.png');
   }
   25% {
-    background-image: url('../assets/images/splash.png');
+    background-image: url('../assets/images/audio-hymns-screen.png');
   }
   50% {
-    background-image: url('../assets/images/splash.png');
+    background-image: url('../assets/images/bible-references-screen.png');
   }
   75% {
-    background-image: url('../assets/images/splash.png');
+    background-image: url('../assets/images/tonic-solfa-screen.png');
   }
   100% {
-    background-image: url('../assets/images/splash.png');
+    background-image: url('../assets/images/multilingual-screen.png');
   }
 }
 
 .outside-border {
-  animation: changeBackground 80s ease-in-out infinite;
+  animation: changeBackground 8s ease-in-out infinite;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
