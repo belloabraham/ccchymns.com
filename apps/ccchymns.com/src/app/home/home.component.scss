@@ -20,16 +20,16 @@
   flex-direction: column;
   margin-top: 2rem;
   svg {
-    width: 15.1389rem;
-    height: 4.6089rem;
+    width: 12.11112rem;
+    height: 3.6872rem;
     fill: #00211d;
     stroke: #00211d;
   }
   @include gerillass.breakpoint(min, small) {
     flex-direction: row;
     svg {
-      width: 11.5rem;
-      height: 3.5rem;
+      width: 9.2rem;
+      height: 2.8rem;
     }
   }
 }
