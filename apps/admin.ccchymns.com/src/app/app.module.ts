@@ -23,7 +23,6 @@ import {
   getRemoteConfig,
   provideRemoteConfig,
 } from '@angular/fire/remote-config';
-import { SidenavModule } from '@ccchymns.com/ui';
 
 const MODULES = [
   BrowserModule,
@@ -43,16 +42,21 @@ const MODULES = [
     ...MODULES,
     StoreModule.forRoot({}),
     StoreModule.forFeature(languageLoadedFeature),
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirebaseApp(() => initializeApp({ ...environment.firebase })),
     provideAuth(() => getAuth()),
-    // provideAppCheck(() => {
-    //   const provider = new ReCaptchaEnterpriseProvider(environment.reCAPTCHAEnterpriseKey);
-    //   return initializeAppCheck(undefined, { provider, isTokenAutoRefreshEnabled: true });
-    // }),
-    //  provideFirestore(() => getFirestore()),
-    // provideFunctions(() => getFunctions()),
-    //provideStorage(() => getStorage()),
-    // provideRemoteConfig(() => getRemoteConfig()),
+    provideAppCheck(() => {
+      const provider = new ReCaptchaEnterpriseProvider(
+        environment.reCAPTCHAEnterpriseKey
+      );
+      return initializeAppCheck(undefined, {
+        provider,
+        isTokenAutoRefreshEnabled: true,
+      });
+    }),
+    provideFirestore(() => getFirestore()),
+    provideFunctions(() => getFunctions()),
+    provideStorage(() => getStorage()),
+    provideRemoteConfig(() => getRemoteConfig()),
   ],
   bootstrap: [AppComponent],
   exports: MODULES,
