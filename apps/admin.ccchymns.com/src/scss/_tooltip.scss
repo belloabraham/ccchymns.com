@@ -1,0 +1,7 @@
+@use 'variables/colors';
+
+.mdc-tooltip.delete {
+  .mdc-tooltip__surface {
+    background-color: colors.$error-red-500;
+  }
+}

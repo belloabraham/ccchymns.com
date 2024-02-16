@@ -1,4 +1,5 @@
-@use 'colors';
+@use 'variables/colors';
+
 .legal {
   background-color: colors.$primary-700;
   color: white;

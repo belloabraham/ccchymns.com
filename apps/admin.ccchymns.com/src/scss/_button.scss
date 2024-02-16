@@ -1,0 +1,5 @@
+@use 'variables/colors';
+
+button.delete:hover {
+  color: colors.$error-red-500;
+}

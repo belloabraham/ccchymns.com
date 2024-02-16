@@ -1,10 +1,10 @@
 @use 'gerillass';
-@use './mixins/breakpoint';
 @use './variables/colors';
+@use 'variables/size';
 
 html {
   font-size: 85%;
-  @include gerillass.breakpoint(min, medium) {
+  @include gerillass.breakpoint(min, size.$medium) {
     font-size: 95%;
   }
   @include gerillass.breakpoint(min, large) {
@@ -13,7 +13,7 @@ html {
   @include gerillass.breakpoint(min, xlarge) {
     font-size: 105%;
   }
-  @include breakpoint.DisplaySize4k {
+  @include gerillass.breakpoint(min, size.$xxLarge) {
     font-size: 140%;
   }
 }

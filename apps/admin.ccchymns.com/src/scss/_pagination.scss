@@ -1,0 +1,17 @@
+@use 'gerillass';
+.pagination {
+  .navigation-icon {
+    font-weight: 700;
+  }
+  .page-link {
+    font-weight: 600;
+  }
+  .navigation-link {
+    padding-top: 3px;
+    padding-bottom: 0.5px;
+    @include gerillass.breakpoint(min, xlarge) {
+      padding-top: 7px;
+      padding-bottom: 1.2px;
+    }
+  }
+}

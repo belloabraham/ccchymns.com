@@ -24,12 +24,8 @@
         "stylePreprocessorOptions": {
           "includePaths": [
             "ccchymns/scss",
-            "apps/ccchymns.com/src/scss",
-            "angular/scss",
-            "ccchymns/scss/mixins",
-            "ccchymns/scss/transitions",
-            "ccchymns/scss/variables",
-            "ccchymns/scss/animations"
+            "apps/ccchymns.com/src",
+            "angular/scss"
           ]
         }
       },

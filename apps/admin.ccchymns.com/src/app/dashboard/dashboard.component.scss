@@ -1,6 +1,6 @@
 @use 'gerillass';
-@use 'colors';
-@use 'indeterminate-progress-bar';
+@use 'variables/colors';
+@use 'scss/animations/indeterminate-progress-bar';
 
 .child-routes {
   padding-top: 1rem;

@@ -1,116 +1,19 @@
 @use 'global';
-@use './scss/font';
-@use './scss/font-icon';
-@use './scss/variables/vendor/taiga-ui';
+@use 'scss/font';
+@use 'scss/font-icon';
+@use 'scss/variables/vendor/taiga-ui';
 @use 'material/ccchymns';
 @use 'gerillass';
-@use 'colors';
+@use 'variables/colors';
+@use 'scss/table';
+@use 'scss/dialog';
+@use 'scss/box-shadow';
+@use 'scss/placeholder';
+@use 'scss/button';
+@use 'scss/audio';
+@use 'scss/action-buttons';
+@use 'scss/tooltip';
+@use 'scss/side-nav';
+@use 'scss/pagination';
 
-.table {
-  td,
-  th {
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-  }
-}
 
-tui-dialog[data-appearance='bg-light'] {
-  div.t-content {
-    background-color: hsl(218, 5%, 90%);
-  }
-}
-
-.logo,
-.card {
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px !important;
-}
-
-.login,
-.verify-email {
-  width: 20rem;
-  .title {
-    font-weight: 500;
-    font-size: 1.5rem;
-  }
-}
-
-.placeholder.circle {
-  height: 2.2rem;
-  width: 2.2rem;
-  border-radius: 50%;
-  display: inline-block;
-}
-.placeholder.circle-small {
-  height: 1.3rem;
-  width: 1.3rem;
-  border-radius: 50%;
-  display: inline-block;
-}
-.placeholder.rectangle {
-  height: 1.5rem;
-  width: 5rem;
-  display: inline-block;
-}
-
-.placeholder.pill {
-  height: 0.7rem;
-  border-radius: 10px 10px 10px 10px;
-  width: 2.4rem;
-  display: inline-block;
-}
-
-.placeholder.file {
-  height: 2.2rem;
-  border-radius: 0 5px 0 0;
-  width: 1.8rem;
-  display: inline-block;
-}
-
-.placeholder.audio-rectangle {
-  height: 3.5rem;
-  width: 15rem;
-  border-radius: 3rem;
-  display: inline-block;
-}
-
-button.delete:hover {
-  color: colors.$error-red-500;
-}
-
-audio::-webkit-media-controls-play-button,
-audio::-webkit-media-controls-panel {
-  background-color: colors.$primary-50;
-}
-
-.sidenav-background {
-  background-color: #01579b !important;
-}
-
-.list-group-toggle,
-.list-group-item {
-  font-size: 0.9rem;
-}
-
-.mdc-tooltip.delete {
-  .mdc-tooltip__surface {
-    background-color: colors.$error-red-500;
-  }
-}
-
-.pagination {
-  .navigation-icon {
-    font-weight: 700;
-  }
-  .page-link {
-    font-weight: 600;
-  }
-  .navigation-link {
-    padding-top: 3px;
-    padding-bottom: 0.5px;
-    @include gerillass.breakpoint(min, xlarge) {
-      padding-top: 7px;
-      padding-bottom: 1.2px;
-    }
-  }
-}

@@ -1,0 +1,6 @@
+@use 'variables/colors';
+
+audio::-webkit-media-controls-play-button,
+audio::-webkit-media-controls-panel {
+  background-color: colors.$primary-50;
+}

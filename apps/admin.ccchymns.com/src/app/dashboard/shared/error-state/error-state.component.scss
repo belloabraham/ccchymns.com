@@ -1,4 +1,6 @@
 @use 'gerillass';
+@use 'variables/size';
+
 
 .error-state {
   width: 11rem;
@@ -6,7 +8,7 @@
 }
 .retry {
   width: 100%;
-  @include gerillass.breakpoint(min, medium) {
+  @include gerillass.breakpoint(min, size.$medium) {
     width: 15rem;
   }
 }

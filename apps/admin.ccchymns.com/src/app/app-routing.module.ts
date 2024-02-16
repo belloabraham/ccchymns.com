@@ -1,4 +1,4 @@
-import { NgModule, inject, isDevMode } from '@angular/core';
+import { NgModule, inject } from '@angular/core';
 import { Router, RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './auth/auth.component';
 import { AUTH_TOKEN } from '../core/auth';
@@ -9,7 +9,7 @@ const routes: Routes = [
   {
     path: Route.ROOT,
     pathMatch: 'full',
-   canMatch: [
+    canMatch: [
       //Match route if authenticated user does not exist
       () =>
         inject(AUTH_TOKEN)
@@ -22,7 +22,7 @@ const routes: Routes = [
   },
   {
     path: Route.ROOT,
-     canMatch: [
+    canMatch: [
       //Match route only if authenticated user exist
       () =>
         inject(AUTH_TOKEN)

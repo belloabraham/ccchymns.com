@@ -1,7 +1,7 @@
-@use 'preloader';
-@use 'indeterminate-progress-bar';
+@use 'animations/preloader';
+@use 'scss/animations/indeterminate-progress-bar';
 @use 'app-component';
-@use 'warning-panel';
+@use 'components/warning-panel';
 
 .indeterminate {
   z-index: 1 !important;

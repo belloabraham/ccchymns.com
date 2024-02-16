@@ -1,4 +1,5 @@
 @use 'gerillass';
+@use 'variables/size';
 
 section.section{
   margin-bottom: 2rem;
@@ -55,7 +56,7 @@ $animationSpeed: 50s;
     position: absolute;
     width: 5rem;
     z-index: 2;
-    @include gerillass.breakpoint(min, medium) {
+    @include gerillass.breakpoint(min, size.$medium) {
       width: 12rem;
     }
   }
