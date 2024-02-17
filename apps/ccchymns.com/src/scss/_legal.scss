@@ -1,12 +1,15 @@
 @use 'variables/colors';
+@use 'gerillass';
+@use 'variables/size';
+
 
 .legal {
-  background-color: colors.$primary-700;
+  background-color: colors.$primary-600;
   color: white;
   padding-top: 1rem;
   padding-bottom: 1rem;
   .title {
-    font-size: 3rem;
+    font-size: 2rem;
   }
   .last-updated {
     color: colors.$neutral-200;
@@ -16,4 +19,10 @@
 .legal-content {
   padding-top: 2rem;
   padding-bottom: 2rem;
+}
+
+@include gerillass.breakpoint(min, size.$medium) {
+  .title {
+    font-size: 3rem;
+  }
 }

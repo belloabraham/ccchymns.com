@@ -101,7 +101,7 @@
 }
 
 .right-page {
-  background: linear-gradient(300deg, #33f583, #333dff, #33f583);
+  background: linear-gradient(300deg, #33f583, #0463ca, #09b1ec);
   background-size: 180% 180%;
   animation: gradient-animation 4s ease infinite;
   @include gerillass.breakpoint(min, small) {
