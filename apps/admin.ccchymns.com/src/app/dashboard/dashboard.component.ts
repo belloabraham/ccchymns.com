@@ -34,6 +34,7 @@ import {
 } from '@angular/router';
 import { distinctUntilChanged, filter, map, merge } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { DashboardModule } from './dashboard.module';
 
 export interface IBreadCrumb {
   label: string;
@@ -51,7 +52,8 @@ export interface IBreadCrumb {
     RouterLinkActive,
     RouterLink,
     RouterOutlet,
-    SidenavModule
+    SidenavModule,
+    DashboardModule
   ],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss', './toggle-arrow.scss'],

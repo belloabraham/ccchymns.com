@@ -16,13 +16,7 @@ import {
   ReCaptchaEnterpriseProvider,
   provideAppCheck,
 } from '@angular/fire/app-check';
-import { getFirestore, provideFirestore } from '@angular/fire/firestore';
-import { getFunctions, provideFunctions } from '@angular/fire/functions';
-import { getStorage, provideStorage } from '@angular/fire/storage';
-import {
-  getRemoteConfig,
-  provideRemoteConfig,
-} from '@angular/fire/remote-config';
+
 
 const MODULES = [
   BrowserModule,
@@ -53,10 +47,6 @@ const MODULES = [
         isTokenAutoRefreshEnabled: true,
       });
     }),
-    provideFirestore(() => getFirestore()),
-    provideFunctions(() => getFunctions()),
-    provideStorage(() => getStorage()),
-    provideRemoteConfig(() => getRemoteConfig()),
   ],
   bootstrap: [AppComponent],
   exports: MODULES,
