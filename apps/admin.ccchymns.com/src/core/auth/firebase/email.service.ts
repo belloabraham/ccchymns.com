@@ -43,7 +43,7 @@ export class EmailAuthService {
 
   sendSignInLinkToEmail(email: string): Promise<void> {
     const actionCodeSettings = {
-      url: environment.email_verification_uri,
+      url: environment.firebase.email_verification_uri,
       handleCodeInApp: true,
     };
     return sendSignInLinkToEmail(this.auth, email, actionCodeSettings);

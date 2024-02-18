@@ -2,5 +2,5 @@
 /dist
 /coverage
 .angular
-
-/.nx/cache
+.nx
+.vscode
