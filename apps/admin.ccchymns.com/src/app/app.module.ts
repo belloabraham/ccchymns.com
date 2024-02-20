@@ -17,7 +17,6 @@ import {
   provideAppCheck,
 } from '@angular/fire/app-check';
 
-
 const MODULES = [
   BrowserModule,
   BrowserAnimationsModule,
