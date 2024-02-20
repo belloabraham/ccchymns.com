@@ -32,8 +32,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { AlertDialog, LoggerUtil, Regex, Shield } from '@ccchymns.com/core';
-import { Preference } from '../../core/data/preference';
-import { AuthError } from '../../core/auth/auth-error';
+import { Preference } from '../../core';
+import { AuthError } from '../../core';
 
 @Component({
   selector: 'app-auth',
