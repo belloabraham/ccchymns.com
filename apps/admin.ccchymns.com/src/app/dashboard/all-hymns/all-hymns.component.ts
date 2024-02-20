@@ -14,6 +14,7 @@ import { AllHymnsPlaceholderComponent } from './all-hymns-placeholder/all-hymns-
 import { COLUMN_NAMES_FOR_ALL_HYMNS_TABLE } from './data';
 import { LanguageResourceKey } from './i18n/language-resource-key';
 import { ALL_HYMNS_MOCK_DATA } from './mock/all-hymns';
+import { AllHymnsDataService } from './all-hymns.data.service';
 
 @Component({
   selector: 'app-all-hymns',
@@ -30,6 +31,7 @@ import { ALL_HYMNS_MOCK_DATA } from './mock/all-hymns';
   ],
   templateUrl: './all-hymns.component.html',
   styleUrls: ['./all-hymns.component.scss'],
+  providers:[AllHymnsDataService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AllHymnsComponent {

@@ -32,6 +32,7 @@ import { TONIC_SOLFA_MOCK_DATA } from './mock/audio-hymns';
 import { Observable } from 'rxjs';
 import { COLUMN_NAMES_FOR_TONIC_SOLFA_TABLE } from './data';
 import { LanguageResourceKey } from './i18n/language-resource-key';
+import { TonicSolfaDataService } from './tonic-solfa.data.service';
 
 @Component({
   selector: 'app-tonic-solfa',
@@ -48,6 +49,7 @@ import { LanguageResourceKey } from './i18n/language-resource-key';
   ],
   templateUrl: './tonic-solfa.component.html',
   styleUrls: ['./tonic-solfa.component.scss'],
+  providers: [TonicSolfaDataService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TonicSolfaComponent implements OnInit, OnDestroy {

@@ -17,7 +17,13 @@ import {
 import { Store } from '@ngrx/store';
 import { SubSink } from 'subsink';
 import { getLanguageLoadedSelector } from '../../store/selectors';
-import { Config, DisplayService, RootLanguageResourceKey, Route, Size } from '@ccchymns.com/common';
+import {
+  Config,
+  DisplayService,
+  RootLanguageResourceKey,
+  Route,
+  Size,
+} from '@ccchymns.com/common';
 import { DashboardLanguageResourceKey } from './i18n/language-resource-key';
 import { CCCIconDirective, SidenavModule } from '@ccchymns.com/ui';
 import { NgOptimizedImage } from '@angular/common';
@@ -35,6 +41,7 @@ import {
 import { distinctUntilChanged, filter, map, merge } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { DashboardModule } from './dashboard.module';
+import { DatabaseDataService } from './database.data.service';
 
 export interface IBreadCrumb {
   label: string;
@@ -53,10 +60,11 @@ export interface IBreadCrumb {
     RouterLink,
     RouterOutlet,
     SidenavModule,
-    DashboardModule
+    DashboardModule,
   ],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss', './toggle-arrow.scss'],
+  providers: [DatabaseDataService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardComponent implements OnDestroy, OnInit {
@@ -115,7 +123,6 @@ export class DashboardComponent implements OnDestroy, OnInit {
     this.routerIsNavigating = toSignal(
       merge(routerNavigationStoppedEvent$, routerNavigationStartEvent$)
     );
-
   }
 
   ngOnInit(): void {
