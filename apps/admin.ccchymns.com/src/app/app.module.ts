@@ -16,6 +16,13 @@ import {
   ReCaptchaEnterpriseProvider,
   provideAppCheck,
 } from '@angular/fire/app-check';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { getFunctions, provideFunctions } from '@angular/fire/functions';
+import { getStorage, provideStorage } from '@angular/fire/storage';
+import {
+  getRemoteConfig,
+  provideRemoteConfig,
+} from '@angular/fire/remote-config';
 
 const MODULES = [
   BrowserModule,
@@ -37,6 +44,10 @@ const MODULES = [
     StoreModule.forFeature(languageLoadedFeature),
     provideFirebaseApp(() => initializeApp({ ...environment.firebase })),
     provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
+    provideFunctions(() => getFunctions()),
+    provideStorage(() => getStorage()),
+    provideRemoteConfig(() => getRemoteConfig()),
     provideAppCheck(() => {
       const provider = new ReCaptchaEnterpriseProvider(
         environment.reCAPTCHAEnterpriseKey

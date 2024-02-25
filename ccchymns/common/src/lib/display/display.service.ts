@@ -21,6 +21,16 @@ export class Size {
   static readonly XXLarge = 'XXLarge';
 }
 
+export class Breakpoints {
+  static readonly XSmall = '(min-width: 320px)';
+  static readonly Small = '(min-width: 425px)';
+  static readonly Medium = '(min-width: 576px)';
+  static readonly Large = '(min-width: 992px)';
+  static readonly XLarge = '(min-width: 1200px)';
+  static readonly XXLarge = '(min-width: 1400px)';
+  static readonly XXXLarge = '(min-width: 2500px)';
+}
+
 export class Display {
   static readonly percentage85 = 0.85;
   static readonly percentage95 = 0.95;

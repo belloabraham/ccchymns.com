@@ -61,6 +61,35 @@ export class FirestoreService implements IDatabase {
   getLiveListOfDocumentData<T>(
     path: string,
     pathSegment: string[],
+    onNext: (type: T[]) => void,
+    onError: (errorCode: string) => void
+  ) {
+    const q = query(collection(this.firestore, path, ...pathSegment));
+
+    const unsubscribe = onSnapshot(q, {
+      next: (querySnapShot) => {
+        const dataArray: T[] = [];
+        querySnapShot.forEach((queryDoc) => {
+          if (queryDoc.exists()) {
+            const data = queryDoc.data();
+            const json = JSON.stringify(data);
+            const type: T = JSON.parse(json);
+            dataArray.push(type);
+          }
+        });
+        onNext(dataArray);
+      },
+      error: (error: FirestoreError) => {
+        const errorCode = error.code.toString();
+        onError(errorCode);
+      },
+    });
+    return unsubscribe;
+  }
+
+  getLiveListOfDocumentDataWithQuery<T>(
+    path: string,
+    pathSegment: string[],
     queryConstraint: QueryConstraint[],
     onNext: (type: T[], arrayOfDocIds: string[]) => void,
     onError: (errorCode: string) => void
@@ -128,10 +157,10 @@ export class FirestoreService implements IDatabase {
   }
 
   async getADocumentDataAsync<T>(
-    path: string,
+    collection: string,
     pathSegment: string[]
   ): Promise<T | null> {
-    const docRef = doc(this.firestore, path, ...pathSegment);
+    const docRef = doc(this.firestore, collection, ...pathSegment);
     const docSnapShot = await getDoc(docRef);
     return documentDataSnapshotToType<T>(docSnapShot);
   }

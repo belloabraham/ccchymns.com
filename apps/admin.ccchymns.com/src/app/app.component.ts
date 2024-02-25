@@ -22,13 +22,14 @@ import {
 import {
   LoadLanguageResourceActionState,
   getLoadLanguageResourceActionGroup,
-} from '../store/actions';
+} from '../store';
 import { Observable, filter, map, merge, of } from 'rxjs';
 import { IConnectionUtil } from '@ccchymns.com/core';
 import { CONNECTION_UTIL_TOKEN } from '../core/di/connection-service.token';
 import { LanguageResourceKey } from './i18n/language-resource-key';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { BreakpointObserver } from '@angular/cdk/layout';
 import {
+  Breakpoints,
   Display,
   DisplayPercentage,
   DisplayService,
@@ -50,14 +51,13 @@ export class AppComponent implements OnDestroy, OnInit {
   languageResourceKey = LanguageResourceKey;
   appNameKey = Language.APP_NAME;
 
-  xxLarge = '(min-width: 2560px)';
   private displaySizeMap = new Map([
     [Breakpoints.XSmall, Size.XSmall],
     [Breakpoints.Small, Size.Small],
     [Breakpoints.Medium, Size.Medium],
     [Breakpoints.Large, Size.Large],
     [Breakpoints.XLarge, Size.XLarge],
-    [this.xxLarge, Size.XXLarge],
+    [Breakpoints.XXXLarge, Size.XXLarge],
   ]);
 
   private displayPercentageMap = new Map([
@@ -66,7 +66,7 @@ export class AppComponent implements OnDestroy, OnInit {
     [Breakpoints.Medium, Display.percentage95],
     [Breakpoints.Large, Display.percentage100],
     [Breakpoints.XLarge, Display.percentage105],
-    [this.xxLarge, Display.percentage140],
+    [Breakpoints.XXXLarge, Display.percentage140],
   ]);
 
   constructor(
@@ -148,7 +148,7 @@ export class AppComponent implements OnDestroy, OnInit {
         Breakpoints.Medium,
         Breakpoints.Large,
         Breakpoints.XLarge,
-        this.xxLarge,
+        Breakpoints.XXXLarge,
       ])
       .subscribe((state) => {
         for (const query of Object.keys(state.breakpoints)) {

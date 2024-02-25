@@ -40,8 +40,8 @@ import {
 } from '@angular/router';
 import { distinctUntilChanged, filter, map, merge } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { DashboardModule } from './dashboard.module';
-import { DatabaseDataService } from './database.data.service';
+import { BibleReferencesDataService } from './bible-references/bible-references.data.service';
+import { LyricsDataService } from './lyrics/lyrics.data.service';
 
 export interface IBreadCrumb {
   label: string;
@@ -60,11 +60,10 @@ export interface IBreadCrumb {
     RouterLink,
     RouterOutlet,
     SidenavModule,
-    DashboardModule,
   ],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss', './toggle-arrow.scss'],
-  providers: [DatabaseDataService],
+  providers: [BibleReferencesDataService, LyricsDataService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardComponent implements OnDestroy, OnInit {

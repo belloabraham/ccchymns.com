@@ -1,4 +1,8 @@
-import { FieldPath, QueryConstraint } from "@angular/fire/firestore";
+import {
+  FieldPath,
+  QueryConstraint,
+  Unsubscribe,
+} from '@angular/fire/firestore';
 
 /**
  * FirestoreService Interface
@@ -7,14 +11,14 @@ import { FieldPath, QueryConstraint } from "@angular/fire/firestore";
 export interface IDatabase {
   /**
    * Retrieves live data from a specific document.
-   * @param path The path to the document.
+   * @param collection The path to the document.
    * @param pathSegment Array of path segments.
    * @param onNext Callback function to handle the retrieved data.
    * @param retryTimeout Timeout duration for retrying in case of errors.
    * @returns Function to unsubscribe from the snapshot listener.
    */
   getALiveDocumentData<T>(
-    path: string,
+    collection: string,
     pathSegment: string[],
     onNext: (type: T) => void,
     retryTimeout?: number
@@ -22,20 +26,35 @@ export interface IDatabase {
 
   /**
    * Retrieves live data from a list of documents based on provided query constraints.
-   * @param path The path to the collection.
+   * @param collection The path to the collection.
    * @param pathSegment Array of path segments.
    * @param queryConstraint Array of query constraints.
    * @param onNext Callback function to handle the retrieved data.
    * @param onError Callback function to handle errors.
    * @returns Function to unsubscribe from the snapshot listener.
    */
-  getLiveListOfDocumentData<T>(
-    path: string,
+  getLiveListOfDocumentDataWithQuery<T>(
+    collection: string,
     pathSegment: string[],
     queryConstraint: QueryConstraint[],
     onNext: (type: T[], arrayOfDocIds: string[]) => void,
     onError: (errorCode: string) => void
-  ): () => void;
+  ): Unsubscribe;
+
+  /**
+   * Retrieves live data from a list of documents based on provided query constraints.
+   * @param collection The path to the collection.
+   * @param pathSegment Array of path segments.
+   * @param onNext Callback function to handle the retrieved data.
+   * @param onError Callback function to handle errors.
+   * @returns Function to unsubscribe from the snapshot listener.
+   */
+  getLiveListOfDocumentData<T>(
+    collection: string,
+    pathSegment: string[],
+    onNext: (type: T[]) => void,
+    onError: (errorCode: string) => void
+  ): Unsubscribe;
 
   /**
    * Retrieves a list of document data based on provided query constraints.
@@ -63,20 +82,20 @@ export interface IDatabase {
 
   /**
    * Retrieves a list of document data from a collection.
-   * @param path The path to the collection.
+   * @param collection The path to the collection.
    * @param pathSegment Array of path segments.
    * @returns A promise that resolves to an array of document data.
    */
-  getAListOfDocData<T>(path: string, pathSegment: string[]): Promise<T[]>;
+  getAListOfDocData<T>(collection: string, pathSegment: string[]): Promise<T[]>;
 
   /**
    * Retrieves a document's data asynchronously.
-   * @param path The path to the document.
+   * @param collection The path to the document.
    * @param pathSegment Array of path segments.
    * @returns A promise that resolves to the document data or null if not found.
    */
   getADocumentDataAsync<T>(
-    path: string,
+    collection: string,
     pathSegment: string[]
   ): Promise<T | null>;
 
@@ -154,7 +173,7 @@ export interface IDatabase {
    * @returns A promise that resolves once the operation is completed.
    */
   updateAllDocumentDataIn<T>(
-    path: string,
+    collection: string,
     pathSegment: string[],
     field: string | FieldPath,
     fieldValue: unknown,

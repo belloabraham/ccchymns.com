@@ -1,5 +1,6 @@
 import { IEditorsHymn } from '@ccchymns.com/common';
-
+export const ALL_HYMNS_MOCK_DATA: IEditorsHymn[] = []
+/*
 export const ALL_HYMNS_MOCK_DATA: IEditorsHymn[] = [
   {
     no: 1,
@@ -1840,3 +1841,4 @@ export const ALL_HYMNS_MOCK_DATA: IEditorsHymn[] = [
     },
   },
 ];
+ */

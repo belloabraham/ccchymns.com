@@ -4,7 +4,7 @@ import { HYMN_LYRICS_MOCK_DATA } from '../shared';
 import { LanguageResourceKey } from '../i18n/language-resource-key';
 
 @Component({
-  selector: 'app-lyrics-english',
+  selector: 'app-lyrics-egun',
   standalone: true,
   imports: [CommonComponent],
   templateUrl: './egun.component.html',

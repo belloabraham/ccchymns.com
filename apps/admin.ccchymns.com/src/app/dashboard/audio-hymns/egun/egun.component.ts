@@ -5,7 +5,7 @@ import { CommonComponent } from '../shared/common/common.component';
 import { LanguageResourceKey } from '../i18n/language-resource-key';
 
 @Component({
-  selector: 'app-audio-english',
+  selector: 'app-audio-egun',
   standalone: true,
   imports: [SharedModule, CommonComponent],
   templateUrl: './egun.component.html',
