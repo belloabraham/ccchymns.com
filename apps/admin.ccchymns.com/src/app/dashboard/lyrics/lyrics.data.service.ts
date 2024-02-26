@@ -4,7 +4,9 @@ import {
   Collection,
   DATABASE_IJTOKEN,
   IDatabase,
+  genericRetryStrategy,
 } from 'apps/admin.ccchymns.com/src/core';
+import { catchError, from, of, retryWhen } from 'rxjs';
 
 @Injectable()
 export class LyricsDataService {
@@ -22,71 +24,89 @@ export class LyricsDataService {
       },
       (error) => {
         onError(error);
-      }
+      },
+      1000
     );
   }
 
   getAllEditorsHymns() {
-    return this.remoteData.getAListOfDocData<IEditorsHymn>(
-      Collection.EDITORS_HYMNS,
-      []
+    return from(
+      this.remoteData.getAListOfDocData<IEditorsHymn>(
+        Collection.EDITORS_HYMNS,
+        []
+      )
+    ).pipe(
+      retryWhen(genericRetryStrategy()),
+      catchError((error) => of(null))
     );
   }
 
-  getYorubaLyricsUIStates(editorsHymns: IEditorsHymn[]) {
-    const yorubaLyrics: IHymnLyricsUIState[] = [];
-    for (let index = 0; index < editorsHymns.length; index++) {
-      const element = editorsHymns[index];
-      if (element.yoruba) {
-        yorubaLyrics.push({
-          no: element.no,
-          lyrics: element.yoruba,
-        });
+  getYorubaLyricsUIStates(editorsHymns: IEditorsHymn[] | null | undefined) {
+    if (editorsHymns) {
+      const yorubaLyrics: IHymnLyricsUIState[] = [];
+      for (let index = 0; index < editorsHymns.length; index++) {
+        const element = editorsHymns[index];
+        if (element.yoruba) {
+          yorubaLyrics.push({
+            no: element.no,
+            lyrics: element.yoruba,
+          });
+        }
       }
+      return yorubaLyrics;
     }
-    return yorubaLyrics;
+    return editorsHymns;
   }
 
-  getEnglishLyricsUIStates(editorsHymns: IEditorsHymn[]) {
-    const englishLyrics: IHymnLyricsUIState[] = [];
-    for (let index = 0; index < editorsHymns.length; index++) {
-      const element = editorsHymns[index];
-      if (element.english) {
-        englishLyrics.push({
-          no: element.no,
-          lyrics: element.english,
-        });
+  getEnglishLyricsUIStates(editorsHymns: IEditorsHymn[] | null | undefined) {
+    if (editorsHymns) {
+      const englishLyrics: IHymnLyricsUIState[] = [];
+      for (let index = 0; index < editorsHymns.length; index++) {
+        const element = editorsHymns[index];
+        if (element.english) {
+          englishLyrics.push({
+            no: element.no,
+            lyrics: element.english,
+          });
+        }
       }
+      return englishLyrics;
     }
-    return englishLyrics;
+    return editorsHymns;
   }
 
-  getEgunLyricsUIStates(editorsHymns: IEditorsHymn[]) {
-    const egunLyrics: IHymnLyricsUIState[] = [];
-    for (let index = 0; index < editorsHymns.length; index++) {
-      const element = editorsHymns[index];
-      if (element.egun) {
-        egunLyrics.push({
-          no: element.no,
-          lyrics: element.egun,
-        });
+  getEgunLyricsUIStates(editorsHymns: IEditorsHymn[] | null | undefined) {
+    if (editorsHymns) {
+      const egunLyrics: IHymnLyricsUIState[] = [];
+      for (let index = 0; index < editorsHymns.length; index++) {
+        const element = editorsHymns[index];
+        if (element.egun) {
+          egunLyrics.push({
+            no: element.no,
+            lyrics: element.egun,
+          });
+        }
       }
+      return egunLyrics;
     }
-    return egunLyrics;
+    return editorsHymns;
   }
 
-  getFrenchLyricsUIStates(editorsHymns: IEditorsHymn[]) {
-    const frenchLyrics: IHymnLyricsUIState[] = [];
-    for (let index = 0; index < editorsHymns.length; index++) {
-      const element = editorsHymns[index];
-      if (element.french) {
-        frenchLyrics.push({
-          no: element.no,
-          lyrics: element.french,
-        });
+  getFrenchLyricsUIStates(editorsHymns: IEditorsHymn[] | null | undefined) {
+    if (editorsHymns) {
+      const frenchLyrics: IHymnLyricsUIState[] = [];
+      for (let index = 0; index < editorsHymns.length; index++) {
+        const element = editorsHymns[index];
+        if (element.french) {
+          frenchLyrics.push({
+            no: element.no,
+            lyrics: element.french,
+          });
+        }
       }
+      return frenchLyrics;
     }
-    return frenchLyrics;
+    return editorsHymns;
   }
 
   updateYorubaHymnLyrics(hymnNo: string, value: IEditorsHymn) {

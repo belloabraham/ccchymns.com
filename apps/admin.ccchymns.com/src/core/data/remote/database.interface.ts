@@ -53,7 +53,8 @@ export interface IDatabase {
     collection: string,
     pathSegment: string[],
     onNext: (type: T[]) => void,
-    onError: (errorCode: string) => void
+    onError: (errorCode: string) => void,
+    retryTimeout: number
   ): Unsubscribe;
 
   /**

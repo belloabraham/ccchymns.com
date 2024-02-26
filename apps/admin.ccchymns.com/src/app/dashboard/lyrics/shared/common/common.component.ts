@@ -57,7 +57,7 @@ export class CommonComponent implements OnInit, OnDestroy {
   sortOrderIsAscending = true;
   columnIdForSorting = COLUMN_NAMES_FOR_LYRICS_TABLE[0];
   @Input({ required: true }) titleKey!: string;
-  @Input({ required: true }) data: IHymnLyricsUIState[] = [];
+  @Input({ required: true }) data?: IHymnLyricsUIState[] | null;
   private subscriptions = new SubSink();
 
   onFilterTextChanged(event: any) {

@@ -4,7 +4,7 @@ import { TranslocoModule } from '@ngneat/transloco';
 import { DashboardLanguageResourceKey } from '../../i18n/language-resource-key';
 
 @Component({
-  selector: 'app-empty-sate',
+  selector: 'app-empty-state',
   standalone: true,
   imports: [NgOptimizedImage, TranslocoModule],
   templateUrl: './empty-state.component.html',

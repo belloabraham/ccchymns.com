@@ -7,7 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { TranslocoRootModule } from '@ccchymns.com/angular';
 import { environment } from '../environments/environment';
-import { StoreModule } from '@ngrx/store';
+import { provideState, provideStore } from '@ngrx/store';
 import { languageLoadedFeature } from '../store/selectors/language-resource.selector';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
@@ -40,8 +40,6 @@ const MODULES = [
   declarations: [AppComponent],
   imports: [
     ...MODULES,
-    StoreModule.forRoot({}),
-    StoreModule.forFeature(languageLoadedFeature),
     provideFirebaseApp(() => initializeApp({ ...environment.firebase })),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
@@ -58,6 +56,7 @@ const MODULES = [
       });
     }),
   ],
+  providers: [provideStore(), provideState(languageLoadedFeature)],
   bootstrap: [AppComponent],
   exports: MODULES,
 })

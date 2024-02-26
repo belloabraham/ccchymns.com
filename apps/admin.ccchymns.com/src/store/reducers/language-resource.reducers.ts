@@ -2,7 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 import {
   LoadLanguageResourceActionState,
   getLoadLanguageResourceActionGroup,
-} from '../actions/language-resource.actions';
+} from '../actions';
 
 const reducerInitialState: LoadLanguageResourceActionState = { loaded: false };
 

@@ -18,9 +18,11 @@ import {
 } from '@angular/fire/firestore';
 import { FirestoreErrorCodes } from './error-codes';
 import { LoggerUtil } from '@ccchymns.com/core';
-import { documentDataSnapshotToType, querySnapshotToArrayOfType } from './utils';
+import {
+  documentDataSnapshotToType,
+  querySnapshotToArrayOfType,
+} from './utils';
 import { IDatabase } from '../database.interface';
-
 
 @Injectable()
 export class FirestoreService implements IDatabase {
@@ -43,11 +45,11 @@ export class FirestoreService implements IDatabase {
         }
       },
       error: (error: FirestoreError) => {
-        LoggerUtil.error('FirestoreService', 'getLiveData', error);
+        LoggerUtil.error('FirestoreService', 'getALiveDocumentData', error);
         const code = error.code.toString();
         if (
-          code !== FirestoreErrorCodes.permDenied &&
-          code !== FirestoreErrorCodes.unauth
+          code !== FirestoreErrorCodes.permissionDenied &&
+          code !== FirestoreErrorCodes.unauthenticated
         ) {
           setTimeout(() => {
             this.getALiveDocumentData(path, pathSegment, onNext);
@@ -62,7 +64,8 @@ export class FirestoreService implements IDatabase {
     path: string,
     pathSegment: string[],
     onNext: (type: T[]) => void,
-    onError: (errorCode: string) => void
+    onError: (errorCode: string) => void,
+    retryTimeout: number
   ) {
     const q = query(collection(this.firestore, path, ...pathSegment));
 
@@ -80,8 +83,22 @@ export class FirestoreService implements IDatabase {
         onNext(dataArray);
       },
       error: (error: FirestoreError) => {
-        const errorCode = error.code.toString();
-        onError(errorCode);
+        LoggerUtil.error(
+          'FirestoreService',
+          'getLiveListOfDocumentData',
+          error
+        );
+        const code = error.code.toString();
+        if (
+          code !== FirestoreErrorCodes.permissionDenied &&
+          code !== FirestoreErrorCodes.unauthenticated
+        ) {
+          setTimeout(() => {
+            this.getALiveDocumentData(path, pathSegment, onNext);
+          }, retryTimeout);
+        } else {
+          onError(code);
+        }
       },
     });
     return unsubscribe;

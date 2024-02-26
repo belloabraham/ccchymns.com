@@ -8,11 +8,13 @@ import {
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { LyricsDataService } from './lyrics.data.service';
 import { IEditorsHymn, Route } from '@ccchymns.com/common';
-import { filter } from 'rxjs';
+import {
+  filter,
+} from 'rxjs';
 import { SubSink } from 'subsink';
 import { Unsubscribe } from '@angular/fire/firestore';
 import { Store } from '@ngrx/store';
-import { LoggerUtil } from '@ccchymns.com/core';
+import { getHymnLyricsActionGroup } from 'apps/admin.ccchymns.com/src/store';
 
 @Component({
   selector: 'app-lyrics',
@@ -24,7 +26,7 @@ import { LoggerUtil } from '@ccchymns.com/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LyricsComponent implements OnInit, OnDestroy {
-  @Input() editorsHymns!: IEditorsHymn[];
+  @Input() editorsHymns?: IEditorsHymn[] | null;
   private subscriptions = new SubSink();
   unsubscribeFromLiveEditorsHymns!: Unsubscribe;
 
@@ -34,64 +36,79 @@ export class LyricsComponent implements OnInit, OnDestroy {
     private ngrxStore: Store
   ) {}
 
+  private fetchHymnLyrics() {
+    this.subscriptions.sink = this.lyricsDataService
+      .getAllEditorsHymns()
+      .subscribe((editorsHymns) => {
+        this.editorsHymns = editorsHymns;
+      });
+  }
+
   ngOnInit(): void {
+    this.fetchHymnLyrics()
+
     this.subscriptions.sink = this.router.events
       .pipe(filter((e) => e instanceof NavigationEnd))
       .subscribe(() => {
-        if (this.editorsHymns) {
           this.dispatchEditorsHymnLyricsActionState(this.editorsHymns);
-        }
+
       });
 
     this.unsubscribeFromLiveEditorsHymns =
       this.lyricsDataService.getLiveListOfEditorsHymn(
         (editorsHymns) => {
-          if (editorsHymns) {
             this.editorsHymns = editorsHymns;
             this.dispatchEditorsHymnLyricsActionState(editorsHymns);
-          }
         },
-        (error) => {
-          LoggerUtil.error(
-            'LyricsComponent',
-            this.dispatchEditorsHymnLyricsActionState.name,
-            error
-          );
-        }
+        (error) => {}
       );
   }
 
-  private dispatchEditorsHymnLyricsActionState(editorsHymns: IEditorsHymn[]) {
-    //If active route is /lyrics/yoruba
-    if (this.router.isActive(`/${Route.LYRICS}/${Route.YORUBA}`, true)) {
+  private dispatchEditorsHymnLyricsActionState(editorsHymns: IEditorsHymn[] | null | undefined) {
+    const basePath = '/${Route.LYRICS}';
+    if (this.router.isActive(`${basePath}/${Route.YORUBA}`, true)) {
       const yorubaLyricsUIState =
         this.lyricsDataService.getYorubaLyricsUIStates(editorsHymns);
-      //TODO Dispatch action for yoruba lyrics
+      const yorubaLyricsAction = getHymnLyricsActionGroup().yorubaLyricsAction({
+        hymnLyricsUIState: yorubaLyricsUIState,
+      });
+      this.ngrxStore.dispatch(yorubaLyricsAction);
     }
 
     //If active route is /lyrics/english
-    if (this.router.isActive(`/${Route.LYRICS}/${Route.ENGLISH}`, true)) {
+    if (this.router.isActive(`${basePath}/${Route.ENGLISH}`, true)) {
       const englishLyricsUIState =
         this.lyricsDataService.getEnglishLyricsUIStates(editorsHymns);
-      //TODO Dispatch action for yoruba lyrics
+      const englishLyricsAction =
+        getHymnLyricsActionGroup().englishLyricsAction({
+          hymnLyricsUIState: englishLyricsUIState,
+        });
+      this.ngrxStore.dispatch(englishLyricsAction);
     }
 
     //If active route is /lyrics/french
-    if (this.router.isActive(`/${Route.LYRICS}/${Route.FRENCH}`, true)) {
+    if (this.router.isActive(`${basePath}/${Route.FRENCH}`, true)) {
       const frenchLyricsUIState =
         this.lyricsDataService.getFrenchLyricsUIStates(editorsHymns);
-      //TODO Dispatch action for yoruba lyrics
+      const frenchLyricsAction = getHymnLyricsActionGroup().frenchLyricsAction({
+        hymnLyricsUIState: frenchLyricsUIState,
+      });
+      this.ngrxStore.dispatch(frenchLyricsAction);
     }
 
     //If active route is /lyrics/egun
-    if (this.router.isActive(`/${Route.LYRICS}/${Route.EGUN}`, true)) {
+    if (this.router.isActive(`${basePath}/${Route.EGUN}`, true)) {
       const egunLyricsUIState =
         this.lyricsDataService.getEgunLyricsUIStates(editorsHymns);
-      //TODO Dispatch action for yoruba lyrics
+      const egunLyricsAction = getHymnLyricsActionGroup().egunLyricsAction({
+        hymnLyricsUIState: egunLyricsUIState,
+      });
+      this.ngrxStore.dispatch(egunLyricsAction);
     }
   }
 
   ngOnDestroy(): void {
+    this.subscriptions.unsubscribe()
     this.unsubscribeFromLiveEditorsHymns();
   }
 }

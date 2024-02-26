@@ -1,4 +1,4 @@
 export class FirestoreErrorCodes {
-  static readonly permDenied = 'permission-denied';
-  static readonly unauth = 'unauthenticated';
+  static readonly permissionDenied = 'permission-denied';
+  static readonly unauthenticated = 'unauthenticated';
 }

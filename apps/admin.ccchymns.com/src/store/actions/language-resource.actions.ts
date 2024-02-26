@@ -5,7 +5,7 @@ export interface LoadLanguageResourceActionState {
 }
 
 const loadLanguageResourceActionGroup = createActionGroup({
-  source: 'Load Language Resource Action Group',
+  source: 'Language Resource Action Group',
   events: {
     'Load Language Resource Action': props<LoadLanguageResourceActionState>(),
   },

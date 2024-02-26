@@ -1,5 +1,5 @@
 import { createFeature } from '@ngrx/store';
-import { getLanguageResourceLoadedReducer } from '../reducers/language-resource.reducers';
+import { getLanguageResourceLoadedReducer } from '../reducers';
 
 export const languageLoadedFeature = createFeature({
   name: 'languageLoadedFeature',

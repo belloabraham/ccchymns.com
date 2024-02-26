@@ -2,10 +2,6 @@ import { Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { RootLanguageResourceKey, Route } from '@ccchymns.com/common';
 import { DashboardLanguageResourceKey } from './i18n/language-resource-key';
-import { inject } from '@angular/core';
-import { LyricsDataService } from './lyrics/lyrics.data.service';
-import { delay, from, retryWhen, take, tap } from 'rxjs';
-import { LoggerUtil } from '@ccchymns.com/core';
 
 export const DASHBOARD_ROUTES: Routes = [
   {
@@ -25,27 +21,6 @@ export const DASHBOARD_ROUTES: Routes = [
         data: {
           breadcrumb: RootLanguageResourceKey.LYRICS,
         },
-      /*   resolve: {
-          editorsHymns: () => {
-            let i = 0;
-            const lyricsDataService = inject(LyricsDataService);
-            return from(lyricsDataService.getAllEditorsHymns()).pipe(
-              retryWhen((errors) =>
-                errors.pipe(
-                  tap(() =>
-                    LoggerUtil.error(
-                      'DasboardRoute',
-                      'EditorsHymnsResolver',
-                      errors
-                    )
-                  ),
-                  delay(++i * 1000),
-                  take(100)
-                )
-              )
-            );
-          },
-        }, */
         loadChildren: () =>
           import('./lyrics/lyrics.routes').then((mod) => mod.LYRICS_ROUTES),
       },
