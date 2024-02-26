@@ -10,9 +10,18 @@ import { catchError, from, of, retryWhen } from 'rxjs';
 
 @Injectable()
 export class LyricsDataService {
+  editorsHymns: IEditorsHymn[] | null = null;
   constructor(@Inject(DATABASE_IJTOKEN) private remoteData: IDatabase) {}
 
+  setEditorsHymn(editorsHymns: IEditorsHymn[] | null) {
+    this.editorsHymns = editorsHymns;
+  }
+
+  getEditorsHymn() {
+    return this.editorsHymns;
+  }
   getLiveListOfEditorsHymn(
+    retryTimeout: number,
     onNext: (value: IEditorsHymn[]) => void,
     onError: (errorCode: string) => void
   ) {
@@ -25,11 +34,11 @@ export class LyricsDataService {
       (error) => {
         onError(error);
       },
-      1000
+      retryTimeout
     );
   }
 
-  getAllEditorsHymns() {
+  getAllEditorsHymns$() {
     return from(
       this.remoteData.getAListOfDocData<IEditorsHymn>(
         Collection.EDITORS_HYMNS,

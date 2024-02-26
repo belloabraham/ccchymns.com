@@ -1,16 +1,13 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  Input,
   OnDestroy,
   OnInit,
 } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { LyricsDataService } from './lyrics.data.service';
 import { IEditorsHymn, Route } from '@ccchymns.com/common';
-import {
-  filter,
-} from 'rxjs';
+import { filter } from 'rxjs';
 import { SubSink } from 'subsink';
 import { Unsubscribe } from '@angular/fire/firestore';
 import { Store } from '@ngrx/store';
@@ -26,7 +23,6 @@ import { getHymnLyricsActionGroup } from 'apps/admin.ccchymns.com/src/store';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LyricsComponent implements OnInit, OnDestroy {
-  @Input() editorsHymns?: IEditorsHymn[] | null;
   private subscriptions = new SubSink();
   unsubscribeFromLiveEditorsHymns!: Unsubscribe;
 
@@ -38,33 +34,38 @@ export class LyricsComponent implements OnInit, OnDestroy {
 
   private fetchHymnLyrics() {
     this.subscriptions.sink = this.lyricsDataService
-      .getAllEditorsHymns()
+      .getAllEditorsHymns$()
       .subscribe((editorsHymns) => {
-        this.editorsHymns = editorsHymns;
+        this.lyricsDataService.setEditorsHymn(editorsHymns);
+        this.dispatchEditorsHymnLyricsActionState(editorsHymns);
       });
   }
 
   ngOnInit(): void {
-    this.fetchHymnLyrics()
+    this.fetchHymnLyrics();
 
     this.subscriptions.sink = this.router.events
       .pipe(filter((e) => e instanceof NavigationEnd))
       .subscribe(() => {
-          this.dispatchEditorsHymnLyricsActionState(this.editorsHymns);
-
+        this.dispatchEditorsHymnLyricsActionState(
+          this.lyricsDataService.getEditorsHymn()
+        );
       });
 
     this.unsubscribeFromLiveEditorsHymns =
       this.lyricsDataService.getLiveListOfEditorsHymn(
+        10000,
         (editorsHymns) => {
-            this.editorsHymns = editorsHymns;
-            this.dispatchEditorsHymnLyricsActionState(editorsHymns);
+          this.lyricsDataService.setEditorsHymn(editorsHymns);
+          this.dispatchEditorsHymnLyricsActionState(editorsHymns);
         },
         (error) => {}
       );
   }
 
-  private dispatchEditorsHymnLyricsActionState(editorsHymns: IEditorsHymn[] | null | undefined) {
+  private dispatchEditorsHymnLyricsActionState(
+    editorsHymns: IEditorsHymn[] | null | undefined
+  ) {
     const basePath = '/${Route.LYRICS}';
     if (this.router.isActive(`${basePath}/${Route.YORUBA}`, true)) {
       const yorubaLyricsUIState =
@@ -108,7 +109,7 @@ export class LyricsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.unsubscribe()
+    this.subscriptions.unsubscribe();
     this.unsubscribeFromLiveEditorsHymns();
   }
 }

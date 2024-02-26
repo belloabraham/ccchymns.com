@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { SubSink } from 'subsink';
 import { IHymnLyricsUIState } from '@ccchymns.com/common';
 import { getYorubaLyricsSelector } from 'apps/admin.ccchymns.com/src/store';
+import { LyricsDataService } from '../lyrics.data.service';
 
 @Component({
   selector: 'app-lyrics-yoruba',
@@ -20,12 +21,25 @@ export class YorubaComponent implements OnDestroy {
   private subscriptions = new SubSink();
 
   data?: IHymnLyricsUIState[] | null;
-  constructor(private ngrxStore: Store) {
+  constructor(
+    private ngrxStore: Store,
+    private lyricsDataService: LyricsDataService
+  ) {
     this.subscriptions.sink = this.ngrxStore
       .select(getYorubaLyricsSelector())
       .subscribe((data) => {
         this.data = data;
       });
+  }
+
+  retry() {
+    this.data = undefined
+    this.lyricsDataService.getAllEditorsHymns$().subscribe((editorsHymns) => {
+      this.lyricsDataService.setEditorsHymn(editorsHymns);
+        const yorubaLyricsUIState =
+          this.lyricsDataService.getYorubaLyricsUIStates(editorsHymns);
+        this.data = yorubaLyricsUIState;
+    });
   }
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();

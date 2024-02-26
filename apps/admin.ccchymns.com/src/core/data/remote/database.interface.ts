@@ -47,6 +47,7 @@ export interface IDatabase {
    * @param pathSegment Array of path segments.
    * @param onNext Callback function to handle the retrieved data.
    * @param onError Callback function to handle errors.
+   * @param retryTimeout How long it takes in milli sec to retry.
    * @returns Function to unsubscribe from the snapshot listener.
    */
   getLiveListOfDocumentData<T>(

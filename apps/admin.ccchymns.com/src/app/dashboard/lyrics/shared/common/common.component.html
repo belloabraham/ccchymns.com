@@ -50,7 +50,7 @@
 
         <app-lyrics-placeholder *ngIf="data === undefined" [columnNames]="columnNames" />
 
-        <app-error-state *ngIf="data === null" (retry)="retry()" />
+        <app-error-state *ngIf="data === null" (retry)="retry.emit()" />
       </div>
     </div>
 

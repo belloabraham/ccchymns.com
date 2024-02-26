@@ -1,9 +1,11 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   Input,
   OnDestroy,
   OnInit,
+  Output,
 } from '@angular/core';
 import {
   EmptyStateComponent,
@@ -59,19 +61,19 @@ export class CommonComponent implements OnInit, OnDestroy {
   @Input({ required: true }) titleKey!: string;
   @Input({ required: true }) data?: IHymnLyricsUIState[] | null;
   private subscriptions = new SubSink();
+  @Output() retry = new EventEmitter<void>();
 
   onFilterTextChanged(event: any) {
     this.filterBy = event.target.value;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  retry() {}
+
 
   private dialog!: Observable<number>;
 
   constructor(
     @Inject(TuiDialogService) private readonly dialogs: TuiDialogService,
-    @Inject(Injector) private readonly injector: Injector
+    @Inject(Injector) private readonly injector: Injector,
   ) {}
 
   ngOnInit(): void {

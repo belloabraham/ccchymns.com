@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { IHymnLyricsUIState } from '@ccchymns.com/common';
 import { SubSink } from 'subsink';
 import { getFrenchLyricsSelector } from 'apps/admin.ccchymns.com/src/store';
+import { LyricsDataService } from '../lyrics.data.service';
 
 @Component({
   selector: 'app-lyrics-french',
@@ -20,12 +21,26 @@ export class FrenchComponent implements OnDestroy {
   private subscriptions = new SubSink();
   data?: IHymnLyricsUIState[] | null;
 
-  constructor(private ngrxStore: Store) {
+  constructor(
+    private ngrxStore: Store,
+    private lyricsDataService: LyricsDataService
+  ) {
     this.subscriptions.sink = this.ngrxStore
       .select(getFrenchLyricsSelector())
       .subscribe((data) => {
         this.data = data;
       });
+  }
+
+  retry() {
+    this.data = undefined;
+    this.lyricsDataService.getAllEditorsHymns$().subscribe((editorsHymns) => {
+      this.lyricsDataService.setEditorsHymn(editorsHymns);
+       const frenchLyricsUIState =
+         this.lyricsDataService.getFrenchLyricsUIStates(editorsHymns);
+         this.data = frenchLyricsUIState
+    });
+
   }
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
