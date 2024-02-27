@@ -3,7 +3,7 @@
     <p class="indeterminate-progress-bar"></p>
   </div>
 
-  <div class="shield">
+  <div class="shield" style="padding-top: 1px;">
     <div *ngIf="(deviceIsConnectedToTheInternet$ | async) === false" class="warning-panel p-2 fixed-top">
       <span *transloco="let t"> {{ t(languageResourceKey.NO_INTERNET_CONNECTION_NOTICE , {value: t(appNameKey)})
         }}</span>

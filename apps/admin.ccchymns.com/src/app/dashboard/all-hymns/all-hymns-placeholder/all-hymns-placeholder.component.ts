@@ -12,6 +12,6 @@ import { TranslocoModule } from '@ngneat/transloco';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AllHymnsPlaceholderComponent {
-  placeholders = Array(TABLE_PAGE_SIZE / 2);
+  placeholders = Array(10);
   @Input({ required: true }) columnNames: string[] = [];
 }

@@ -12,6 +12,6 @@ import { TABLE_PAGE_SIZE } from '../../../shared';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LyricsPlaceholderComponent {
-  placeholders = Array(TABLE_PAGE_SIZE / 2);
+  placeholders = Array(10);
   @Input({ required: true }) columnNames: string[] = [];
 }

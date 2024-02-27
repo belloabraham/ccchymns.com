@@ -13,6 +13,6 @@ import { CCCIconDirective } from '@ccchymns.com/ui';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TonicSolfaPlaceholderComponent {
-  placeholders = Array(TABLE_PAGE_SIZE / 2);
+  placeholders = Array(10);
   @Input({ required: true }) columnNames: string[] = [];
 }

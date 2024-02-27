@@ -1,8 +1,8 @@
 <div *transloco="let t" class="d-flex flex-column justify-content-center align-items-center">
 
   <div class="table-container">
-    <input type="text" class="form-control w-50" [disabled]="!data || data.length === 0" (keyup)="onFilterTextChanged($event)"
-      [placeholder]="t(languageResourceKey.FILTER_HYMN_MSG)">
+    <input type="text" class="form-control w-50" [disabled]="!data || data.length === 0"
+      (keyup)="onFilterTextChanged($event)" [placeholder]="t(languageResourceKey.FILTER_HYMN_MSG)">
 
     <div class="card w-100">
       <div class="card-header py-0 pe-1 bg-body-secondary d-flex justify-content-between align-items-center">
@@ -33,7 +33,7 @@
           </button>
           <div ng-mat-tooltip id="sort">{{t(dashboardLanguageResourceKey.SORT_MSG)}}</div>
 
-          <button (click)="showDialog()" ng-mat-icon-button class="add" [ccc-icon]="'plus-circle'" ng-mat-tooltip
+          <button [disabled]="!data" (click)="showDialog()" ng-mat-icon-button class="add" [ccc-icon]="'plus-circle'" ng-mat-tooltip
             id="add-hymn">
           </button>
 
@@ -43,10 +43,10 @@
 
       </div>
       <div class="card-body overflow-x-scroll">
-        <app-lyrics-table [class]="data?.length === 0 ? 'd-none': 'd-block'" #lyricsTable='lyricsTable' [data]="data"
-          [filterBy]="filterBy" />
+        <app-lyrics-table [class]="data && data.length > 0 ? 'd-block': 'd-none'" class="d-none"
+          #lyricsTable='lyricsTable' [data]="data" [filterBy]="filterBy" />
 
-        <app-empty-state *ngIf="data?.length === 0" [descriptionKey]="languageResourceKey.EMPTY_STATE_DESCRIPTION" />
+        <app-empty-state *ngIf="data && data.length === 0" [descriptionKey]="languageResourceKey.EMPTY_STATE_DESCRIPTION" />
 
         <app-lyrics-placeholder *ngIf="data === undefined" [columnNames]="columnNames" />
 

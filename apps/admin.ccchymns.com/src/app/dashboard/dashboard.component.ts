@@ -77,7 +77,6 @@ export class DashboardComponent implements OnDestroy, OnInit {
   openBibleReference = signal(false);
   openAudioSpace = signal(false);
 
-  routerIsNavigating!: Signal<boolean | undefined>;
   breadcrumbs: IBreadCrumb[] = [];
   readonly BREADCRUMB_ROUTE_DATA_KEY = 'breadcrumb';
 
@@ -100,25 +99,6 @@ export class DashboardComponent implements OnDestroy, OnInit {
       .subscribe(() => {
         this.breadcrumbs = this.createBreadCrumbs(this.activatedRoute);
       });
-
-    const routerNavigationStartEvent$ = this.router.events.pipe(
-      filter((e) => e instanceof NavigationStart),
-      map(() => true)
-    );
-
-    const routerNavigationStoppedEvent$ = this.router.events.pipe(
-      filter(
-        (e) =>
-          e instanceof NavigationEnd ||
-          e instanceof NavigationCancel ||
-          e instanceof NavigationError
-      ),
-      map(() => false)
-    );
-
-    this.routerIsNavigating = toSignal(
-      merge(routerNavigationStoppedEvent$, routerNavigationStartEvent$)
-    );
   }
 
   ngOnInit(): void {

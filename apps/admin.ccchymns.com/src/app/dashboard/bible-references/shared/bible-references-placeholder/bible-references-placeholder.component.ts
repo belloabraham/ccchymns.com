@@ -12,6 +12,6 @@ import { NgFor } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BibleReferencesPlaceholderComponent {
-  placeholders = Array(TABLE_PAGE_SIZE / 2);
+  placeholders = Array(10);
   @Input({ required: true }) columnNames: string[] = [];
 }

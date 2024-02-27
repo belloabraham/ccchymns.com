@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnDestroy,
+} from '@angular/core';
 import { CommonComponent } from '../shared/common/common.component';
 import { LanguageResourceKey } from '../i18n/language-resource-key';
 import { Store } from '@ngrx/store';
@@ -23,7 +28,8 @@ export class YorubaComponent implements OnDestroy {
   data?: IHymnLyricsUIState[] | null;
   constructor(
     private ngrxStore: Store,
-    private lyricsDataService: LyricsDataService
+    private lyricsDataService: LyricsDataService,
+    private cdRef: ChangeDetectorRef
   ) {
     this.subscriptions.sink = this.ngrxStore
       .select(getYorubaLyricsSelector())
@@ -39,6 +45,7 @@ export class YorubaComponent implements OnDestroy {
       const yorubaLyricsUIState =
         this.lyricsDataService.getYorubaLyricsUIStates(editorsHymns);
       this.data = yorubaLyricsUIState;
+      this.cdRef.detectChanges();
     });
   }
   ngOnDestroy(): void {
