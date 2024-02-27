@@ -33,11 +33,11 @@
           </button>
           <div ng-mat-tooltip id="sort">{{t(dashboardLanguageResourceKey.SORT_MSG)}}</div>
 
-          <button [disabled]="!data" (click)="showDialog()" ng-mat-icon-button class="add" [ccc-icon]="'plus-circle'" ng-mat-tooltip
-            id="add-hymn">
+          <button *ngIf="data" (click)="showDialog()" ng-mat-icon-button class="add" [ccc-icon]="'plus-circle'"
+            ng-mat-tooltip id="add-hymn">
           </button>
 
-          <div ng-mat-tooltip id="add-hymn">{{t(languageResourceKey.ADD_A_HYMN)}}</div>
+          <div *ngIf="data" ng-mat-tooltip id="add-hymn">{{t(languageResourceKey.ADD_A_HYMN)}}</div>
 
         </div>
 
@@ -46,7 +46,8 @@
         <app-lyrics-table [class]="data && data.length > 0 ? 'd-block': 'd-none'" class="d-none"
           #lyricsTable='lyricsTable' [data]="data" [filterBy]="filterBy" />
 
-        <app-empty-state *ngIf="data && data.length === 0" [descriptionKey]="languageResourceKey.EMPTY_STATE_DESCRIPTION" />
+        <app-empty-state *ngIf="data && data.length === 0"
+          [descriptionKey]="languageResourceKey.EMPTY_STATE_DESCRIPTION" />
 
         <app-lyrics-placeholder *ngIf="data === undefined" [columnNames]="columnNames" />
 

@@ -67,8 +67,6 @@ export class CommonComponent implements OnInit, OnDestroy {
     this.filterBy = event.target.value;
   }
 
-
-
   private dialog!: Observable<number>;
 
   constructor(

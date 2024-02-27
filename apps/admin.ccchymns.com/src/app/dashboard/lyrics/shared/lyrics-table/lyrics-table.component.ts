@@ -1,6 +1,8 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  Inject,
+  Injector,
   Input,
   OnChanges,
   OnInit,
@@ -20,6 +22,10 @@ import { TABLE_PAGE_SIZE, SortOrder } from '../../../shared';
 import { SubSink } from 'subsink';
 import { HymnLyricsDataSource } from '../datasource/lyrics-datasource';
 import { COLUMN_NAMES_FOR_LYRICS_TABLE } from '../data';
+import { TuiDialogService } from '@taiga-ui/core';
+import { Observable } from 'rxjs';
+import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
+import { EditLyricsDialogComponent } from '../edit-lyrics-dialog/edit-lyrics-dialog.component';
 
 @Component({
   selector: 'app-lyrics-table',
@@ -47,8 +53,13 @@ export class LyricsTableComponent implements OnChanges, OnInit {
   @Input() filterBy: string | undefined;
   columnNames: string[] = COLUMN_NAMES_FOR_LYRICS_TABLE;
   dataSource = new HymnLyricsDataSource([]);
+  private dialog!: Observable<number>;
 
-  constructor(private displayService: DisplayService) {
+  constructor(
+    private displayService: DisplayService,
+    @Inject(TuiDialogService) private readonly dialogs: TuiDialogService,
+    @Inject(Injector) private readonly injector: Injector
+  ) {
     this.getIsDeviceDisplayDesktopAsync();
   }
 
@@ -60,6 +71,17 @@ export class LyricsTableComponent implements OnChanges, OnInit {
         paginationLength < 1 ? 0 : Math.ceil(paginationLength)
       );
     }
+  }
+
+  editLyrics(lyrics: IHymnLyricsUIState) {
+    this.dialog = this.dialogs.open<number>(
+      new PolymorpheusComponent(EditLyricsDialogComponent, this.injector),
+      {
+        data: null,
+        dismissible: false,
+        appearance: 'bg-light',
+      }
+    );
   }
 
   ngOnChanges(changes: SimpleChanges): void {

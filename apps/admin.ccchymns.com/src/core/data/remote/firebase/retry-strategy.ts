@@ -3,7 +3,7 @@ import { FirestoreErrorCodes } from './error-codes';
 
 export const genericRetryStrategy =
   ({
-    maxRetryAttempts = 5,
+    maxRetryAttempts = 3,
     scalingDuration = 1000,
     excludedStatusCodes = [
       FirestoreErrorCodes.permissionDenied,

@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import { IEditorsHymn, IHymnLyricsUIState } from '@ccchymns.com/common';
+import { IEditorsHymn, IEditorsHymnUpdate, IHymnLyricsUIState } from '@ccchymns.com/common';
 import {
   Collection,
   DATABASE_IJTOKEN,
@@ -118,50 +118,50 @@ export class LyricsDataService {
     return editorsHymns;
   }
 
-  updateYorubaHymnLyrics(hymnNo: string, value: IEditorsHymn) {
+  updateYorubaHymnLyrics(value: IEditorsHymnUpdate) {
     this.throwErrorForAPublishedLyrics(value.published);
     if (!value.yoruba) {
       throw new Error('Yoruba value can not be undefined or null');
     }
     return this.remoteData.addADocumentDataTo(
       Collection.EDITORS_HYMNS,
-      [hymnNo],
+      [`${value.no}`],
       value
     );
   }
 
-  updateEnglishHymnLyrics(hymnNo: string, value: IEditorsHymn) {
+  updateEnglishHymnLyrics(value: IEditorsHymnUpdate) {
     this.throwErrorForAPublishedLyrics(value.published);
     if (!value.english) {
       throw new Error('English value can not be undefined or null');
     }
     return this.remoteData.addADocumentDataTo(
       Collection.EDITORS_HYMNS,
-      [hymnNo],
+      [`${value.no}`],
       value
     );
   }
 
-  updateEgunHymnLyrics(hymnNo: string, value: IEditorsHymn) {
+  updateEgunHymnLyrics(value: IEditorsHymnUpdate) {
     this.throwErrorForAPublishedLyrics(value.published);
     if (!value.egun) {
       throw new Error('Egun value can not be undefined or null');
     }
     return this.remoteData.addADocumentDataTo(
       Collection.EDITORS_HYMNS,
-      [hymnNo],
+      [`${value.no}`],
       value
     );
   }
 
-  updateFrenchHymnLyrics(hymnNo: string, value: IEditorsHymn) {
+  updateFrenchHymnLyrics(value: IEditorsHymnUpdate) {
     this.throwErrorForAPublishedLyrics(value.published);
     if (!value.french) {
       throw new Error('French value can not be undefined or null');
     }
     return this.remoteData.addADocumentDataTo(
       Collection.EDITORS_HYMNS,
-      [hymnNo],
+      [`${value.no}`],
       value
     );
   }

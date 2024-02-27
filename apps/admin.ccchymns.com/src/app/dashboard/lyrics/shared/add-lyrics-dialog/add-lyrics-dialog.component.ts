@@ -10,12 +10,18 @@ import { TuiDialogContext, TuiDialogService } from '@taiga-ui/core';
 import { POLYMORPHEUS_CONTEXT } from '@tinkoff/ng-polymorpheus';
 import { DashboardLanguageResourceKey } from '../../../i18n/language-resource-key';
 import { NgMaterialButtonModule } from '@ccchymns.com/angular';
-import { IHymnLyricsUIState, RootLanguageResourceKey } from '@ccchymns.com/common';
+import {
+  IEditorsHymnUpdate,
+  RootLanguageResourceKey,
+  Route,
+} from '@ccchymns.com/common';
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ILyricsForm } from '../form';
 import { LanguageResourceKey } from '../../i18n/language-resource-key';
-import { JSON } from '@ccchymns.com/core';
+import { JSON, LoggerUtil, NotificationBuilder } from '@ccchymns.com/core';
+import { LyricsDataService } from '../../lyrics.data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-lyrics-dialog',
@@ -49,7 +55,9 @@ export class AddLyricsDialogComponent implements OnInit {
   constructor(
     @Inject(TuiDialogService) private readonly dialogs: TuiDialogService,
     @Inject(POLYMORPHEUS_CONTEXT)
-    private readonly context: TuiDialogContext<string, string>
+    private readonly context: TuiDialogContext<string, string>,
+    private lyricsDataService: LyricsDataService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -66,15 +74,48 @@ export class AddLyricsDialogComponent implements OnInit {
   onSubmit(): void {
     this.formSubmitted = true;
     if (this.lyricsForm.valid) {
-       const hymnLyrics: IHymnLyricsUIState = {
-         no: this.hymnNoFC.value!,
-         lyrics: JSON.escapeSpecialCharacters(this.lyricsFC.value!),
-       };
-      //TODO
+      const lyrics = JSON.escapeSpecialCharacters(this.lyricsFC.value!);
+      const no = this.hymnNoFC.value!;
+      this.updateHymn(no, lyrics)
+        .then(() => {
+          new NotificationBuilder()
+            .build()
+            .success('Hymn Lyrics updated successfully');
+            //TODO Close the undismissible dialog
+        })
+        .catch((error) => {
+          new NotificationBuilder()
+            .build()
+            .error(
+              'Oops unable to update hymn lyrics at the moment, try again later'
+            );
+          LoggerUtil.error(this, this.onSubmit.name, error);
+        });
     }
   }
 
-  showDialog(content: TemplateRef<TuiDialogContext>): void {
-    this.dialogs.open(content, { dismissible: true }).subscribe();
+  private updateHymn(no: number, lyrics: string) {
+    const data: IEditorsHymnUpdate = {
+      no: no,
+      published: false,
+    };
+    const basePath = `/${Route.LYRICS}`;
+    if (this.router.isActive(`${basePath}/${Route.YORUBA}`, true)) {
+      data.yoruba = lyrics;
+    }
+
+    if (this.router.isActive(`${basePath}/${Route.ENGLISH}`, true)) {
+      data.english = lyrics;
+    }
+
+    if (this.router.isActive(`${basePath}/${Route.FRENCH}`, true)) {
+      data.french = lyrics;
+    }
+
+    if (this.router.isActive(`${basePath}/${Route.EGUN}`, true)) {
+      data.egun = lyrics;
+    }
+
+    return this.lyricsDataService.updateYorubaHymnLyrics(data);
   }
 }

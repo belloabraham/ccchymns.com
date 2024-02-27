@@ -1,7 +1,10 @@
-export interface IEditorsHymn
+export interface IEditorsHymn extends IEditorsHymnUpdate {
+  paid: boolean;
+}
+
+export interface IEditorsHymnUpdate
   extends Record<string, string | number | boolean | undefined> {
   no: number;
-  paid: boolean;
   published: boolean;
   yoruba?: string;
   english?: string;
