@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  Input,
   OnDestroy,
   OnInit,
 } from '@angular/core';
@@ -19,11 +20,11 @@ import { getHymnLyricsActionGroup } from 'apps/admin.ccchymns.com/src/store';
   imports: [RouterOutlet],
   templateUrl: './lyrics.component.html',
   styleUrls: ['./lyrics.component.scss'],
-  providers: [LyricsDataService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LyricsComponent implements OnInit, OnDestroy {
   private subscriptions = new SubSink();
+  @Input() editorsHymns: IEditorsHymn[] | null = null;
   unsubscribeFromLiveEditorsHymns!: Unsubscribe;
 
   constructor(
@@ -32,17 +33,9 @@ export class LyricsComponent implements OnInit, OnDestroy {
     private ngrxStore: Store
   ) {}
 
-  private fetchHymnLyrics() {
-    this.subscriptions.sink = this.lyricsDataService
-      .getAllEditorsHymns$()
-      .subscribe((editorsHymns) => {
-        this.lyricsDataService.setEditorsHymn(editorsHymns);
-        this.dispatchEditorsHymnLyricsActionState(editorsHymns);
-      });
-  }
-
   ngOnInit(): void {
-    this.fetchHymnLyrics();
+    this.lyricsDataService.setEditorsHymn(this.editorsHymns);
+    this.dispatchEditorsHymnLyricsActionState(this.editorsHymns);
 
     this.subscriptions.sink = this.router.events
       .pipe(filter((e) => e instanceof NavigationEnd))
@@ -66,7 +59,7 @@ export class LyricsComponent implements OnInit, OnDestroy {
   private dispatchEditorsHymnLyricsActionState(
     editorsHymns: IEditorsHymn[] | null | undefined
   ) {
-    const basePath = '/${Route.LYRICS}';
+    const basePath = `/${Route.LYRICS}`;
     if (this.router.isActive(`${basePath}/${Route.YORUBA}`, true)) {
       const yorubaLyricsUIState =
         this.lyricsDataService.getYorubaLyricsUIStates(editorsHymns);

@@ -40,8 +40,6 @@ import {
 } from '@angular/router';
 import { distinctUntilChanged, filter, map, merge } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { BibleReferencesDataService } from './bible-references/bible-references.data.service';
-import { LyricsDataService } from './lyrics/lyrics.data.service';
 
 export interface IBreadCrumb {
   label: string;
@@ -63,7 +61,6 @@ export interface IBreadCrumb {
   ],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss', './toggle-arrow.scss'],
-  providers: [BibleReferencesDataService, LyricsDataService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardComponent implements OnDestroy, OnInit {

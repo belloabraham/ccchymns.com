@@ -33,12 +33,12 @@ export class YorubaComponent implements OnDestroy {
   }
 
   retry() {
-    this.data = undefined
+    this.data = undefined;
     this.lyricsDataService.getAllEditorsHymns$().subscribe((editorsHymns) => {
       this.lyricsDataService.setEditorsHymn(editorsHymns);
-        const yorubaLyricsUIState =
-          this.lyricsDataService.getYorubaLyricsUIStates(editorsHymns);
-        this.data = yorubaLyricsUIState;
+      const yorubaLyricsUIState =
+        this.lyricsDataService.getYorubaLyricsUIStates(editorsHymns);
+      this.data = yorubaLyricsUIState;
     });
   }
   ngOnDestroy(): void {
