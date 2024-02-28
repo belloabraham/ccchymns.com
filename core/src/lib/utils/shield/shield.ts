@@ -20,15 +20,15 @@ export class Shield {
   }
 
   static pulse(
-    fontFamily = 'Nunito Sans',
-    selector: string | HTMLElement[],
     fontSizeInPx: number,
     svgSizeInPx: number,
-    message?: string
+    message?: string,
+    selector: string | HTMLElement[] = Shield.shield,
+    fontFamily = 'Nunito Sans'
   ) {
     Block.pulse(selector, message, {
       fontFamily: fontFamily,
-      svgSize: `${fontSizeInPx}px`,
+      svgSize: `${svgSizeInPx}px`,
       messageFontSize: `${fontSizeInPx}px`,
       messageMaxLength: 200,
     });

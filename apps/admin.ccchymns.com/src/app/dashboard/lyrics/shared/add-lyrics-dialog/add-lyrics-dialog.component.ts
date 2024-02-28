@@ -2,15 +2,15 @@ import {
   Component,
   ChangeDetectionStrategy,
   Inject,
-  TemplateRef,
   OnInit,
 } from '@angular/core';
 import { SharedModule } from '../../../shared';
-import { TuiDialogContext, TuiDialogService } from '@taiga-ui/core';
+import { TuiDialogContext } from '@taiga-ui/core';
 import { POLYMORPHEUS_CONTEXT } from '@tinkoff/ng-polymorpheus';
 import { DashboardLanguageResourceKey } from '../../../i18n/language-resource-key';
 import { NgMaterialButtonModule } from '@ccchymns.com/angular';
 import {
+  DisplayService,
   IEditorsHymnUpdate,
   RootLanguageResourceKey,
   Route,
@@ -19,7 +19,12 @@ import { TextFieldModule } from '@angular/cdk/text-field';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ILyricsForm } from '../form';
 import { LanguageResourceKey } from '../../i18n/language-resource-key';
-import { JSON, LoggerUtil, NotificationBuilder } from '@ccchymns.com/core';
+import {
+  JSON,
+  LoggerUtil,
+  NotificationBuilder,
+  Shield,
+} from '@ccchymns.com/core';
 import { LyricsDataService } from '../../lyrics.data.service';
 import { Router } from '@angular/router';
 
@@ -53,11 +58,11 @@ export class AddLyricsDialogComponent implements OnInit {
   }
 
   constructor(
-    @Inject(TuiDialogService) private readonly dialogs: TuiDialogService,
     @Inject(POLYMORPHEUS_CONTEXT)
     private readonly context: TuiDialogContext<string, string>,
     private lyricsDataService: LyricsDataService,
-    private router: Router
+    private router: Router,
+    private displayService: DisplayService
   ) {}
 
   ngOnInit(): void {
@@ -76,12 +81,18 @@ export class AddLyricsDialogComponent implements OnInit {
     if (this.lyricsForm.valid) {
       const lyrics = JSON.escapeSpecialCharacters(this.lyricsFC.value!);
       const no = this.hymnNoFC.value!;
+      const responsiveSvgSize = this.displayService.percentage * 60;
+      const responsiveFontSize = this.displayService.percentage * 16;
+      Shield.pulse(
+        responsiveFontSize,
+        responsiveSvgSize,
+        `Adding hymn ${no} please wait`
+      );
       this.updateHymn(no, lyrics)
         .then(() => {
           new NotificationBuilder()
             .build()
             .success('Hymn Lyrics updated successfully');
-            //TODO Close the undismissible dialog
         })
         .catch((error) => {
           new NotificationBuilder()
@@ -90,6 +101,10 @@ export class AddLyricsDialogComponent implements OnInit {
               'Oops unable to update hymn lyrics at the moment, try again later'
             );
           LoggerUtil.error(this, this.onSubmit.name, error);
+        })
+        .finally(() => {
+          this.context.$implicit.complete();
+          Shield.remove();
         });
     }
   }
