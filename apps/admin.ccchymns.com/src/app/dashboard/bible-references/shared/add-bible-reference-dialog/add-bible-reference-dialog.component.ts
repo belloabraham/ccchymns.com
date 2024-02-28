@@ -1,5 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { IBibleReferenceUIState, RootLanguageResourceKey } from '@ccchymns.com/common';
+import {
+  CustomValidator,
+  IBibleReferenceUIState,
+  RootLanguageResourceKey,
+} from '@ccchymns.com/common';
 import { LanguageResourceKey } from '../../i18n/language-resource-key';
 import { SharedModule } from '../../../shared';
 import { NgMaterialButtonModule } from '@ccchymns.com/angular';
@@ -24,7 +28,10 @@ export class AddBibleReferenceDialogComponent implements OnInit {
     Validators.required,
     Validators.pattern(Regex.BIBLE_REFERENCE),
   ]);
-  versesFC = new FormControl<string | null>(null, [Validators.required]);
+  versesFC = new FormControl<string | null>(null, [
+    Validators.required,
+    CustomValidator.noWhitespace,
+  ]);
   formSubmitted = false;
 
   referenceIsInvalid() {
@@ -46,9 +53,9 @@ export class AddBibleReferenceDialogComponent implements OnInit {
     });
   }
 
-  onSubmit(){
-    this.formSubmitted = true
-    if(this.bibleReferenceForm.valid){
+  onSubmit() {
+    this.formSubmitted = true;
+    if (this.bibleReferenceForm.valid) {
       const bibleReference: IBibleReferenceUIState = {
         reference: JSON.escapeSpecialCharacters(this.referenceFC.value!),
         verses: JSON.escapeSpecialCharacters(this.versesFC.value!),

@@ -1,11 +1,15 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  Input,
   OnDestroy,
   OnInit,
 } from '@angular/core';
-import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import {
+  ActivatedRoute,
+  NavigationEnd,
+  Router,
+  RouterOutlet,
+} from '@angular/router';
 import { LyricsDataService } from './lyrics.data.service';
 import { IEditorsHymn, Route } from '@ccchymns.com/common';
 import { filter } from 'rxjs';
@@ -24,18 +28,20 @@ import { getHymnLyricsActionGroup } from 'apps/admin.ccchymns.com/src/store';
 })
 export class LyricsComponent implements OnInit, OnDestroy {
   private subscriptions = new SubSink();
-  @Input() editorsHymns: IEditorsHymn[] | null = null;
   unsubscribeFromLiveEditorsHymns!: Unsubscribe;
 
   constructor(
     private lyricsDataService: LyricsDataService,
     private router: Router,
-    private ngrxStore: Store
+    private ngrxStore: Store,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.lyricsDataService.setEditorsHymn(this.editorsHymns);
-    this.dispatchEditorsHymnLyricsActionState(this.editorsHymns);
+    const editorsHymns = this.activatedRoute.snapshot.data['editorsHymns'];
+
+    this.lyricsDataService.setEditorsHymn(editorsHymns);
+    this.dispatchEditorsHymnLyricsActionState(editorsHymns);
 
     this.subscriptions.sink = this.router.events
       .pipe(filter((e) => e instanceof NavigationEnd))

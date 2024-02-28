@@ -43,8 +43,8 @@
 
       </div>
       <div class="card-body overflow-x-scroll">
-        <app-lyrics-table [class]="data && data.length > 0 ? 'd-block': 'd-none'" class="d-none"
-          #lyricsTable='lyricsTable' [data]="data" [filterBy]="filterBy" />
+        <app-lyrics-table [class]="data && data.length > 0 ? 'd-block': 'd-none'" #lyricsTable='lyricsTable'
+          [data]="data" [filterBy]="filterBy" />
 
         <app-empty-state *ngIf="data && data.length === 0"
           [descriptionKey]="languageResourceKey.EMPTY_STATE_DESCRIPTION" />

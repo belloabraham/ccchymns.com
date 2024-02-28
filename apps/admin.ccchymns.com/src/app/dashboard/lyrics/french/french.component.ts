@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { CommonComponent } from '../shared/common/common.component';
 import { LanguageResourceKey } from '../i18n/language-resource-key';
 import { Store } from '@ngrx/store';
@@ -15,7 +21,7 @@ import { LyricsDataService } from '../lyrics.data.service';
   styleUrl: './french.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FrenchComponent implements OnDestroy {
+export class FrenchComponent implements OnInit, OnDestroy {
   titleKey = LanguageResourceKey.FRENCH_LYRICS;
   // data = HYMN_LYRICS_MOCK_DATA;
   private subscriptions = new SubSink();
@@ -23,24 +29,30 @@ export class FrenchComponent implements OnDestroy {
 
   constructor(
     private ngrxStore: Store,
-    private lyricsDataService: LyricsDataService
-  ) {
+    private lyricsDataService: LyricsDataService,
+    private cdRef: ChangeDetectorRef
+  ) {}
+
+  ngOnInit(): void {
     this.subscriptions.sink = this.ngrxStore
       .select(getFrenchLyricsSelector())
       .subscribe((data) => {
         this.data = data;
+        this.cdRef.detectChanges();
       });
   }
 
   retry() {
     this.data = undefined;
-    this.lyricsDataService.getAllEditorsHymns$().subscribe((editorsHymns) => {
-      this.lyricsDataService.setEditorsHymn(editorsHymns);
-       const frenchLyricsUIState =
-         this.lyricsDataService.getFrenchLyricsUIStates(editorsHymns);
-         this.data = frenchLyricsUIState
-    });
-
+    this.subscriptions.sink = this.lyricsDataService
+      .getAllEditorsHymns$()
+      .subscribe((editorsHymns) => {
+        this.lyricsDataService.setEditorsHymn(editorsHymns);
+        const frenchLyricsUIState =
+          this.lyricsDataService.getFrenchLyricsUIStates(editorsHymns);
+        this.data = frenchLyricsUIState;
+        this.cdRef.detectChanges();
+      });
   }
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();

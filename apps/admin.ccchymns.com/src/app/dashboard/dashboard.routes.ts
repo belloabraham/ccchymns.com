@@ -27,9 +27,7 @@ export const DASHBOARD_ROUTES: Routes = [
         path: Route.LYRICS,
         providers: [LyricsDataService],
         resolve: {
-          editorsHymns: () => {
-            return inject(LyricsDataService).getAllEditorsHymns$();
-          },
+          editorsHymns: () => inject(LyricsDataService).getAllEditorsHymns$(),
         },
         data: {
           breadcrumb: RootLanguageResourceKey.LYRICS,

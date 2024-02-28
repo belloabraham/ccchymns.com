@@ -23,7 +23,6 @@ import { SubSink } from 'subsink';
 import { HymnLyricsDataSource } from '../datasource/lyrics-datasource';
 import { COLUMN_NAMES_FOR_LYRICS_TABLE } from '../data';
 import { TuiDialogService } from '@taiga-ui/core';
-import { Observable } from 'rxjs';
 import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
 import { EditLyricsDialogComponent } from '../edit-lyrics-dialog/edit-lyrics-dialog.component';
 
@@ -53,7 +52,6 @@ export class LyricsTableComponent implements OnChanges, OnInit {
   @Input() filterBy: string | undefined;
   columnNames: string[] = COLUMN_NAMES_FOR_LYRICS_TABLE;
   dataSource = new HymnLyricsDataSource([]);
-  private dialog!: Observable<number>;
 
   constructor(
     private displayService: DisplayService,
@@ -74,14 +72,16 @@ export class LyricsTableComponent implements OnChanges, OnInit {
   }
 
   editLyrics(lyrics: IHymnLyricsUIState) {
-    this.dialog = this.dialogs.open<number>(
-      new PolymorpheusComponent(EditLyricsDialogComponent, this.injector),
-      {
-        data: null,
-        dismissible: false,
-        appearance: 'bg-light',
-      }
-    );
+    this.subscriptions.sink = this.dialogs
+      .open<IHymnLyricsUIState>(
+        new PolymorpheusComponent(EditLyricsDialogComponent, this.injector),
+        {
+          data: lyrics,
+          dismissible: true,
+          appearance: 'bg-light',
+        }
+      )
+      .subscribe();
   }
 
   ngOnChanges(changes: SimpleChanges): void {

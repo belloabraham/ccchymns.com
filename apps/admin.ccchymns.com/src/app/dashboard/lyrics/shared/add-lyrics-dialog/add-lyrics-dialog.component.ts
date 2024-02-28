@@ -10,6 +10,7 @@ import { POLYMORPHEUS_CONTEXT } from '@tinkoff/ng-polymorpheus';
 import { DashboardLanguageResourceKey } from '../../../i18n/language-resource-key';
 import { NgMaterialButtonModule } from '@ccchymns.com/angular';
 import {
+  CustomValidator,
   DisplayService,
   IEditorsHymnUpdate,
   RootLanguageResourceKey,
@@ -46,7 +47,10 @@ export class AddLyricsDialogComponent implements OnInit {
     Validators.required,
     Validators.min(1),
   ]);
-  lyricsFC = new FormControl<string | null>(null, [Validators.required]);
+  lyricsFC = new FormControl<string | null>(null, [
+    Validators.required,
+    CustomValidator.noWhitespace,
+  ]);
   formSubmitted = false;
 
   hymnNoIsInvalid() {
@@ -59,7 +63,7 @@ export class AddLyricsDialogComponent implements OnInit {
 
   constructor(
     @Inject(POLYMORPHEUS_CONTEXT)
-    private readonly context: TuiDialogContext<string, string>,
+    private readonly context: TuiDialogContext<string>,
     private lyricsDataService: LyricsDataService,
     private router: Router,
     private displayService: DisplayService
@@ -95,11 +99,11 @@ export class AddLyricsDialogComponent implements OnInit {
             .success('Hymn Lyrics updated successfully');
         })
         .catch((error) => {
-          new NotificationBuilder()
-            .build()
-            .error(
-              'Oops unable to update hymn lyrics at the moment, try again later'
-            );
+          new NotificationBuilder().build().error(
+            `Oops unable to update hymn lyrics at the moment, try again later
+                Error: ${error.message}
+              `
+          );
           LoggerUtil.error(this, this.onSubmit.name, error);
         })
         .finally(() => {

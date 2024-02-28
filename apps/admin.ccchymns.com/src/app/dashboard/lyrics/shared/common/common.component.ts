@@ -71,9 +71,8 @@ export class CommonComponent implements OnInit, OnDestroy {
 
   constructor(
     @Inject(TuiDialogService) private readonly dialogs: TuiDialogService,
-    @Inject(Injector) private readonly injector: Injector,
+    @Inject(Injector) private readonly injector: Injector
   ) {}
-
   ngOnInit(): void {
     this.dialog = this.dialogs.open<number>(
       new PolymorpheusComponent(AddLyricsDialogComponent, this.injector),
@@ -86,14 +85,7 @@ export class CommonComponent implements OnInit, OnDestroy {
   }
 
   showDialog(): void {
-    this.subscriptions.sink = this.dialog.subscribe({
-      next: (data) => {
-        console.info(`Dialog emitted data = ${data}`);
-      },
-      complete: () => {
-        console.info('Dialog closed');
-      },
-    });
+    this.subscriptions.sink = this.dialog.subscribe();
   }
 
   ngOnDestroy(): void {

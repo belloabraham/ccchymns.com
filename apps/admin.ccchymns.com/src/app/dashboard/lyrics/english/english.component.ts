@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { CommonComponent } from '../shared/common/common.component';
 import { LanguageResourceKey } from '../i18n/language-resource-key';
 import { Store } from '@ngrx/store';
@@ -15,7 +21,7 @@ import { LyricsDataService } from '../lyrics.data.service';
   styleUrl: './english.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EnglishComponent implements OnDestroy {
+export class EnglishComponent implements OnInit, OnDestroy {
   titleKey = LanguageResourceKey.ENGLISH_LYRICS;
   // data = HYMN_LYRICS_MOCK_DATA;
   private subscriptions = new SubSink();
@@ -23,12 +29,16 @@ export class EnglishComponent implements OnDestroy {
   data?: IHymnLyricsUIState[] | null;
   constructor(
     private ngrxStore: Store,
-    private lyricsDataService: LyricsDataService
-  ) {
+    private lyricsDataService: LyricsDataService,
+    private cdRef: ChangeDetectorRef
+  ) {}
+  
+  ngOnInit(): void {
     this.subscriptions.sink = this.ngrxStore
       .select(getEnglishLyricsSelector())
       .subscribe((data) => {
         this.data = data;
+        this.cdRef.detectChanges();
       });
   }
 
@@ -41,6 +51,7 @@ export class EnglishComponent implements OnDestroy {
         const englishLyricsUIState =
           this.lyricsDataService.getEnglishLyricsUIStates(editorsHymns);
         this.data = englishLyricsUIState;
+        this.cdRef.detectChanges();
       });
   }
   ngOnDestroy(): void {

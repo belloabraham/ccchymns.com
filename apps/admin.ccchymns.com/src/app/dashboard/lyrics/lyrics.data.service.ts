@@ -1,5 +1,9 @@
 import { Inject, Injectable } from '@angular/core';
-import { IEditorsHymn, IEditorsHymnUpdate, IHymnLyricsUIState } from '@ccchymns.com/common';
+import {
+  IEditorsHymn,
+  IEditorsHymnUpdate,
+  IHymnLyricsUIState,
+} from '@ccchymns.com/common';
 import {
   Collection,
   DATABASE_IJTOKEN,
