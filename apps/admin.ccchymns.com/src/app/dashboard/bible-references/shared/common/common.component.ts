@@ -89,14 +89,7 @@ export class CommonComponent implements OnInit, OnDestroy {
   }
 
   openAddBibleReferenceDialog() {
-    this.subscriptions.sink = this.dialog.subscribe({
-      next: (data) => {
-        console.info(`Dialog emitted data = ${data}`);
-      },
-      complete: () => {
-        console.info('Dialog closed');
-      },
-    });
+    this.subscriptions.sink = this.dialog.subscribe();
   }
 
   ngOnDestroy(): void {

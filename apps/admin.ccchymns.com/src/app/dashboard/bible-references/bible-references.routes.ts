@@ -1,7 +1,13 @@
 import { Routes } from '@angular/router';
 import { RootLanguageResourceKey, Route } from '@ccchymns.com/common';
 import { BibleReferencesComponent } from './bible-references.component';
-
+import { provideState } from '@ngrx/store';
+import {
+  egunBibleReferencesFeature,
+  englishBibleReferencesFeature,
+  frenchBibleReferencesFeature,
+  yorubaBibleReferencesFeature,
+} from 'apps/admin.ccchymns.com/src/store';
 
 export const BIBLE_REFERENCES_ROUTES: Routes = [
   {
@@ -15,6 +21,7 @@ export const BIBLE_REFERENCES_ROUTES: Routes = [
       },
       {
         path: Route.YORUBA,
+        providers: [provideState(yorubaBibleReferencesFeature)],
         data: {
           breadcrumb: RootLanguageResourceKey.YORUBA,
         },
@@ -25,6 +32,7 @@ export const BIBLE_REFERENCES_ROUTES: Routes = [
       },
       {
         path: Route.ENGLISH,
+        providers: [provideState(englishBibleReferencesFeature)],
         data: {
           breadcrumb: RootLanguageResourceKey.ENGLISH,
         },
@@ -35,6 +43,7 @@ export const BIBLE_REFERENCES_ROUTES: Routes = [
       },
       {
         path: Route.FRENCH,
+        providers: [provideState(frenchBibleReferencesFeature)],
         data: {
           breadcrumb: RootLanguageResourceKey.FRENCH,
         },
@@ -45,13 +54,12 @@ export const BIBLE_REFERENCES_ROUTES: Routes = [
       },
       {
         path: Route.EGUN,
+        providers: [provideState(egunBibleReferencesFeature)],
         data: {
           breadcrumb: RootLanguageResourceKey.EGUN,
         },
         loadComponent: () =>
-          import('./egun/egun.component').then(
-            (mod) => mod.EgunComponent
-          ),
+          import('./egun/egun.component').then((mod) => mod.EgunComponent),
       },
     ],
   },
