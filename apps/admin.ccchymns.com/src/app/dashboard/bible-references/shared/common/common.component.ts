@@ -1,9 +1,11 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   Input,
   OnDestroy,
   OnInit,
+  Output,
 } from '@angular/core';
 import {
   EmptyStateComponent,
@@ -59,8 +61,9 @@ export class CommonComponent implements OnInit, OnDestroy {
 
   columnNames = COLUMN_NAMES_FOR_BIBLE_REFERENCES_TABLE;
   filterBy?: string;
-  @Input({ required: true }) data: IBibleReferenceUIState[] = [];
+  @Input({ required: true }) data?: IBibleReferenceUIState[] | null;
   private dialog!: Observable<string>;
+  @Output() retry = new EventEmitter<void>();
 
   constructor(
     @Inject(TuiDialogService) private readonly dialogs: TuiDialogService,
@@ -95,9 +98,6 @@ export class CommonComponent implements OnInit, OnDestroy {
       },
     });
   }
-
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  retry() {}
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();

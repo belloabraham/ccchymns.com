@@ -60,7 +60,7 @@ export class AddBibleReferenceDialogComponent implements OnInit {
         reference: JSON.escapeSpecialCharacters(this.referenceFC.value!),
         verses: JSON.escapeSpecialCharacters(this.versesFC.value!),
       };
-      //TODO
+      //TODO make sure reference is trimed for a white space
     }
   }
 }

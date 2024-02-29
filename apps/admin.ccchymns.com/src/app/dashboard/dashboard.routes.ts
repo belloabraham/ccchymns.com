@@ -38,6 +38,10 @@ export const DASHBOARD_ROUTES: Routes = [
       {
         path: Route.BIBLE_REFERENCES,
         providers: [BibleReferencesDataService],
+        resolve: {
+          bibleReferences: () =>
+            inject(BibleReferencesDataService).getAllBibleReferences$(),
+        },
         data: {
           breadcrumb: RootLanguageResourceKey.BIBLE_REFERENCES,
         },
