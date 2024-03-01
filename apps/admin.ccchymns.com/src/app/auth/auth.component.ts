@@ -13,7 +13,7 @@ import {
   SharedModule,
 } from '@ccchymns.com/angular';
 import { SubSink } from 'subsink';
-import { AUTH_TOKEN, IAuth } from '../../core/auth';
+import { AUTH_IJTOKEN, IAuth } from '../../core/auth';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Title } from '@angular/platform-browser';
@@ -26,11 +26,7 @@ import {
   Route,
 } from '@ccchymns.com/common';
 import { NgOptimizedImage } from '@angular/common';
-import {
-  FormControl,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AlertDialog, LoggerUtil, Regex, Shield } from '@ccchymns.com/core';
 import { Preference } from '../../core';
 import { AuthError } from '../../core';
@@ -65,7 +61,7 @@ export class AuthComponent implements OnDestroy, OnInit {
   ok = '';
 
   constructor(
-    @Inject(AUTH_TOKEN) private auth: IAuth,
+    @Inject(AUTH_IJTOKEN) private auth: IAuth,
     private router: Router,
     private ngrxStore: Store,
     @Inject(LANGUAGE_RESOURCE_TOKEN)

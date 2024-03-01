@@ -1,9 +1,11 @@
 import { NgModule, inject } from '@angular/core';
 import { Router, RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './auth/auth.component';
-import { AUTH_TOKEN } from '../core/auth';
+import { AUTH_IJTOKEN } from '../core/auth';
 import { map } from 'rxjs';
 import { Route } from '@ccchymns.com/common';
+import { StorageService } from './dashboard/storage.service';
+import { CLOUD_STORAGE_IJTOKEN, CloudStorageService } from '../core';
 
 const routes: Routes = [
   // {
@@ -22,6 +24,13 @@ const routes: Routes = [
   // },
   {
     path: Route.ROOT,
+    providers: [
+      {
+        provide: CLOUD_STORAGE_IJTOKEN,
+        useClass: CloudStorageService,
+      },
+      StorageService,
+    ],
     // canMatch: [
     //   //Match route only if authenticated user exist
     //   () =>
@@ -40,7 +49,7 @@ const routes: Routes = [
     path: Route.VERIFY_EMAIL,
     canMatch: [
       (router: Router) =>
-        inject(AUTH_TOKEN)
+        inject(AUTH_IJTOKEN)
           .getAuthSate$()
           .pipe(
             map((userIsAuthenticated) => {

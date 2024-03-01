@@ -10,7 +10,7 @@ import {
 import { NgOptimizedImage } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DisplayService } from '@ccchymns.com/common';
-import { AUTH_TOKEN } from '../../core/auth';
+import { AUTH_IJTOKEN } from '../../core/auth';
 import { RouterTestingModule } from '@angular/router/testing';
 import { getTranslocoTestingModule, initialState } from '../mock';
 import { provideMockStore } from '@ngrx/store/testing';
@@ -36,7 +36,7 @@ describe('AuthComponent', () => {
         provideMockStore({ initialState }),
         DisplayService,
         {
-          provide: AUTH_TOKEN,
+          provide: AUTH_IJTOKEN,
           useValue: {
             getAuthSate$: () => {
               return of(null);

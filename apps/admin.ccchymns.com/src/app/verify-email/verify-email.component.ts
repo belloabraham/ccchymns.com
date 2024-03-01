@@ -24,14 +24,10 @@ import {
   Route,
 } from '@ccchymns.com/common';
 import { Preference } from '../../core/data/preference';
-import { AUTH_TOKEN, IAuth } from '../../core/auth';
+import { AUTH_IJTOKEN, IAuth } from '../../core/auth';
 import { Router, RouterLink } from '@angular/router';
 import { AlertDialog, LoggerUtil, Regex, Shield } from '@ccchymns.com/core';
-import {
-  FormControl,
-  Validators,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { NgOptimizedImage } from '@angular/common';
 import { AuthError } from '../../core/auth/auth-error';
 
@@ -70,7 +66,7 @@ export class VerifyEmailComponent implements OnInit, OnDestroy {
     @Inject(LANGUAGE_RESOURCE_TOKEN)
     private languageResourceService: ILanguageResourceService,
     private title: Title,
-    @Inject(AUTH_TOKEN) private auth: IAuth,
+    @Inject(AUTH_IJTOKEN) private auth: IAuth,
     private router: Router,
     private displayService: DisplayService
   ) {}

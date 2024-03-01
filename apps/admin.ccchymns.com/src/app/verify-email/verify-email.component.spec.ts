@@ -10,7 +10,7 @@ import {
 } from '@ccchymns.com/angular';
 import { SharedModule } from '@ccchymns.com/angular';
 import { DisplayService } from '@ccchymns.com/common';
-import { AUTH_TOKEN, AuthService } from '../../core/auth';
+import { AUTH_IJTOKEN, AuthService } from '../../core/auth';
 import { provideMockStore } from '@ngrx/store/testing';
 import { getTranslocoTestingModule, initialState } from '../mock';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -35,7 +35,7 @@ describe('VerifyEmailComponent', () => {
         DisplayService,
         provideMockStore({ initialState }),
         {
-          provide: AUTH_TOKEN,
+          provide: AUTH_IJTOKEN,
           useValue: AuthService,
         },
         {
