@@ -21,6 +21,11 @@ export class BibleReferencesDataService {
     this.bibleReferences = bibleReferences;
   }
 
+
+  deleteABibleReference(reference:string){
+    return this.remoteData.deleteADocumentFrom(Collection.BIBLE_REFERENCES, [reference])
+  }
+
   getLiveListOfBibleReferences(
     retryTimeout: number,
     onNext: (value: IBibleReference[]) => void,

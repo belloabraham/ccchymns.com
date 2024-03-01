@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   Input,
+  NgZone,
   OnChanges,
   OnInit,
   SimpleChanges,
@@ -24,6 +25,8 @@ import { DashboardLanguageResourceKey } from '../../../i18n/language-resource-ke
 import { LanguageResourceKey } from '../../i18n/language-resource-key';
 import { TABLE_PAGE_SIZE } from '../../../shared';
 import { BibleReferenceDataSource } from '../datasource/bible-reference-datasource';
+import { AlertDialog, LoggerUtil, NotificationBuilder } from '@ccchymns.com/core';
+import { BibleReferencesDataService } from '../../bible-references.data.service';
 
 @Component({
   selector: 'app-bible-references-table',
@@ -52,7 +55,11 @@ export class BibleReferencesTableComponent implements OnChanges, OnInit {
   columnNames: string[] = COLUMN_NAMES_FOR_BIBLE_REFERENCES_TABLE;
   dataSource = new BibleReferenceDataSource([]);
 
-  constructor(private displayService: DisplayService) {
+  constructor(
+    private displayService: DisplayService,
+    private ngZone: NgZone,
+    private bibleReferencesDataService: BibleReferencesDataService
+  ) {
     this.getIsDeviceDisplayDesktopAsync();
   }
 
@@ -104,5 +111,33 @@ export class BibleReferencesTableComponent implements OnChanges, OnInit {
 
   previousPage() {
     this.dataSource.previousPage();
+  }
+
+  deleteABibleReference(reference: string) {
+    AlertDialog.warn(
+      `Are you sure you want to delete ${reference}?`,
+      'Delete Bible Reference',
+      'Yes',
+      'No',
+      () => {
+        this.ngZone.run(() => {
+          this.bibleReferencesDataService
+            .deleteABibleReference(reference)
+            .then(() => {
+              new NotificationBuilder()
+                .build()
+                .success(`${reference} was deleted successfully`);
+            })
+            .catch((error) => {
+              new NotificationBuilder().build().error(
+                `Oops unable to delete ${reference} at the moment, try again later
+                Error: ${error.message}
+              `
+              );
+              LoggerUtil.error(this, this.deleteABibleReference.name, error);
+            })
+        });
+      }
+    );
   }
 }

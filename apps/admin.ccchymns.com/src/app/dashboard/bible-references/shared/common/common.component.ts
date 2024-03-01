@@ -28,11 +28,9 @@ import { Inject, Injector } from '@angular/core';
 import { TuiDialogService } from '@taiga-ui/core';
 import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
 import { Observable } from 'rxjs';
-import {
-  AddBibleReferenceDialogComponent,
-  BibleReferencesPlaceholderComponent,
-  BibleReferencesTableComponent,
-} from '..';
+import { AddBibleReferenceDialogComponent } from '../add-bible-reference-dialog/add-bible-reference-dialog.component.ts';
+import { BibleReferencesPlaceholderComponent } from '../bible-references-placeholder/bible-references-placeholder.component';
+import { BibleReferencesTableComponent } from '../bible-references-table/bible-references-table.component.ts';
 import { SubSink } from 'subsink';
 
 @Component({

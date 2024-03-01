@@ -6,9 +6,9 @@ export class AlertDialog {
     title: string,
     yesText: string,
     noText: string,
-    color = '#2f6fff',
     yesCallBack?: () => void | undefined,
-    noCallBack?: () => void | undefined
+    noCallBack?: () => void | undefined,
+    color = '#2f6fff'
   ) {
     Confirm.show(title, msg, yesText, noText, yesCallBack, noCallBack, {
       titleColor: color,
