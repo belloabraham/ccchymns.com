@@ -1,5 +1,15 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
+import {
+  ActivatedRoute,
+  NavigationEnd,
+  Router,
+  RouterOutlet,
+} from '@angular/router';
 import { SharedModule } from '@ccchymns.com/angular';
 import { BibleReferencesDataService } from './bible-references.data.service';
 import { SubSink } from 'subsink';
@@ -47,9 +57,9 @@ export class BibleReferencesComponent implements OnInit, OnDestroy {
     this.unsubscribeFromLiveBibleReferences =
       this.bibleReferencesDataService.getLiveListOfBibleReferences(
         10000,
-        (editorsHymns) => {
-          this.bibleReferencesDataService.setBibleReferences(editorsHymns);
-          this.dispatchBibleReferencesActionState(editorsHymns);
+        (bibleReferences) => {
+          this.bibleReferencesDataService.setBibleReferences(bibleReferences);
+          this.dispatchBibleReferencesActionState(bibleReferences);
         },
         (error) => {}
       );

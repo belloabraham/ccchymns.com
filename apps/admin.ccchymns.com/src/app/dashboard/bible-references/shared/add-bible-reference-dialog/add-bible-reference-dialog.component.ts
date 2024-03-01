@@ -17,7 +17,14 @@ import { NgMaterialButtonModule } from '@ccchymns.com/angular';
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IBibleReferenceForm } from '../form';
-import { JSON, LoggerUtil, NotificationBuilder, Regex, Shield } from '@ccchymns.com/core';
+import {
+  JSON,
+  LoggerUtil,
+  NotificationBuilder,
+  Regex,
+  Shield,
+  StringUtil,
+} from '@ccchymns.com/core';
 import { TuiDialogContext } from '@taiga-ui/core';
 import { POLYMORPHEUS_CONTEXT } from '@tinkoff/ng-polymorpheus';
 import { Router } from '@angular/router';
@@ -76,7 +83,7 @@ export class AddBibleReferenceDialogComponent implements OnInit {
     this.formSubmitted = true;
     if (this.bibleReferenceForm.valid) {
       const reference = JSON.escapeSpecialCharacters(
-        this.referenceFC.value!
+        StringUtil.capitalize(this.referenceFC.value!)
       ).trim();
       const verses = JSON.escapeSpecialCharacters(this.versesFC.value!).trim();
       const responsiveSvgSize = this.displayService.percentage * 60;
@@ -130,7 +137,6 @@ export class AddBibleReferenceDialogComponent implements OnInit {
     if (this.router.isActive(`${basePath}/${Route.EGUN}`, true)) {
       data.egun = verses;
     }
-
     return this.bibleReferencesDataService.updateEgunBibleReference(data);
   }
 }

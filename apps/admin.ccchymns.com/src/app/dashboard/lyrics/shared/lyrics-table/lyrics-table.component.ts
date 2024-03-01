@@ -41,7 +41,7 @@ import { EditLyricsDialogComponent } from '../edit-lyrics-dialog/edit-lyrics-dia
   styleUrl: './lyrics-table.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LyricsTableComponent implements OnChanges, OnInit {
+export class LyricsTableComponent implements OnChanges {
   languageResourceKey = LanguageResourceKey;
   dashboardLanguageResourceKey = DashboardLanguageResourceKey;
   pagination = Array(0);
@@ -61,16 +61,6 @@ export class LyricsTableComponent implements OnChanges, OnInit {
     this.getIsDeviceDisplayDesktopAsync();
   }
 
-  ngOnInit(): void {
-    if (this.data) {
-      this.dataSource = new HymnLyricsDataSource(this.data);
-      const paginationLength = this.data.length / TABLE_PAGE_SIZE;
-      this.pagination = Array(
-        paginationLength < 1 ? 0 : Math.ceil(paginationLength)
-      );
-    }
-  }
-
   editLyrics(lyrics: IHymnLyricsUIState) {
     this.subscriptions.sink = this.dialogs
       .open<IHymnLyricsUIState>(
@@ -85,6 +75,13 @@ export class LyricsTableComponent implements OnChanges, OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    if (this.data) {
+      this.dataSource = new HymnLyricsDataSource(this.data);
+      const paginationLength = this.data.length / TABLE_PAGE_SIZE;
+      this.pagination = Array(
+        paginationLength < 1 ? 0 : Math.ceil(paginationLength)
+      );
+    }
     this.filterTableData(this.filterBy);
   }
 

@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { SharedModule } from '../../shared';
 // import { BIBLE_REFERENCE_MOCK_DATA } from '../shared/mock/bible-references';
 import { CommonComponent } from '../shared/common/common.component';

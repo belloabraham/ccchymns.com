@@ -21,9 +21,10 @@ export class BibleReferencesDataService {
     this.bibleReferences = bibleReferences;
   }
 
-
-  deleteABibleReference(reference:string){
-    return this.remoteData.deleteADocumentFrom(Collection.BIBLE_REFERENCES, [reference])
+  deleteABibleReference(reference: string) {
+    return this.remoteData.deleteADocumentFrom(Collection.BIBLE_REFERENCES, [
+      reference,
+    ]);
   }
 
   getLiveListOfBibleReferences(
@@ -137,7 +138,7 @@ export class BibleReferencesDataService {
       throw new Error('Yoruba value can not be undefined or null');
     }
     return this.remoteData.addADocumentDataTo(
-      Collection.EDITORS_HYMNS,
+      Collection.BIBLE_REFERENCES,
       [`${value.reference}`],
       value
     );
@@ -148,7 +149,7 @@ export class BibleReferencesDataService {
       throw new Error('English value can not be undefined or null');
     }
     return this.remoteData.addADocumentDataTo(
-      Collection.EDITORS_HYMNS,
+      Collection.BIBLE_REFERENCES,
       [`${value.reference}`],
       value
     );
@@ -159,18 +160,18 @@ export class BibleReferencesDataService {
       throw new Error('Egun value can not be undefined or null');
     }
     return this.remoteData.addADocumentDataTo(
-      Collection.EDITORS_HYMNS,
+      Collection.BIBLE_REFERENCES,
       [`${value.reference}`],
       value
     );
   }
 
   updateFrenchBibleReference(value: IBibleReference) {
-     if (!value.french) {
-       throw new Error('French value can not be undefined or null');
-     }
+    if (!value.french) {
+      throw new Error('French value can not be undefined or null');
+    }
     return this.remoteData.addADocumentDataTo(
-      Collection.EDITORS_HYMNS,
+      Collection.BIBLE_REFERENCES,
       [`${value.reference}`],
       value
     );

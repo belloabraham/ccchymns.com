@@ -25,7 +25,11 @@ import { DashboardLanguageResourceKey } from '../../../i18n/language-resource-ke
 import { LanguageResourceKey } from '../../i18n/language-resource-key';
 import { TABLE_PAGE_SIZE } from '../../../shared';
 import { BibleReferenceDataSource } from '../datasource/bible-reference-datasource';
-import { AlertDialog, LoggerUtil, NotificationBuilder } from '@ccchymns.com/core';
+import {
+  AlertDialog,
+  LoggerUtil,
+  NotificationBuilder,
+} from '@ccchymns.com/core';
 import { BibleReferencesDataService } from '../../bible-references.data.service';
 
 @Component({
@@ -43,7 +47,7 @@ import { BibleReferencesDataService } from '../../bible-references.data.service'
   styleUrl: './bible-references-table.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BibleReferencesTableComponent implements OnChanges, OnInit {
+export class BibleReferencesTableComponent implements OnChanges {
   languageResourceKey = LanguageResourceKey;
   dashboardLanguageResourceKey = DashboardLanguageResourceKey;
   pagination = Array(0);
@@ -63,7 +67,7 @@ export class BibleReferencesTableComponent implements OnChanges, OnInit {
     this.getIsDeviceDisplayDesktopAsync();
   }
 
-  ngOnInit(): void {
+  ngOnChanges(changes: SimpleChanges): void {
     if (this.data) {
       this.dataSource = new BibleReferenceDataSource(this.data);
       const paginationLength = this.data.length / TABLE_PAGE_SIZE;
@@ -71,9 +75,6 @@ export class BibleReferencesTableComponent implements OnChanges, OnInit {
         paginationLength < 1 ? 0 : Math.ceil(paginationLength)
       );
     }
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
     this.filterTableData(this.filterBy);
   }
 
@@ -135,7 +136,7 @@ export class BibleReferencesTableComponent implements OnChanges, OnInit {
               `
               );
               LoggerUtil.error(this, this.deleteABibleReference.name, error);
-            })
+            });
         });
       }
     );
