@@ -65,7 +65,8 @@ export const DASHBOARD_ROUTES: Routes = [
         path: Route.AUDIO_HYMNS,
         providers: [AudioHymnsDataService],
         resolve: {
-          audioHymns: () => inject(AudioHymnsDataService).getAllAudioHymns$(),
+          editorsAudioHymns: () =>
+            inject(AudioHymnsDataService).getAllEditorsAudioHymns$(),
         },
         data: {
           breadcrumb: RootLanguageResourceKey.AUDIO_HYMNS,

@@ -5,27 +5,27 @@ import {
   IDatabase,
   genericRetryStrategy,
 } from '../../../core';
-import { IAudioHymn, IAudioHymnsUIState } from '@ccchymns.com/common';
+import { IEditorsAudioHymn, IAudioHymnsUIState } from '@ccchymns.com/common';
 import { catchError, from, of, retryWhen } from 'rxjs';
 @Injectable()
 export class AudioHymnsDataService {
-  audioHymns: IAudioHymn[] | null = null;
+  audioHymns: IEditorsAudioHymn[] | null = null;
 
   constructor(@Inject(DATABASE_IJTOKEN) private remoteData: IDatabase) {}
 
-  public getAudioHymns(): IAudioHymn[] | null {
+  public getEditorsAudioHymns(): IEditorsAudioHymn[] | null {
     return this.audioHymns;
   }
-  public setAudioHymns(audioHymns: IAudioHymn[] | null) {
+  public setEditorsAudioHymns(audioHymns: IEditorsAudioHymn[] | null) {
     this.audioHymns = audioHymns;
   }
 
   getLiveListOfAudioHymns(
     retryTimeout: number,
-    onNext: (value: IAudioHymn[]) => void,
+    onNext: (value: IEditorsAudioHymn[]) => void,
     onError: (errorCode: string) => void
   ) {
-    return this.remoteData.getLiveListOfDocumentData<IAudioHymn>(
+    return this.remoteData.getLiveListOfDocumentData<IEditorsAudioHymn>(
       Collection.EDITORS_AUDIO_HYMNS,
       [],
       (value) => {
@@ -38,9 +38,9 @@ export class AudioHymnsDataService {
     );
   }
 
-  getAllAudioHymns$() {
+  getAllEditorsAudioHymns$() {
     return from(
-      this.remoteData.getAListOfDocData<IAudioHymn>(
+      this.remoteData.getAListOfDocData<IEditorsAudioHymn>(
         Collection.EDITORS_HYMNS,
         []
       )
@@ -50,7 +50,9 @@ export class AudioHymnsDataService {
     );
   }
 
-  getYorubaAudioHymnsUIStates(audioHymns: IAudioHymn[] | null | undefined) {
+  getYorubaAudioHymnsUIStates(
+    audioHymns: IEditorsAudioHymn[] | null | undefined
+  ) {
     if (audioHymns) {
       const yorubaAudioHymns: IAudioHymnsUIState[] = [];
       for (let index = 0; index < audioHymns.length; index++) {
@@ -67,7 +69,9 @@ export class AudioHymnsDataService {
     return audioHymns;
   }
 
-  getEnglishAudioHymnsUIStates(audioHymns: IAudioHymn[] | null | undefined) {
+  getEnglishAudioHymnsUIStates(
+    audioHymns: IEditorsAudioHymn[] | null | undefined
+  ) {
     if (audioHymns) {
       const englishAudioHymns: IAudioHymnsUIState[] = [];
       for (let index = 0; index < audioHymns.length; index++) {
@@ -84,7 +88,9 @@ export class AudioHymnsDataService {
     return audioHymns;
   }
 
-  getFrenchAudioHymnsUIStates(audioHymns: IAudioHymn[] | null | undefined) {
+  getFrenchAudioHymnsUIStates(
+    audioHymns: IEditorsAudioHymn[] | null | undefined
+  ) {
     if (audioHymns) {
       const frenchAudioHymns: IAudioHymnsUIState[] = [];
       for (let index = 0; index < audioHymns.length; index++) {
@@ -101,7 +107,9 @@ export class AudioHymnsDataService {
     return audioHymns;
   }
 
-  getEgunAudioHymnsUIStates(audioHymns: IAudioHymn[] | null | undefined) {
+  getEgunAudioHymnsUIStates(
+    audioHymns: IEditorsAudioHymn[] | null | undefined
+  ) {
     if (audioHymns) {
       const egunAudioHymns: IAudioHymnsUIState[] = [];
       for (let index = 0; index < audioHymns.length; index++) {
@@ -118,7 +126,7 @@ export class AudioHymnsDataService {
     return audioHymns;
   }
 
-  updateYorubaAudioHymn(value: IAudioHymn) {
+  updateYorubaAudioHymn(value: IEditorsAudioHymn) {
     if (!value.yoruba) {
       throw new Error('Yoruba url can not be undefined or null');
     }
@@ -129,7 +137,7 @@ export class AudioHymnsDataService {
     );
   }
 
-  updateEnglishAudioHymn(value: IAudioHymn) {
+  updateEnglishAudioHymn(value: IEditorsAudioHymn) {
     if (!value.english) {
       throw new Error('English url can not be undefined or null');
     }
@@ -140,7 +148,7 @@ export class AudioHymnsDataService {
     );
   }
 
-  updateFrenchAudioHymn(value: IAudioHymn) {
+  updateFrenchAudioHymn(value: IEditorsAudioHymn) {
     if (!value.french) {
       throw new Error('French url can not be undefined or null');
     }
@@ -151,7 +159,7 @@ export class AudioHymnsDataService {
     );
   }
 
-  updateEgunAudioHymn(value: IAudioHymn) {
+  updateEgunAudioHymn(value: IEditorsAudioHymn) {
     if (!value.egun) {
       throw new Error('Egun url can not be undefined or null');
     }

@@ -2,7 +2,12 @@ import { Routes } from '@angular/router';
 import { RootLanguageResourceKey, Route } from '@ccchymns.com/common';
 import { AudioHymnsComponent } from './audio-hymns.component';
 import { provideState } from '@ngrx/store';
-import { egunAudioHymnsFeature, englishAudioHymnsFeature, frenchAudioHymnsFeature, yorubaAudioHymnsFeature } from 'apps/admin.ccchymns.com/src/store';
+import {
+  egunAudioHymnsFeature,
+  englishAudioHymnsFeature,
+  frenchAudioHymnsFeature,
+  yorubaAudioHymnsFeature,
+} from 'apps/admin.ccchymns.com/src/store';
 
 export const AUDIO_HYMNS_ROUTES: Routes = [
   {
