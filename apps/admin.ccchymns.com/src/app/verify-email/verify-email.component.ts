@@ -23,13 +23,16 @@ import {
   RootLanguageResourceKey,
   Route,
 } from '@ccchymns.com/common';
-import { Preference } from '../../core/data/preference';
-import { AUTH_IJTOKEN, IAuth } from '../../core/auth';
+import {
+  AUTH_IJTOKEN,
+  IAuth,
+  Preference,
+  AuthError,
+} from 'apps/admin.ccchymns.com/src/core';
 import { Router, RouterLink } from '@angular/router';
 import { AlertDialog, LoggerUtil, Regex, Shield } from '@ccchymns.com/core';
 import { FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { NgOptimizedImage } from '@angular/common';
-import { AuthError } from '../../core/auth/auth-error';
 
 @Component({
   selector: 'app-verify-email',

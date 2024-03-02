@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FooterComponent } from '../footer/footer.component';
 import { RouterLink } from '@angular/router';
-import { Route } from '../../core/data/route';
+import { Route } from '../../core';
 import { RootLanguageResourceKey } from '../i18n/language-resource-key';
 import { SharedModule } from '@ccchymns.com/angular';
 

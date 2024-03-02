@@ -5,10 +5,9 @@ import { ReviewsComponent } from '../reviews/reviews.component';
 import { HeaderComponent } from '../header/header.component';
 import { FeaturesComponent } from '../features/features.component';
 import { NgOptimizedImage } from '@angular/common';
-import { Config } from '../../core/data/config';
+import { Config, Route } from '../../core';
 import { RootLanguageResourceKey } from '../i18n/language-resource-key';
 import { RouterLink } from '@angular/router';
-import { Route } from '../../core/data/route';
 
 @Component({
   selector: 'app-home',

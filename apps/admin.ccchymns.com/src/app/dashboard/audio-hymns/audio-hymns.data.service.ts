@@ -4,7 +4,7 @@ import {
   DATABASE_IJTOKEN,
   IDatabase,
   genericRetryStrategy,
-} from '../../../core';
+} from 'apps/admin.ccchymns.com/src/core';
 import { IEditorsAudioHymn, IAudioHymnsUIState } from '@ccchymns.com/common';
 import { catchError, from, of, retryWhen } from 'rxjs';
 @Injectable()

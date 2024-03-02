@@ -5,7 +5,7 @@ import {
   NgMaterialElevationDirective,
   SharedModule,
 } from '@ccchymns.com/angular';
-import { Route } from '../../core/data/route';
+import { Route } from '../../core';
 import { NgOptimizedImage } from '@angular/common';
 import { RootLanguageResourceKey } from '../i18n/language-resource-key';
 

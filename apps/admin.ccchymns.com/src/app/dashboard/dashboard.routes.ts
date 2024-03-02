@@ -79,6 +79,10 @@ export const DASHBOARD_ROUTES: Routes = [
       {
         path: Route.AUDIO_SPACE,
         providers: [AudioSpaceDataService],
+        resolve: {
+          editorsAudioSpaces: () =>
+            inject(AudioSpaceDataService).getAllEditorsAudioSpaces$(),
+        },
         data: {
           breadcrumb: RootLanguageResourceKey.AUDIO_SPACE,
         },

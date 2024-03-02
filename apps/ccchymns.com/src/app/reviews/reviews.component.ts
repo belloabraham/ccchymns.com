@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CCCIconDirective } from '@ccchymns.com/ui';
-import { APP_REVIEWS, AppReview } from '../../core/data/app-review';
+import { APP_REVIEWS, AppReview } from '../../core';
 import { SharedModule } from '@ccchymns.com/angular';
 import { LanguageResourceKey } from './i18n/language-resource-key';
 

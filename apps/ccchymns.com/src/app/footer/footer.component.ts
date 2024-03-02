@@ -1,14 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NgMaterialButtonModule, SharedModule } from '@ccchymns.com/angular';
 import { CCCIconDirective } from '@ccchymns.com/ui';
-import { Contact } from '../../core/data/contact';
-import { Config } from '../../core/data/config';
+import { Contact, Route, Config, Preference } from '../../core';
 import { RouterLink } from '@angular/router';
-import { Route } from '../../core/data/route';
 import { LanguageResourceKey } from './i18n/language-resource-key';
 import { NgOptimizedImage } from '@angular/common';
 import { RootLanguageResourceKey } from '../i18n/language-resource-key';
-import { Preference } from '../../core/data/preference';
 
 @Component({
   selector: 'app-footer',

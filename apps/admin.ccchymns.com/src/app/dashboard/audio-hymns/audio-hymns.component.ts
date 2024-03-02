@@ -11,7 +11,7 @@ import { Unsubscribe } from '@angular/fire/firestore';
 import { Store } from '@ngrx/store';
 import { filter } from 'rxjs';
 import { IEditorsAudioHymn, Route } from '@ccchymns.com/common';
-import { getAudioHymnsActionGroup } from '../../../store';
+import { getAudioHymnsActionGroup } from 'apps/admin.ccchymns.com/src/store';
 
 @Component({
   selector: 'app-audio-hymns',
