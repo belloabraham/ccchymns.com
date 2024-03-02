@@ -1,11 +1,13 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   Inject,
   Injector,
   Input,
   OnDestroy,
   OnInit,
+  Output,
 } from '@angular/core';
 import {
   EmptyStateComponent,
@@ -54,15 +56,13 @@ export class CommonComponent implements OnInit, OnDestroy {
   sortOrderIsAscending = true;
   columnIdForSorting = COLUMN_NAMES_FOR_AUDIO_HYMNS_TABLE[0];
   @Input({ required: true }) titleKey!: string;
-  @Input({ required: true }) data: IAudioHymnsUIState[] = [];
+  @Input({ required: true }) data?: IAudioHymnsUIState[] | null;
   private subscriptions = new SubSink();
+  @Output() retry = new EventEmitter<void>();
 
   onFilterTextChanged(event: any) {
     this.filterBy = event.target.value;
   }
-
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  retry() {}
 
   private dialog!: Observable<number>;
 
@@ -83,14 +83,7 @@ export class CommonComponent implements OnInit, OnDestroy {
   }
 
   showDialog(): void {
-    this.subscriptions.sink = this.dialog.subscribe({
-      next: (data) => {
-        console.info(`Dialog emitted data = ${data}`);
-      },
-      complete: () => {
-        console.info('Dialog closed');
-      },
-    });
+    this.subscriptions.sink = this.dialog.subscribe();
   }
 
   ngOnDestroy(): void {

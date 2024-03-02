@@ -1,7 +1,7 @@
 <div *transloco="let t" class="d-flex flex-column justify-content-center align-items-center">
 
   <div class="table-container">
-    <input type="text" class="form-control w-75 w-md-50" [disabled]="data.length === 0" (keyup)="onFilterTextChanged($event)"
+    <input type="text" class="form-control w-75 w-md-50" [disabled]="!data || data.length === 0" (keyup)="onFilterTextChanged($event)"
       [placeholder]="t(languageResourceKey.FILTER_AUDIO_MSG)">
 
     <div class="card w-100">
@@ -25,7 +25,7 @@
 
           <div ng-mat-tooltip id="next-page">{{t(dashboardLanguageResourceKey.NEXT_PAGE)}}</div>
 
-          <button [disabled]="data.length === 0" [ccc-icon]="sortOrderIsAscending? 'sort-asc': 'sort-desc'"
+          <button [disabled]="!data || data.length === 0" [ccc-icon]="sortOrderIsAscending? 'sort-asc': 'sort-desc'"
             (click)="audioHymnsTable.sortDataBy(columnIdForSorting, sortOrderIsAscending ? 'desc' : 'asc')"
             (click)="sortOrderIsAscending = !sortOrderIsAscending" ng-mat-icon-button ng-mat-tooltip id="sort"
             class="mx-md-2">
@@ -42,10 +42,10 @@
 
       </div>
       <div class="card-body overflow-x-scroll">
-        <app-audio-hymns-table #audioHymnsTable='audioHymnsTable'  [data]="data" [filterBy]="filterBy" />
-        <!-- <app-audio-hymns-placeholder [columnNames]="columnNames" /> -->
-        <!-- <app-empty-sate [descriptionKey]="languageResourceKey.EMPTY_STATE_DESCRIPTION"/> -->
-        <!-- <app-error-state (retry)="retry()" /> -->
+        <app-audio-hymns-table [class]="data && data.length > 0 ? 'd-block': 'd-none'"  #audioHymnsTable='audioHymnsTable'  [data]="data" [filterBy]="filterBy" />
+        <app-audio-hymns-placeholder *ngIf="data === undefined" [columnNames]="columnNames" />
+        <app-empty-state  *ngIf="data && data.length === 0" [descriptionKey]="languageResourceKey.EMPTY_STATE_DESCRIPTION"/>
+        <app-error-state *ngIf="data === null" (retry)="retry.emit()" />
       </div>
     </div>
   </div>

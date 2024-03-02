@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { SubSink } from 'subsink';
 import {
   NgMatTooltipModule,
@@ -7,12 +14,16 @@ import {
 import { CdkTableModule } from '@angular/cdk/table';
 import { TranslocoModule } from '@ngneat/transloco';
 import { AudioPlayerComponent, CCCIconDirective } from '@ccchymns.com/ui';
-import { IAudioHymnsUIState, DisplayService, RootLanguageResourceKey, Size } from '@ccchymns.com/common';
+import {
+  IAudioHymnsUIState,
+  DisplayService,
+  RootLanguageResourceKey,
+  Size,
+} from '@ccchymns.com/common';
 import { COLUMN_NAMES_FOR_AUDIO_HYMNS_TABLE } from '../data';
 import { AudioHymnsDataSource } from '../datasource/audio-hymns-datasource';
 import { SortOrder, TABLE_PAGE_SIZE } from '../../../shared';
 import { DashboardLanguageResourceKey } from '../../../i18n/language-resource-key';
-
 
 @Component({
   selector: 'app-audio-hymns-table',
@@ -24,20 +35,20 @@ import { DashboardLanguageResourceKey } from '../../../i18n/language-resource-ke
     NgMaterialButtonModule,
     CCCIconDirective,
     NgMatTooltipModule,
-    AudioPlayerComponent
+    AudioPlayerComponent,
   ],
   templateUrl: './audio-hymns-table.component.html',
   styleUrl: './audio-hymns-table.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AudioHymnsTableComponent implements OnInit, OnChanges {
+export class AudioHymnsTableComponent implements OnChanges {
   rootLanguageResourceKey = RootLanguageResourceKey;
   dashboardLanguageResourceKey = DashboardLanguageResourceKey;
   pagination = Array(0);
   private subscriptions = new SubSink();
   displayIsDesktop = false;
 
-  @Input({ required: true }) data: IAudioHymnsUIState[] = [];
+  @Input({ required: true }) data?: IAudioHymnsUIState[] | null;
   @Input() filterBy: string | undefined;
   columnNames: string[] = COLUMN_NAMES_FOR_AUDIO_HYMNS_TABLE;
   dataSource = new AudioHymnsDataSource([]);
@@ -46,16 +57,15 @@ export class AudioHymnsTableComponent implements OnInit, OnChanges {
     this.getIsDeviceDisplayDesktopAsync();
   }
 
-  ngOnInit(): void {
-    this.dataSource = new AudioHymnsDataSource(this.data);
-    const paginationLength = this.data.length / TABLE_PAGE_SIZE;
-    this.pagination = Array(
-      paginationLength < 1 ? 0 : Math.ceil(paginationLength)
-    );
-  }
-
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   ngOnChanges(changes: SimpleChanges): void {
+    if (this.data) {
+      this.dataSource = new AudioHymnsDataSource(this.data);
+      const paginationLength = this.data.length / TABLE_PAGE_SIZE;
+      this.pagination = Array(
+        paginationLength < 1 ? 0 : Math.ceil(paginationLength)
+      );
+    }
     this.filterTableData(this.filterBy);
   }
 
