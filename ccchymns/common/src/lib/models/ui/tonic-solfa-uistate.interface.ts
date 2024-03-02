@@ -1,5 +1,4 @@
-export interface ITonicSolfaUIState {
+export interface ITonicSolfaUIState extends Record<string, string | number> {
   no: number;
-  tonic: string;
-  [key: string]: number | string;
+  url: string;
 }

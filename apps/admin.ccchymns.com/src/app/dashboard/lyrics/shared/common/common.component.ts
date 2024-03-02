@@ -73,6 +73,7 @@ export class CommonComponent implements OnInit, OnDestroy {
     @Inject(TuiDialogService) private readonly dialogs: TuiDialogService,
     @Inject(Injector) private readonly injector: Injector
   ) {}
+
   ngOnInit(): void {
     this.dialog = this.dialogs.open<number>(
       new PolymorpheusComponent(AddLyricsDialogComponent, this.injector),

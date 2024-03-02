@@ -1,11 +1,13 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   Inject,
   Injector,
   Input,
   OnDestroy,
   OnInit,
+  Output,
 } from '@angular/core';
 import { DashboardLanguageResourceKey } from '../i18n/language-resource-key';
 import {
@@ -28,11 +30,13 @@ import { SubSink } from 'subsink';
 import { TuiDialogService } from '@taiga-ui/core';
 import { TonicSolfaDialogComponent } from './tonic-solfa-dialog/tonic-solfa-dialog.component';
 import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
-import { TONIC_SOLFA_MOCK_DATA } from './mock/audio-hymns';
+// import { TONIC_SOLFA_MOCK_DATA } from './mock/audio-hymns';
 import { Observable } from 'rxjs';
 import { COLUMN_NAMES_FOR_TONIC_SOLFA_TABLE } from './data';
 import { LanguageResourceKey } from './i18n/language-resource-key';
 import { TonicSolfaDataService } from './tonic-solfa.data.service';
+import { ActivatedRoute } from '@angular/router';
+import { Unsubscribe } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-tonic-solfa',
@@ -61,16 +65,37 @@ export class TonicSolfaComponent implements OnInit, OnDestroy {
   columnNames = COLUMN_NAMES_FOR_TONIC_SOLFA_TABLE;
   columnIdForSorting = COLUMN_NAMES_FOR_TONIC_SOLFA_TABLE[0];
   private subscriptions = new SubSink();
-  @Input({ required: true }) data: ITonicSolfaUIState[] = TONIC_SOLFA_MOCK_DATA;
-
+  @Input() data?: ITonicSolfaUIState[] | null; // = TONIC_SOLFA_MOCK_DATA;
+  unsubscribeFromLiveEditorTonicSolfa!: Unsubscribe;
   private dialog!: Observable<number>;
+  @Output() retry = new EventEmitter<void>();
 
   constructor(
     @Inject(TuiDialogService) private readonly dialogs: TuiDialogService,
-    @Inject(Injector) private readonly injector: Injector
+    @Inject(Injector) private readonly injector: Injector,
+    private activatedRoute: ActivatedRoute,
+    private tonicSolfaDataService: TonicSolfaDataService
   ) {}
 
   ngOnInit(): void {
+    const editorsTonicSolfas =
+      this.activatedRoute.snapshot.data['editorsTonicSolfas'];
+
+    this.data =
+      this.tonicSolfaDataService.getTonicSolfaUIStates(editorsTonicSolfas);
+
+    this.unsubscribeFromLiveEditorTonicSolfa =
+      this.tonicSolfaDataService.getLiveListOfTonicSolfas(
+        10000,
+        (editorsTonicSolfas) => {
+          this.data =
+            this.tonicSolfaDataService.getTonicSolfaUIStates(
+              editorsTonicSolfas
+            );
+        },
+        (error) => {}
+      );
+
     this.dialog = this.dialogs.open<number>(
       new PolymorpheusComponent(TonicSolfaDialogComponent, this.injector),
       {
@@ -82,14 +107,7 @@ export class TonicSolfaComponent implements OnInit, OnDestroy {
   }
 
   showDialog(): void {
-    this.subscriptions.sink = this.dialog.subscribe({
-      next: (data) => {
-        console.info(`Dialog emitted data = ${data}`);
-      },
-      complete: () => {
-        console.info('Dialog closed');
-      },
-    });
+    this.subscriptions.sink = this.dialog.subscribe();
   }
 
   onFilterTextChanged(event: any) {
@@ -98,5 +116,6 @@ export class TonicSolfaComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
+    this.unsubscribeFromLiveEditorTonicSolfa();
   }
 }

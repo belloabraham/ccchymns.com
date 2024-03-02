@@ -53,6 +53,10 @@ export const DASHBOARD_ROUTES: Routes = [
       {
         path: Route.TONIC_SOLFA,
         providers: [TonicSolfaDataService],
+        resolve: {
+          editorsTonicSolfas: () =>
+            inject(TonicSolfaDataService).getAllEditorsTonicSolfas$(),
+        },
         data: {
           breadcrumb: RootLanguageResourceKey.TONIC_SOLFA,
         },

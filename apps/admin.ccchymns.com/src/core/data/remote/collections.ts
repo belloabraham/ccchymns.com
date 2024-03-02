@@ -6,4 +6,5 @@ export class Collection {
   static readonly BIBLE_REFERENCES = 'bible_references';
   static readonly EDITORS_AUDIO_HYMNS = 'editors_audio_hymns';
   static readonly EDITORS_AUDIO_SPACES = 'editors_audio_spaces';
+  static readonly EDITORS_TONIC_SOLFAS = 'editors_tonic_solfas';
 }

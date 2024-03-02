@@ -1,7 +1,7 @@
 <div *transloco="let t" class="d-flex flex-column justify-content-center align-items-center">
 
   <div class="table-container">
-    <input type="text" class="form-control w-75 w-md-50" [disabled]="data.length === 0"
+    <input type="text" class="form-control w-75 w-md-50" [disabled]="!data || data.length === 0"
       (keyup)="onFilterTextChanged($event)" [placeholder]="t(languageResourceKey.SEARCH_TONIC_SOLFA_MSG)">
 
     <div class="card w-100">
@@ -25,27 +25,27 @@
 
           <div ng-mat-tooltip id="next-page">{{t(dashboardLanguageResourceKey.NEXT_PAGE)}}</div>
 
-          <button [disabled]="data.length === 0" [ccc-icon]="sortOrderIsAscending? 'sort-asc': 'sort-desc'"
+          <button [disabled]="!data || data.length === 0" [ccc-icon]="sortOrderIsAscending? 'sort-asc': 'sort-desc'"
             (click)="tonicSolfaTable.sortDataBy(columnIdForSorting, sortOrderIsAscending ? 'desc' : 'asc')"
             (click)="sortOrderIsAscending = !sortOrderIsAscending" ng-mat-icon-button ng-mat-tooltip id="sort"
             class="mx-md-2">
           </button>
           <div ng-mat-tooltip id="sort">{{t(dashboardLanguageResourceKey.SORT_MSG)}}</div>
 
-          <button (click)="showDialog()" ng-mat-icon-button class="add" [ccc-icon]="'plus-circle'" ng-mat-tooltip
+          <button *ngIf="data"  (click)="showDialog()" ng-mat-icon-button class="add" [ccc-icon]="'plus-circle'" ng-mat-tooltip
             id="add-hymn">
           </button>
 
-          <div ng-mat-tooltip id="add-hymn">{{t(languageResourceKey.ADD_TONIC_SOLFA)}}</div>
+          <div *ngIf="data"  ng-mat-tooltip id="add-hymn">{{t(languageResourceKey.ADD_TONIC_SOLFA)}}</div>
 
         </div>
 
       </div>
       <div class="card-body overflow-x-scroll">
-        <app-tonic-solfa-table #tonicSolfaTable='tonicSolfaTable' style="display: none;" [data]="data" [filterBy]="filterBy" />
-        <app-tonic-solfa-placeholder [columnNames]="columnNames" />
-        <!-- <app-empty-sate [descriptionKey]="languageResourceKey.EMPTY_STATE_DESCRIPTION"/> -->
-        <!-- <app-error-state (retry)="retry()" /> -->
+        <app-tonic-solfa-table  [class]="data && data.length > 0 ? 'd-block': 'd-none'"  #tonicSolfaTable='tonicSolfaTable' [data]="data" [filterBy]="filterBy" />
+        <app-tonic-solfa-placeholder *ngIf="data === undefined" [columnNames]="columnNames" />
+        <app-empty-state  *ngIf="data && data.length === 0"  [descriptionKey]="languageResourceKey.EMPTY_STATE_DESCRIPTION"/>
+        <app-error-state *ngIf="data === null" (retry)="retry.emit()" />
       </div>
     </div>
   </div>
