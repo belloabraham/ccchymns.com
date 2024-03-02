@@ -1,6 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import { CLOUD_STORAGE_IJTOKEN, ICloudStorage } from '../../core';
-import { UploadMetadata, UploadTaskSnapshot } from '@angular/fire/storage';
+import { CLOUD_STORAGE_IJTOKEN, ICloudStorage, UploadOptions } from '../../core';
 
 @Injectable()
 export class StorageService {
@@ -15,21 +14,12 @@ export class StorageService {
   uploadFile(
     pathSegment: string[],
     file: Blob | Uint8Array | ArrayBuffer | File,
-    onComplete: (downloadUrl: string) => void,
-    onError: (error: any) => void,
-    onProgress?: (
-      snapshot: UploadTaskSnapshot,
-      progressInPercentage: number
-    ) => void,
-    metaData?: UploadMetadata
+     uploadOptions: UploadOptions,
   ) {
     this.cloudStorage.uploadFileTo(
       pathSegment,
       file,
-      onComplete,
-      onError,
-      onProgress,
-      metaData
+      uploadOptions
     );
   }
 }

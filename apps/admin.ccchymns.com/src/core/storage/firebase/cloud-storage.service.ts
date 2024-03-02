@@ -5,10 +5,8 @@ import {
   deleteObject,
   Storage,
   uploadBytesResumable,
-  UploadMetadata,
-  UploadTaskSnapshot,
 } from '@angular/fire/storage';
-import { ICloudStorage } from '../cloud-storage.interface';
+import { ICloudStorage, UploadOptions } from '../cloud-storage.interface';
 
 @Injectable()
 export class CloudStorageService implements ICloudStorage {
@@ -23,13 +21,7 @@ export class CloudStorageService implements ICloudStorage {
   uploadFileTo(
     pathSegment: string[],
     file: Blob | Uint8Array | ArrayBuffer | File,
-    onComplete: (downloadUrl: string) => void,
-    onError: (error: any) => void,
-    onProgress?: (
-      snapshot: UploadTaskSnapshot,
-      progressInPercentage: number
-    ) => void,
-    metaData?: UploadMetadata | undefined
+    uploadOptions: UploadOptions
   ) {
     const path = pathSegment.join('/');
     const storageRef = ref(this.storage, path);
@@ -39,16 +31,20 @@ export class CloudStorageService implements ICloudStorage {
       (snapshot) => {
         const progressInPercentage =
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        if (onProgress) {
-          onProgress(snapshot, progressInPercentage);
+        if (uploadOptions.onProgress) {
+          uploadOptions.onProgress(snapshot, progressInPercentage);
         }
       },
       (error) => {
-        onError(error);
+        if (uploadOptions.onError) {
+          uploadOptions.onError(error);
+        }
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((fileDownloadURL) => {
-          onComplete(fileDownloadURL);
+          if (uploadOptions.onComplete) {
+            uploadOptions.onComplete(fileDownloadURL);
+          }
         });
       }
     );

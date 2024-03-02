@@ -11,7 +11,7 @@ import { DashboardLanguageResourceKey } from '../../i18n/language-resource-key';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ITonicSolfaForm } from '../form';
 import { LanguageResourceKey } from '../i18n/language-resource-key';
-import { TuiDialogContext, TuiDialogService } from '@taiga-ui/core';
+import { TuiDialogContext } from '@taiga-ui/core';
 import { POLYMORPHEUS_CONTEXT } from '@tinkoff/ng-polymorpheus';
 
 @Component({
@@ -32,15 +32,16 @@ export class TonicSolfaDialogComponent implements OnInit {
     Validators.required,
     Validators.min(1),
   ]);
-  tonicFC = new FormControl<FileList | null>(null, [Validators.required]);
+  fileNameFC = new FormControl<string | null>(null, [Validators.required]);
   formSubmitted = false;
+  file?: File;
 
   hymnNoIsInvalid() {
     return this.formSubmitted && this.hymnNoFC.invalid;
   }
 
   tonicSolfaIsInvalid() {
-    return this.formSubmitted && this.tonicFC.invalid;
+    return this.formSubmitted && this.fileNameFC.invalid;
   }
 
   ngOnInit(): void {
@@ -50,8 +51,15 @@ export class TonicSolfaDialogComponent implements OnInit {
   private createTonicSolfaForm() {
     this.tonicSolfaForm = new FormGroup<ITonicSolfaForm>({
       no: this.hymnNoFC,
-      tonic: this.tonicFC,
+      fileName: this.fileNameFC,
     });
+  }
+
+  onFileChange(event: any) {
+    const fileList: FileList = event.target.files;
+    if (fileList.length > 0) {
+      this.file = fileList[0];
+    }
   }
 
   constructor(

@@ -14,7 +14,7 @@
   </div>
 
   <div class="mb-2">
-    <input class="form-control w-100" formControlName="tonic" type="file" [multiple]="false" [max]="1"
+    <input class="form-control w-100" formControlName="fileName" (change)="onFileChange($event)"  type="file" [multiple]="false" [max]="1"
       [accept]="'application/pdf'" [class.is-invalid]="tonicSolfaIsInvalid()">
     @if (tonicSolfaIsInvalid()) {
     <div class="invalid-feedback">

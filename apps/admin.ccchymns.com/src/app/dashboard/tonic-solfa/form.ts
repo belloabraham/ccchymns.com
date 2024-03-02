@@ -1,12 +1,7 @@
 import { FormControl } from '@angular/forms';
 
-export interface ITonicSolfaUIState {
-  no: number;
-  tonic: FileList | null;
-}
-
 export type ITonicSolfaForm = {
-  [Key in keyof ITonicSolfaUIState]: FormControl<
-    ITonicSolfaUIState[Key] | null
-  >;
+  no: FormControl<number | null>;
+  fileName: FormControl<string | null>;
 };
+

@@ -28,31 +28,39 @@ export class AddAudioSpaceDialogComponent implements OnInit {
     Validators.required,
     Validators.min(1),
   ]);
-  audioFC = new FormControl<FileList | null>(null, [Validators.required]);
+  fileNameFC = new FormControl<string | null>(null, [Validators.required]);
   formSubmitted = false;
+  file?: File;
 
   hymnNoIsInvalid() {
     return this.formSubmitted && this.hymnNoFC.invalid;
   }
 
   audioSpaceIsInvalid() {
-    return this.formSubmitted && this.audioFC.invalid;
+    return this.formSubmitted && this.fileNameFC.invalid;
   }
 
   ngOnInit(): void {
     this.createAudioSpaceForm();
   }
 
+  onFileChange(event: any) {
+    const fileList: FileList = event.target.files;
+    if (fileList.length > 0) {
+      this.file = fileList[0];
+    }
+  }
+
   private createAudioSpaceForm() {
     this.audioSpaceForm = new FormGroup<IAudioSpaceForm>({
       no: this.hymnNoFC,
-      audio: this.audioFC,
+      fileName: this.fileNameFC,
     });
   }
 
   onSubmit() {
     this.formSubmitted = true;
-    if(this.audioSpaceForm.valid){
+    if (this.audioSpaceForm.valid) {
       //TODO
     }
   }

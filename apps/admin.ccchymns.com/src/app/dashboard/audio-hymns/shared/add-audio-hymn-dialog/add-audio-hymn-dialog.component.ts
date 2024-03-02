@@ -32,7 +32,7 @@ import {
   genericRetryStrategy,
 } from 'apps/admin.ccchymns.com/src/core';
 import { StorageService } from '../../../storage.service';
-import {  from, retryWhen } from 'rxjs';
+import { from, retryWhen } from 'rxjs';
 import { SubSink } from 'subsink';
 
 @Component({
@@ -121,12 +121,10 @@ export class AddAudioHymnDialogComponent implements OnInit, OnDestroy {
     storagePath: string[],
     audioFile: File
   ) {
-    this.storageService.uploadFile(
-      storagePath,
-      audioFile,
-      (downloadUrl) => {
+    this.storageService.uploadFile(storagePath, audioFile, {
+      onComplete: (fileDownloadUrl) => {
         this.subscriptions.sink = from(
-          this.updateEditorsUploadedAudioHymnRecord(no, downloadUrl)
+          this.updateEditorsUploadedAudioHymnRecord(no, fileDownloadUrl)
         )
           .pipe(retryWhen(genericRetryStrategy()))
           .subscribe({
@@ -145,11 +143,11 @@ export class AddAudioHymnDialogComponent implements OnInit, OnDestroy {
             },
           });
       },
-      (error) => {
+      onError: (error) => {
         this.showUploadFailedNotification(error);
         Shield.remove();
-      }
-    );
+      },
+    });
   }
 
   private updateEditorsUploadedAudioHymnRecord(

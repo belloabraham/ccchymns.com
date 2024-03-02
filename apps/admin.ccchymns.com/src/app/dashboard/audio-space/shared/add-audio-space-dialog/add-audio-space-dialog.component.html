@@ -14,7 +14,7 @@
   </div>
 
   <div class="mb-2">
-    <input formControlName="audio" class="form-control w-100" [multiple]="false" [max]="1" [accept]="'audio/mpeg'"
+    <input formControlName="fileName" (change)="onFileChange($event)" class="form-control w-100" [multiple]="false" [max]="1" [accept]="'audio/mpeg'"
       [class.is-invalid]="audioSpaceIsInvalid()" type="file">
     @if (audioSpaceIsInvalid()) {
     <div class="invalid-feedback">
