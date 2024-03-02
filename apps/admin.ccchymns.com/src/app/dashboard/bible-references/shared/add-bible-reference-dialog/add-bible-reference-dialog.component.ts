@@ -83,7 +83,7 @@ export class AddBibleReferenceDialogComponent implements OnInit {
     this.formSubmitted = true;
     if (this.bibleReferenceForm.valid) {
       const reference = JSON.escapeSpecialCharacters(
-        StringUtil.capitalize(this.referenceFC.value!)
+        StringUtil.capitalizeBibleReference(this.referenceFC.value!)
       ).trim();
       const verses = JSON.escapeSpecialCharacters(this.versesFC.value!).trim();
       const responsiveSvgSize = this.displayService.percentage * 60;
