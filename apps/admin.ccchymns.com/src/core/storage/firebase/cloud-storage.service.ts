@@ -23,12 +23,12 @@ export class CloudStorageService implements ICloudStorage {
   uploadFileTo(
     pathSegment: string[],
     file: Blob | Uint8Array | ArrayBuffer | File,
-    onProgress: (
+    onComplete: (downloadUrl: string) => void,
+    onError: (error: any) => void,
+    onProgress?: (
       snapshot: UploadTaskSnapshot,
       progressInPercentage: number
     ) => void,
-    onComplete: (downloadUrl: string) => void,
-    onError: (error: any) => void,
     metaData?: UploadMetadata | undefined
   ) {
     const path = pathSegment.join('/');
@@ -39,7 +39,9 @@ export class CloudStorageService implements ICloudStorage {
       (snapshot) => {
         const progressInPercentage =
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        onProgress(snapshot, progressInPercentage);
+        if (onProgress) {
+          onProgress(snapshot, progressInPercentage);
+        }
       },
       (error) => {
         onError(error);

@@ -4,7 +4,6 @@ import {
   Input,
   NgZone,
   OnChanges,
-  OnInit,
   SimpleChanges,
 } from '@angular/core';
 import { CdkTableModule } from '@angular/cdk/table';
