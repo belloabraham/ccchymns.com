@@ -1,5 +1,4 @@
-export interface IAudioHymnsUIState {
+export interface IAudioHymnsUIState extends Record<string, string | number> {
   no: number;
-  audio: string;
-  [key: string]: number | string;
+  url: string;
 }

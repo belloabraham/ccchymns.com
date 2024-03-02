@@ -3,7 +3,7 @@ import { DashboardLanguageResourceKey } from "../../i18n/language-resource-key";
 
 const audioHymnsUIState: IAudioSpaceUIState = {
   no: 0,
-  audio: '',
+  url: '',
 };
 export const COLUMN_NAMES_FOR_AUDIO_HYMNS_TABLE = [
   Object.keys(audioHymnsUIState)[0],

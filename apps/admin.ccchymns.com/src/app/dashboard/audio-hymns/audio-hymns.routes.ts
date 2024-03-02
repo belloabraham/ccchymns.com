@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router';
 import { RootLanguageResourceKey, Route } from '@ccchymns.com/common';
 import { AudioHymnsComponent } from './audio-hymns.component';
+import { provideState } from '@ngrx/store';
+import { egunAudioHymnsFeature, englishAudioHymnsFeature, frenchAudioHymnsFeature, yorubaAudioHymnsFeature } from 'apps/admin.ccchymns.com/src/store';
 
 export const AUDIO_HYMNS_ROUTES: Routes = [
   {
@@ -14,6 +16,7 @@ export const AUDIO_HYMNS_ROUTES: Routes = [
       },
       {
         path: Route.YORUBA,
+        providers: [provideState(yorubaAudioHymnsFeature)],
         data: {
           breadcrumb: RootLanguageResourceKey.YORUBA,
         },
@@ -24,6 +27,7 @@ export const AUDIO_HYMNS_ROUTES: Routes = [
       },
       {
         path: Route.ENGLISH,
+        providers: [provideState(englishAudioHymnsFeature)],
         data: {
           breadcrumb: RootLanguageResourceKey.ENGLISH,
         },
@@ -34,6 +38,7 @@ export const AUDIO_HYMNS_ROUTES: Routes = [
       },
       {
         path: Route.FRENCH,
+        providers: [provideState(frenchAudioHymnsFeature)],
         data: {
           breadcrumb: RootLanguageResourceKey.FRENCH,
         },
@@ -44,6 +49,7 @@ export const AUDIO_HYMNS_ROUTES: Routes = [
       },
       {
         path: Route.EGUN,
+        providers: [provideState(egunAudioHymnsFeature)],
         data: {
           breadcrumb: RootLanguageResourceKey.EGUN,
         },
