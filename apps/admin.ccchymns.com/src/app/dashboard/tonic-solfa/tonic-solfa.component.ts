@@ -1,5 +1,6 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   Inject,
@@ -68,13 +69,13 @@ export class TonicSolfaComponent implements OnInit, OnDestroy {
   @Input() data?: ITonicSolfaUIState[] | null; // = TONIC_SOLFA_MOCK_DATA;
   unsubscribeFromLiveEditorTonicSolfa!: Unsubscribe;
   private dialog!: Observable<number>;
-  @Output() retry = new EventEmitter<void>();
 
   constructor(
     @Inject(TuiDialogService) private readonly dialogs: TuiDialogService,
     @Inject(Injector) private readonly injector: Injector,
     private activatedRoute: ActivatedRoute,
-    private tonicSolfaDataService: TonicSolfaDataService
+    private tonicSolfaDataService: TonicSolfaDataService,
+    private cdRef: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -92,6 +93,7 @@ export class TonicSolfaComponent implements OnInit, OnDestroy {
             this.tonicSolfaDataService.getTonicSolfaUIStates(
               editorsTonicSolfas
             );
+          this.cdRef.detectChanges();
         },
         (error) => {}
       );
@@ -104,6 +106,20 @@ export class TonicSolfaComponent implements OnInit, OnDestroy {
         appearance: 'bg-light',
       }
     );
+  }
+
+  retry() {
+    this.data = undefined;
+    this.subscriptions.sink = this.tonicSolfaDataService
+      .getAllEditorsTonicSolfas$()
+      .subscribe((editorsTonicSolfas) => {
+        const tonicSolfasUIState =
+          this.tonicSolfaDataService.getTonicSolfaUIStates(
+            editorsTonicSolfas
+          );
+        this.data = tonicSolfasUIState;
+        this.cdRef.detectChanges();
+      });
   }
 
   showDialog(): void {

@@ -3,7 +3,6 @@ import {
   Component,
   Input,
   OnChanges,
-  OnInit,
   SimpleChanges,
 } from '@angular/core';
 import { SubSink } from 'subsink';
@@ -41,14 +40,14 @@ import { COLUMN_NAMES_FOR_AUDIO_HYMNS_TABLE } from '../data';
   styleUrl: './audio-space-table.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AudioSpaceTableComponent implements OnInit, OnChanges {
+export class AudioSpaceTableComponent implements OnChanges {
   rootLanguageResourceKey = RootLanguageResourceKey;
   dashboardLanguageResourceKey = DashboardLanguageResourceKey;
   pagination = Array(0);
   private subscriptions = new SubSink();
   displayIsDesktop = false;
 
-  @Input({ required: true }) data: IAudioHymnsUIState[] = [];
+  @Input({ required: true }) data?: IAudioHymnsUIState[] | null;
   @Input() filterBy: string | undefined;
   columnNames: string[] = COLUMN_NAMES_FOR_AUDIO_HYMNS_TABLE;
   dataSource = new AudioSpaceDataSource([]);
@@ -57,15 +56,14 @@ export class AudioSpaceTableComponent implements OnInit, OnChanges {
     this.getIsDeviceDisplayDesktopAsync();
   }
 
-  ngOnInit(): void {
-    this.dataSource = new AudioSpaceDataSource(this.data);
-    const paginationLength = this.data.length / TABLE_PAGE_SIZE;
-    this.pagination = Array(
-      paginationLength < 1 ? 0 : Math.ceil(paginationLength)
-    );
-  }
-
   ngOnChanges(changes: SimpleChanges): void {
+    if (this.data) {
+      this.dataSource = new AudioSpaceDataSource(this.data);
+      const paginationLength = this.data.length / TABLE_PAGE_SIZE;
+      this.pagination = Array(
+        paginationLength < 1 ? 0 : Math.ceil(paginationLength)
+      );
+    }
     this.filterTableData(this.filterBy);
   }
 

@@ -3,92 +3,92 @@ import { ITonicSolfaUIState } from '@ccchymns.com/common';
 export const TONIC_SOLFA_MOCK_DATA: ITonicSolfaUIState[] = [
   {
     no: 1,
-    tonic:
+    url:
       'https://cdn.plyr.io/static/demo/Kishi_Bashi_-_It_All_Began_With_a_Burst.mp3',
   },
   {
     no: 2,
-    tonic:
+    url:
       'https://cdn.plyr.io/static/demo/Kishi_Bashi_-_It_All_Began_With_a_Burst.mp3',
   },
   {
     no: 3,
-    tonic:
+    url:
       'https://cdn.plyr.io/static/demo/Kishi_Bashi_-_It_All_Began_With_a_Burst.mp3',
   },
   {
     no: 4,
-    tonic:
+    url:
       'https://cdn.plyr.io/static/demo/Kishi_Bashi_-_It_All_Began_With_a_Burst.mp3',
   },
   {
     no: 5,
-    tonic:
+    url:
       'https://cdn.plyr.io/static/demo/Kishi_Bashi_-_It_All_Began_With_a_Burst.mp3',
   },
   {
     no: 6,
-    tonic:
+    url:
       'https://cdn.plyr.io/static/demo/Kishi_Bashi_-_It_All_Began_With_a_Burst.mp3',
   },
   {
     no: 7,
-    tonic:
+    url:
       'https://cdn.plyr.io/static/demo/Kishi_Bashi_-_It_All_Began_With_a_Burst.mp3',
   },
   {
     no: 8,
-    tonic:
+    url:
       'https://cdn.plyr.io/static/demo/Kishi_Bashi_-_It_All_Began_With_a_Burst.mp3',
   },
   {
     no: 9,
-    tonic:
+    url:
       'https://cdn.plyr.io/static/demo/Kishi_Bashi_-_It_All_Began_With_a_Burst.mp3',
   },
   {
     no: 10,
-    tonic:
+    url:
       'https://cdn.plyr.io/static/demo/Kishi_Bashi_-_It_All_Began_With_a_Burst.mp3',
   },
   {
     no: 11,
-    tonic:
+    url:
       'https://cdn.plyr.io/static/demo/Kishi_Bashi_-_It_All_Began_With_a_Burst.mp3',
   },
   {
     no: 12,
-    tonic:
+    url:
       'https://cdn.plyr.io/static/demo/Kishi_Bashi_-_It_All_Began_With_a_Burst.mp3',
   },
   {
     no: 13,
-    tonic:
+    url:
       'https://cdn.plyr.io/static/demo/Kishi_Bashi_-_It_All_Began_With_a_Burst.mp3',
   },
   {
     no: 14,
-    tonic:
+    url:
       'https://cdn.plyr.io/static/demo/Kishi_Bashi_-_It_All_Began_With_a_Burst.mp3',
   },
   {
     no: 15,
-    tonic:
+    url:
       'https://cdn.plyr.io/static/demo/Kishi_Bashi_-_It_All_Began_With_a_Burst.mp3',
   },
   {
     no: 16,
-    tonic:
+    url:
       'https://cdn.plyr.io/static/demo/Kishi_Bashi_-_It_All_Began_With_a_Burst.mp3',
   },
   {
     no: 17,
-    tonic:
+    url:
       'https://cdn.plyr.io/static/demo/Kishi_Bashi_-_It_All_Began_With_a_Burst.mp3',
   },
   {
     no: 18,
-    tonic:
+    url:
       'https://cdn.plyr.io/static/demo/Kishi_Bashi_-_It_All_Began_With_a_Burst.mp3',
   },
 ];
