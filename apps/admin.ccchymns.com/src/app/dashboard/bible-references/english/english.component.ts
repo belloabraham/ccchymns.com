@@ -14,7 +14,6 @@ import { getEnglishBibleReferencesSelector } from 'apps/admin.ccchymns.com/src/s
   standalone: true,
   imports: [SharedModule, CommonComponent],
   templateUrl: './english.component.html',
-  styleUrl: './english.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EnglishComponent implements OnInit, OnDestroy {

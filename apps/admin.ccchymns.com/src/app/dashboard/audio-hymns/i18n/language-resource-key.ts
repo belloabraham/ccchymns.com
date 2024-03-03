@@ -8,5 +8,6 @@ export class LanguageResourceKey {
   static readonly FRENCH_AUDIO_HYMNS = 'french_audio_hymns';
   static readonly YORUBA_AUDIO_HYMNS = 'yoruba_audio_hymns';
   static readonly UPLOAD_AUDIO_HYMN = 'upload_audio_hymn';
+  static readonly UPDATE_AUDIO_HYMN = 'update_audio_hymn';
   static readonly AUDIO_HYMN_REQUIRED_MSG = 'audio_hymn_required_msg';
 }

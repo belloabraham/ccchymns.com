@@ -9,7 +9,6 @@ import { TABLE_PAGE_SIZE } from '../../../shared';
   standalone: true,
   imports: [TranslocoModule, NgFor],
   templateUrl: './audio-hymns-placeholder.component.html',
-  styleUrl: './audio-hymns-placeholder.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AudioHymnsPlaceholderComponent {

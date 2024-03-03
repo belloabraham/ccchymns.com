@@ -14,7 +14,6 @@ import { getEgunAudioHymnsSelector } from 'apps/admin.ccchymns.com/src/store';
   standalone: true,
   imports: [SharedModule, CommonComponent],
   templateUrl: './egun.component.html',
-  styleUrl: './egun.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EgunComponent {

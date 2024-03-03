@@ -19,7 +19,7 @@ import { POLYMORPHEUS_CONTEXT } from '@tinkoff/ng-polymorpheus';
   standalone: true,
   imports: [SharedModule, NgMaterialButtonModule],
   templateUrl: './tonic-solfa-dialog.component.html',
-  styleUrls: ['./tonic-solfa-dialog.component.scss', '../../dialog.scss'],
+  styleUrls: ['../../dialog.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TonicSolfaDialogComponent implements OnInit {

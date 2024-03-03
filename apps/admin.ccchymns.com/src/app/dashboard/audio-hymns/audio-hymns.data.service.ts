@@ -125,6 +125,13 @@ export class AudioHymnsDataService {
     }
     return audioHymns;
   }
+  updateAudioHymnRecord(value: IEditorsAudioHymn) {
+    return this.remoteData.addADocumentDataTo(
+      Collection.EDITORS_AUDIO_HYMNS,
+      [`${value.no}`],
+      value
+    );
+  }
 
   updateYorubaAudioHymn(value: IEditorsAudioHymn) {
     if (!value.yoruba) {

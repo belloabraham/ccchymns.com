@@ -1,5 +1,9 @@
 import { Inject, Injectable } from '@angular/core';
-import { CLOUD_STORAGE_IJTOKEN, ICloudStorage, UploadOptions } from '../../core';
+import {
+  CLOUD_STORAGE_IJTOKEN,
+  ICloudStorage,
+  UploadOptions,
+} from '../../core';
 
 @Injectable()
 export class StorageService {
@@ -7,19 +11,15 @@ export class StorageService {
     @Inject(CLOUD_STORAGE_IJTOKEN) private cloudStorage: ICloudStorage
   ) {}
 
-  deleteFile(pathSegment: string[]) {
-    this.cloudStorage.deleteFileFrom(pathSegment);
+  deleteFileFrom(pathSegment: string[]) {
+    return this.cloudStorage.deleteFileFrom(pathSegment);
   }
 
   uploadFile(
     pathSegment: string[],
     file: Blob | Uint8Array | ArrayBuffer | File,
-     uploadOptions: UploadOptions,
+    uploadOptions: UploadOptions
   ) {
-    this.cloudStorage.uploadFileTo(
-      pathSegment,
-      file,
-      uploadOptions
-    );
+    this.cloudStorage.uploadFileTo(pathSegment, file, uploadOptions);
   }
 }

@@ -15,6 +15,7 @@ export class DashboardLanguageResourceKey {
   static readonly ADD_HYMN = 'add_hymn';
   static readonly OPTIONS = 'options';
   static readonly UPLOAD = 'upload';
+  static readonly UPDATE = 'update';
   static readonly PUBLISHED = 'published';
   static readonly VALID_HYMN_NO_MSG = 'valid_hymn_no_msg';
 }

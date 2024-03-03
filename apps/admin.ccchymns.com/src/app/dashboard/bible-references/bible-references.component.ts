@@ -24,7 +24,6 @@ import { getBibleReferencesActionGroup } from 'apps/admin.ccchymns.com/src/store
   standalone: true,
   imports: [SharedModule, RouterOutlet],
   templateUrl: './bible-references.component.html',
-  styleUrls: ['./bible-references.component.scss'],
   providers: [BibleReferencesDataService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

@@ -18,7 +18,6 @@ import { LyricsDataService } from '../lyrics.data.service';
   standalone: true,
   imports: [CommonComponent],
   templateUrl: './french.component.html',
-  styleUrl: './french.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FrenchComponent implements OnInit, OnDestroy {

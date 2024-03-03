@@ -1,8 +1,8 @@
 export interface IEditorsAudioHymn
-  extends Record<string, string | number | undefined> {
+  extends Record<string, string | number | undefined | null> {
   no: number;
-  yoruba?: string;
-  english?: string;
-  french?: string;
-  egun?: string;
+  yoruba?: string | null;
+  english?: string | null;
+  french?: string | null;
+  egun?: string | null;
 }

@@ -1,6 +1,8 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  Inject,
+  Injector,
   Input,
   OnChanges,
   SimpleChanges,
@@ -18,11 +20,26 @@ import {
   DisplayService,
   RootLanguageResourceKey,
   Size,
+  IEditorsAudioHymn,
+  Route,
 } from '@ccchymns.com/common';
 import { COLUMN_NAMES_FOR_AUDIO_HYMNS_TABLE } from '../data';
 import { AudioHymnsDataSource } from '../datasource/audio-hymns-datasource';
 import { SortOrder, TABLE_PAGE_SIZE } from '../../../shared';
 import { DashboardLanguageResourceKey } from '../../../i18n/language-resource-key';
+import { TuiDialogService } from '@taiga-ui/core';
+import { UpdateAudioHymnDialogComponent } from '../update-audio-hymn-dialog/update-audio-hymn-dialog.component';
+import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
+import { StorageService } from '../../../storage.service';
+import {
+  StoragePath,
+  genericRetryStrategy,
+} from 'apps/admin.ccchymns.com/src/core';
+import { getAudioLanguagePath } from '../utils/audio-language-path';
+import { Router } from '@angular/router';
+import { FileUtil, NotificationBuilder, Shield } from '@ccchymns.com/core';
+import { AudioHymnsDataService } from '../../audio-hymns.data.service';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-audio-hymns-table',
@@ -37,7 +54,6 @@ import { DashboardLanguageResourceKey } from '../../../i18n/language-resource-ke
     AudioPlayerComponent,
   ],
   templateUrl: './audio-hymns-table.component.html',
-  styleUrl: './audio-hymns-table.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AudioHymnsTableComponent implements OnChanges {
@@ -52,11 +68,101 @@ export class AudioHymnsTableComponent implements OnChanges {
   columnNames: string[] = COLUMN_NAMES_FOR_AUDIO_HYMNS_TABLE;
   dataSource = new AudioHymnsDataSource([]);
 
-  constructor(private displayService: DisplayService) {
+  constructor(
+    private displayService: DisplayService,
+    @Inject(TuiDialogService) private readonly dialogs: TuiDialogService,
+    @Inject(Injector) private readonly injector: Injector,
+    private storageService: StorageService,
+    private audioHymnsDataService: AudioHymnsDataService,
+    private router: Router
+  ) {
     this.getIsDeviceDisplayDesktopAsync();
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  deleteAudioHymn(no: number) {
+    const fileNameWithExt = no + '.' + FileUtil.EXTENSION.MP3;
+    const storagePath = [
+      StoragePath.AUDIO,
+      getAudioLanguagePath(this.router),
+      fileNameWithExt,
+    ];
+    const responsiveSvgSize = this.displayService.percentage * 60;
+    const responsiveFontSize = this.displayService.percentage * 16;
+    Shield.pulse(
+      responsiveFontSize,
+      responsiveSvgSize,
+      `Deleting audio hymn ${no}, please wait.`
+    );
+    this.storageService
+      .deleteFileFrom(storagePath)
+      .then(() => {
+        this.subscriptions.sink = from(this.removeTheDeletedAudioHymnRecord(no))
+          .pipe(genericRetryStrategy())
+          .subscribe({
+            next: () => {
+              Shield.remove();
+              new NotificationBuilder()
+                .build()
+                .success(`Audio hymn ${no} was deleted successfully`);
+            },
+            error: (error) => {
+              Shield.remove();
+              this.showAudioHymnDeleteErrorNotification(error, no);
+            },
+          });
+      })
+      .catch((error) => {
+        Shield.remove();
+        this.showAudioHymnDeleteErrorNotification(error, no);
+      });
+  }
+
+  showAudioHymnDeleteErrorNotification(error: any, no: number) {
+    new NotificationBuilder().build()
+      .error(`Unable to delete audio hymn ${no} at the moment, try again later.
+      Error: ${error}
+    `);
+  }
+  removeTheDeletedAudioHymnRecord(no: number) {
+    const data: IEditorsAudioHymn = {
+      no: no,
+    };
+    const basePath = `/${Route.LYRICS}`;
+    if (this.router.isActive(`${basePath}/${Route.YORUBA}`, true)) {
+      data.yoruba = null;
+    }
+
+    if (this.router.isActive(`${basePath}/${Route.ENGLISH}`, true)) {
+      data.english = null;
+    }
+
+    if (this.router.isActive(`${basePath}/${Route.FRENCH}`, true)) {
+      data.french = null;
+    }
+
+    if (this.router.isActive(`${basePath}/${Route.EGUN}`, true)) {
+      data.egun = null;
+    }
+
+    return this.audioHymnsDataService.updateAudioHymnRecord(data);
+  }
+
+  updateAudioHymn(no: number) {
+    this.subscriptions.sink = this.dialogs
+      .open<number>(
+        new PolymorpheusComponent(
+          UpdateAudioHymnDialogComponent,
+          this.injector
+        ),
+        {
+          data: no,
+          dismissible: false,
+          appearance: 'bg-light',
+        }
+      )
+      .subscribe();
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
     if (this.data) {
       this.dataSource = new AudioHymnsDataSource(this.data);

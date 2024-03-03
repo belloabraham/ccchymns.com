@@ -38,7 +38,6 @@ import { EditLyricsDialogComponent } from '../edit-lyrics-dialog/edit-lyrics-dia
     NgMatTooltipModule,
   ],
   templateUrl: './lyrics-table.component.html',
-  styleUrl: './lyrics-table.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LyricsTableComponent implements OnChanges {

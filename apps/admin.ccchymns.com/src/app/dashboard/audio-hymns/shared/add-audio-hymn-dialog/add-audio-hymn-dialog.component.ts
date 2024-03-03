@@ -34,13 +34,14 @@ import {
 import { StorageService } from '../../../storage.service';
 import { from, retryWhen } from 'rxjs';
 import { SubSink } from 'subsink';
+import { getAudioLanguagePath } from '../utils/audio-language-path';
 
 @Component({
   selector: 'app-add-audio-hymn-dialog',
   standalone: true,
   imports: [SharedModule, NgMaterialButtonModule],
   templateUrl: './add-audio-hymn-dialog.component.html',
-  styleUrls: ['./add-audio-hymn-dialog.component.scss', '../../../dialog.scss'],
+  styleUrls: ['../../../dialog.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddAudioHymnDialogComponent implements OnInit, OnDestroy {
@@ -60,7 +61,7 @@ export class AddAudioHymnDialogComponent implements OnInit, OnDestroy {
 
   constructor(
     @Inject(POLYMORPHEUS_CONTEXT)
-    private readonly context: TuiDialogContext<string>,
+    private readonly context: TuiDialogContext<number>,
     private audioHymnsDataService: AudioHymnsDataService,
     private storageService: StorageService,
     private router: Router,
@@ -98,7 +99,7 @@ export class AddAudioHymnDialogComponent implements OnInit, OnDestroy {
     if (this.audioHymnForm.valid) {
       const no = this.hymnNoFC.value!;
       const file = this.file!;
-      const fileNameWithExt = no + '.' + FileUtil.getFileExtension(file.name);
+      const fileNameWithExt = no + '.' + FileUtil.EXTENSION.MP3;
       const audioFile = FileUtil.rename(file, fileNameWithExt);
       const responsiveSvgSize = this.displayService.percentage * 60;
       const responsiveFontSize = this.displayService.percentage * 16;
@@ -109,7 +110,7 @@ export class AddAudioHymnDialogComponent implements OnInit, OnDestroy {
       );
       const storagePath = [
         StoragePath.AUDIO,
-        this.getAudioLanguagePath(),
+        getAudioLanguagePath(this.router),
         fileNameWithExt,
       ];
       this.uploadEditorsAudioHymn(no, storagePath, audioFile);
@@ -136,7 +137,7 @@ export class AddAudioHymnDialogComponent implements OnInit, OnDestroy {
               Shield.remove();
             },
             error: (error) => {
-              this.storageService.deleteFile(storagePath);
+              this.storageService.deleteFileFrom(storagePath);
               this.showUploadFailedNotification(error);
               Shield.remove();
               LoggerUtil.error(this, this.onSubmit.name, error);
@@ -180,28 +181,11 @@ export class AddAudioHymnDialogComponent implements OnInit, OnDestroy {
     return this.audioHymnsDataService.updateEgunAudioHymn(data);
   }
 
-  showUploadFailedNotification(error: any) {
+  private showUploadFailedNotification(error: any) {
     new NotificationBuilder().build()
       .error(`Unable to upload audio hymn at the moment, try again later.
       Error: ${error}
     `);
-  }
-
-  private getAudioLanguagePath(): string {
-    const basePath = `/${Route.AUDIO_HYMNS}`;
-    if (this.router.isActive(`${basePath}/${Route.YORUBA}`, true)) {
-      return StoragePath.YORUBA;
-    }
-
-    if (this.router.isActive(`${basePath}/${Route.ENGLISH}`, true)) {
-      return StoragePath.ENGLISH;
-    }
-
-    if (this.router.isActive(`${basePath}/${Route.EGUN}`, true)) {
-      return StoragePath.EGUN;
-    }
-
-    return StoragePath.FRENCH;
   }
 
   ngOnDestroy(): void {

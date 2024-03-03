@@ -19,7 +19,6 @@ import { LyricsDataService } from '../lyrics.data.service';
   standalone: true,
   imports: [CommonComponent, AsyncPipe],
   templateUrl: './egun.component.html',
-  styleUrl: './egun.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EgunComponent implements OnInit, OnDestroy {
@@ -32,7 +31,7 @@ export class EgunComponent implements OnInit, OnDestroy {
     private lyricsDataService: LyricsDataService,
     private cdRef: ChangeDetectorRef
   ) {}
-  
+
   ngOnInit(): void {
     this.subscriptions.sink = this.ngrxStore
       .select(getEgunLyricsSelector())

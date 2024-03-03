@@ -18,7 +18,6 @@ import { LyricsDataService } from '../lyrics.data.service';
   standalone: true,
   imports: [CommonComponent],
   templateUrl: './english.component.html',
-  styleUrl: './english.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EnglishComponent implements OnInit, OnDestroy {
@@ -32,7 +31,7 @@ export class EnglishComponent implements OnInit, OnDestroy {
     private lyricsDataService: LyricsDataService,
     private cdRef: ChangeDetectorRef
   ) {}
-  
+
   ngOnInit(): void {
     this.subscriptions.sink = this.ngrxStore
       .select(getEnglishLyricsSelector())

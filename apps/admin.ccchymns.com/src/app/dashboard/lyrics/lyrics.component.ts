@@ -23,7 +23,6 @@ import { getHymnLyricsActionGroup } from 'apps/admin.ccchymns.com/src/store';
   standalone: true,
   imports: [RouterOutlet],
   templateUrl: './lyrics.component.html',
-  styleUrls: ['./lyrics.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LyricsComponent implements OnInit, OnDestroy {

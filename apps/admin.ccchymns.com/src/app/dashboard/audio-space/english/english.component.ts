@@ -6,7 +6,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { SharedModule } from '../../shared';
-import { AUDIO_SPACE_MOCK_DATA } from '../shared/mock/audio-space';
+// import { AUDIO_SPACE_MOCK_DATA } from '../shared/mock/audio-space';
 import { CommonComponent } from '../shared/common/common.component';
 import {
   IAudioSpaceUIState,
@@ -22,7 +22,6 @@ import { getEnglishAudioSpaceSelector } from 'apps/admin.ccchymns.com/src/store'
   standalone: true,
   imports: [SharedModule, CommonComponent],
   templateUrl: './english.component.html',
-  styleUrl: './english.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EnglishComponent implements OnInit, OnDestroy {

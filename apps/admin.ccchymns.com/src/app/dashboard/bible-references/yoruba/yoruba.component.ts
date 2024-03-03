@@ -20,7 +20,6 @@ import { getYorubaBibleReferencesSelector } from 'apps/admin.ccchymns.com/src/st
   standalone: true,
   imports: [SharedModule, CommonComponent],
   templateUrl: './yoruba.component.html',
-  styleUrl: './yoruba.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class YorubaComponent implements OnInit, OnDestroy {

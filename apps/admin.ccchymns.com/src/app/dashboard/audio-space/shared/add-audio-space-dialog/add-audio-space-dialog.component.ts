@@ -111,7 +111,7 @@ export class AddAudioSpaceDialogComponent implements OnInit {
         StoragePath.ENGLISH,
         fileNameWithExt,
       ];
-      this.uploadEditorsAudioSpace(no, storagePath, audioFile)
+      this.uploadEditorsAudioSpace(no, storagePath, audioFile);
     }
   }
 
@@ -135,7 +135,7 @@ export class AddAudioSpaceDialogComponent implements OnInit {
               Shield.remove();
             },
             error: (error) => {
-              this.storageService.deleteFile(storagePath);
+              this.storageService.deleteFileFrom(storagePath);
               this.showUploadFailedNotification(error);
               Shield.remove();
               LoggerUtil.error(this, this.onSubmit.name, error);

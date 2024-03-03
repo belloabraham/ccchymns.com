@@ -8,7 +8,6 @@ import { TABLE_PAGE_SIZE } from '../../../shared';
   standalone: true,
   imports: [TranslocoModule, NgFor],
   templateUrl: './lyrics-placeholder.component.html',
-  styleUrl: './lyrics-placeholder.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LyricsPlaceholderComponent {

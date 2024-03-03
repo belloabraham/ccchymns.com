@@ -34,7 +34,7 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [SharedModule, NgMaterialButtonModule, TextFieldModule],
   templateUrl: './add-lyrics-dialog.component.html',
-  styleUrls: ['./add-lyrics-dialog.component.scss', '../../../dialog.scss'],
+  styleUrls: ['../../../dialog.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddLyricsDialogComponent implements OnInit {
