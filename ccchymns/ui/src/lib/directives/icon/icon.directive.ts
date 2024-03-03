@@ -40,7 +40,7 @@ export type Icon =
   | 'y-circle'
   | 'publish'
   | 'check-circle'
-  | 'file-document'
+  | 'eye'
   | 'e-circle-outline';
 
 @Directive({
