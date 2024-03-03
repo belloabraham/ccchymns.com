@@ -2,13 +2,11 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  EventEmitter,
   Inject,
   Injector,
   Input,
   OnDestroy,
   OnInit,
-  Output,
 } from '@angular/core';
 import { DashboardLanguageResourceKey } from '../i18n/language-resource-key';
 import {
@@ -32,7 +30,6 @@ import { TuiDialogService } from '@taiga-ui/core';
 import { TonicSolfaDialogComponent } from './tonic-solfa-dialog/tonic-solfa-dialog.component';
 import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
 // import { TONIC_SOLFA_MOCK_DATA } from './mock/audio-hymns';
-import { Observable } from 'rxjs';
 import { COLUMN_NAMES_FOR_TONIC_SOLFA_TABLE } from './data';
 import { LanguageResourceKey } from './i18n/language-resource-key';
 import { TonicSolfaDataService } from './tonic-solfa.data.service';
@@ -68,7 +65,6 @@ export class TonicSolfaComponent implements OnInit, OnDestroy {
   private subscriptions = new SubSink();
   @Input() data?: ITonicSolfaUIState[] | null; // = TONIC_SOLFA_MOCK_DATA;
   unsubscribeFromLiveEditorTonicSolfa!: Unsubscribe;
-  private dialog!: Observable<number>;
 
   constructor(
     @Inject(TuiDialogService) private readonly dialogs: TuiDialogService,
@@ -98,14 +94,6 @@ export class TonicSolfaComponent implements OnInit, OnDestroy {
         (error) => {}
       );
 
-    this.dialog = this.dialogs.open<number>(
-      new PolymorpheusComponent(TonicSolfaDialogComponent, this.injector),
-      {
-        data: this.rootLanguageResourceKey.TONIC_SOLFA,
-        dismissible: false,
-        appearance: 'bg-light',
-      }
-    );
   }
 
   retry() {
@@ -123,7 +111,16 @@ export class TonicSolfaComponent implements OnInit, OnDestroy {
   }
 
   showDialog(): void {
-    this.subscriptions.sink = this.dialog.subscribe();
+    this.subscriptions.sink = this.dialogs
+      .open<number>(
+        new PolymorpheusComponent(TonicSolfaDialogComponent, this.injector),
+        {
+          data: this.rootLanguageResourceKey.TONIC_SOLFA,
+          dismissible: true,
+          appearance: 'bg-light',
+        }
+      )
+      .subscribe();
   }
 
   onFilterTextChanged(event: any) {

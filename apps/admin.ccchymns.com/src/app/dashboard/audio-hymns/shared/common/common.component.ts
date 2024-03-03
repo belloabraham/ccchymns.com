@@ -6,7 +6,6 @@ import {
   Injector,
   Input,
   OnDestroy,
-  OnInit,
   Output,
 } from '@angular/core';
 import {
@@ -48,7 +47,7 @@ import { AddAudioHymnDialogComponent } from '../add-audio-hymn-dialog/add-audio-
   styleUrl: './common.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CommonComponent implements OnInit, OnDestroy {
+export class CommonComponent implements OnDestroy {
   columnNames = COLUMN_NAMES_FOR_AUDIO_HYMNS_TABLE;
   languageResourceKey = LanguageResourceKey;
   dashboardLanguageResourceKey = DashboardLanguageResourceKey;
@@ -71,19 +70,17 @@ export class CommonComponent implements OnInit, OnDestroy {
     @Inject(Injector) private readonly injector: Injector
   ) {}
 
-  ngOnInit(): void {
-    this.dialog = this.dialogs.open<number>(
-      new PolymorpheusComponent(AddAudioHymnDialogComponent, this.injector),
-      {
-        data: this.titleKey,
-        dismissible: false,
-        appearance: 'bg-light',
-      }
-    );
-  }
-
   showDialog(): void {
-    this.subscriptions.sink = this.dialog.subscribe();
+    this.subscriptions.sink = this.dialogs
+      .open<number>(
+        new PolymorpheusComponent(AddAudioHymnDialogComponent, this.injector),
+        {
+          data: this.titleKey,
+          dismissible: true,
+          appearance: 'bg-light',
+        }
+      )
+      .subscribe();
   }
 
   ngOnDestroy(): void {

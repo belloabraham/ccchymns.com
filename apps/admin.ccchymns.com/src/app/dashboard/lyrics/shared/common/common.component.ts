@@ -4,7 +4,6 @@ import {
   EventEmitter,
   Input,
   OnDestroy,
-  OnInit,
   Output,
 } from '@angular/core';
 import {
@@ -30,7 +29,6 @@ import { Inject, Injector } from '@angular/core';
 import { TuiDialogService } from '@taiga-ui/core';
 import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
 import { AddLyricsDialogComponent } from '../add-lyrics-dialog/add-lyrics-dialog.component';
-import { Observable } from 'rxjs';
 import { SubSink } from 'subsink';
 
 @Component({
@@ -50,7 +48,7 @@ import { SubSink } from 'subsink';
   styleUrl: './common.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CommonComponent implements OnInit, OnDestroy {
+export class CommonComponent implements OnDestroy {
   columnNames = COLUMN_NAMES_FOR_LYRICS_TABLE;
   languageResourceKey = LanguageResourceKey;
   rootLanguageResourceKey = RootLanguageResourceKey;
@@ -67,26 +65,21 @@ export class CommonComponent implements OnInit, OnDestroy {
     this.filterBy = event.target.value;
   }
 
-  private dialog!: Observable<number>;
-
   constructor(
     @Inject(TuiDialogService) private readonly dialogs: TuiDialogService,
     @Inject(Injector) private readonly injector: Injector
   ) {}
 
-  ngOnInit(): void {
-    this.dialog = this.dialogs.open<number>(
+
+  showAddLyricsDialog(): void {
+    this.subscriptions.sink = this.dialogs.open<number>(
       new PolymorpheusComponent(AddLyricsDialogComponent, this.injector),
       {
         data: this.titleKey,
         dismissible: false,
         appearance: 'bg-light',
       }
-    );
-  }
-
-  showDialog(): void {
-    this.subscriptions.sink = this.dialog.subscribe();
+    ).subscribe();
   }
 
   ngOnDestroy(): void {

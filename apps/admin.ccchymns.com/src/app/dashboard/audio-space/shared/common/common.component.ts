@@ -6,7 +6,6 @@ import {
   Injector,
   Input,
   OnDestroy,
-  OnInit,
   Output,
 } from '@angular/core';
 import {
@@ -21,7 +20,6 @@ import {
 import { CCCIconDirective } from '@ccchymns.com/ui';
 import { COLUMN_NAMES_FOR_AUDIO_HYMNS_TABLE } from '../data';
 import { IAudioHymnsUIState } from '@ccchymns.com/common';
-import { Observable } from 'rxjs';
 import { TuiDialogService } from '@taiga-ui/core';
 import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
 import { SubSink } from 'subsink';
@@ -48,7 +46,7 @@ import { AudioSpacePlaceholderComponent } from '../audio-space-placeholder/audio
   styleUrl: './common.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CommonComponent implements OnInit, OnDestroy {
+export class CommonComponent implements  OnDestroy {
   columnNames = COLUMN_NAMES_FOR_AUDIO_HYMNS_TABLE;
   languageResourceKey = LanguageResourceKey;
   dashboardLanguageResourceKey = DashboardLanguageResourceKey;
@@ -63,26 +61,23 @@ export class CommonComponent implements OnInit, OnDestroy {
   onFilterTextChanged(event: any) {
     this.filterBy = event.target.value;
   }
-  private dialog!: Observable<number>;
 
   constructor(
     @Inject(TuiDialogService) private readonly dialogs: TuiDialogService,
     @Inject(Injector) private readonly injector: Injector
   ) {}
 
-  ngOnInit(): void {
-    this.dialog = this.dialogs.open<number>(
-      new PolymorpheusComponent(AddAudioSpaceDialogComponent, this.injector),
-      {
-        data: this.titleKey,
-        dismissible: false,
-        appearance: 'bg-light',
-      }
-    );
-  }
-
-  showDialog(): void {
-    this.subscriptions.sink = this.dialog.subscribe();
+  showAddAudioSpaceDialog(): void {
+    this.subscriptions.sink = this.dialogs
+      .open<number>(
+        new PolymorpheusComponent(AddAudioSpaceDialogComponent, this.injector),
+        {
+          data: this.titleKey,
+          dismissible: true,
+          appearance: 'bg-light',
+        }
+      )
+      .subscribe();
   }
 
   ngOnDestroy(): void {

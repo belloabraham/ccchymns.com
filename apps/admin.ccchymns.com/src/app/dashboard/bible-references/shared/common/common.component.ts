@@ -4,7 +4,6 @@ import {
   EventEmitter,
   Input,
   OnDestroy,
-  OnInit,
   Output,
 } from '@angular/core';
 import {
@@ -27,7 +26,6 @@ import { COLUMN_NAMES_FOR_BIBLE_REFERENCES_TABLE } from '../data';
 import { Inject, Injector } from '@angular/core';
 import { TuiDialogService } from '@taiga-ui/core';
 import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
-import { Observable } from 'rxjs';
 import { AddBibleReferenceDialogComponent } from '../add-bible-reference-dialog/add-bible-reference-dialog.component';
 import { BibleReferencesPlaceholderComponent } from '../bible-references-placeholder/bible-references-placeholder.component';
 import { BibleReferencesTableComponent } from '../bible-references-table/bible-references-table.component';
@@ -50,7 +48,7 @@ import { SubSink } from 'subsink';
   styleUrl: './common.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CommonComponent implements OnInit, OnDestroy {
+export class CommonComponent implements OnDestroy {
   languageResourceKey = LanguageResourceKey;
   @Input({ required: true }) titleKey!: string;
   rootLanguageResourceKey = RootLanguageResourceKey;
@@ -60,7 +58,6 @@ export class CommonComponent implements OnInit, OnDestroy {
   columnNames = COLUMN_NAMES_FOR_BIBLE_REFERENCES_TABLE;
   filterBy?: string;
   @Input({ required: true }) data?: IBibleReferenceUIState[] | null;
-  private dialog!: Observable<string>;
   @Output() retry = new EventEmitter<void>();
 
   constructor(
@@ -68,8 +65,13 @@ export class CommonComponent implements OnInit, OnDestroy {
     @Inject(Injector) private readonly injector: Injector
   ) {}
 
-  ngOnInit(): void {
-    this.dialog = this.dialogs.open<string>(
+
+  onFilterTextChanged(event: any) {
+    this.filterBy = event.target.value;
+  }
+
+  showAddBibleReferenceDialog() {
+    this.subscriptions.sink = this.dialogs.open<string>(
       new PolymorpheusComponent(
         AddBibleReferenceDialogComponent,
         this.injector
@@ -79,15 +81,7 @@ export class CommonComponent implements OnInit, OnDestroy {
         dismissible: false,
         appearance: 'bg-light',
       }
-    );
-  }
-
-  onFilterTextChanged(event: any) {
-    this.filterBy = event.target.value;
-  }
-
-  openAddBibleReferenceDialog() {
-    this.subscriptions.sink = this.dialog.subscribe();
+    ).subscribe();
   }
 
   ngOnDestroy(): void {

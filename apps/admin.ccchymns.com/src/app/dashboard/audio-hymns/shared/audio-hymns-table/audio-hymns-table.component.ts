@@ -39,7 +39,8 @@ import { getAudioLanguagePath } from '../utils/audio-language-path';
 import { Router } from '@angular/router';
 import { FileUtil, NotificationBuilder, Shield } from '@ccchymns.com/core';
 import { AudioHymnsDataService } from '../../audio-hymns.data.service';
-import { from } from 'rxjs';
+import { from, retryWhen } from 'rxjs';
+import { StorageError, StorageErrorCode } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-audio-hymns-table',
@@ -96,24 +97,32 @@ export class AudioHymnsTableComponent implements OnChanges {
     this.storageService
       .deleteFileFrom(storagePath)
       .then(() => {
-        this.subscriptions.sink = from(this.removeTheDeletedAudioHymnRecord(no))
-          .pipe(genericRetryStrategy())
-          .subscribe({
-            next: () => {
-              Shield.remove();
-              new NotificationBuilder()
-                .build()
-                .success(`Audio hymn ${no} was deleted successfully`);
-            },
-            error: (error) => {
-              Shield.remove();
-              this.showAudioHymnDeleteErrorNotification(error, no);
-            },
-          });
+        this.removeAudioRecord(no);
       })
       .catch((error) => {
-        Shield.remove();
-        this.showAudioHymnDeleteErrorNotification(error, no);
+        if (error.code === StorageErrorCode.OBJECT_NOT_FOUND) {
+          this.removeAudioRecord(no);
+        } else {
+          Shield.remove();
+          this.showAudioHymnDeleteErrorNotification(error, no);
+        }
+      });
+  }
+
+  removeAudioRecord(no: number) {
+    this.subscriptions.sink = from(this.removeTheDeletedAudioHymnRecord(no))
+      .pipe(retryWhen(genericRetryStrategy()))
+      .subscribe({
+        next: () => {
+          Shield.remove();
+          new NotificationBuilder()
+            .build()
+            .success(`Audio hymn ${no} was deleted successfully`);
+        },
+        error: (error) => {
+          Shield.remove();
+          this.showAudioHymnDeleteErrorNotification(error, no);
+        },
       });
   }
 
@@ -156,7 +165,7 @@ export class AudioHymnsTableComponent implements OnChanges {
         ),
         {
           data: no,
-          dismissible: false,
+          dismissible: true,
           appearance: 'bg-light',
         }
       )
