@@ -58,6 +58,13 @@ export class TonicSolfaDataService {
     return tonicSolfas;
   }
 
+  deleteTonicSolfa(no: number) {
+    return this.remoteData.deleteADocumentFrom(
+      Collection.EDITORS_TONIC_SOLFAS,
+      [`${no}`]
+    );
+  }
+
   updateTonicSolfa(value: IEditorsTonicSolfa) {
     return this.remoteData.addADocumentDataTo(
       Collection.EDITORS_TONIC_SOLFAS,

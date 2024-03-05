@@ -14,9 +14,7 @@ import { POLYMORPHEUS_CONTEXT } from '@tinkoff/ng-polymorpheus';
   standalone: true,
   imports: [SharedModule, NgMaterialButtonModule],
   templateUrl: './update-audio-hymn-dialog.component.html',
-  styleUrls: [
-    '../../../dialog.scss',
-  ],
+  styleUrls: ['./update-audio-hymn-dialog.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UpdateAudioHymnDialogComponent extends AddAudioHymnDialogComponent {
@@ -37,7 +35,7 @@ export class UpdateAudioHymnDialogComponent extends AddAudioHymnDialogComponent 
     );
   }
 
-  override ngOnDestroy(): void {
+  override ngOnInit(): void {
     super.ngOnInit();
     this.hymnNoFC.patchValue(this._context.data!);
   }

@@ -17,12 +17,13 @@
     <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[2])}}</th>
     <td cdk-cell *cdkCellDef="let row">
 
-      <button (click)="updateAudioHymn(row.no)" [ccc-icon]="'upload-outline'" ng-mat-icon-button ng-mat-tooltip [id]="row.no" type="button">
+      <button (click)="updateAudioHymn(row.no)" [ccc-icon]="'pencil-outline'" ng-mat-icon-button ng-mat-tooltip
+        [id]="row.no" type="button">
       </button>
       <div ng-mat-tooltip [id]="row.no">{{t(rootLanguageResourceKey.UPDATE)}}</div>
 
-      <button (click)="deleteAudioHymn(row.no)" class="delete text-red" [ccc-icon]="'delete'" ng-mat-icon-button ng-mat-tooltip [id]="row.url"
-        type="button">
+      <button (click)="deleteAudioHymn(row.no)" class="delete text-red" [ccc-icon]="'delete'" ng-mat-icon-button
+        ng-mat-tooltip [id]="row.url" type="button">
       </button>
       <div ng-mat-tooltip class="delete" [id]="row.url">{{t(dashboardLanguageResourceKey.DELETE)}}</div>
 

@@ -18,7 +18,6 @@ import { LanguageResourceKey } from '../i18n/language-resource-key';
 import { TuiDialogContext } from '@taiga-ui/core';
 import { POLYMORPHEUS_CONTEXT } from '@tinkoff/ng-polymorpheus';
 import { StorageService } from '../../storage.service';
-import { Router } from '@angular/router';
 import { TonicSolfaDataService } from '../tonic-solfa.data.service';
 import {
   FileUtil,
@@ -41,7 +40,7 @@ import { from, retryWhen } from 'rxjs';
   styleUrls: ['./add-tonic-solfa-dialog.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TonicSolfaDialogComponent implements OnInit {
+export class AddTonicSolfaDialogComponent implements OnInit {
   rootLanguageResourceKey = RootLanguageResourceKey;
   languageResourceKey = LanguageResourceKey;
   dashboardLanguageResourceKey = DashboardLanguageResourceKey;

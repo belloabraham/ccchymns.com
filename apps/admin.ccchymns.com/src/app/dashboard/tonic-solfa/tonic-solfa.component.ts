@@ -27,7 +27,7 @@ import {
 } from '@ccchymns.com/common';
 import { SubSink } from 'subsink';
 import { TuiDialogService } from '@taiga-ui/core';
-import { TonicSolfaDialogComponent } from './add-tonic-solfa-dialog/add-tonic-solfa-dialog.component';
+import { AddTonicSolfaDialogComponent } from './add-tonic-solfa-dialog/add-tonic-solfa-dialog.component';
 import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
 // import { TONIC_SOLFA_MOCK_DATA } from './mock/audio-hymns';
 import { COLUMN_NAMES_FOR_TONIC_SOLFA_TABLE } from './data';
@@ -110,7 +110,7 @@ export class TonicSolfaComponent implements OnInit, OnDestroy {
   showDialog(): void {
     this.subscriptions.sink = this.dialogs
       .open<number>(
-        new PolymorpheusComponent(TonicSolfaDialogComponent, this.injector),
+        new PolymorpheusComponent(AddTonicSolfaDialogComponent, this.injector),
         {
           data: this.rootLanguageResourceKey.TONIC_SOLFA,
           dismissible: true,

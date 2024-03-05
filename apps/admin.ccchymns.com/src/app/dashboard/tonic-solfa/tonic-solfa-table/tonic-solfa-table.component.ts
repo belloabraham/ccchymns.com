@@ -2,6 +2,8 @@ import { CdkTableModule } from '@angular/cdk/table';
 import {
   ChangeDetectionStrategy,
   Component,
+  Inject,
+  Injector,
   Input,
   OnChanges,
   SimpleChanges,
@@ -23,6 +25,18 @@ import {
 import { COLUMN_NAMES_FOR_TONIC_SOLFA_TABLE } from '../data';
 import { TonicSolfaDataSource } from '../datasource/tonic-solfa-datasource';
 import { SortOrder, TABLE_PAGE_SIZE } from '../../shared';
+import { FileUtil, NotificationBuilder, Shield } from '@ccchymns.com/core';
+import {
+  StoragePath,
+  genericRetryStrategy,
+} from 'apps/admin.ccchymns.com/src/core';
+import { TuiDialogService } from '@taiga-ui/core';
+import { StorageService } from '../../storage.service';
+import { StorageErrorCode } from '@angular/fire/storage';
+import { from, retryWhen } from 'rxjs';
+import { TonicSolfaDataService } from '../tonic-solfa.data.service';
+import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
+import { UpdateTonicSolfaDialogComponent } from '../update-tonic-solfa-dialog/update-tonic-solfa-dialog.component';
 
 @Component({
   selector: 'app-tonic-solfa-table',
@@ -51,11 +65,86 @@ export class TonicSolfaTableComponent implements OnChanges {
   columnNames: string[] = COLUMN_NAMES_FOR_TONIC_SOLFA_TABLE;
   dataSource = new TonicSolfaDataSource([]);
 
-  constructor(private displayService: DisplayService) {
+  constructor(
+    private displayService: DisplayService,
+    @Inject(TuiDialogService) private readonly dialogs: TuiDialogService,
+    @Inject(Injector) private readonly injector: Injector,
+    private storageService: StorageService,
+    private tonicSolfaDataService: TonicSolfaDataService
+  ) {
     this.getIsDeviceDisplayDesktopAsync();
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  deleteTonicSolfa(no: number) {
+    const fileNameWithExt = no + '.' + FileUtil.EXTENSION.PDF;
+    const storagePath = [StoragePath.TONIC_SOILFA, fileNameWithExt];
+    const responsiveSvgSize = this.displayService.percentage * 60;
+    const responsiveFontSize = this.displayService.percentage * 16;
+    Shield.pulse(
+      responsiveFontSize,
+      responsiveSvgSize,
+      `Deleting Tonic Solfa for hymn ${no}, please wait.`
+    );
+
+    this.storageService
+      .deleteFileFrom(storagePath)
+      .then(() => {
+        this.removeTonicSolfaRecord(no);
+      })
+      .catch((error) => {
+        if (error.code === StorageErrorCode.OBJECT_NOT_FOUND) {
+          this.removeTonicSolfaRecord(no);
+        } else {
+          Shield.remove();
+          this.showAudioHymnDeleteErrorNotification(error, no);
+        }
+      });
+  }
+
+  updateTonicSolfa(no: number) {
+      this.subscriptions.sink = this.dialogs
+        .open<number>(
+          new PolymorpheusComponent(
+            UpdateTonicSolfaDialogComponent,
+            this.injector
+          ),
+          {
+            data: no,
+            dismissible: true,
+            appearance: 'bg-light',
+          }
+        )
+        .subscribe();
+  }
+
+  deletedTonicSolfaRecord(no: number) {
+    return this.tonicSolfaDataService.deleteTonicSolfa(no);
+  }
+
+  removeTonicSolfaRecord(no: number) {
+    this.subscriptions.sink = from(this.deletedTonicSolfaRecord(no))
+      .pipe(retryWhen(genericRetryStrategy()))
+      .subscribe({
+        next: () => {
+          Shield.remove();
+          new NotificationBuilder()
+            .build()
+            .success(`Tonic solfa for hymn ${no} was deleted successfully`);
+        },
+        error: (error) => {
+          Shield.remove();
+          this.showAudioHymnDeleteErrorNotification(error, no);
+        },
+      });
+  }
+
+  showAudioHymnDeleteErrorNotification(error: any, no: number) {
+    new NotificationBuilder().build()
+      .error(`Unable to delete tonic solfa for hymn ${no} at the moment, try again later.
+      Error: ${error}
+    `);
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
     if (this.data) {
       this.dataSource = new TonicSolfaDataSource(this.data);

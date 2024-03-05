@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TonicSolfaDialogComponent } from './add-tonic-solfa-dialog.component';
+import { AddTonicSolfaDialogComponent } from './add-tonic-solfa-dialog.component';
 
 describe('TonicSolfaDialogComponent', () => {
-  let component: TonicSolfaDialogComponent;
-  let fixture: ComponentFixture<TonicSolfaDialogComponent>;
+  let component: AddTonicSolfaDialogComponent;
+  let fixture: ComponentFixture<AddTonicSolfaDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TonicSolfaDialogComponent],
+      imports: [AddTonicSolfaDialogComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(TonicSolfaDialogComponent);
+    fixture = TestBed.createComponent(AddTonicSolfaDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
