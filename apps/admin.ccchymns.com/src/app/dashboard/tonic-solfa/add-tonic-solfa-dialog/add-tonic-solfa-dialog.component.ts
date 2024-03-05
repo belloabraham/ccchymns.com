@@ -37,8 +37,8 @@ import { from, retryWhen } from 'rxjs';
   selector: 'app-tonic-solfa-dialog',
   standalone: true,
   imports: [SharedModule, NgMaterialButtonModule],
-  templateUrl: './tonic-solfa-dialog.component.html',
-  styleUrls: ['./tonic-solfa-dialog.component.scss'],
+  templateUrl: './add-tonic-solfa-dialog.component.html',
+  styleUrls: ['./add-tonic-solfa-dialog.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TonicSolfaDialogComponent implements OnInit {

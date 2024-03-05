@@ -27,7 +27,7 @@ import {
 } from '@ccchymns.com/common';
 import { SubSink } from 'subsink';
 import { TuiDialogService } from '@taiga-ui/core';
-import { TonicSolfaDialogComponent } from './tonic-solfa-dialog/tonic-solfa-dialog.component';
+import { TonicSolfaDialogComponent } from './add-tonic-solfa-dialog/add-tonic-solfa-dialog.component';
 import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
 // import { TONIC_SOLFA_MOCK_DATA } from './mock/audio-hymns';
 import { COLUMN_NAMES_FOR_TONIC_SOLFA_TABLE } from './data';
@@ -93,7 +93,6 @@ export class TonicSolfaComponent implements OnInit, OnDestroy {
         },
         (error) => {}
       );
-
   }
 
   retry() {
@@ -102,9 +101,7 @@ export class TonicSolfaComponent implements OnInit, OnDestroy {
       .getAllEditorsTonicSolfas$()
       .subscribe((editorsTonicSolfas) => {
         const tonicSolfasUIState =
-          this.tonicSolfaDataService.getTonicSolfaUIStates(
-            editorsTonicSolfas
-          );
+          this.tonicSolfaDataService.getTonicSolfaUIStates(editorsTonicSolfas);
         this.data = tonicSolfasUIState;
         this.cdRef.detectChanges();
       });
