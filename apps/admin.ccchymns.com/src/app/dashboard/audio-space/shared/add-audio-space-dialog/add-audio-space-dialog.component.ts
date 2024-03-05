@@ -37,10 +37,7 @@ import { from, retryWhen } from 'rxjs';
   standalone: true,
   imports: [SharedModule, NgMaterialButtonModule],
   templateUrl: './add-audio-space-dialog.component.html',
-  styleUrls: [
-    './add-audio-space-dialog.component.scss',
-    '../../../dialog.scss',
-  ],
+  styleUrls: ['./add-audio-space-dialog.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddAudioSpaceDialogComponent implements OnInit {

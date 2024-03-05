@@ -41,7 +41,7 @@ import { getAudioLanguagePath } from '../utils/audio-language-path';
   standalone: true,
   imports: [SharedModule, NgMaterialButtonModule],
   templateUrl: './add-audio-hymn-dialog.component.html',
-  styleUrls: ['../../../dialog.scss'],
+  styleUrls: ['./add-audio-hymn-dialog.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddAudioHymnDialogComponent implements OnInit, OnDestroy {
@@ -140,12 +140,13 @@ export class AddAudioHymnDialogComponent implements OnInit, OnDestroy {
               this.storageService.deleteFileFrom(storagePath);
               this.showUploadFailedNotification(error);
               Shield.remove();
-              LoggerUtil.error(this, this.onSubmit.name, error);
+              LoggerUtil.error(this, this.uploadEditorsAudioHymn.name, error);
             },
           });
       },
       onError: (error) => {
         this.showUploadFailedNotification(error);
+        LoggerUtil.error(this, this.uploadEditorsAudioHymn.name, error);
         Shield.remove();
       },
     });
