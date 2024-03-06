@@ -1,0 +1,32 @@
+<form class="d-flex flex-column gap-3" [formGroup]="audioSpaceForm" *transloco="let t" (ngSubmit)="onSubmit()">
+
+  <span class="title">{{t(languageResourceKey.UPDATE_AUDIO_SPACE)}}
+  </span>
+
+  <div class="hymn-number">
+    <input type="number" readonly formControlName="no" class="form-control" [class.is-invalid]="hymnNoIsInvalid()"
+      [placeholder]="t(dashboardLanguageResourceKey.HYMN_NO)">
+    @if (hymnNoIsInvalid()) {
+    <div class="invalid-feedback">
+      {{t(dashboardLanguageResourceKey.VALID_HYMN_NO_MSG)}}
+    </div>
+    }
+  </div>
+
+  <div class="mb-2">
+    <input formControlName="fileName" (change)="onFileChange($event)" class="form-control w-100" [multiple]="false"
+      [max]="1" [accept]="'audio/mpeg'" [class.is-invalid]="audioSpaceIsInvalid()" type="file">
+    @if (audioSpaceIsInvalid()) {
+    <div class="invalid-feedback">
+      {{t(languageResourceKey.AUDIO_SPACE_REQUIRED_MSG)}}
+    </div>
+    }
+  </div>
+
+  <div class="text-end">
+    <button class="w-100" ng-mat-raised-button type="submit">
+      {{t(dashboardLanguageResourceKey.UPDATE)}}
+    </button>
+  </div>
+
+</form>

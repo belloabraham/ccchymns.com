@@ -57,7 +57,7 @@ export class AddAudioSpaceDialogComponent implements OnInit {
 
   constructor(
     @Inject(POLYMORPHEUS_CONTEXT)
-    private readonly context: TuiDialogContext<string>,
+    private readonly context: TuiDialogContext<number>,
     private audioSpaceDataService: AudioSpaceDataService,
     private storageService: StorageService,
     private displayService: DisplayService

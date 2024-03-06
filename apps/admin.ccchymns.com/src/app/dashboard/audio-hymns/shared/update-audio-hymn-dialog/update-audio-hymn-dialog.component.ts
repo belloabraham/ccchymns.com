@@ -20,7 +20,7 @@ import { POLYMORPHEUS_CONTEXT } from '@tinkoff/ng-polymorpheus';
 export class UpdateAudioHymnDialogComponent extends AddAudioHymnDialogComponent {
   constructor(
     @Inject(POLYMORPHEUS_CONTEXT)
-    public _context: TuiDialogContext<number>,
+    protected _context: TuiDialogContext<number>,
     audioHymnsDataService: AudioHymnsDataService,
     storageService: StorageService,
     router: Router,

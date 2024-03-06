@@ -70,6 +70,12 @@ export class AudioSpaceDataService {
     return audioSpaces;
   }
 
+  deleteAudioSpace(no: number) {
+    return this.remoteData.deleteADocumentFrom(Collection.EDITORS_AUDIO_SPACES, [
+      `${no}`,
+    ]);
+  }
+
   updateEnglishAudioSpaces(value: IEditorsAudioSpace) {
     if (!value.english) {
       throw new Error('English url can not be undefined or null');

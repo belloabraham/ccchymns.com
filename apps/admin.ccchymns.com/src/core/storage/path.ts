@@ -5,4 +5,5 @@ export class StoragePath {
   static readonly FRENCH = 'french';
   static readonly YORUBA = 'yoruba';
   static readonly ENGLISH = 'english';
+  static readonly AUDIO_SPACE = 'audio_space';
 }

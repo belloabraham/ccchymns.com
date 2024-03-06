@@ -17,10 +17,10 @@ import { POLYMORPHEUS_CONTEXT } from '@tinkoff/ng-polymorpheus';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UpdateTonicSolfaDialogComponent extends AddTonicSolfaDialogComponent {
-  
+
   constructor(
     @Inject(POLYMORPHEUS_CONTEXT)
-    public readonly _context: TuiDialogContext<void>,
+    protected readonly _context: TuiDialogContext<void>,
     tonicSolfaDataService: TonicSolfaDataService,
     storageService: StorageService,
     displayService: DisplayService

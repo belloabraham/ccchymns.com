@@ -40,7 +40,7 @@ import { Router } from '@angular/router';
 import { FileUtil, NotificationBuilder, Shield } from '@ccchymns.com/core';
 import { AudioHymnsDataService } from '../../audio-hymns.data.service';
 import { from, retryWhen } from 'rxjs';
-import { StorageError, StorageErrorCode } from '@angular/fire/storage';
+import { StorageErrorCode } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-audio-hymns-table',
