@@ -132,13 +132,11 @@ export class AddTonicSolfaDialogComponent implements OnInit {
               this.storageService.deleteFileFrom(storagePath);
               this.showUploadFailedNotification(error);
               Shield.remove();
-              LoggerUtil.error(this, this.uploadEditorsTonicSolfa.name, error);
             },
           });
       },
       onError: (error) => {
         this.showUploadFailedNotification(error);
-        LoggerUtil.error(this, this.uploadEditorsTonicSolfa.name, error);
         Shield.remove();
       },
     });
@@ -157,6 +155,7 @@ export class AddTonicSolfaDialogComponent implements OnInit {
   }
 
   private showUploadFailedNotification(error: any) {
+    LoggerUtil.error(this, this.uploadEditorsTonicSolfa.name, error);
     new NotificationBuilder().build()
       .error(`Unable to upload tonic solfa at the moment, try again later.
       Error: ${error}

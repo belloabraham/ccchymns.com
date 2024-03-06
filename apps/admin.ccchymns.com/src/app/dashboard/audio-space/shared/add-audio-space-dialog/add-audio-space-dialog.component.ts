@@ -135,7 +135,6 @@ export class AddAudioSpaceDialogComponent implements OnInit {
               this.storageService.deleteFileFrom(storagePath);
               this.showUploadFailedNotification(error);
               Shield.remove();
-              LoggerUtil.error(this, this.onSubmit.name, error);
             },
           });
       },
@@ -158,6 +157,7 @@ export class AddAudioSpaceDialogComponent implements OnInit {
   }
 
   showUploadFailedNotification(error: any) {
+    LoggerUtil.error(this, this.onSubmit.name, error);
     new NotificationBuilder().build()
       .error(`Unable to upload audio space at the moment, try again later.
       Error: ${error}

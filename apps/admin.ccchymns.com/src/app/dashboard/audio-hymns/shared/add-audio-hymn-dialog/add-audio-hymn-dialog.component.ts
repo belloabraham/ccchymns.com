@@ -140,13 +140,11 @@ export class AddAudioHymnDialogComponent implements OnInit, OnDestroy {
               this.storageService.deleteFileFrom(storagePath);
               this.showUploadFailedNotification(error);
               Shield.remove();
-              LoggerUtil.error(this, this.uploadEditorsAudioHymn.name, error);
             },
           });
       },
       onError: (error) => {
         this.showUploadFailedNotification(error);
-        LoggerUtil.error(this, this.uploadEditorsAudioHymn.name, error);
         Shield.remove();
       },
     });
@@ -183,6 +181,7 @@ export class AddAudioHymnDialogComponent implements OnInit, OnDestroy {
   }
 
   private showUploadFailedNotification(error: any) {
+    LoggerUtil.error(this, this.uploadEditorsAudioHymn.name, error);
     new NotificationBuilder().build()
       .error(`Unable to upload audio hymn at the moment, try again later.
       Error: ${error}
