@@ -5,8 +5,9 @@ import {
   OnInit,
 } from '@angular/core';
 import { NgMaterialButtonModule } from '@ccchymns.com/angular';
-import { SharedModule } from '../../shared';
+import { FormError, SharedModule } from '../../shared';
 import {
+  Config,
   DisplayService,
   IEditorsTonicSolfa,
   RootLanguageResourceKey,
@@ -67,8 +68,20 @@ export class AddTonicSolfaDialogComponent implements OnInit {
     return this.formSubmitted && this.hymnNoFC.invalid;
   }
 
+  uploadSizeExceeded() {
+    return (
+      this.formSubmitted &&
+      this.fileNameFC.errors &&
+      this.fileNameFC.errors[FormError.maxFileSizeExceeded.name]
+    );
+  }
+
   tonicSolfaIsInvalid() {
-    return this.formSubmitted && this.fileNameFC.invalid;
+    return (
+      this.formSubmitted &&
+      this.fileNameFC.errors &&
+      this.fileNameFC.errors['required']
+    );
   }
 
   ngOnInit(): void {
@@ -85,7 +98,12 @@ export class AddTonicSolfaDialogComponent implements OnInit {
   onFileChange(event: any) {
     const fileList: FileList = event.target.files;
     if (fileList.length > 0) {
-      this.file = fileList[0];
+      const file = fileList[0];
+      if (file.size > Config.MAX_DOCUMENT_UPLOAD_FILE_SIZE_IN_MB) {
+        this.fileNameFC.setErrors(FormError.maxFileSizeExceeded());
+      } else {
+        this.file = file;
+      }
     }
   }
 

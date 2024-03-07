@@ -7,13 +7,14 @@ import {
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IAudioSpaceForm } from '../form';
 import {
+  Config,
   DisplayService,
   IEditorsAudioSpace,
   RootLanguageResourceKey,
 } from '@ccchymns.com/common';
 import { DashboardLanguageResourceKey } from '../../../i18n/language-resource-key';
 import { LanguageResourceKey } from '../../i18n/language-resource-key';
-import { SharedModule } from '../../../shared';
+import { FormError, SharedModule } from '../../../shared';
 import { NgMaterialButtonModule } from '@ccchymns.com/angular';
 import { StorageService } from '../../../storage.service';
 import { AudioSpaceDataService } from '../../audio-space.data.service';
@@ -67,8 +68,20 @@ export class AddAudioSpaceDialogComponent implements OnInit {
     return this.formSubmitted && this.hymnNoFC.invalid;
   }
 
+  uploadSizeExceeded() {
+    return (
+      this.formSubmitted &&
+      this.fileNameFC.errors &&
+      this.fileNameFC.errors[FormError.maxFileSizeExceeded.name]
+    );
+  }
+
   audioSpaceIsInvalid() {
-    return this.formSubmitted && this.fileNameFC.invalid;
+    return (
+      this.formSubmitted &&
+      this.fileNameFC.errors &&
+      this.fileNameFC.errors['required']
+    );
   }
 
   ngOnInit(): void {
@@ -78,7 +91,12 @@ export class AddAudioSpaceDialogComponent implements OnInit {
   onFileChange(event: any) {
     const fileList: FileList = event.target.files;
     if (fileList.length > 0) {
-      this.file = fileList[0];
+      const file = fileList[0];
+      if (file.size > Config.MAX_AUDIO_UPLOAD_FILE_SIZE_IN_MB) {
+        this.fileNameFC.setErrors(FormError.maxFileSizeExceeded());
+      } else {
+        this.file = file;
+      }
     }
   }
 

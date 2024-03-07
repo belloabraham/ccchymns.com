@@ -18,4 +18,7 @@ export class DashboardLanguageResourceKey {
   static readonly UPDATE = 'update';
   static readonly PUBLISHED = 'published';
   static readonly VALID_HYMN_NO_MSG = 'valid_hymn_no_msg';
+  static readonly UPLOAD_FILE_SIZE_EXCEEDED_MSG = 'upload_file_size_exceeded_msg';
+  static readonly AUDIO_UPLOAD_SIZE = '50mb';
+  static readonly DOCUMENT_UPLOAD_SIZE = '20mb';
 }

@@ -6,6 +6,7 @@ import {
   OnInit,
 } from '@angular/core';
 import {
+  Config,
   DisplayService,
   IEditorsAudioHymn,
   RootLanguageResourceKey,
@@ -13,7 +14,7 @@ import {
 } from '@ccchymns.com/common';
 import { LanguageResourceKey } from '../../i18n/language-resource-key';
 import { DashboardLanguageResourceKey } from '../../../i18n/language-resource-key';
-import { SharedModule } from '../../../shared';
+import { FormError, SharedModule } from '../../../shared';
 import { NgMaterialButtonModule } from '@ccchymns.com/angular';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IAudioHymnForm } from '../form';
@@ -72,8 +73,20 @@ export class AddAudioHymnDialogComponent implements OnInit, OnDestroy {
     return this.formSubmitted && this.hymnNoFC.invalid;
   }
 
+  uploadSizeExceeded() {
+    return (
+      this.formSubmitted &&
+      this.fileNameFC.errors &&
+      this.fileNameFC.errors[FormError.maxFileSizeExceeded.name]
+    );
+  }
+
   audioHymnIsInvalid() {
-    return this.formSubmitted && this.fileNameFC.invalid;
+    return (
+      this.formSubmitted &&
+      this.fileNameFC.errors &&
+      this.fileNameFC.errors['required']
+    );
   }
 
   ngOnInit(): void {
@@ -90,7 +103,12 @@ export class AddAudioHymnDialogComponent implements OnInit, OnDestroy {
   onFileChange(event: any) {
     const fileList: FileList = event.target.files;
     if (fileList.length > 0) {
-      this.file = fileList[0];
+      const file = fileList[0];
+      if (file.size > Config.MAX_AUDIO_UPLOAD_FILE_SIZE_IN_MB) {
+        this.fileNameFC.setErrors(FormError.maxFileSizeExceeded());
+      } else {
+        this.file = file;
+      }
     }
   }
 

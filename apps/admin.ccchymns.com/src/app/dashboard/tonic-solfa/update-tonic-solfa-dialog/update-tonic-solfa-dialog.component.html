@@ -15,10 +15,19 @@
 
   <div class="mb-2">
     <input class="form-control w-100" formControlName="fileName" (change)="onFileChange($event)" type="file"
-      [multiple]="false" [max]="1" [accept]="'application/pdf'" [class.is-invalid]="tonicSolfaIsInvalid()">
+      [multiple]="false" [max]="1" [accept]="'application/pdf'"
+      [class.is-invalid]="tonicSolfaIsInvalid() || uploadSizeExceeded()">
     @if (tonicSolfaIsInvalid()) {
     <div class="invalid-feedback">
       {{t(languageResourceKey.TONIC_SOLFA_REQUIRED_MSG)}}
+    </div>
+    }
+
+    @if (uploadSizeExceeded()) {
+    <div class="invalid-feedback">
+      {{t(dashboardLanguageResourceKey.UPLOAD_FILE_SIZE_EXCEEDED_MSG,{value:
+      dashboardLanguageResourceKey.DOCUMENT_UPLOAD_SIZE}
+      )}}
     </div>
     }
   </div>

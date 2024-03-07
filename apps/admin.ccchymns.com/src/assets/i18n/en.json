@@ -76,6 +76,7 @@
   "go_home": "Go Home",
   "page_not_found_title": "Error 404 - Page Not Found",
   "verify_email_title": "Verify Email - {{value}}",
+  "upload_file_size_exceeded_msg": "Maximum upload file size of {{value}} was exceeded",
   "dashboard": "Dashboard",
   "dashboard_title": "Dashboard - {{value}}",
   "auth_title": "Login - {{value}}",

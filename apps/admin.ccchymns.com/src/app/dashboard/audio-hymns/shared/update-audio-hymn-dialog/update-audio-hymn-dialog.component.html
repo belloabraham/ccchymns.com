@@ -15,10 +15,17 @@
 
   <div class="mb-2">
     <input class="form-control w-100" formControlName="fileName" (change)="onFileChange($event)" type="file"
-      [multiple]="false" [max]="1" [accept]="'audio/mpeg'" [class.is-invalid]="audioHymnIsInvalid()">
+      [multiple]="false" [max]="1" [accept]="'audio/mpeg'" [class.is-invalid]="audioHymnIsInvalid() || uploadSizeExceeded()">
     @if (audioHymnIsInvalid()) {
     <div class="invalid-feedback">
       {{t(languageResourceKey.AUDIO_HYMN_REQUIRED_MSG)}}
+    </div>
+    }
+
+    @if (uploadSizeExceeded()) {
+    <div class="invalid-feedback">
+      {{t(dashboardLanguageResourceKey.UPLOAD_FILE_SIZE_EXCEEDED_MSG,{value: dashboardLanguageResourceKey.AUDIO_UPLOAD_SIZE}
+      )}}
     </div>
     }
   </div>

@@ -1,4 +1,4 @@
-<form class="d-flex flex-column gap-3" [formGroup]="audioSpaceForm"  *transloco="let t" (ngSubmit)="onSubmit()">
+<form class="d-flex flex-column gap-3" [formGroup]="audioSpaceForm" *transloco="let t" (ngSubmit)="onSubmit()">
 
   <span class="title">{{t(languageResourceKey.UPLOAD_AUDIO_SPACE)}}
   </span>
@@ -14,11 +14,18 @@
   </div>
 
   <div class="mb-2">
-    <input formControlName="fileName" (change)="onFileChange($event)" class="form-control w-100" [multiple]="false" [max]="1" [accept]="'audio/mpeg'"
-      [class.is-invalid]="audioSpaceIsInvalid()" type="file">
+    <input formControlName="fileName" (change)="onFileChange($event)" class="form-control w-100" [multiple]="false"
+      [max]="1" [accept]="'audio/mpeg'" [class.is-invalid]="audioSpaceIsInvalid() || uploadSizeExceeded()" type="file">
     @if (audioSpaceIsInvalid()) {
     <div class="invalid-feedback">
       {{t(languageResourceKey.AUDIO_SPACE_REQUIRED_MSG)}}
+    </div>
+    }
+
+    @if (uploadSizeExceeded()) {
+    <div class="invalid-feedback">
+      {{t(dashboardLanguageResourceKey.UPLOAD_FILE_SIZE_EXCEEDED_MSG,{value: dashboardLanguageResourceKey.AUDIO_UPLOAD_SIZE}
+      )}}
     </div>
     }
   </div>
