@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import {
   ActivatedRoute,
   NavigationEnd,
@@ -36,7 +41,6 @@ export class AudioHymnsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     const editorsAudioHymns =
       this.activatedRoute.snapshot.data['editorsAudioHymns'];
-
     this.audioHymnsDataService.setEditorsAudioHymns(editorsAudioHymns);
     this.dispatchEditorsAudioHymnsActionState(editorsAudioHymns);
 
@@ -62,7 +66,7 @@ export class AudioHymnsComponent implements OnInit, OnDestroy {
   private dispatchEditorsAudioHymnsActionState(
     editorsAudioHymns: IEditorsAudioHymn[] | null | undefined
   ) {
-    const basePath = `/${Route.LYRICS}`;
+    const basePath = `/${Route.AUDIO_HYMNS}`;
     if (this.router.isActive(`${basePath}/${Route.YORUBA}`, true)) {
       const yorubaAudioHymnsUIState =
         this.audioHymnsDataService.getYorubaAudioHymnsUIStates(

@@ -1,4 +1,8 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+} from '@angular/core';
 import { SharedModule } from '../../shared';
 import { CommonComponent } from '../shared/common/common.component';
 // import { AUDIO_HYMNS_MOC_DATA as AUDIO_HYMNS_MOCK_DATA } from '../shared/mock/audio-hymns';
@@ -44,7 +48,9 @@ export class YorubaComponent {
       .subscribe((editorsAudioHymns) => {
         this.audioHymnsDataService.setEditorsAudioHymns(editorsAudioHymns);
         const yorubaAudioHymnsUIState =
-          this.audioHymnsDataService.getYorubaAudioHymnsUIStates(editorsAudioHymns);
+          this.audioHymnsDataService.getYorubaAudioHymnsUIStates(
+            editorsAudioHymns
+          );
         this.data = yorubaAudioHymnsUIState;
         this.cdRef.detectChanges();
       });

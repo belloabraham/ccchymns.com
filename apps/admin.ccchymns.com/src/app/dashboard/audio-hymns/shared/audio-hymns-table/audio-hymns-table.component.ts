@@ -136,7 +136,7 @@ export class AudioHymnsTableComponent implements OnChanges {
     const data: IEditorsAudioHymn = {
       no: no,
     };
-    const basePath = `/${Route.LYRICS}`;
+    const basePath = `/${Route.AUDIO_HYMNS}`;
     if (this.router.isActive(`${basePath}/${Route.YORUBA}`, true)) {
       data.yoruba = null;
     }

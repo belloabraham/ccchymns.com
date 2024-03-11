@@ -41,7 +41,7 @@ export class AudioHymnsDataService {
   getAllEditorsAudioHymns$() {
     return from(
       this.remoteData.getAListOfDocData<IEditorsAudioHymn>(
-        Collection.EDITORS_HYMNS,
+        Collection.EDITORS_AUDIO_HYMNS,
         []
       )
     ).pipe(
