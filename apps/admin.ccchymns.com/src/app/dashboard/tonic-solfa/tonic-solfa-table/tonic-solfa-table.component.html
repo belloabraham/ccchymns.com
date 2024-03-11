@@ -9,8 +9,8 @@
   <ng-container [cdkColumnDef]="columnNames[1]">
     <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[1])}}</th>
     <td cdk-cell *cdkCellDef="let row">
-      <a [href]="row.url"  target="_blank" [ccc-icon]="'eye'" ng-mat-icon-button ng-mat-tooltip
-        [id]="row.no" type="button">
+      <a [href]="row.url"  target="_blank" [ccc-icon]="'eye'" ng-mat-icon-button
+         type="button">
       </a>
     </td>
   </ng-container>
