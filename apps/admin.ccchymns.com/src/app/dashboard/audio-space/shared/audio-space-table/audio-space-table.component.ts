@@ -96,7 +96,7 @@ export class AudioSpaceTableComponent implements OnChanges {
         this.removeAudioSpaceRecord(no);
       })
       .catch((error) => {
-        if (error.code === StorageErrorCode.OBJECT_NOT_FOUND) {
+        if (error.code.endsWith(StorageErrorCode.OBJECT_NOT_FOUND)) {
           this.removeAudioSpaceRecord(no);
         } else {
           Shield.remove();

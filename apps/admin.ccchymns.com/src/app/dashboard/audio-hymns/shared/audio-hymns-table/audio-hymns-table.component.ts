@@ -100,7 +100,7 @@ export class AudioHymnsTableComponent implements OnChanges {
         this.removeAudioRecord(no);
       })
       .catch((error) => {
-        if (error.code === StorageErrorCode.OBJECT_NOT_FOUND) {
+        if (error.code.endsWith(StorageErrorCode.OBJECT_NOT_FOUND)) {
           this.removeAudioRecord(no);
         } else {
           Shield.remove();

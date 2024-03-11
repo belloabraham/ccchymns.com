@@ -92,7 +92,7 @@ export class TonicSolfaTableComponent implements OnChanges {
         this.removeTonicSolfaRecord(no);
       })
       .catch((error) => {
-        if (error.code === StorageErrorCode.OBJECT_NOT_FOUND) {
+        if (error.code.endsWith(StorageErrorCode.OBJECT_NOT_FOUND)) {
           this.removeTonicSolfaRecord(no);
         } else {
           Shield.remove();

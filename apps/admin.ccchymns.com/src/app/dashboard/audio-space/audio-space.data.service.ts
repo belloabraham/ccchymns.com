@@ -42,7 +42,7 @@ export class AudioSpaceDataService {
   getAllEditorsAudioSpaces$() {
     return from(
       this.remoteData.getAListOfDocData<IEditorsAudioSpace>(
-        Collection.EDITORS_HYMNS,
+        Collection.EDITORS_AUDIO_SPACES,
         []
       )
     ).pipe(
