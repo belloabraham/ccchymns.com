@@ -36,6 +36,7 @@ import { StorageService } from '../../../storage.service';
 import { from, retryWhen } from 'rxjs';
 import { SubSink } from 'subsink';
 import { getAudioLanguagePath } from '../utils/audio-language-path';
+import { StorageErrorCode } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-add-audio-hymn-dialog',
@@ -66,7 +67,7 @@ export class AddAudioHymnDialogComponent implements OnInit, OnDestroy {
     private audioHymnsDataService: AudioHymnsDataService,
     private storageService: StorageService,
     private router: Router,
-    private displayService: DisplayService
+    private displayService: DisplayService,
   ) {}
 
   hymnNoIsInvalid() {
@@ -112,7 +113,7 @@ export class AddAudioHymnDialogComponent implements OnInit, OnDestroy {
     }
   }
 
-  onSubmit() {
+  async onSubmit() {
     this.formSubmitted = true;
     if (this.audioHymnForm.valid) {
       const no = this.hymnNoFC.value!;
@@ -131,41 +132,51 @@ export class AddAudioHymnDialogComponent implements OnInit, OnDestroy {
         getAudioLanguagePath(this.router),
         fileNameWithExt,
       ];
-      this.uploadEditorsAudioHymn(no, storagePath, audioFile);
-    }
-  }
 
-  private uploadEditorsAudioHymn(
-    no: number,
-    storagePath: string[],
-    audioFile: File
-  ) {
-    this.storageService.uploadFile(storagePath, audioFile, {
-      onComplete: (fileDownloadUrl) => {
+      try {
+        const result = await this.uploadEditorsAudioHymn(
+          storagePath,
+          audioFile
+        );
+        const fileDownloadUrl = await this.storageService.getDownloadUrl(
+          result.ref
+        );
+
         this.subscriptions.sink = from(
           this.updateEditorsUploadedAudioHymnRecord(no, fileDownloadUrl)
         )
-          .pipe(retryWhen(genericRetryStrategy()))
+          .pipe(
+            retryWhen(
+              genericRetryStrategy({
+                excludedStatusCodes: [
+                  StorageErrorCode.UNAUTHORIZED,
+                  StorageErrorCode.UNAUTHENTICATED,
+                ],
+              })
+            )
+          )
           .subscribe({
             next: () => {
               new NotificationBuilder()
                 .build()
                 .success('Audio hymn uploaded successfully');
               this.context.$implicit.complete();
-              Shield.remove();
             },
             error: (error) => {
               this.storageService.deleteFileFrom(storagePath);
               this.showUploadFailedNotification(error);
-              Shield.remove();
             },
           });
-      },
-      onError: (error) => {
+      } catch (error) {
         this.showUploadFailedNotification(error);
+      } finally {
         Shield.remove();
-      },
-    });
+      }
+    }
+  }
+
+  private uploadEditorsAudioHymn(storagePath: string[], audioFile: File) {
+    return this.storageService.uploadFile(storagePath, audioFile);
   }
 
   private updateEditorsUploadedAudioHymnRecord(
@@ -175,7 +186,8 @@ export class AddAudioHymnDialogComponent implements OnInit, OnDestroy {
     const data: IEditorsAudioHymn = {
       no: no,
     };
-    const basePath = `/${Route.LYRICS}`;
+    const basePath = `/${Route.AUDIO_HYMNS}`;
+
     if (this.router.isActive(`${basePath}/${Route.YORUBA}`, true)) {
       data.yoruba = downloadUrl;
       return this.audioHymnsDataService.updateYorubaAudioHymn(data);

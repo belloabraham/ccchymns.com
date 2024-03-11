@@ -32,6 +32,7 @@ import {
 } from 'apps/admin.ccchymns.com/src/core';
 import { SubSink } from 'subsink';
 import { from, retryWhen } from 'rxjs';
+import { StorageErrorCode } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-tonic-solfa-dialog',
@@ -61,7 +62,7 @@ export class AddTonicSolfaDialogComponent implements OnInit {
     readonly context: TuiDialogContext<void>,
     private tonicSolfaDataService: TonicSolfaDataService,
     private storageService: StorageService,
-    private displayService: DisplayService
+    private displayService: DisplayService,
   ) {}
 
   hymnNoIsInvalid() {
@@ -107,9 +108,8 @@ export class AddTonicSolfaDialogComponent implements OnInit {
     }
   }
 
-  onSubmit() {
+  async onSubmit() {
     this.formSubmitted = true;
-    this.context.$implicit.complete();
     if (this.tonicSolfaForm.valid) {
       const no = this.hymnNoFC.value!;
       const file = this.file!;
@@ -123,41 +123,43 @@ export class AddTonicSolfaDialogComponent implements OnInit {
         `Uploading Tonic Solfa please wait`
       );
       const storagePath = [StoragePath.TONIC_SOILFA, fileNameWithExt];
-      this.uploadEditorsTonicSolfa(no, storagePath, pdfFile);
+      try {
+        const result = await this.uploadEditorsTonicSolfa(
+          storagePath,
+          pdfFile
+        );
+
+        const fileDownloadUrl = await this.storageService.getDownloadUrl(
+          result.ref
+        );
+
+        this.subscriptions.sink = from(
+          this.updateEditorsUploadedTonicSolfaRecord(no, fileDownloadUrl)
+        ).subscribe({
+          next: () => {
+            new NotificationBuilder()
+              .build()
+              .success('Tonic solfa uploaded successfully');
+            this.context.$implicit.complete();
+          },
+          error: (error) => {
+            this.storageService.deleteFileFrom(storagePath);
+            this.showUploadFailedNotification(error);
+          },
+        });
+      } catch (error) {
+        this.showUploadFailedNotification(error);
+      } finally {
+        Shield.remove();
+      }
     }
   }
 
   private uploadEditorsTonicSolfa(
-    no: number,
     storagePath: string[],
     pdfFile: File
   ) {
-    this.storageService.uploadFile(storagePath, pdfFile, {
-      onComplete: (fileDownloadUrl) => {
-        this.subscriptions.sink = from(
-          this.updateEditorsUploadedTonicSolfaRecord(no, fileDownloadUrl)
-        )
-          .pipe(retryWhen(genericRetryStrategy()))
-          .subscribe({
-            next: () => {
-              new NotificationBuilder()
-                .build()
-                .success('Tonic solfa uploaded successfully');
-              this.context.$implicit.complete();
-              Shield.remove();
-            },
-            error: (error) => {
-              this.storageService.deleteFileFrom(storagePath);
-              this.showUploadFailedNotification(error);
-              Shield.remove();
-            },
-          });
-      },
-      onError: (error) => {
-        this.showUploadFailedNotification(error);
-        Shield.remove();
-      },
-    });
+    return this.storageService.uploadFile(storagePath, pdfFile);
   }
 
   private updateEditorsUploadedTonicSolfaRecord(
@@ -169,7 +171,16 @@ export class AddTonicSolfaDialogComponent implements OnInit {
       url: downloadUrl,
     };
 
-    return this.tonicSolfaDataService.updateTonicSolfa(data);
+    return from(this.tonicSolfaDataService.updateTonicSolfa(data)).pipe(
+      retryWhen(
+        genericRetryStrategy({
+          excludedStatusCodes: [
+            StorageErrorCode.UNAUTHORIZED,
+            StorageErrorCode.UNAUTHENTICATED,
+          ],
+        })
+      )
+    );
   }
 
   private showUploadFailedNotification(error: any) {

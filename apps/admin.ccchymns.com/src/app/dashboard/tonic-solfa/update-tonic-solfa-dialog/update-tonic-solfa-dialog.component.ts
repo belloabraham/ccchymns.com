@@ -1,4 +1,8 @@
-import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Inject,
+} from '@angular/core';
 import { AddTonicSolfaDialogComponent } from '../add-tonic-solfa-dialog/add-tonic-solfa-dialog.component';
 import { NgMaterialButtonModule } from '@ccchymns.com/angular';
 import { SharedModule } from '../../shared';
@@ -17,15 +21,19 @@ import { POLYMORPHEUS_CONTEXT } from '@tinkoff/ng-polymorpheus';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UpdateTonicSolfaDialogComponent extends AddTonicSolfaDialogComponent {
-
   constructor(
     @Inject(POLYMORPHEUS_CONTEXT)
     protected readonly _context: TuiDialogContext<void>,
     tonicSolfaDataService: TonicSolfaDataService,
     storageService: StorageService,
-    displayService: DisplayService
+    displayService: DisplayService,
   ) {
-    super(_context, tonicSolfaDataService, storageService, displayService);
+    super(
+      _context,
+      tonicSolfaDataService,
+      storageService,
+      displayService,
+    );
   }
 
   override ngOnInit(): void {

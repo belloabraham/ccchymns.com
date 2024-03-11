@@ -22,7 +22,7 @@ export class UpdateAudioSpaceDialogComponent extends AddAudioSpaceDialogComponen
     protected readonly _context: TuiDialogContext<number>,
     audioSpaceDataService: AudioSpaceDataService,
     storageService: StorageService,
-    displayService: DisplayService
+    displayService: DisplayService,
   ) {
     super(_context, audioSpaceDataService, storageService, displayService);
   }

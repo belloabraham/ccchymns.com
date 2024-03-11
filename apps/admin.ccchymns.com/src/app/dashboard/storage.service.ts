@@ -2,8 +2,8 @@ import { Inject, Injectable } from '@angular/core';
 import {
   CLOUD_STORAGE_IJTOKEN,
   ICloudStorage,
-  UploadOptions,
 } from '../../core';
+import { StorageReference } from '@angular/fire/storage';
 
 @Injectable()
 export class StorageService {
@@ -15,11 +15,14 @@ export class StorageService {
     return this.cloudStorage.deleteFileFrom(pathSegment);
   }
 
+  getDownloadUrl(ref:StorageReference){
+    return this.cloudStorage.getFileDownloadURL(ref)
+  }
+
   uploadFile(
     pathSegment: string[],
-    file: Blob | Uint8Array | ArrayBuffer | File,
-    uploadOptions: UploadOptions
+    file: Blob | Uint8Array | ArrayBuffer | File
   ) {
-    this.cloudStorage.uploadFileTo(pathSegment, file, uploadOptions);
+    return this.cloudStorage.uploadFileTo(pathSegment, file);
   }
 }

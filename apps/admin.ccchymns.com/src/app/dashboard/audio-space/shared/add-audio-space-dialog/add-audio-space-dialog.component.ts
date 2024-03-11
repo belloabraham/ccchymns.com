@@ -32,6 +32,7 @@ import {
 } from 'apps/admin.ccchymns.com/src/core';
 import { SubSink } from 'subsink';
 import { from, retryWhen } from 'rxjs';
+import { StorageErrorCode } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-add-audio-space-dialog',
@@ -107,7 +108,7 @@ export class AddAudioSpaceDialogComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  async onSubmit() {
     this.formSubmitted = true;
     if (this.audioSpaceForm.valid) {
       const no = this.hymnNoFC.value!;
@@ -126,41 +127,41 @@ export class AddAudioSpaceDialogComponent implements OnInit {
         StoragePath.ENGLISH,
         fileNameWithExt,
       ];
-      this.uploadEditorsAudioSpace(no, storagePath, audioFile);
+
+      try {
+        const result = await this.uploadEditorsAudioSpace(
+          storagePath,
+          audioFile
+        );
+
+        const fileDownloadUrl = await this.storageService.getDownloadUrl(
+          result.ref
+        );
+
+        this.subscriptions.sink = from(
+          this.updateEditorsUploadedAudioSpaceRecord(no, fileDownloadUrl)
+        ).subscribe({
+          next: () => {
+            new NotificationBuilder()
+              .build()
+              .success('Audio space uploaded successfully');
+            this.context.$implicit.complete();
+          },
+          error: (error) => {
+            this.storageService.deleteFileFrom(storagePath);
+            this.showUploadFailedNotification(error);
+          },
+        });
+      } catch (error) {
+        this.showUploadFailedNotification(error);
+      } finally {
+        Shield.remove();
+      }
     }
   }
 
-  private uploadEditorsAudioSpace(
-    no: number,
-    storagePath: string[],
-    audioFile: File
-  ) {
-    this.storageService.uploadFile(storagePath, audioFile, {
-      onComplete: (fileDownloadUrl) => {
-        this.subscriptions.sink = from(
-          this.updateEditorsUploadedAudioSpaceRecord(no, fileDownloadUrl)
-        )
-          .pipe(retryWhen(genericRetryStrategy()))
-          .subscribe({
-            next: () => {
-              new NotificationBuilder()
-                .build()
-                .success('Audio space uploaded successfully');
-              this.context.$implicit.complete();
-              Shield.remove();
-            },
-            error: (error) => {
-              this.storageService.deleteFileFrom(storagePath);
-              this.showUploadFailedNotification(error);
-              Shield.remove();
-            },
-          });
-      },
-      onError: (error) => {
-        this.showUploadFailedNotification(error);
-        Shield.remove();
-      },
-    });
+  private uploadEditorsAudioSpace(storagePath: string[], audioFile: File) {
+    return this.storageService.uploadFile(storagePath, audioFile);
   }
 
   private updateEditorsUploadedAudioSpaceRecord(
@@ -171,7 +172,16 @@ export class AddAudioSpaceDialogComponent implements OnInit {
       no: no,
       english: downloadUrl,
     };
-    return this.audioSpaceDataService.updateEnglishAudioSpaces(data);
+    return from(this.audioSpaceDataService.updateEnglishAudioSpaces(data)).pipe(
+      retryWhen(
+        genericRetryStrategy({
+          excludedStatusCodes: [
+            StorageErrorCode.UNAUTHORIZED,
+            StorageErrorCode.UNAUTHENTICATED,
+          ],
+        })
+      )
+    );
   }
 
   showUploadFailedNotification(error: any) {

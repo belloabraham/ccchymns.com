@@ -1,4 +1,8 @@
-import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Inject,
+} from '@angular/core';
 import { AddAudioHymnDialogComponent } from '../add-audio-hymn-dialog/add-audio-hymn-dialog.component';
 import { SharedModule } from '../../../shared';
 import { NgMaterialButtonModule } from '@ccchymns.com/angular';
@@ -24,14 +28,14 @@ export class UpdateAudioHymnDialogComponent extends AddAudioHymnDialogComponent 
     audioHymnsDataService: AudioHymnsDataService,
     storageService: StorageService,
     router: Router,
-    displayService: DisplayService
+    displayService: DisplayService,
   ) {
     super(
       _context,
       audioHymnsDataService,
       storageService,
       router,
-      displayService
+      displayService,
     );
   }
 
