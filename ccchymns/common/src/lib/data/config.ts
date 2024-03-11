@@ -3,4 +3,7 @@ export class Config {
   static readonly DOMAIN = 'ccchymns.com';
   static readonly MAX_AUDIO_UPLOAD_FILE_SIZE_IN_MB = 50 * 1024 * 1024;
   static readonly MAX_DOCUMENT_UPLOAD_FILE_SIZE_IN_MB = 20 * 1024 * 1024;
+  static readonly APP_STORE_URL = '';
+  static readonly PLAY_STORE_URL = '';
+  static readonly MAX_HYMN_NUMBER = 900;
 }

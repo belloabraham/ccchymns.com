@@ -55,6 +55,7 @@ export class AddAudioHymnDialogComponent implements OnInit, OnDestroy {
   hymnNoFC = new FormControl<number | null>(null, [
     Validators.required,
     Validators.min(1),
+    Validators.max(Config.MAX_HYMN_NUMBER),
   ]);
   fileNameFC = new FormControl<string | null>(null, [Validators.required]);
   file?: File;
@@ -67,7 +68,7 @@ export class AddAudioHymnDialogComponent implements OnInit, OnDestroy {
     private audioHymnsDataService: AudioHymnsDataService,
     private storageService: StorageService,
     private router: Router,
-    private displayService: DisplayService,
+    private displayService: DisplayService
   ) {}
 
   hymnNoIsInvalid() {

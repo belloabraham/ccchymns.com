@@ -7,6 +7,7 @@ import {
 import { SharedModule } from '../../../shared';
 import { NgMaterialButtonModule } from '@ccchymns.com/angular';
 import {
+  Config,
   CustomValidator,
   DisplayService,
   IEditorsHymnUpdate,
@@ -45,6 +46,7 @@ export class EditLyricsDialogComponent implements OnInit {
   hymnNoFC = new FormControl<number | null>(null, [
     Validators.required,
     Validators.min(1),
+    Validators.max(Config.MAX_HYMN_NUMBER),
   ]);
   lyricsFC = new FormControl<string | null>(null, [
     Validators.required,

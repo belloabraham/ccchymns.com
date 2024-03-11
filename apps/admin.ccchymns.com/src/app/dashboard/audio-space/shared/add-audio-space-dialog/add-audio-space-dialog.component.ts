@@ -51,6 +51,7 @@ export class AddAudioSpaceDialogComponent implements OnInit {
   hymnNoFC = new FormControl<number | null>(null, [
     Validators.required,
     Validators.min(1),
+    Validators.max(Config.MAX_HYMN_NUMBER),
   ]);
   fileNameFC = new FormControl<string | null>(null, [Validators.required]);
   formSubmitted = false;

@@ -1,4 +1,4 @@
-import { Config } from './config';
+import { Config } from "@ccchymns.com/common";
 
 export class Contact {
   static readonly EMAIL = `ope@${Config.DOMAIN}`;

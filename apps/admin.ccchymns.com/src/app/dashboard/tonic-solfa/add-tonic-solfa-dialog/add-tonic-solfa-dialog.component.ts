@@ -51,6 +51,7 @@ export class AddTonicSolfaDialogComponent implements OnInit {
   hymnNoFC = new FormControl<number | null>(null, [
     Validators.required,
     Validators.min(1),
+    Validators.max(Config.MAX_HYMN_NUMBER),
   ]);
   fileNameFC = new FormControl<string | null>(null, [Validators.required]);
   formSubmitted = false;
@@ -62,7 +63,7 @@ export class AddTonicSolfaDialogComponent implements OnInit {
     readonly context: TuiDialogContext<void>,
     private tonicSolfaDataService: TonicSolfaDataService,
     private storageService: StorageService,
-    private displayService: DisplayService,
+    private displayService: DisplayService
   ) {}
 
   hymnNoIsInvalid() {
@@ -124,10 +125,7 @@ export class AddTonicSolfaDialogComponent implements OnInit {
       );
       const storagePath = [StoragePath.TONIC_SOILFA, fileNameWithExt];
       try {
-        const result = await this.uploadEditorsTonicSolfa(
-          storagePath,
-          pdfFile
-        );
+        const result = await this.uploadEditorsTonicSolfa(storagePath, pdfFile);
 
         const fileDownloadUrl = await this.storageService.getDownloadUrl(
           result.ref
@@ -155,10 +153,7 @@ export class AddTonicSolfaDialogComponent implements OnInit {
     }
   }
 
-  private uploadEditorsTonicSolfa(
-    storagePath: string[],
-    pdfFile: File
-  ) {
+  private uploadEditorsTonicSolfa(storagePath: string[], pdfFile: File) {
     return this.storageService.uploadFile(storagePath, pdfFile);
   }
 
