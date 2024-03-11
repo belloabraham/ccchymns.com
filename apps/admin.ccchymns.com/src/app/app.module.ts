@@ -45,7 +45,6 @@ const MODULES = [
     provideFirestore(() => getFirestore()),
     provideFunctions(() => getFunctions()),
     provideStorage(() => getStorage()),
-    provideRemoteConfig(() => getRemoteConfig()),
     provideAppCheck(() => {
       const provider = new ReCaptchaEnterpriseProvider(
         environment.reCAPTCHAEnterpriseKey

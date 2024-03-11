@@ -4,10 +4,13 @@ import DOMPurify from 'dompurify';
 
 if (window.trustedTypes && window.trustedTypes.createPolicy) {
   window.trustedTypes.createPolicy('default', {
-    createHTML: (string, sink) => {
-      return DOMPurify.sanitize(string, {
+    createHTML: (input, sink) => {
+      const content = input as string;
+      if (content.includes('notiflix')) {
+        return input;
+      }
+      return DOMPurify.sanitize(input, {
         RETURN_TRUSTED_TYPE: true,
-        USE_PROFILES: { svg: true, svgFilters: true },
       }) as any;
     },
     //Permits src to be set for script url by non angular code
