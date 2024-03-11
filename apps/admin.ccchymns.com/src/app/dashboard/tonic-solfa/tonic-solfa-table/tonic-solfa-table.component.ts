@@ -102,19 +102,19 @@ export class TonicSolfaTableComponent implements OnChanges {
   }
 
   updateTonicSolfa(no: number) {
-      this.subscriptions.sink = this.dialogs
-        .open<number>(
-          new PolymorpheusComponent(
-            UpdateTonicSolfaDialogComponent,
-            this.injector
-          ),
-          {
-            data: no,
-            dismissible: true,
-            appearance: 'bg-light',
-          }
-        )
-        .subscribe();
+    this.subscriptions.sink = this.dialogs
+      .open<number>(
+        new PolymorpheusComponent(
+          UpdateTonicSolfaDialogComponent,
+          this.injector
+        ),
+        {
+          data: no,
+          dismissible: true,
+          appearance: 'bg-light',
+        }
+      )
+      .subscribe();
   }
 
   deletedTonicSolfaRecord(no: number) {
