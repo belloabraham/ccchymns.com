@@ -10,8 +10,9 @@ import {
 } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { filter } from 'rxjs';
-import { IEditorsAudioSpace, Route } from '@ccchymns.com/common';
+import { ALLHymnsType, IEditorsAudioSpace, Route } from '@ccchymns.com/common';
 import { getAudioSpaceActionGroup } from 'apps/admin.ccchymns.com/src/store';
+import { AllHymnsDataService } from '../all-hymns/all-hymns.data.service';
 @Component({
   selector: 'app-audio-space',
   standalone: true,
@@ -29,7 +30,8 @@ export class AudioSpaceComponent implements OnInit, OnDestroy {
     private audioSpaceDataService: AudioSpaceDataService,
     private router: Router,
     private ngrxStore: Store,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private allHymnsDataService: AllHymnsDataService
   ) {}
 
   ngOnInit(): void {
@@ -53,6 +55,10 @@ export class AudioSpaceComponent implements OnInit, OnDestroy {
         (editorsAudioSpaces) => {
           this.audioSpaceDataService.setEditorsAudioSpaces(editorsAudioSpaces);
           this.dispatchEditorsAudioSpaceActionState(editorsAudioSpaces);
+          this.allHymnsDataService.addDataToAllHymns(
+            editorsAudioSpaces,
+            ALLHymnsType.AUDIO_SPACE
+          );
         },
         (error) => {}
       );
@@ -62,17 +68,17 @@ export class AudioSpaceComponent implements OnInit, OnDestroy {
     editorsAudioSpaces: IEditorsAudioSpace[] | null | undefined
   ) {
     const basePath = `/${Route.AUDIO_SPACE}`;
-     if (this.router.isActive(`${basePath}/${Route.ENGLISH}`, true)) {
-       const englishAudioSpaceUIState =
-         this.audioSpaceDataService.getEnglishAudioSpaceUIStates(
-           editorsAudioSpaces
-         );
-       const englishAudioSpaceAction =
-         getAudioSpaceActionGroup().englishAudioSpaceAction({
-           audioSpaceUIState: englishAudioSpaceUIState,
-         });
-       this.ngrxStore.dispatch(englishAudioSpaceAction);
-     }
+    if (this.router.isActive(`${basePath}/${Route.ENGLISH}`, true)) {
+      const englishAudioSpaceUIState =
+        this.audioSpaceDataService.getEnglishAudioSpaceUIStates(
+          editorsAudioSpaces
+        );
+      const englishAudioSpaceAction =
+        getAudioSpaceActionGroup().englishAudioSpaceAction({
+          audioSpaceUIState: englishAudioSpaceUIState,
+        });
+      this.ngrxStore.dispatch(englishAudioSpaceAction);
+    }
   }
 
   ngOnDestroy(): void {

@@ -15,8 +15,9 @@ import { SubSink } from 'subsink';
 import { Unsubscribe } from '@angular/fire/firestore';
 import { Store } from '@ngrx/store';
 import { filter } from 'rxjs';
-import { IEditorsAudioHymn, Route } from '@ccchymns.com/common';
+import { ALLHymnsType, IEditorsAudioHymn, Route } from '@ccchymns.com/common';
 import { getAudioHymnsActionGroup } from 'apps/admin.ccchymns.com/src/store';
+import { AllHymnsDataService } from '../all-hymns/all-hymns.data.service';
 
 @Component({
   selector: 'app-audio-hymns',
@@ -35,7 +36,8 @@ export class AudioHymnsComponent implements OnInit, OnDestroy {
     private audioHymnsDataService: AudioHymnsDataService,
     private router: Router,
     private ngrxStore: Store,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private allHymnsDataService: AllHymnsDataService
   ) {}
 
   ngOnInit(): void {
@@ -58,6 +60,10 @@ export class AudioHymnsComponent implements OnInit, OnDestroy {
         (editorsAudioHymns) => {
           this.audioHymnsDataService.setEditorsAudioHymns(editorsAudioHymns);
           this.dispatchEditorsAudioHymnsActionState(editorsAudioHymns);
+          this.allHymnsDataService.addDataToAllHymns(
+            editorsAudioHymns,
+            ALLHymnsType.AUDIO_HYMN
+          );
         },
         (error) => {}
       );

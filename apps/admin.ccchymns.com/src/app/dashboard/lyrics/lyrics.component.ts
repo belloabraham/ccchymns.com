@@ -11,12 +11,13 @@ import {
   RouterOutlet,
 } from '@angular/router';
 import { LyricsDataService } from './lyrics.data.service';
-import { IEditorsHymn, Route } from '@ccchymns.com/common';
+import { ALLHymnsType, IEditorsHymn, Route } from '@ccchymns.com/common';
 import { filter } from 'rxjs';
 import { SubSink } from 'subsink';
 import { Unsubscribe } from '@angular/fire/firestore';
 import { Store } from '@ngrx/store';
 import { getHymnLyricsActionGroup } from 'apps/admin.ccchymns.com/src/store';
+import { AllHymnsDataService } from '../all-hymns/all-hymns.data.service';
 
 @Component({
   selector: 'app-lyrics',
@@ -33,7 +34,8 @@ export class LyricsComponent implements OnInit, OnDestroy {
     private lyricsDataService: LyricsDataService,
     private router: Router,
     private ngrxStore: Store,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private allHymnsDataService: AllHymnsDataService
   ) {}
 
   ngOnInit(): void {
@@ -56,6 +58,10 @@ export class LyricsComponent implements OnInit, OnDestroy {
         (editorsHymns) => {
           this.lyricsDataService.setEditorsHymn(editorsHymns);
           this.dispatchEditorsHymnLyricsActionState(editorsHymns);
+          this.allHymnsDataService.addDataToAllHymns(
+            editorsHymns,
+            ALLHymnsType.LYRIC
+          );
         },
         (error) => {}
       );

@@ -15,7 +15,7 @@ import {
 import { CCCIconDirective } from '@ccchymns.com/ui';
 import {
   DisplayService,
-  IEditorsHymn,
+  IAllHymns,
   RootLanguageResourceKey,
   Size,
 } from '@ccchymns.com/common';
@@ -52,7 +52,7 @@ export class AllHymnsTableComponent implements OnChanges, OnInit {
 
   columnNames: string[] = COLUMN_NAMES_FOR_ALL_HYMNS_TABLE;
 
-  @Input({ required: true }) data: IEditorsHymn[] = [];
+  @Input({ required: true }) data: IAllHymns[] = [];
   @Input() filterBy: string | undefined;
   dataSource = new AllHymnsDataSource([]);
 

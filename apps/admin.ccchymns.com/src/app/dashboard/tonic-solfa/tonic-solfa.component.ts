@@ -22,6 +22,7 @@ import { CCCIconDirective } from '@ccchymns.com/ui';
 import { TonicSolfaPlaceholderComponent } from './tonic-solfa-placeholder/tonic-solfa-placeholder.component';
 import { TonicSolfaTableComponent } from './tonic-solfa-table/tonic-solfa-table.component';
 import {
+  ALLHymnsType,
   ITonicSolfaUIState,
   RootLanguageResourceKey,
 } from '@ccchymns.com/common';
@@ -35,6 +36,7 @@ import { LanguageResourceKey } from './i18n/language-resource-key';
 import { TonicSolfaDataService } from './tonic-solfa.data.service';
 import { ActivatedRoute } from '@angular/router';
 import { Unsubscribe } from '@angular/fire/firestore';
+import { AllHymnsDataService } from '../all-hymns/all-hymns.data.service';
 
 @Component({
   selector: 'app-tonic-solfa',
@@ -71,7 +73,8 @@ export class TonicSolfaComponent implements OnInit, OnDestroy {
     @Inject(Injector) private readonly injector: Injector,
     private activatedRoute: ActivatedRoute,
     private tonicSolfaDataService: TonicSolfaDataService,
-    private cdRef: ChangeDetectorRef
+    private cdRef: ChangeDetectorRef,
+    private allHymnsDataService: AllHymnsDataService
   ) {}
 
   ngOnInit(): void {
@@ -90,6 +93,10 @@ export class TonicSolfaComponent implements OnInit, OnDestroy {
               editorsTonicSolfas
             );
           this.cdRef.detectChanges();
+          this.allHymnsDataService.addDataToAllHymns(
+            editorsTonicSolfas,
+            ALLHymnsType.TONIC_SOLFA
+          );
         },
         (error) => {}
       );

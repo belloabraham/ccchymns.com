@@ -5,7 +5,7 @@
   <ng-container [cdkColumnDef]="columnNames[0]">
     <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[0])}}</th>
     <td cdk-cell *cdkCellDef="let row">
-      {{row.no}}
+      {{row.lyrics.no}}
     </td>
   </ng-container>
 
@@ -13,10 +13,10 @@
   <ng-container [cdkColumnDef]="columnNames[1]">
     <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[1])}}</th>
     <td cdk-cell *cdkCellDef="let row">
-      <i class='icon' [ccc-icon]="'y-circle'" [class]="row.yoruba.lyrics ? 'text-success':'text-neutral'"></i>
-      <i class='icon' [ccc-icon]="'e-circle'" [class]="row.english.lyrics ? 'text-success':'text-neutral'"></i>
-      <i class='icon' [ccc-icon]="'f-circle'" [class]="row.french.lyrics ? 'text-success':'text-neutral'"></i>
-      <i class='icon' [ccc-icon]="'e-circle-outline'" [class]="row.french.lyrics ? 'text-success':'text-neutral'"></i>
+      <i class='icon' [ccc-icon]="'y-circle'" [class]="row.lyrics.yoruba ? 'text-success':'text-neutral'"></i>
+      <i class='icon' [ccc-icon]="'e-circle'" [class]="row.lyrics.english ? 'text-success':'text-neutral'"></i>
+      <i class='icon' [ccc-icon]="'f-circle'" [class]="row.lyrics.french ? 'text-success':'text-neutral'"></i>
+      <i class='icon' [ccc-icon]="'e-circle-outline'" [class]="row.lyrics.egun ? 'text-success':'text-neutral'"></i>
     </td>
   </ng-container>
 
@@ -28,7 +28,6 @@
       <i class='icon' [ccc-icon]="'e-circle'" [class]="row.english.tonic ? 'text-success':'text-neutral'"></i>
       <i class='icon' [ccc-icon]="'f-circle'" [class]="row.french.tonic ? 'text-success':'text-neutral'"></i>
       <i class='icon' [ccc-icon]="'e-circle-outline'" [class]="row.french.lyrics ? 'text-success':'text-neutral'"></i>
-
     </td>
   </ng-container>
 
