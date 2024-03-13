@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import {
   Config,
+  CustomValidator,
   DisplayService,
   IEditorsAudioHymn,
   RootLanguageResourceKey,
@@ -56,6 +57,7 @@ export class AddAudioHymnDialogComponent implements OnInit, OnDestroy {
     Validators.required,
     Validators.min(1),
     Validators.max(Config.MAX_HYMN_NUMBER),
+    CustomValidator.noDecimalNumber()
   ]);
   fileNameFC = new FormControl<string | null>(null, [Validators.required]);
   file?: File;

@@ -14,5 +14,5 @@ export const COLUMN_NAMES_FOR_ALL_HYMNS_TABLE = [
   RootLanguageResourceKey.AUDIO_HYMNS,
   RootLanguageResourceKey.AUDIO_SPACE,
   LanguageResourceKey.PAID,
-  DashboardLanguageResourceKey.OPTIONS,
+  DashboardLanguageResourceKey.PUBLISHED,
 ];

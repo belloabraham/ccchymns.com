@@ -7,7 +7,7 @@ export interface IAllHymns extends Record<string, any> {
   lyric?: IEditorsHymn;
   audioHymn?: IEditorsAudioHymn;
   audioSpace?: IEditorsAudioSpace;
-  toniSolfa?: IEditorsTonicSolfa;
+  tonicSolfa?: IEditorsTonicSolfa;
   no?: number;
 }
 

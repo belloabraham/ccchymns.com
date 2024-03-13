@@ -48,7 +48,7 @@ export class AddBibleReferenceDialogComponent implements OnInit {
   ]);
   versesFC = new FormControl<string | null>(null, [
     Validators.required,
-    CustomValidator.noWhitespace,
+    CustomValidator.noWhitespace(),
   ]);
   formSubmitted = false;
 

@@ -174,7 +174,8 @@
                         <i class="space"></i>
                         {{t(rootLanguageResourceKey.FRENCH)}}
                       </a>
-                      <a [routerLinkActive]="'active-link'" class="list-group-item border-0 list-group-item-action d-flex align-items-center"
+                      <a [routerLinkActive]="'active-link'"
+                        class="list-group-item border-0 list-group-item-action d-flex align-items-center"
                         data-bs-toggle="list" [routerLink]="[route.BIBLE_REFERENCES, route.EGUN]" role="tab">
                         <i class="space"></i>
                         {{t(rootLanguageResourceKey.EGUN)}}
@@ -212,12 +213,12 @@
               <div class="container pe-md-3 justify-content-between">
 
                 <div class="d-flex gap-3 align-items-center">
-                  <button type="button" (click)="sidenav.toggle()"
-                    class="btn btn-secondary icon-button d-lg-none d-flex align-items-center flex-nowrap position-relative">
+                  <button type="button" *ngIf="displayIsMobile" (click)="sidenav.toggle()"
+                    class="btn btn-secondary icon-button d-flex align-items-center flex-nowrap position-relative">
                     <i class="flex-shrink-0 icon-button" [ccc-icon]="'menu'"></i>
                   </button>
-                  <button type="button" (click)="navigateBack()"
-                    class="btn btn-secondary d-none d-md-flex align-items-center flex-nowrap text-start position-relative">
+                  <button type="button" *ngIf="!displayIsMobile" (click)="navigateBack()"
+                    class="btn btn-secondary d-flex align-items-center flex-nowrap text-start position-relative">
                     <i class="flex-shrink-0 fw-bolder" [ccc-icon]="'arrow-left'"></i>
                   </button>
 

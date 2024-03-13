@@ -8,6 +8,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IAudioSpaceForm } from '../form';
 import {
   Config,
+  CustomValidator,
   DisplayService,
   IEditorsAudioSpace,
   RootLanguageResourceKey,
@@ -52,6 +53,7 @@ export class AddAudioSpaceDialogComponent implements OnInit {
     Validators.required,
     Validators.min(1),
     Validators.max(Config.MAX_HYMN_NUMBER),
+    CustomValidator.noDecimalNumber(),
   ]);
   fileNameFC = new FormControl<string | null>(null, [Validators.required]);
   formSubmitted = false;

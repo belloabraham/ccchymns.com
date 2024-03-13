@@ -48,10 +48,11 @@ export class AddLyricsDialogComponent implements OnInit {
     Validators.required,
     Validators.min(1),
     Validators.max(Config.MAX_HYMN_NUMBER),
+    CustomValidator.noDecimalNumber(),
   ]);
   lyricsFC = new FormControl<string | null>(null, [
     Validators.required,
-    CustomValidator.noWhitespace,
+    CustomValidator.noWhitespace(),
   ]);
   formSubmitted = false;
 

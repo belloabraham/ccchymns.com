@@ -1,10 +1,10 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   Inject,
   OnDestroy,
   OnInit,
-  Signal,
   signal,
 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
@@ -29,10 +29,7 @@ import { CCCIconDirective, SidenavModule } from '@ccchymns.com/ui';
 import { NgOptimizedImage } from '@angular/common';
 import {
   ActivatedRoute,
-  NavigationCancel,
   NavigationEnd,
-  NavigationError,
-  NavigationStart,
   Router,
   RouterLink,
   RouterLinkActive,
@@ -87,7 +84,8 @@ export class DashboardComponent implements OnDestroy, OnInit {
     private languageResourceService: ILanguageResourceService,
     private title: Title,
     private displayService: DisplayService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private cdRef:ChangeDetectorRef
   ) {
     this.openSidebarCollapseButtonForTheInitialRoute();
 
@@ -111,6 +109,7 @@ export class DashboardComponent implements OnDestroy, OnInit {
       (displaySize) => {
         this.displayIsMobile =
           displaySize === Size.Small || displaySize === Size.XSmall;
+          this.cdRef.detectChanges()
       }
     );
   }

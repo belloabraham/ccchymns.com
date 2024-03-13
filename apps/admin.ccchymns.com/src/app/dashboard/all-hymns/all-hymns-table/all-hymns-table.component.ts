@@ -3,7 +3,6 @@ import {
   Component,
   Input,
   OnChanges,
-  OnInit,
   SimpleChanges,
 } from '@angular/core';
 import { CdkTableModule } from '@angular/cdk/table';
@@ -15,7 +14,7 @@ import {
 import { CCCIconDirective } from '@ccchymns.com/ui';
 import {
   DisplayService,
-  IAllHymns,
+  IAllHymnsUIState,
   RootLanguageResourceKey,
   Size,
 } from '@ccchymns.com/common';
@@ -41,7 +40,7 @@ import { COLUMN_NAMES_FOR_ALL_HYMNS_TABLE } from '../data';
   styleUrl: './all-hymns-table.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AllHymnsTableComponent implements OnChanges, OnInit {
+export class AllHymnsTableComponent implements OnChanges {
   languageResourceKey = LanguageResourceKey;
   dashboardLanguageResourceKey = DashboardLanguageResourceKey;
   rootLanguageResourceKey = RootLanguageResourceKey;
@@ -52,7 +51,7 @@ export class AllHymnsTableComponent implements OnChanges, OnInit {
 
   columnNames: string[] = COLUMN_NAMES_FOR_ALL_HYMNS_TABLE;
 
-  @Input({ required: true }) data: IAllHymns[] = [];
+  @Input({ required: true }) data?: IAllHymnsUIState[] | null;
   @Input() filterBy: string | undefined;
   dataSource = new AllHymnsDataSource([]);
 
@@ -60,16 +59,15 @@ export class AllHymnsTableComponent implements OnChanges, OnInit {
     this.getIsDeviceDisplayDesktopAsync();
   }
 
-  ngOnInit(): void {
-    this.dataSource = new AllHymnsDataSource(this.data);
-    const paginationLength = this.data.length / TABLE_PAGE_SIZE;
-    this.pagination = Array(
-      paginationLength < 1 ? 0 : Math.ceil(paginationLength)
-    );
-  }
-
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   ngOnChanges(changes: SimpleChanges): void {
+    if (this.data) {
+      this.dataSource = new AllHymnsDataSource(this.data);
+      const paginationLength = this.data.length / TABLE_PAGE_SIZE;
+      this.pagination = Array(
+        paginationLength < 1 ? 0 : Math.ceil(paginationLength)
+      );
+    }
     this.filterTableData(this.filterBy);
   }
 

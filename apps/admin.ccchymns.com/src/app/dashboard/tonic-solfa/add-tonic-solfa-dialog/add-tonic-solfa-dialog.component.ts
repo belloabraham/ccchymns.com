@@ -8,6 +8,7 @@ import { NgMaterialButtonModule } from '@ccchymns.com/angular';
 import { FormError, SharedModule } from '../../shared';
 import {
   Config,
+  CustomValidator,
   DisplayService,
   IEditorsTonicSolfa,
   RootLanguageResourceKey,
@@ -52,6 +53,7 @@ export class AddTonicSolfaDialogComponent implements OnInit {
     Validators.required,
     Validators.min(1),
     Validators.max(Config.MAX_HYMN_NUMBER),
+    CustomValidator.noDecimalNumber(),
   ]);
   fileNameFC = new FormControl<string | null>(null, [Validators.required]);
   formSubmitted = false;

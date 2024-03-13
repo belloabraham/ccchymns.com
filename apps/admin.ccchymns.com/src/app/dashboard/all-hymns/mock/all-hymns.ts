@@ -1,5 +1,34 @@
-import { IEditorsHymn } from '@ccchymns.com/common';
-export const ALL_HYMNS_MOCK_DATA: IEditorsHymn[] = []
+import { IAllHymnsUIState } from '@ccchymns.com/common';
+export const ALL_HYMNS_MOCK_DATA: IAllHymnsUIState[] = [
+  {
+    no: 1,
+    lyric: {
+      no: 1,
+      paid: true,
+      published: true,
+      egun: 'Jerih mo yah mah, Jerih mo yah mah; Awon Angeli kun f’ayo lorun, Awon Angeli, Awon Angeli, Won nf’orin ayo yin Baba lorun.',
+      french:
+        'Jerih mo yah mah, Jerih mo yah mah; Awon Angeli kun f’ayo lorun, Awon Angeli, Awon Angeli, Won nf’orin ayo yin Baba lorun.',
+      english:
+        'Jerih mo yah mah, Jerih mo yah mah; Awon Angeli kun f’ayo lorun, Awon Angeli, Awon Angeli, Won nf’orin ayo yin Baba lorun.',
+      yoruba:
+        'Jerih mo yah mah, Jerih mo yah mah; Awon Angeli kun f’ayo lorun, Awon Angeli, Awon Angeli, Won nf’orin ayo yin Baba lorun.',
+    },
+    audioHymn: {
+      no: 1,
+      url: 'https://firebasestorage.googleapis.com/v0/b/ccchymnsdev.appspot.com/o/audio%2Fyoruba%2F7.mp3?alt=media&token=a8f9f075-fc31-499d-adde-b26f48eaa0a4',
+    },
+    audioSpace: {
+      no: 1,
+      english:
+        'https://firebasestorage.googleapis.com/v0/b/ccchymnsdev.appspot.com/o/audio%2Fyoruba%2F7.mp3?alt=media&token=a8f9f075-fc31-499d-adde-b26f48eaa0a4',
+    },
+    tonicSolfa: {
+      no: 1,
+      url: 'https://firebasestorage.googleapis.com/v0/b/ccchymnsdev.appspot.com/o/tonic_solfa%2F407.pdf?alt=media&token=5f91ab10-25f0-4721-82cb-661281fdf270',
+    },
+  },
+];
 /*
 export const ALL_HYMNS_MOCK_DATA: IEditorsHymn[] = [
   {

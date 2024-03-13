@@ -1,8 +1,8 @@
 <div *transloco="let t" class="d-flex flex-column justify-content-center align-items-center">
 
   <div class="table-container">
-    <input type="text" class="form-control w-50" [disabled]="data.length === 0" (keyup)="onFilterTextChanged($event)"
-      [placeholder]="t(languageResourceKey.FILTER_ALL_HYMNS_MSG)">
+    <input type="text" class="form-control w-50" [disabled]="!data || data.length === 0"
+      (keyup)="onFilterTextChanged($event)" [placeholder]="t(languageResourceKey.FILTER_ALL_HYMNS_MSG)">
 
     <div class="card w-100">
       <div class="card-header py-0 pe-1 bg-body-secondary d-flex justify-content-between align-items-center">
@@ -26,7 +26,7 @@
 
           <div ng-mat-tooltip id="next-page">{{t(dashboardLanguageResourceKey.NEXT_PAGE)}}</div>
 
-          <button [disabled]="data.length === 0" [ccc-icon]="sortOrderIsAscending? 'sort-asc': 'sort-desc'"
+          <button [disabled]="!data || data.length === 0" [ccc-icon]="sortOrderIsAscending? 'sort-asc': 'sort-desc'"
             (click)="allHymnsTable.sortDataBy(columnIdForSorting, sortOrderIsAscending ? 'desc' : 'asc')"
             (click)="sortOrderIsAscending = !sortOrderIsAscending" ng-mat-icon-button ng-mat-tooltip id="sort"
             class="mx-md-2">
@@ -36,11 +36,37 @@
         </div>
 
       </div>
+
+      <div class="d-flex icon-description">
+        <div class="d-flex align-items-center">
+          <i [ccc-icon]="'y-circle'" class="text-neutral"></i> <span
+            class="ms-1">{{t(rootLanguageResourceKey.YORUBA)}}</span>
+        </div>
+
+        <div class="d-flex align-items-center">
+          <i [ccc-icon]="'e-circle'" class="text-neutral"></i> <span
+            class="ms-1">{{t(rootLanguageResourceKey.ENGLISH)}}</span>
+        </div>
+
+        <div class="d-flex align-items-center">
+          <i [ccc-icon]="'f-circle'" class="text-neutral"></i> <span
+            class="ms-1">{{t(rootLanguageResourceKey.FRENCH)}}</span>
+        </div>
+
+        <div class="d-flex align-items-center">
+          <i [ccc-icon]="'e-circle-outline'" class="text-neutral"></i> <span
+            class="ms-1">{{t(rootLanguageResourceKey.EGUN)}}</span>
+        </div>
+      </div>
+
+
       <div class="card-body overflow-x-scroll">
-        <app-all-hymns-table #allHymnsTable='allHymnsTable' [data]="data" [filterBy]="filterBy" />
-        <!-- <app-all-hymns-placeholder [columnNames]="columnNames" /> -->
-        <!-- <app-empty-sate [descriptionKey]="languageResourceKey.EMPTY_STATE_DESCRIPTION"/> -->
-        <!-- <app-error-state (retry)="retry()" /> -->
+        <app-all-hymns-table [class]="data && data.length > 0 ? 'd-block': 'd-none'" #allHymnsTable='allHymnsTable'
+          [data]="data" [filterBy]="filterBy" />
+        <app-all-hymns-placeholder *ngIf="data === undefined" [columnNames]="columnNames" />
+        <app-empty-state *ngIf="data && data.length === 0"
+          [descriptionKey]="languageResourceKey.EMPTY_STATE_DESCRIPTION" />
+        <app-error-state *ngIf="data === null" (retry)="retry()" />
       </div>
     </div>
 

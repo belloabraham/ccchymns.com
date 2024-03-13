@@ -7,7 +7,10 @@ import {
 import { CCCIconDirective } from '@ccchymns.com/ui';
 import { EmptyStateComponent, ErrorStateComponent } from '../shared';
 import { DashboardLanguageResourceKey } from '../i18n/language-resource-key';
-import { IEditorsHymn, RootLanguageResourceKey } from '@ccchymns.com/common';
+import {
+  IAllHymnsUIState,
+  RootLanguageResourceKey,
+} from '@ccchymns.com/common';
 import { AllHymnsTableComponent } from './all-hymns-table/all-hymns-table.component';
 import { SubSink } from 'subsink';
 import { AllHymnsPlaceholderComponent } from './all-hymns-placeholder/all-hymns-placeholder.component';
@@ -31,7 +34,7 @@ import { AllHymnsDataService } from './all-hymns.data.service';
   ],
   templateUrl: './all-hymns.component.html',
   styleUrls: ['./all-hymns.component.scss'],
-  providers:[AllHymnsDataService],
+  providers: [AllHymnsDataService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AllHymnsComponent {
@@ -43,7 +46,8 @@ export class AllHymnsComponent {
   sortOrderIsAscending = true;
   columnIdForSorting = COLUMN_NAMES_FOR_ALL_HYMNS_TABLE[0];
   @Input({ required: true }) titleKey!: string;
-  @Input({ required: true }) data: IEditorsHymn[] = ALL_HYMNS_MOCK_DATA;
+  @Input({ required: true }) data?: IAllHymnsUIState[] | null =
+    ALL_HYMNS_MOCK_DATA;
   private subscriptions = new SubSink();
 
   onFilterTextChanged(event: any) {
