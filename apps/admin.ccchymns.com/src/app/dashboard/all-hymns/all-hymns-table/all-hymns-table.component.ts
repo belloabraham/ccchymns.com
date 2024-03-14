@@ -15,6 +15,7 @@ import { CCCIconDirective } from '@ccchymns.com/ui';
 import {
   DisplayService,
   IAllHymnsUIState,
+  IEditorsHymnPaidStatus,
   RootLanguageResourceKey,
   Size,
 } from '@ccchymns.com/common';
@@ -24,6 +25,8 @@ import { DashboardLanguageResourceKey } from '../../i18n/language-resource-key';
 import { LanguageResourceKey } from '../i18n/language-resource-key';
 import { AllHymnsDataSource } from '../datasource/all-hymns-datasource';
 import { COLUMN_NAMES_FOR_ALL_HYMNS_TABLE } from '../data';
+import { AllHymnsDataService } from '../all-hymns.data.service';
+import { NotificationBuilder } from '@ccchymns.com/core';
 
 @Component({
   selector: 'app-all-hymns-table',
@@ -55,8 +58,39 @@ export class AllHymnsTableComponent implements OnChanges {
   @Input() filterBy: string | undefined;
   dataSource = new AllHymnsDataSource([]);
 
-  constructor(private displayService: DisplayService) {
+  constructor(
+    private displayService: DisplayService,
+    private allHymnsDataService: AllHymnsDataService
+  ) {
     this.getIsDeviceDisplayDesktopAsync();
+  }
+
+  async onPaidChanged(e: Event | null, no: number) {
+    const checkBox = e?.target as HTMLInputElement;
+    const newLyricPaidStatus: IEditorsHymnPaidStatus = {
+      no: no,
+      paid: checkBox.checked,
+    };
+
+    const additionalMessage = checkBox.checked
+      ? `Hymn ${no} is paid,`
+      : `Hymn ${no} is free,`;
+    try {
+      await this.allHymnsDataService.updateHymnLyricsPaidStatus(
+        newLyricPaidStatus
+      );
+      new NotificationBuilder()
+        .showBackOverlay(false)
+        .build()
+        .success(additionalMessage + ' paid status updated successfully');
+    } catch (error) {
+      checkBox.checked = !checkBox.checked;
+      new NotificationBuilder()
+        .build()
+        .error(
+          `Unable to update Hymn ${no} paid status at the moment, try again later.`
+        );
+    }
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

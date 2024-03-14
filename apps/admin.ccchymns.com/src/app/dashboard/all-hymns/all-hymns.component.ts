@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import {
   NgMatTooltipModule,
   NgMaterialButtonModule,
@@ -8,6 +15,7 @@ import { CCCIconDirective } from '@ccchymns.com/ui';
 import { EmptyStateComponent, ErrorStateComponent } from '../shared';
 import { DashboardLanguageResourceKey } from '../i18n/language-resource-key';
 import {
+  ALLHymnsType,
   IAllHymnsUIState,
   RootLanguageResourceKey,
 } from '@ccchymns.com/common';
@@ -16,8 +24,10 @@ import { SubSink } from 'subsink';
 import { AllHymnsPlaceholderComponent } from './all-hymns-placeholder/all-hymns-placeholder.component';
 import { COLUMN_NAMES_FOR_ALL_HYMNS_TABLE } from './data';
 import { LanguageResourceKey } from './i18n/language-resource-key';
-import { ALL_HYMNS_MOCK_DATA } from './mock/all-hymns';
+// import { ALL_HYMNS_MOCK_DATA } from './mock/all-hymns';
 import { AllHymnsDataService } from './all-hymns.data.service';
+import { LyricsDataService } from '../lyrics/lyrics.data.service';
+import { Unsubscribe } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-all-hymns',
@@ -37,7 +47,7 @@ import { AllHymnsDataService } from './all-hymns.data.service';
   providers: [AllHymnsDataService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AllHymnsComponent {
+export class AllHymnsComponent implements OnInit, OnDestroy {
   columnNames = COLUMN_NAMES_FOR_ALL_HYMNS_TABLE;
   languageResourceKey = LanguageResourceKey;
   rootLanguageResourceKey = RootLanguageResourceKey;
@@ -46,9 +56,37 @@ export class AllHymnsComponent {
   sortOrderIsAscending = true;
   columnIdForSorting = COLUMN_NAMES_FOR_ALL_HYMNS_TABLE[0];
   @Input({ required: true }) titleKey!: string;
-  @Input({ required: true }) data?: IAllHymnsUIState[] | null =
-    ALL_HYMNS_MOCK_DATA;
+  @Input({ required: true }) data?: IAllHymnsUIState[] | null;
   private subscriptions = new SubSink();
+  unsubscribeFromLiveEditorsHymns!: Unsubscribe;
+
+  constructor(
+    private lyricsDataService: LyricsDataService,
+    private allHymnsDataService: AllHymnsDataService,
+    private cdRef: ChangeDetectorRef
+  ) {}
+
+  ngOnInit(): void {
+    this.subscriptions.sink = this.allHymnsDataService
+      .getAllHymnsUIState$()
+      .subscribe((data) => {
+        this.data = data;
+        this.cdRef.detectChanges();
+      });
+
+    this.unsubscribeFromLiveEditorsHymns =
+      this.lyricsDataService.getLiveListOfEditorsHymn(
+        10000,
+        (editorsHymns) => {
+          this.lyricsDataService.setEditorsHymn(editorsHymns);
+          this.allHymnsDataService.addDataToAllHymns(
+            editorsHymns,
+            ALLHymnsType.LYRIC
+          );
+        },
+        (error) => {}
+      );
+  }
 
   onFilterTextChanged(event: any) {
     this.filterBy = event.target.value;
@@ -56,4 +94,9 @@ export class AllHymnsComponent {
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   retry() {}
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
+    this.unsubscribeFromLiveEditorsHymns();
+  }
 }

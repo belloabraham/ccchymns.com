@@ -5,7 +5,7 @@
   <ng-container [cdkColumnDef]="columnNames[0]">
     <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[0])}}</th>
     <td cdk-cell *cdkCellDef="let row">
-      {{row.no}}
+      {{row.lyric.no}}
     </td>
   </ng-container>
 
@@ -24,7 +24,7 @@
   <ng-container [cdkColumnDef]="columnNames[2]">
     <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[2])}}</th>
     <td cdk-cell *cdkCellDef="let row">
-      <i class='icon' [ccc-icon]="'music-clef'" [class]="row.tonicSolfa.url ? 'text-success':'text-neutral'"></i>
+      <i class='icon' [ccc-icon]="'music-clef'" [class]="row?.tonicSolfa?.url ? 'text-success':'text-neutral'"></i>
     </td>
   </ng-container>
 
@@ -32,10 +32,10 @@
   <ng-container [cdkColumnDef]="columnNames[3]">
     <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[3])}}</th>
     <td cdk-cell *cdkCellDef="let row">
-      <i class='icon' [ccc-icon]="'y-circle'" [class]="row.audioHymn.yoruba ? 'text-success':'text-neutral'"></i>
-      <i class='icon' [ccc-icon]="'e-circle'" [class]="row.audioHymn.english ? 'text-success':'text-neutral'"></i>
-      <i class='icon' [ccc-icon]="'f-circle'" [class]="row.audioHymn.french ? 'text-success':'text-neutral'"></i>
-      <i class='icon' [ccc-icon]="'e-circle-outline'" [class]="row.audioHymn.egun ? 'text-success':'text-neutral'"></i>
+      <i class='icon' [ccc-icon]="'y-circle'" [class]="row?.audioHymn?.yoruba ? 'text-success':'text-neutral'"></i>
+      <i class='icon' [ccc-icon]="'e-circle'" [class]="row?.audioHymn?.english ? 'text-success':'text-neutral'"></i>
+      <i class='icon' [ccc-icon]="'f-circle'" [class]="row?.audioHymn?.french ? 'text-success':'text-neutral'"></i>
+      <i class='icon' [ccc-icon]="'e-circle-outline'" [class]="row?.audioHymn?.egun ? 'text-success':'text-neutral'"></i>
     </td>
   </ng-container>
 
@@ -43,10 +43,10 @@
   <ng-container [cdkColumnDef]="columnNames[4]">
     <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[4])}}</th>
     <td cdk-cell *cdkCellDef="let row">
-      <i class='icon' [ccc-icon]="'y-circle'" [class]="row.audioSpace.yoruba ? 'text-success':'text-neutral'"></i>
-      <i class='icon' [ccc-icon]="'e-circle'" [class]="row.audioSpace.english ? 'text-success':'text-neutral'"></i>
-      <i class='icon' [ccc-icon]="'f-circle'" [class]="row.audioSpace.french ? 'text-success':'text-neutral'"></i>
-      <i class='icon' [ccc-icon]="'e-circle-outline'" [class]="row.audioSpace.egun ? 'text-success':'text-neutral'"></i>
+      <i class='icon' [ccc-icon]="'y-circle'" [class]="row?.audioSpace?.yoruba ? 'text-success':'text-neutral'"></i>
+      <i class='icon' [ccc-icon]="'e-circle'" [class]="row?.audioSpace?.english ? 'text-success':'text-neutral'"></i>
+      <i class='icon' [ccc-icon]="'f-circle'" [class]="row?.audioSpace?.french ? 'text-success':'text-neutral'"></i>
+      <i class='icon' [ccc-icon]="'e-circle-outline'" [class]="row?.audioSpace?.egun ? 'text-success':'text-neutral'"></i>
     </td>
   </ng-container>
 
@@ -55,7 +55,7 @@
     <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[5])}}</th>
     <td cdk-cell *cdkCellDef="let row">
       <div class="form-check form-switch">
-        <input class="form-check-input" [checked]="row.lyric.paid" type="checkbox" role="switch">
+        <input class="form-check-input" [checked]="row.lyric.paid" (change)="onPaidChanged($event, row.lyric.no)" type="checkbox" role="switch">
       </div>
     </td>
   </ng-container>

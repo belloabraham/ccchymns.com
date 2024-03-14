@@ -13,7 +13,7 @@ export class Notification {
     | 'center-bottom'
     | 'center-center';
   timeOut = 3000;
-  messageMaxLength = 110;
+  messageMaxLength = 250;
 
   static readonly SHORT_LENGTH = 1000;
 

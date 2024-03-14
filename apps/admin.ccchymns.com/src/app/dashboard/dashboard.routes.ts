@@ -97,7 +97,7 @@ export const DASHBOARD_ROUTES: Routes = [
       },
       {
         path: Route.ALL_HYMNS,
-        providers: [AllHymnsDataService],
+        providers: [LyricsDataService],
         data: {
           breadcrumb: RootLanguageResourceKey.ALL_HYMNS,
         },

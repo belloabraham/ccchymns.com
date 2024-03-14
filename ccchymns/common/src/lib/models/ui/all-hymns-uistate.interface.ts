@@ -6,9 +6,8 @@ import {
 } from '../remote';
 
 export interface IAllHymnsUIState extends Record<string, any> {
-  lyric: IEditorsHymn;
+  lyric?: IEditorsHymn;
   audioHymn?: IEditorsAudioHymn;
   audioSpace?: IEditorsAudioSpace;
   tonicSolfa?: IEditorsTonicSolfa;
-  no: number;
 }

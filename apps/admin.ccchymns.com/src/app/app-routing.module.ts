@@ -6,6 +6,7 @@ import { map } from 'rxjs';
 import { Route } from '@ccchymns.com/common';
 import { StorageService } from './dashboard/storage.service';
 import { CLOUD_STORAGE_IJTOKEN, CloudStorageService } from '../core';
+import { AllHymnsDataService } from './dashboard/all-hymns/all-hymns.data.service';
 
 const routes: Routes = [
   // {
@@ -25,6 +26,7 @@ const routes: Routes = [
   {
     path: Route.ROOT,
     providers: [
+      AllHymnsDataService,
       {
         provide: CLOUD_STORAGE_IJTOKEN,
         useClass: CloudStorageService,
