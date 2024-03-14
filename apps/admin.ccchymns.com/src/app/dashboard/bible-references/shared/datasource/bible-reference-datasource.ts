@@ -8,20 +8,13 @@ export class BibleReferenceDataSource extends BaseDataSource<IBibleReferenceUISt
     super(data);
   }
 
-   override filterTableData(filterBy?: string): void {
-    if (filterBy) {
+   override filterTableData(filterBy: string): void {
       const filterValue = filterBy.toLowerCase();
       this.filteredData = this.data.filter((item) => {
         const stringToSearch = `${item.reference.toLowerCase()} ${item.verses.toLowerCase()}`;
         return stringToSearch.includes(filterValue);
       });
       this.data$.next(this.filteredData);
-    }
-
-    if (!filterBy) {
-      this.filteredData = [];
-      this.data$.next(this.paginatedData);
-    }
   }
 }
 

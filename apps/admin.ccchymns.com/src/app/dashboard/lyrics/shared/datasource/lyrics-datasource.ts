@@ -6,8 +6,7 @@ export class HymnLyricsDataSource extends BaseDataSource<IHymnLyricsUIState> {
     super(data);
   }
 
-  override filterTableData(filterBy?: string): void {
-    if (filterBy) {
+  override filterTableData(filterBy: string): void {
       const filterValue = filterBy.toLowerCase();
       this.filteredData = this.data.filter((item) => {
         const stringToSearch = `${item.no} ${item.lyrics.toLowerCase()}`;
@@ -15,10 +14,4 @@ export class HymnLyricsDataSource extends BaseDataSource<IHymnLyricsUIState> {
       });
       this.data$.next(this.filteredData);
     }
-
-    if (!filterBy) {
-      this.filteredData = [];
-      this.data$.next(this.paginatedData);
-    }
-  }
 }

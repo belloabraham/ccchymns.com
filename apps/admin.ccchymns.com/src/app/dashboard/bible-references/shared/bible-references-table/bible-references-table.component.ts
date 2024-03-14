@@ -67,14 +67,17 @@ export class BibleReferencesTableComponent implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.data) {
+    if (!this.filterBy && this.data) {
       this.dataSource.set(this.data);
       const paginationLength = this.data.length / TABLE_PAGE_SIZE;
       this.pagination = Array(
         paginationLength < 1 ? 0 : Math.ceil(paginationLength)
       );
     }
-    this.filterTableData(this.filterBy);
+
+    if (this.filterBy) {
+      this.filterTableData(this.filterBy);
+    }
   }
 
   isEndOfPagination() {
@@ -97,7 +100,7 @@ export class BibleReferencesTableComponent implements OnChanges {
     return item.reference;
   }
 
-  filterTableData(filterBy?: string) {
+  filterTableData(filterBy: string) {
     this.dataSource.filterTableData(filterBy);
   }
 

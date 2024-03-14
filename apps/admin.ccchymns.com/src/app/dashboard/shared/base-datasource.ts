@@ -3,7 +3,9 @@ import { DataSource } from '@angular/cdk/table';
 import { Order, TABLE_PAGE_SIZE } from './data';
 import { SortOrder } from './types';
 
-export class BaseDataSource<T extends Record<string, any>> extends DataSource<T> {
+export class BaseDataSource<
+  T extends Record<string, any>
+> extends DataSource<T> {
   data$ = new BehaviorSubject<T[]>([]);
   filteredData: T[] = [];
   data: T[] = [];
@@ -24,20 +26,13 @@ export class BaseDataSource<T extends Record<string, any>> extends DataSource<T>
     this.connect();
   }
 
-  filterTableData(filterBy?: string): void {
-    if (filterBy) {
-      const filterValue = filterBy.toLowerCase();
-      this.filteredData = this.data.filter((item) => {
-        const stringToSearch = `${item['no']}`;
-        return stringToSearch.includes(filterValue);
-      });
-      this.data$.next(this.filteredData);
-    }
-
-    if (!filterBy) {
-      this.filteredData = [];
-      this.data$.next(this.paginatedData);
-    }
+  filterTableData(filterBy: string): void {
+    const filterValue = filterBy.toLowerCase();
+    this.filteredData = this.data.filter((item) => {
+      const stringToSearch = `${item['no']}`;
+      return stringToSearch.includes(filterValue);
+    });
+    this.data$.next(this.filteredData);
   }
 
   isEndOfPagination() {
