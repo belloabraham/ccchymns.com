@@ -3,9 +3,8 @@ import { DataSource } from '@angular/cdk/table';
 import { Order, TABLE_PAGE_SIZE } from './data';
 import { SortOrder } from './types';
 
-
 export class BaseDataSource<T extends Record<string, any>> extends DataSource<T> {
-  data$!: BehaviorSubject<T[]>;
+  data$ = new BehaviorSubject<T[]>([]);
   filteredData: T[] = [];
   data: T[] = [];
   paginatedData: T[] = [];
@@ -16,7 +15,13 @@ export class BaseDataSource<T extends Record<string, any>> extends DataSource<T>
   constructor(data: T[]) {
     super();
     this.data = data;
-    this.data$ = new BehaviorSubject<T[]>([]);
+    this.data$.next(this.data);
+  }
+
+  set(data: T[]) {
+    this.data = data;
+    this.data$.next(data);
+    this.connect();
   }
 
   filterTableData(filterBy?: string): void {

@@ -2,7 +2,6 @@ import { IHymnLyricsUIState } from '@ccchymns.com/common';
 import { BaseDataSource } from '../../../shared/base-datasource';
 
 export class HymnLyricsDataSource extends BaseDataSource<IHymnLyricsUIState> {
-
   constructor(data: IHymnLyricsUIState[]) {
     super(data);
   }
@@ -22,5 +21,4 @@ export class HymnLyricsDataSource extends BaseDataSource<IHymnLyricsUIState> {
       this.data$.next(this.paginatedData);
     }
   }
-
 }

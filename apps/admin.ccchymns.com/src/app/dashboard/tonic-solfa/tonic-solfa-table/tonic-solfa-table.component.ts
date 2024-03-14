@@ -147,7 +147,7 @@ export class TonicSolfaTableComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (this.data) {
-      this.dataSource = new TonicSolfaDataSource(this.data);
+      this.dataSource.set(this.data);
       const paginationLength = this.data.length / TABLE_PAGE_SIZE;
       this.pagination = Array(
         paginationLength < 1 ? 0 : Math.ceil(paginationLength)

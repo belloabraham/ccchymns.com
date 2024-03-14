@@ -68,7 +68,7 @@ export class AllHymnsComponent implements OnInit, OnDestroy {
   unsubscribeFromLiveEditorsAudioSpace!: Unsubscribe;
   unsubscribeFromLiveEditorsAudioHymns!: Unsubscribe;
 
-  readonly RETRY_TIMEOUT = 1000;
+  readonly RETRY_TIMEOUT = 500;
 
   constructor(
     private lyricsDataService: LyricsDataService,

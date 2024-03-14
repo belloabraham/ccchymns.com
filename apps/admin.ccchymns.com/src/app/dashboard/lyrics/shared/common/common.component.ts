@@ -67,19 +67,20 @@ export class CommonComponent implements OnDestroy {
 
   constructor(
     @Inject(TuiDialogService) private readonly dialogs: TuiDialogService,
-    @Inject(Injector) private readonly injector: Injector
+    @Inject(Injector) private readonly injector: Injector,
   ) {}
 
-
   showAddLyricsDialog(): void {
-    this.subscriptions.sink = this.dialogs.open<number>(
-      new PolymorpheusComponent(AddLyricsDialogComponent, this.injector),
-      {
-        data: this.titleKey,
-        dismissible: false,
-        appearance: 'bg-light',
-      }
-    ).subscribe();
+    this.subscriptions.sink = this.dialogs
+      .open<number>(
+        new PolymorpheusComponent(AddLyricsDialogComponent, this.injector),
+        {
+          data: this.titleKey,
+          dismissible: false,
+          appearance: 'bg-light',
+        }
+      )
+      .subscribe();
   }
 
   ngOnDestroy(): void {
