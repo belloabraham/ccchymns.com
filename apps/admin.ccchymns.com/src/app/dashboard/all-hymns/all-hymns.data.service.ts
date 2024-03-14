@@ -2,10 +2,10 @@ import { Inject, Injectable } from '@angular/core';
 import {
   IAllHymns,
   IAllHymnsUIState,
-  IEditorsHymnPaidStatus,
+  IEditorsHymn,
   IHymnNo,
 } from '@ccchymns.com/common';
-import { ReplaySubject} from 'rxjs';
+import { ReplaySubject } from 'rxjs';
 import {
   CLOUD_FUNCTIONS_IJTOKEN,
   Collection,
@@ -29,12 +29,26 @@ export class AllHymnsDataService {
     this.updateAllHymnsUIState();
   }
 
-  updateHymnLyricsPaidStatus(value: IEditorsHymnPaidStatus) {
+  updateHymnLyricsPaidStatus(value: IEditorsHymn) {
     return this.remoteData.addADocumentDataTo(
       Collection.EDITORS_HYMNS,
       [`${value.no}`],
       value
     );
+  }
+
+  getAllUnpublishedHymnIds(): IHymnNo[] {
+    const allHymns = Array.from(this.allHymns.values());
+    const allUnpublishedHymnIds: IHymnNo[] = [];
+    for (let index = 0; index < allHymns.length; index++) {
+      const element = allHymns[index];
+      if (element.lyric && !element.lyric.published) {
+        allUnpublishedHymnIds.push({
+          no: element.lyric.no,
+        });
+      }
+    }
+    return allUnpublishedHymnIds;
   }
 
   setAllHymns(allHymns: Map<number, IAllHymns>) {
@@ -46,7 +60,6 @@ export class AllHymnsDataService {
     const allHymnsUIState = Array.from(this.allHymns.values()).filter(
       (value) => value.lyric !== undefined
     );
-
     allHymnsUIState.sort((first, next) => first.lyric!.no - next.lyric!.no);
     this.allHymnsUIState$.next(allHymnsUIState);
   }

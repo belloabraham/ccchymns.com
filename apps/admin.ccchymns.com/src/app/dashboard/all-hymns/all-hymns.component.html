@@ -67,7 +67,16 @@
         <app-empty-state *ngIf="data && data.length === 0"
           [descriptionKey]="languageResourceKey.EMPTY_STATE_DESCRIPTION" />
         <app-error-state *ngIf="data === null" (retry)="retry()" />
+
+        <div class="text-end">
+          <button ng-mat-raised-button (click)="publishHymns()">
+            {{t(languageResourceKey.PUBLISH)}}
+          </button>
+        </div>
+
       </div>
+
+
     </div>
 
   </div>

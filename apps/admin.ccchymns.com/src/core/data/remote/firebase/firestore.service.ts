@@ -234,7 +234,7 @@ export class FirestoreService implements IDatabase {
   }
 
   updateAllDocumentDataIn<T>(
-    path: string,
+    collection: string,
     pathSegment: string[],
     field: string | FieldPath,
     fieldValue: unknown,
@@ -243,7 +243,7 @@ export class FirestoreService implements IDatabase {
     const batch = writeBatch(this.firestore);
     for (let index = 0; index < docIds.length; index++) {
       const pathSegmentWithId = pathSegment.concat([docIds[index]]);
-      const docRef = doc(this.firestore, path, ...pathSegmentWithId);
+      const docRef = doc(this.firestore, collection, ...pathSegmentWithId);
       batch.update(docRef, field, fieldValue);
     }
     return batch.commit();

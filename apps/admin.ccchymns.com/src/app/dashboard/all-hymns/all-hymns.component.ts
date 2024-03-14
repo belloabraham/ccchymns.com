@@ -31,6 +31,7 @@ import { Unsubscribe } from '@angular/fire/firestore';
 import { AudioHymnsDataService } from '../audio-hymns/audio-hymns.data.service';
 import { AudioSpaceDataService } from '../audio-space/audio-space.data.service';
 import { TonicSolfaDataService } from '../tonic-solfa/tonic-solfa.data.service';
+import { NotificationBuilder } from '@ccchymns.com/core';
 
 @Component({
   selector: 'app-all-hymns',
@@ -132,6 +133,24 @@ export class AllHymnsComponent implements OnInit, OnDestroy {
         },
         (error) => {}
       );
+  }
+
+  publishHymns() {
+    const unpublishedHymnIds =
+      this.allHymnsDataService.getAllUnpublishedHymnIds();
+
+      
+    if (unpublishedHymnIds.length > 0) {
+
+    } else {
+      this.showPublishedSuccessNotification();
+    }
+  }
+
+  showPublishedSuccessNotification() {
+    new NotificationBuilder()
+      .build()
+      .success('All Hymns published successfully');
   }
 
   onFilterTextChanged(event: any) {

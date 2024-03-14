@@ -15,7 +15,7 @@ import { CCCIconDirective } from '@ccchymns.com/ui';
 import {
   DisplayService,
   IAllHymnsUIState,
-  IEditorsHymnPaidStatus,
+  IEditorsHymn,
   RootLanguageResourceKey,
   Size,
 } from '@ccchymns.com/common';
@@ -67,9 +67,10 @@ export class AllHymnsTableComponent implements OnChanges {
 
   async onPaidChanged(e: Event | null, no: number) {
     const checkBox = e?.target as HTMLInputElement;
-    const newLyricPaidStatus: IEditorsHymnPaidStatus = {
+    const newLyricPaidStatus: IEditorsHymn = {
       no: no,
       paid: checkBox.checked,
+      published: false,
     };
 
     const additionalMessage = checkBox.checked
