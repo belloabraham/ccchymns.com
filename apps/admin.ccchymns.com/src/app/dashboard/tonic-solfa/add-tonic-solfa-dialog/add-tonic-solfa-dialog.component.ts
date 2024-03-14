@@ -184,7 +184,7 @@ export class AddTonicSolfaDialogComponent implements OnInit {
     LoggerUtil.error(this, this.uploadEditorsTonicSolfa.name, error);
     new NotificationBuilder().build()
       .error(`Unable to upload tonic solfa at the moment, try again later.
-      Error: ${error}
+      Error: ${error.message}
     `);
   }
 }

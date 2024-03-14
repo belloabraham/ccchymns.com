@@ -16,6 +16,7 @@ import { EmptyStateComponent, ErrorStateComponent } from '../shared';
 import { DashboardLanguageResourceKey } from '../i18n/language-resource-key';
 import {
   ALLHymnsType,
+  DisplayService,
   IAllHymnsUIState,
   RootLanguageResourceKey,
 } from '@ccchymns.com/common';
@@ -31,7 +32,7 @@ import { Unsubscribe } from '@angular/fire/firestore';
 import { AudioHymnsDataService } from '../audio-hymns/audio-hymns.data.service';
 import { AudioSpaceDataService } from '../audio-space/audio-space.data.service';
 import { TonicSolfaDataService } from '../tonic-solfa/tonic-solfa.data.service';
-import { NotificationBuilder } from '@ccchymns.com/core';
+import { NotificationBuilder, Shield } from '@ccchymns.com/core';
 
 @Component({
   selector: 'app-all-hymns',
@@ -75,7 +76,8 @@ export class AllHymnsComponent implements OnInit, OnDestroy {
     private audioSpaceDataService: AudioSpaceDataService,
     private audioHymnsDataService: AudioHymnsDataService,
     private allHymnsDataService: AllHymnsDataService,
-    private cdRef: ChangeDetectorRef
+    private cdRef: ChangeDetectorRef,
+    private displayService: DisplayService
   ) {}
 
   ngOnInit(): void {
@@ -135,15 +137,25 @@ export class AllHymnsComponent implements OnInit, OnDestroy {
       );
   }
 
-  publishHymns() {
-    const unpublishedHymnIds =
-      this.allHymnsDataService.getAllUnpublishedHymnIds();
-
-      
-    if (unpublishedHymnIds.length > 0) {
-
-    } else {
+  async publishHymnLyrics() {
+    try {
+      const responsiveSvgSize = this.displayService.percentage * 60;
+      const responsiveFontSize = this.displayService.percentage * 16;
+      Shield.pulse(
+        responsiveFontSize,
+        responsiveSvgSize,
+        `Publishing hymns please wait`
+      );
+      await this.allHymnsDataService.publishHymnLyrics();
       this.showPublishedSuccessNotification();
+    } catch (error: any) {
+      new NotificationBuilder()
+        .build()
+        .error(
+          `Unable to publish hymns at the moment, try again later ${error.message}`
+        );
+    } finally {
+      Shield.remove();
     }
   }
 

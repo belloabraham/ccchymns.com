@@ -191,7 +191,7 @@ export class AddAudioSpaceDialogComponent implements OnInit {
     LoggerUtil.error(this, this.onSubmit.name, error);
     new NotificationBuilder().build()
       .error(`Unable to upload audio space at the moment, try again later.
-      Error: ${error}
+      Error: ${error.message}
     `);
   }
 }

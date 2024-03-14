@@ -141,7 +141,7 @@ export class TonicSolfaTableComponent implements OnChanges {
   showAudioHymnDeleteErrorNotification(error: any, no: number) {
     new NotificationBuilder().build()
       .error(`Unable to delete tonic solfa for hymn ${no} at the moment, try again later.
-      Error: ${error}
+      Error: ${error.message}
     `);
   }
 

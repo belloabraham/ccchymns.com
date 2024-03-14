@@ -7,12 +7,12 @@ import {
 } from '@ccchymns.com/common';
 import { ReplaySubject } from 'rxjs';
 import {
-  CLOUD_FUNCTIONS_IJTOKEN,
   Collection,
   DATABASE_IJTOKEN,
-  ICloudFunctions,
+  Fields,
   IDatabase,
-} from 'apps/admin.ccchymns.com/src/core';
+} from '../../../core';
+import { Firestore, doc, runTransaction } from '@angular/fire/firestore';
 
 @Injectable()
 export class AllHymnsDataService {
@@ -21,7 +21,7 @@ export class AllHymnsDataService {
 
   constructor(
     @Inject(DATABASE_IJTOKEN) private remoteData: IDatabase,
-    @Inject(CLOUD_FUNCTIONS_IJTOKEN) private cloudFunctions: ICloudFunctions
+    private firestore: Firestore
   ) {}
 
   addDataToAllHymns(allHymns: IHymnNo[], type: string) {
@@ -37,18 +37,55 @@ export class AllHymnsDataService {
     );
   }
 
-  getAllUnpublishedHymnIds(): IHymnNo[] {
+  async publishHymnLyrics() {
+    const allUnpublishedLyrics = this.getAllUnpublishedLyrics();
+    return runTransaction(this.firestore, async (transaction) => {
+      for (let index = 0; index < allUnpublishedLyrics.length; index++) {
+        const lyric = allUnpublishedLyrics[index];
+        const editorsHymnDocRef = doc(
+          this.firestore,
+          Collection.EDITORS_HYMNS,
+          `${lyric.no}`
+        );
+        transaction.update(editorsHymnDocRef, Fields.PUBLISHED, true);
+
+        const paidHymnDocRef = doc(
+          this.firestore,
+          Collection.ALL_HYMNS_PAID,
+          `${lyric.no}`
+        );
+        transaction.set(paidHymnDocRef, lyric, { merge: true });
+
+        const freeHymnsdDocRef = doc(
+          this.firestore,
+          Collection.ALL_HYMNS_FREE,
+          `${lyric.no}`
+        );
+        const freeHymn: IEditorsHymn =
+          lyric.paid === true
+            ? {
+                ...lyric,
+                yoruba: null,
+                english: null,
+                french: null,
+                egun: null,
+              }
+            : lyric;
+        transaction.set(freeHymnsdDocRef, freeHymn, { merge: true });
+      }
+    });
+  }
+
+  getAllUnpublishedLyrics(): IEditorsHymn[] {
     const allHymns = Array.from(this.allHymns.values());
-    const allUnpublishedHymnIds: IHymnNo[] = [];
+    const allLyrics: IEditorsHymn[] = [];
     for (let index = 0; index < allHymns.length; index++) {
       const element = allHymns[index];
       if (element.lyric && !element.lyric.published) {
-        allUnpublishedHymnIds.push({
-          no: element.lyric.no,
-        });
+        allLyrics.push(element.lyric);
       }
     }
-    return allUnpublishedHymnIds;
+    return allLyrics;
   }
 
   setAllHymns(allHymns: Map<number, IAllHymns>) {

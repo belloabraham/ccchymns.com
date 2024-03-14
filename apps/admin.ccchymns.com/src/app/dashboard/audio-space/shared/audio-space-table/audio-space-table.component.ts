@@ -129,7 +129,7 @@ export class AudioSpaceTableComponent implements OnChanges {
   showAudioSpaceDeleteErrorNotification(error: any, no: number) {
     new NotificationBuilder().build()
       .error(`Unable to delete audio space for hymn ${no} at the moment, try again later.
-      Error: ${error}
+      Error: ${error.message}
     `);
   }
 

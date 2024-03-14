@@ -25,6 +25,9 @@
     <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[2])}}</th>
     <td cdk-cell *cdkCellDef="let row">
       <i class='icon' [ccc-icon]="'music-clef'" [class]="row?.tonicSolfa?.url ? 'text-success':'text-neutral'"></i>
+      <i class='icon visually-hidden' [ccc-icon]="'music-clef'"></i>
+      <i class='icon visually-hidden' [ccc-icon]="'music-clef'"></i>
+      <i class='icon visually-hidden' [ccc-icon]="'music-clef'"></i>
     </td>
   </ng-container>
 
@@ -35,7 +38,8 @@
       <i class='icon' [ccc-icon]="'y-circle'" [class]="row?.audioHymn?.yoruba ? 'text-success':'text-neutral'"></i>
       <i class='icon' [ccc-icon]="'e-circle'" [class]="row?.audioHymn?.english ? 'text-success':'text-neutral'"></i>
       <i class='icon' [ccc-icon]="'f-circle'" [class]="row?.audioHymn?.french ? 'text-success':'text-neutral'"></i>
-      <i class='icon' [ccc-icon]="'e-circle-outline'" [class]="row?.audioHymn?.egun ? 'text-success':'text-neutral'"></i>
+      <i class='icon' [ccc-icon]="'e-circle-outline'"
+        [class]="row?.audioHymn?.egun ? 'text-success':'text-neutral'"></i>
     </td>
   </ng-container>
 
@@ -46,7 +50,8 @@
       <i class='icon' [ccc-icon]="'y-circle'" [class]="row?.audioSpace?.yoruba ? 'text-success':'text-neutral'"></i>
       <i class='icon' [ccc-icon]="'e-circle'" [class]="row?.audioSpace?.english ? 'text-success':'text-neutral'"></i>
       <i class='icon' [ccc-icon]="'f-circle'" [class]="row?.audioSpace?.french ? 'text-success':'text-neutral'"></i>
-      <i class='icon' [ccc-icon]="'e-circle-outline'" [class]="row?.audioSpace?.egun ? 'text-success':'text-neutral'"></i>
+      <i class='icon' [ccc-icon]="'e-circle-outline'"
+        [class]="row?.audioSpace?.egun ? 'text-success':'text-neutral'"></i>
     </td>
   </ng-container>
 
@@ -55,12 +60,13 @@
     <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[5])}}</th>
     <td cdk-cell *cdkCellDef="let row">
       <div class="form-check form-switch">
-        <input class="form-check-input" [checked]="row.lyric.paid" (change)="onPaidChanged($event, row.lyric.no)" type="checkbox" role="switch">
+        <input class="form-check-input" [checked]="row.lyric.paid" (change)="onPaidChanged($event, row.lyric.no)"
+          type="checkbox" role="switch">
       </div>
     </td>
   </ng-container>
 
-    <!-- Published -->
+  <!-- Published -->
   <ng-container [cdkColumnDef]="columnNames[6]">
     <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[6])}}</th>
     <td cdk-cell *cdkCellDef="let row">

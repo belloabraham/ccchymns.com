@@ -217,7 +217,7 @@ export class AddAudioHymnDialogComponent implements OnInit, OnDestroy {
     LoggerUtil.error(this, this.uploadEditorsAudioHymn.name, error);
     new NotificationBuilder().build()
       .error(`Unable to upload audio hymn at the moment, try again later.
-      Error: ${error}
+      Error: ${error.message}
     `);
   }
 

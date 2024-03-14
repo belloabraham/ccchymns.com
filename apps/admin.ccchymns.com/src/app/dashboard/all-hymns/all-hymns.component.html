@@ -37,27 +37,6 @@
 
       </div>
 
-      <div class="d-flex icon-description">
-        <div class="d-flex align-items-center">
-          <i [ccc-icon]="'y-circle'" class="text-neutral"></i> <span
-            class="ms-1">{{t(rootLanguageResourceKey.YORUBA)}}</span>
-        </div>
-
-        <div class="d-flex align-items-center">
-          <i [ccc-icon]="'e-circle'" class="text-neutral"></i> <span
-            class="ms-1">{{t(rootLanguageResourceKey.ENGLISH)}}</span>
-        </div>
-
-        <div class="d-flex align-items-center">
-          <i [ccc-icon]="'f-circle'" class="text-neutral"></i> <span
-            class="ms-1">{{t(rootLanguageResourceKey.FRENCH)}}</span>
-        </div>
-
-        <div class="d-flex align-items-center">
-          <i [ccc-icon]="'e-circle-outline'" class="text-neutral"></i> <span
-            class="ms-1">{{t(rootLanguageResourceKey.EGUN)}}</span>
-        </div>
-      </div>
 
 
       <div class="card-body overflow-x-scroll">
@@ -68,12 +47,12 @@
           [descriptionKey]="languageResourceKey.EMPTY_STATE_DESCRIPTION" />
         <app-error-state *ngIf="data === null" (retry)="retry()" />
 
-        <div class="text-end">
-          <button ng-mat-raised-button (click)="publishHymns()">
-            {{t(languageResourceKey.PUBLISH)}}
-          </button>
-        </div>
+      </div>
 
+      <div class="w-100 text-end">
+        <button ng-mat-raised-button (click)="publishHymnLyrics()" class="btn-publish">
+          {{t(languageResourceKey.PUBLISH)}}
+        </button>
       </div>
 
 

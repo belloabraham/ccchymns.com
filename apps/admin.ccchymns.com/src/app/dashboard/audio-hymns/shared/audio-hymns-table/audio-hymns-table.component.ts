@@ -129,7 +129,7 @@ export class AudioHymnsTableComponent implements OnChanges {
   showAudioHymnDeleteErrorNotification(error: any, no: number) {
     new NotificationBuilder().build()
       .error(`Unable to delete audio hymn ${no} at the moment, try again later.
-      Error: ${error}
+      Error: ${error.message}
     `);
   }
   removeTheDeletedAudioHymnRecord(no: number) {
