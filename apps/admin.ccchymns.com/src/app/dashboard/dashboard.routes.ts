@@ -7,8 +7,9 @@ import { LyricsDataService } from './lyrics/lyrics.data.service';
 import { BibleReferencesDataService } from './bible-references/bible-references.data.service';
 import { TonicSolfaDataService } from './tonic-solfa/tonic-solfa.data.service';
 import { AudioSpaceDataService } from './audio-space/audio-space.data.service';
-import { AllHymnsDataService } from './all-hymns/all-hymns.data.service';
 import { AudioHymnsDataService } from './audio-hymns/audio-hymns.data.service';
+import { AllHymnsDataService } from './all-hymns/all-hymns.data.service';
+import { CLOUD_FUNCTIONS_IJTOKEN, CloudFunctionsService } from '../../core';
 
 export const DASHBOARD_ROUTES: Routes = [
   {
@@ -97,7 +98,17 @@ export const DASHBOARD_ROUTES: Routes = [
       },
       {
         path: Route.ALL_HYMNS,
-        providers: [LyricsDataService],
+        providers: [
+          LyricsDataService,
+          TonicSolfaDataService,
+          AudioSpaceDataService,
+          AudioHymnsDataService,
+          AllHymnsDataService,
+          {
+            provide: CLOUD_FUNCTIONS_IJTOKEN,
+            useClass: CloudFunctionsService,
+          },
+        ],
         data: {
           breadcrumb: RootLanguageResourceKey.ALL_HYMNS,
         },

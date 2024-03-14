@@ -10,9 +10,8 @@ import {
 } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { filter } from 'rxjs';
-import { ALLHymnsType, IEditorsAudioSpace, Route } from '@ccchymns.com/common';
+import {  IEditorsAudioSpace, Route } from '@ccchymns.com/common';
 import { getAudioSpaceActionGroup } from 'apps/admin.ccchymns.com/src/store';
-import { AllHymnsDataService } from '../all-hymns/all-hymns.data.service';
 @Component({
   selector: 'app-audio-space',
   standalone: true,
@@ -31,7 +30,6 @@ export class AudioSpaceComponent implements OnInit, OnDestroy {
     private router: Router,
     private ngrxStore: Store,
     private activatedRoute: ActivatedRoute,
-    private allHymnsDataService: AllHymnsDataService
   ) {}
 
   ngOnInit(): void {
@@ -55,10 +53,6 @@ export class AudioSpaceComponent implements OnInit, OnDestroy {
         (editorsAudioSpaces) => {
           this.audioSpaceDataService.setEditorsAudioSpaces(editorsAudioSpaces);
           this.dispatchEditorsAudioSpaceActionState(editorsAudioSpaces);
-          this.allHymnsDataService.addDataToAllHymns(
-            editorsAudioSpaces,
-            ALLHymnsType.AUDIO_SPACE
-          );
         },
         (error) => {}
       );

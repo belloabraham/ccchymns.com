@@ -28,6 +28,9 @@ import { LanguageResourceKey } from './i18n/language-resource-key';
 import { AllHymnsDataService } from './all-hymns.data.service';
 import { LyricsDataService } from '../lyrics/lyrics.data.service';
 import { Unsubscribe } from '@angular/fire/firestore';
+import { AudioHymnsDataService } from '../audio-hymns/audio-hymns.data.service';
+import { AudioSpaceDataService } from '../audio-space/audio-space.data.service';
+import { TonicSolfaDataService } from '../tonic-solfa/tonic-solfa.data.service';
 
 @Component({
   selector: 'app-all-hymns',
@@ -59,9 +62,17 @@ export class AllHymnsComponent implements OnInit, OnDestroy {
   @Input({ required: true }) data?: IAllHymnsUIState[] | null;
   private subscriptions = new SubSink();
   unsubscribeFromLiveEditorsHymns!: Unsubscribe;
+  unsubscribeFromLiveEditorTonicSolfa!: Unsubscribe;
+  unsubscribeFromLiveEditorsAudioSpace!: Unsubscribe;
+  unsubscribeFromLiveEditorsAudioHymns!: Unsubscribe;
+
+  readonly RETRY_TIMEOUT = 1000;
 
   constructor(
     private lyricsDataService: LyricsDataService,
+    private tonicSolfaDataService: TonicSolfaDataService,
+    private audioSpaceDataService: AudioSpaceDataService,
+    private audioHymnsDataService: AudioHymnsDataService,
     private allHymnsDataService: AllHymnsDataService,
     private cdRef: ChangeDetectorRef
   ) {}
@@ -76,12 +87,47 @@ export class AllHymnsComponent implements OnInit, OnDestroy {
 
     this.unsubscribeFromLiveEditorsHymns =
       this.lyricsDataService.getLiveListOfEditorsHymn(
-        10000,
+        this.RETRY_TIMEOUT,
         (editorsHymns) => {
-          this.lyricsDataService.setEditorsHymn(editorsHymns);
           this.allHymnsDataService.addDataToAllHymns(
             editorsHymns,
             ALLHymnsType.LYRIC
+          );
+        },
+        (error) => {}
+      );
+
+    this.unsubscribeFromLiveEditorTonicSolfa =
+      this.tonicSolfaDataService.getLiveListOfTonicSolfas(
+        this.RETRY_TIMEOUT,
+        (editorsTonicSolfas) => {
+          this.allHymnsDataService.addDataToAllHymns(
+            editorsTonicSolfas,
+            ALLHymnsType.TONIC_SOLFA
+          );
+        },
+        (error) => {}
+      );
+
+    this.unsubscribeFromLiveEditorsAudioHymns =
+      this.audioHymnsDataService.getLiveListOfAudioHymns(
+        this.RETRY_TIMEOUT,
+        (editorsAudioHymns) => {
+          this.allHymnsDataService.addDataToAllHymns(
+            editorsAudioHymns,
+            ALLHymnsType.AUDIO_HYMN
+          );
+        },
+        (error) => {}
+      );
+
+    this.unsubscribeFromLiveEditorsAudioSpace =
+      this.audioSpaceDataService.getLiveListOfAudioSpaces(
+        this.RETRY_TIMEOUT,
+        (editorsAudioSpaces) => {
+          this.allHymnsDataService.addDataToAllHymns(
+            editorsAudioSpaces,
+            ALLHymnsType.AUDIO_SPACE
           );
         },
         (error) => {}
@@ -98,5 +144,8 @@ export class AllHymnsComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
     this.unsubscribeFromLiveEditorsHymns();
+    this.unsubscribeFromLiveEditorTonicSolfa();
+    this.unsubscribeFromLiveEditorsAudioHymns();
+    this.unsubscribeFromLiveEditorsAudioSpace();
   }
 }

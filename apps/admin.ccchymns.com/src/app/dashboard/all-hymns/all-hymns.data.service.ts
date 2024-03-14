@@ -5,10 +5,12 @@ import {
   IEditorsHymnPaidStatus,
   IHymnNo,
 } from '@ccchymns.com/common';
-import { ReplaySubject } from 'rxjs';
+import { ReplaySubject} from 'rxjs';
 import {
+  CLOUD_FUNCTIONS_IJTOKEN,
   Collection,
   DATABASE_IJTOKEN,
+  ICloudFunctions,
   IDatabase,
 } from 'apps/admin.ccchymns.com/src/core';
 
@@ -17,15 +19,14 @@ export class AllHymnsDataService {
   allHymns = new Map<number, IAllHymns>();
   private allHymnsUIState$ = new ReplaySubject<IAllHymnsUIState[]>(1);
 
-  constructor(@Inject(DATABASE_IJTOKEN) private remoteData: IDatabase) {}
+  constructor(
+    @Inject(DATABASE_IJTOKEN) private remoteData: IDatabase,
+    @Inject(CLOUD_FUNCTIONS_IJTOKEN) private cloudFunctions: ICloudFunctions
+  ) {}
 
   addDataToAllHymns(allHymns: IHymnNo[], type: string) {
     allHymns.forEach((hymn) => this.addToAllHymns(hymn, type));
     this.updateAllHymnsUIState();
-  }
-
-  getAllHymns$() {
-    //TODO Load hymns from the cloud
   }
 
   updateHymnLyricsPaidStatus(value: IEditorsHymnPaidStatus) {
