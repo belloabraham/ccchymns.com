@@ -9,7 +9,6 @@ import { TonicSolfaDataService } from './tonic-solfa/tonic-solfa.data.service';
 import { AudioSpaceDataService } from './audio-space/audio-space.data.service';
 import { AudioHymnsDataService } from './audio-hymns/audio-hymns.data.service';
 import { AllHymnsDataService } from './all-hymns/all-hymns.data.service';
-import { CLOUD_FUNCTIONS_IJTOKEN, CloudFunctionsService } from '../../core';
 
 export const DASHBOARD_ROUTES: Routes = [
   {
@@ -104,10 +103,6 @@ export const DASHBOARD_ROUTES: Routes = [
           AudioSpaceDataService,
           AudioHymnsDataService,
           AllHymnsDataService,
-          {
-            provide: CLOUD_FUNCTIONS_IJTOKEN,
-            useClass: CloudFunctionsService,
-          },
         ],
         data: {
           breadcrumb: RootLanguageResourceKey.ALL_HYMNS,
