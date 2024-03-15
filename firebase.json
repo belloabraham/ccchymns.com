@@ -2,11 +2,11 @@
   "hosting": [
     {
       "target": "ccchymnsdev",
-      "public": "dist/apps/admin.ccchymns.com"
+      "public": "dist/apps/ccchymns.com"
     },
     {
       "target": "admin-ccchymnsdev",
-      "public": "dist/apps/ccchymns.com"
+      "public": "dist/apps/admin.ccchymns.com"
     }
   ]
 }
