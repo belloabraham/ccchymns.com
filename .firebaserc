@@ -1,0 +1,28 @@
+{
+  "projects": {
+    "default": "ccchymnsdev"
+  },
+  "targets": {
+    "ccchymnsdev": {
+      "hosting": {
+        "admin-ccchymnsdev": [
+          "admin-ccchymnsdev"
+        ],
+        "ccchymnsdev": [
+          "ccchymnsdev"
+        ]
+      }
+    },
+    "ccchymns-9f715": {
+      "hosting": {
+        "adminccchymns": [
+          "adminccchymns"
+        ],
+        "ccchymns-9f715": [
+          "ccchymns-9f715"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

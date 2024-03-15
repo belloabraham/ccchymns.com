@@ -1,12 +1,48 @@
 {
   "hosting": [
     {
-      "target": "ccchymnsdev",
-      "public": "dist/apps/ccchymns.com"
+      "target": "admin-ccchymnsdev",
+      "public": "dist/apps/admin.ccchymns.com",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
     },
     {
-      "target": "admin-ccchymnsdev",
-      "public": "dist/apps/admin.ccchymns.com"
+      "target": "ccchymnsdev",
+      "public": "dist/apps/ccchymns.com",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    },
+    {
+      "target": "ccchymns-9f715",
+      "public": "dist/apps/ccchymns.com",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    },
+    {
+      "target": "adminccchymns",
+      "public": "dist/apps/admin.ccchymns.com",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
     }
   ]
 }
