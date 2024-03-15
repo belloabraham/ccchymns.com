@@ -169,9 +169,6 @@ export class AllHymnsComponent implements OnInit, OnDestroy {
     this.filterBy = event.target.value;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  retry() {}
-
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
     this.unsubscribeFromLiveEditorsHymns();

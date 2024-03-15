@@ -8,7 +8,7 @@ import { StorageService } from './dashboard/storage.service';
 import { CLOUD_STORAGE_IJTOKEN, CloudStorageService } from '../core';
 
 const routes: Routes = [
-  {
+/*   {
     path: Route.ROOT,
     pathMatch: 'full',
     canMatch: [
@@ -21,7 +21,7 @@ const routes: Routes = [
           ),
     ],
     component: AuthComponent,
-  },
+  }, */
   {
     path: Route.ROOT,
     providers: [
@@ -31,7 +31,7 @@ const routes: Routes = [
       },
       StorageService,
     ],
-    canMatch: [
+ /*    canMatch: [
       //Match route only if authenticated user exist
       () =>
         inject(AUTH_IJTOKEN)
@@ -39,7 +39,7 @@ const routes: Routes = [
           .pipe(
             map((userIsAuthenticated) => (userIsAuthenticated ? true : false))
           ),
-    ],
+    ], */
     loadChildren: () =>
       import('./dashboard/dashboard.routes').then(
         (mod) => mod.DASHBOARD_ROUTES

@@ -45,8 +45,6 @@
         <app-all-hymns-placeholder *ngIf="data === undefined" [columnNames]="columnNames" />
         <app-empty-state *ngIf="data && data.length === 0"
           [descriptionKey]="languageResourceKey.EMPTY_STATE_DESCRIPTION" />
-        <app-error-state *ngIf="data === null" (retry)="retry()" />
-
       </div>
 
       <div class="w-100 text-end" *ngIf="data && data.length>0">

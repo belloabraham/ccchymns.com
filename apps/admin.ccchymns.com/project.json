@@ -56,6 +56,27 @@
             }
           ]
         },
+        "staging": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1.5mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "4kb",
+              "maximumError": "7kb"
+            }
+          ],
+          "outputHashing": "all",
+          "fileReplacements": [
+            {
+              "replace": "apps/admin.ccchymns.com/src/environments/environment.ts",
+              "with": "apps/admin.ccchymns.com/src/environments/environment.staging.ts"
+            }
+          ]
+        },
         "development": {
           "buildOptimizer": false,
           "optimization": false,
@@ -65,7 +86,7 @@
           "namedChunks": true
         }
       },
-      "defaultConfiguration": "production"
+      "defaultConfiguration": "staging"
     },
     "serve": {
       "executor": "@angular-devkit/build-angular:dev-server",
@@ -78,6 +99,9 @@
       "configurations": {
         "production": {
           "browserTarget": "admin.ccchymns.com:build:production"
+        },
+        "staging": {
+          "browserTarget": "admin.ccchymns.com:build:staging"
         },
         "development": {
           "browserTarget": "admin.ccchymns.com:build:development"

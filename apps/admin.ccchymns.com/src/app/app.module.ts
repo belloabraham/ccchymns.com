@@ -9,10 +9,10 @@ import { TranslocoRootModule } from '@ccchymns.com/angular';
 import { environment } from '../environments/environment';
 import { provideState, provideStore } from '@ngrx/store';
 import { languageLoadedFeature } from '../store/selectors/language-resource.selector';
-import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getApp, initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import {
-  initializeAppCheck,
+  initializeAppCheck, 
   ReCaptchaEnterpriseProvider,
   provideAppCheck,
 } from '@angular/fire/app-check';
@@ -43,7 +43,7 @@ const MODULES = [
       const provider = new ReCaptchaEnterpriseProvider(
         environment.reCAPTCHAEnterpriseKey
       );
-      return initializeAppCheck(undefined, {
+      return initializeAppCheck(getApp(), {
         provider,
         isTokenAutoRefreshEnabled: true,
       });
