@@ -5,23 +5,23 @@ import { AUTH_IJTOKEN } from '../core/auth';
 import { map } from 'rxjs';
 import { Route } from '@ccchymns.com/common';
 import { StorageService } from './dashboard/storage.service';
-import {  CLOUD_STORAGE_IJTOKEN, CloudStorageService } from '../core';
+import { CLOUD_STORAGE_IJTOKEN, CloudStorageService } from '../core';
 
 const routes: Routes = [
-  // {
-  //   path: Route.ROOT,
-  //   pathMatch: 'full',
-  //   canMatch: [
-  //     //Match route if authenticated user does not exist
-  //     () =>
-  //       inject(AUTH_TOKEN)
-  //         .getAuthSate$()
-  //         .pipe(
-  //           map((userIsAuthenticated) => (userIsAuthenticated ? false : true))
-  //         ),
-  //   ],
-  //   component: AuthComponent,
-  // },
+  {
+    path: Route.ROOT,
+    pathMatch: 'full',
+    canMatch: [
+      //Match route if authenticated user does not exist
+      () =>
+        inject(AUTH_IJTOKEN)
+          .getAuthSate$()
+          .pipe(
+            map((userIsAuthenticated) => (userIsAuthenticated ? false : true))
+          ),
+    ],
+    component: AuthComponent,
+  },
   {
     path: Route.ROOT,
     providers: [
@@ -31,15 +31,15 @@ const routes: Routes = [
       },
       StorageService,
     ],
-    // canMatch: [
-    //   //Match route only if authenticated user exist
-    //   () =>
-    //     inject(AUTH_TOKEN)
-    //       .getAuthSate$()
-    //       .pipe(
-    //         map((userIsAuthenticated) => (userIsAuthenticated ? true : false))
-    //       ),
-    // ],
+    canMatch: [
+      //Match route only if authenticated user exist
+      () =>
+        inject(AUTH_IJTOKEN)
+          .getAuthSate$()
+          .pipe(
+            map((userIsAuthenticated) => (userIsAuthenticated ? true : false))
+          ),
+    ],
     loadChildren: () =>
       import('./dashboard/dashboard.routes').then(
         (mod) => mod.DASHBOARD_ROUTES
