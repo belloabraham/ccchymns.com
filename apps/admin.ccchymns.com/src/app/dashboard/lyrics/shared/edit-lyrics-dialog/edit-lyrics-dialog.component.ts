@@ -128,20 +128,23 @@ export class EditLyricsDialogComponent implements OnInit {
     const basePath = `/${Route.LYRICS}`;
     if (this.router.isActive(`${basePath}/${Route.YORUBA}`, true)) {
       data.yoruba = lyrics;
+      return this.lyricsDataService.updateYorubaHymnLyrics(data);
     }
 
     if (this.router.isActive(`${basePath}/${Route.ENGLISH}`, true)) {
       data.english = lyrics;
+      return this.lyricsDataService.updateEnglishHymnLyrics(data);
     }
 
     if (this.router.isActive(`${basePath}/${Route.FRENCH}`, true)) {
       data.french = lyrics;
+      return this.lyricsDataService.updateFrenchHymnLyrics(data);
     }
 
     if (this.router.isActive(`${basePath}/${Route.EGUN}`, true)) {
       data.egun = lyrics;
     }
 
-    return this.lyricsDataService.updateYorubaHymnLyrics(data);
+    return this.lyricsDataService.updateEgunHymnLyrics(data);
   }
 }
