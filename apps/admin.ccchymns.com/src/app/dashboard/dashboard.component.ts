@@ -119,6 +119,7 @@ export class DashboardComponent implements OnDestroy, OnInit {
   async logout() {
     try {
       await this.auth.signOut();
+      this.router.navigate([Route.ROOT])
     } catch (error: any) {
       new NotificationBuilder()
         .build()
