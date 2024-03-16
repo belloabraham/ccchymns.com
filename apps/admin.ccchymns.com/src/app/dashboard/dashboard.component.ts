@@ -36,7 +36,8 @@ import {
   RouterOutlet,
 } from '@angular/router';
 import { distinctUntilChanged, filter, map, merge } from 'rxjs';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { AUTH_IJTOKEN, IAuth } from '../../core';
+import { NotificationBuilder } from '@ccchymns.com/core';
 
 export interface IBreadCrumb {
   label: string;
@@ -85,7 +86,8 @@ export class DashboardComponent implements OnDestroy, OnInit {
     private title: Title,
     private displayService: DisplayService,
     private activatedRoute: ActivatedRoute,
-    private cdRef:ChangeDetectorRef
+    private cdRef: ChangeDetectorRef,
+    @Inject(AUTH_IJTOKEN) private auth: IAuth
   ) {
     this.openSidebarCollapseButtonForTheInitialRoute();
 
@@ -109,9 +111,21 @@ export class DashboardComponent implements OnDestroy, OnInit {
       (displaySize) => {
         this.displayIsMobile =
           displaySize === Size.Small || displaySize === Size.XSmall;
-          this.cdRef.detectChanges()
+        this.cdRef.detectChanges();
       }
     );
+  }
+
+  async logout() {
+    try {
+      await this.auth.signOut();
+    } catch (error: any) {
+      new NotificationBuilder()
+        .build()
+        .error(
+          `Unable to sign you out at the moment, try again later ${error.message}`
+        );
+    }
   }
 
   openSidebarCollapseButtonForTheInitialRoute() {

@@ -51,7 +51,6 @@ import { NgOptimizedImage } from '@angular/common';
 })
 export class VerifyEmailComponent implements OnInit, OnDestroy {
   private subscriptions = new SubSink();
-  private signInMail = localStorage.getItem(Preference.SIGN_IN_MAIL);
   rootLanguageResourceKey = RootLanguageResourceKey;
   languageResourceKey = LanguageResourceKey;
   root = Route.ROOT;
@@ -76,9 +75,6 @@ export class VerifyEmailComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.onLanguageResourceLoad();
-    if (this.signInMail) {
-      this.verifyEmail(this.signInMail);
-    }
   }
 
   emailIsValid() {
@@ -89,9 +85,6 @@ export class VerifyEmailComponent implements OnInit, OnDestroy {
     const responsiveSvgSize = this.displayService.percentage * 60;
     Shield.standard(responsiveSvgSize);
     try {
-      if (!this.auth.emailIsAuthorized(email)) {
-        throw new Error('UnAuthorized email');
-      }
       await this.auth.signInWithEmailLink(email, location.href);
       localStorage.removeItem(Preference.SIGN_IN_MAIL);
       this.router.navigate([Route.ROOT]);

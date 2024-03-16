@@ -13,6 +13,9 @@ export class AuthService implements IAuth {
     email: string,
     emailLink: string
   ): Promise<UserCredential> {
+    if (!this.emailIsAuthorized(email)) {
+      throw new Error('UnAuthorized email');
+    }
     return this.emailAuth.signInWithEmailLink(email, emailLink);
   }
 
