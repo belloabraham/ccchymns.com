@@ -51,6 +51,7 @@ import { NgOptimizedImage } from '@angular/common';
 })
 export class VerifyEmailComponent implements OnInit, OnDestroy {
   private subscriptions = new SubSink();
+  private signInMail = localStorage.getItem(Preference.SIGN_IN_MAIL);
   rootLanguageResourceKey = RootLanguageResourceKey;
   languageResourceKey = LanguageResourceKey;
   root = Route.ROOT;
@@ -75,6 +76,9 @@ export class VerifyEmailComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.onLanguageResourceLoad();
+    if (this.signInMail) {
+      this.verifyEmail(this.signInMail);
+    }
   }
 
   emailIsValid() {

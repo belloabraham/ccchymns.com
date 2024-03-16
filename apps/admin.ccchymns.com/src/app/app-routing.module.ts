@@ -8,9 +8,7 @@ import { StorageService } from './dashboard/storage.service';
 import {
   CLOUD_STORAGE_IJTOKEN,
   CloudStorageService,
-  Preference,
 } from '../core';
-import { LoggerUtil } from '@ccchymns.com/core';
 
 const routes: Routes = [
   {
@@ -52,26 +50,6 @@ const routes: Routes = [
   },
   {
     path: Route.VERIFY_EMAIL,
-    resolve: {
-      auth: async () => {
-        const signInMail = localStorage.getItem(Preference.SIGN_IN_MAIL);
-        try {
-          if (!signInMail) {
-            throw new Error(
-              'Sign in email does not exist, user does not sign in from the same device'
-            );
-          }
-          await inject(AUTH_IJTOKEN).signInWithEmailLink(
-            signInMail!,
-            location.href
-          );
-          return inject(Router).navigate([Route.ROOT]);
-        } catch (error) {
-          LoggerUtil.error('AppRoutingModule', 'VerifyEmail.Resolve', error);
-          return null;
-        }
-      },
-    },
     canMatch: [
       (router: Router) =>
         inject(AUTH_IJTOKEN)
