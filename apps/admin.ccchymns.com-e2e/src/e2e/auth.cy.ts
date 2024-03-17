@@ -16,7 +16,7 @@ describe('Auth Component Test', () => {
 
     // Check if the app logo is visible
     cy.get('[data-testid=app-logo]')
-      .and('have.attr', 'src', 'assets/images/logo.png')
+      .and('have.attr', 'src', 'assets/images/logo.webp')
       .and('have.attr', 'width', '80')
       .and('have.attr', 'height', '75');
 

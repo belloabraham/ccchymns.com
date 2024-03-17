@@ -16,7 +16,7 @@ describe('MyComponent E2E Test', () => {
     // Check if the logo image is present and has the correct attributes
     cy.get('img.scale')
       .should('have.attr', 'alt', 'Logo')
-      .and('have.attr', 'src', 'assets/images/logo.png')
+      .and('have.attr', 'src', 'assets/images/logo.webp')
       .and('have.attr', 'width', '50')
       .and('have.attr', 'height', '50');
 
