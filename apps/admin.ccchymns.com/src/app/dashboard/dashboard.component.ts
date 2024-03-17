@@ -116,19 +116,17 @@ export class DashboardComponent implements OnDestroy, OnInit {
     );
   }
 
-  logout() {
-    this.auth
-      .signOut()
-      .then(() => {
-        this.router.navigateByUrl(Route.ROOT);
-      })
-      .catch((error) =>
-        new NotificationBuilder()
-          .build()
-          .error(
-            `Unable to sign you out at the moment, try again later ${error.message}`
-          )
-      );
+  async logout() {
+    try {
+      await this.auth.signOut();
+      location.reload();
+    } catch (error: any) {
+      new NotificationBuilder()
+        .build()
+        .error(
+          `Unable to sign you out at the moment, try again later ${error.message}`
+        );
+    }
   }
 
   openSidebarCollapseButtonForTheInitialRoute() {
