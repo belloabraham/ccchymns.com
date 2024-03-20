@@ -24,30 +24,33 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.ccci-email-fill:before {
+.ccci-close:before {
   content: "\e900";
 }
-.ccci-facebook:before {
+.ccci-email-fill:before {
   content: "\e901";
 }
-.ccci-instagram:before {
+.ccci-facebook:before {
   content: "\e902";
 }
-.ccci-phone-fill:before {
+.ccci-instagram:before {
   content: "\e903";
 }
-.ccci-star-fill:before {
+.ccci-phone-fill:before {
   content: "\e904";
 }
-.ccci-star-half:before {
+.ccci-star-fill:before {
   content: "\e905";
 }
-.ccci-star-outline:before {
+.ccci-star-half:before {
   content: "\e906";
 }
-.ccci-x-circle-outline:before {
+.ccci-star-outline:before {
   content: "\e907";
 }
-.ccci-youtube:before {
+.ccci-x-circle-outline:before {
   content: "\e908";
+}
+.ccci-youtube:before {
+  content: "\e909";
 }

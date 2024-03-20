@@ -4,7 +4,7 @@
     "build": {
       "dependsOn": ["^build"],
       "inputs": ["production", "^production"],
-      "cache": true
+      "cache": false
     },
     "test": {
       "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"],
@@ -33,7 +33,7 @@
       "cache": true
     },
     "server": {
-      "cache": true
+      "cache": false
     }
   },
   "namedInputs": {

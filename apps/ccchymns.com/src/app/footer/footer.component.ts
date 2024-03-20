@@ -1,4 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  afterNextRender,
+  ChangeDetectionStrategy,
+  Component,
+} from '@angular/core';
 import { NgMaterialButtonModule, SharedModule } from '@ccchymns.com/angular';
 import { CCCIconDirective } from '@ccchymns.com/ui';
 import { Contact, Route, Preference } from '../../core';
@@ -32,12 +36,20 @@ export class FooterComponent {
   playStoreURL = Config.PLAY_STORE_URL;
   languageResourceKey = LanguageResourceKey;
   rootLanguageResourceKey = RootLanguageResourceKey;
+  showCookieNotice: string | boolean | null = null;
 
-  showCookieNotice: string | boolean | null = localStorage.getItem(
-    Preference.SHOW_COOKIE_NOTICE
-  );
+  constructor() {
+    afterNextRender(() => {
+      // Safe to check `scrollHeight` because this will only run in the browser, not the server.
+      this.showCookieNotice = localStorage.getItem(Preference.SHOW_COOKIE_NOTICE);
+    });
+  }
+
   closeCookie() {
     this.showCookieNotice = 'false';
-    localStorage.setItem(Preference.SHOW_COOKIE_NOTICE, 'false');
+    afterNextRender(() => {
+      // Safe to check `scrollHeight` because this will only run in the browser, not the server.
+      localStorage.setItem(Preference.SHOW_COOKIE_NOTICE, 'false');
+    });
   }
 }
