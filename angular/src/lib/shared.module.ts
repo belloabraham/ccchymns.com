@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TranslocoModule } from '@ngneat/transloco';
 
-const MODULES = [CommonModule, TranslocoModule];
+const MODULES = [CommonModule];
 
 @NgModule({
   imports: MODULES,

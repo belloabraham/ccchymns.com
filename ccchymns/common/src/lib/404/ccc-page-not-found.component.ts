@@ -4,8 +4,6 @@ import {
 } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { TranslocoModule } from '@ngneat/transloco';
-import { LanguageResourceKey } from './i18n/language-resource-key';
 import {
   NgMaterialButtonModule,
   NgMaterialElevationDirective,
@@ -18,7 +16,6 @@ import {
     CommonModule,
     RouterLink,
     NgOptimizedImage,
-    TranslocoModule,
     NgMaterialButtonModule,
     NgMaterialElevationDirective,
   ],
@@ -28,5 +25,4 @@ import {
 })
 export class CCCPageNotFoundComponent {
   root = '';
-  languageResourceKey = LanguageResourceKey;
 }

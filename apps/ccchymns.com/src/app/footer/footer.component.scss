@@ -25,7 +25,7 @@
 
 .cookie-close {
   right: 0;
-  top: -8px !important;
+  top: 0 !important;
   font-size: 1.2rem;
   @include gerillass.breakpoint(min, size.$medium) {
     right: 1rem;

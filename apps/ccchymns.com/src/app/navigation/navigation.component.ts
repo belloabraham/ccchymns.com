@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FooterComponent } from '../footer/footer.component';
 import { RouterLink } from '@angular/router';
 import { Route } from '../../core';
-import { RootLanguageResourceKey } from '../i18n/language-resource-key';
 import { SharedModule } from '@ccchymns.com/angular';
 
 @Component({
@@ -17,7 +16,6 @@ export class NavigationComponent {
   showSideNavigation = false;
   route = Route;
   root = Route.ROOT;
-  languageResourceKey = RootLanguageResourceKey;
 
   download() {
     console.log();

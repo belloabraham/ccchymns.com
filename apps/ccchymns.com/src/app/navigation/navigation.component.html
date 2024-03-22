@@ -1,4 +1,4 @@
-<div *transloco="let t" class="position-relative overflow-hidden mobile-menu d-flex justify-content-between"
+<div class="position-relative overflow-hidden mobile-menu d-flex justify-content-between"
   [class.navigation]="showSideNavigation">
 
   <button class="menu-btn" (click)="showSideNavigation =!showSideNavigation"
@@ -14,10 +14,10 @@
   </button>
 
   <ul class="side-nav">
-    <li class="highlight"><a [routerLink]="[root]">{{ t(languageResourceKey.HOME) }}</a></li>
-    <li class="highlight"><a [routerLink]="[root,route.ABOUT]">{{ t(languageResourceKey.ABOUT) }}</a></li>
-    <li class="highlight"><a [routerLink]="[root,route.PRIVACY]">{{ t(languageResourceKey.PRIVACY) }}</a> </li>
-    <li class="highlight"><a [routerLink]="[root,route.TERMS]">{{ t(languageResourceKey.TERMS) }}</a> </li>
+    <li class="highlight"><a [routerLink]="[root]">Home</a></li>
+    <li class="highlight"><a [routerLink]="[root,route.ABOUT]">About</a></li>
+    <li class="highlight"><a [routerLink]="[root,route.PRIVACY]">Privacy</a> </li>
+    <li class="highlight"><a [routerLink]="[root,route.TERMS]">Terms</a> </li>
 
   </ul>
 

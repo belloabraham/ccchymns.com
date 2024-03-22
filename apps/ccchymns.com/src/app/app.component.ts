@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { ILanguageResourceService, LANGUAGE_RESOURCE_TOKEN, Language } from '@ccchymns.com/angular';
-import { SubSink } from 'subsink';
+
 import {
   NavigationCancel,
   NavigationEnd,
@@ -15,20 +14,14 @@ import { Observable, filter, map, merge, of } from 'rxjs';
   styleUrls: ['./app.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent implements OnInit, OnDestroy {
-  private subscriptions = new SubSink();
+export class AppComponent implements OnInit {
   shouldShowPreloader$!: Observable<boolean>;
 
   constructor(
-    @Inject(LANGUAGE_RESOURCE_TOKEN)
-    private languageResourceService: ILanguageResourceService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.loadLanguageResource(Language.ENGLISH, () => {
-      this.onLanguageLoaded();
-    });
 
     const routerNavigationStoppedEvent$ = this.router.events.pipe(
       filter(
@@ -47,22 +40,4 @@ export class AppComponent implements OnInit, OnDestroy {
     );
   }
 
-  private loadLanguageResource(
-    language: string,
-    onLanguageResourceLoaded: () => void
-  ) {
-    this.subscriptions.sink = this.languageResourceService
-      .loadLanguageResource(language)
-      .subscribe(() => {
-        onLanguageResourceLoaded();
-      });
-  }
-
-  onLanguageLoaded() {
-    this.languageResourceService.setLanguageResourceLoadedSuccessfully(true);
-  }
-
-  ngOnDestroy(): void {
-    this.subscriptions.unsubscribe();
-  }
 }

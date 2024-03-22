@@ -1,8 +1,15 @@
-import { ChangeDetectionStrategy, Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { CCCPageNotFoundComponent, LanguageResourceKey } from '@ccchymns.com/common';
-import { ILanguageResourceService, LANGUAGE_RESOURCE_TOKEN, SharedModule } from '@ccchymns.com/angular';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+} from '@angular/core';
+import {
+  CCCPageNotFoundComponent,
+} from '@ccchymns.com/common';
+import {
+  SharedModule,
+} from '@ccchymns.com/angular';
 import { Title } from '@angular/platform-browser';
-import { SubSink } from 'subsink';
 
 @Component({
   selector: 'app-page-not-found',
@@ -11,30 +18,10 @@ import { SubSink } from 'subsink';
   templateUrl: './page-not-found.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PageNotFoundComponent implements OnInit, OnDestroy {
-  private subscriptions = new SubSink();
-  constructor(
-    @Inject(LANGUAGE_RESOURCE_TOKEN)
-    private languageResourceService: ILanguageResourceService,
-    private title: Title
-  ) {}
+export class PageNotFoundComponent implements OnInit {
+  constructor(private title: Title) {}
 
   ngOnInit(): void {
-    this.onLanguageResourceLoaded();
-  }
-
-  onLanguageResourceLoaded() {
-    this.subscriptions.sink = this.languageResourceService
-      .getLanguageLoadSuccessfully$()
-      .subscribe(() => {
-        const pageTitle = this.languageResourceService.getString(
-          LanguageResourceKey.PAGE_TITLE
-        );
-        this.title.setTitle(pageTitle);
-      });
-  }
-
-  ngOnDestroy(): void {
-    this.subscriptions.unsubscribe();
+    this.title.setTitle('Error 404 - Page Not Found');
   }
 }

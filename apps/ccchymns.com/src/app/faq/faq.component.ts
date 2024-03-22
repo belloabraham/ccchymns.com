@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-faq',
@@ -9,4 +10,10 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./faq.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FaqComponent {}
+export class FaqComponent {
+  constructor(private title: Title) {}
+
+  ngOnInit(): void {
+    this.title.setTitle('CCC Hymns - FAQ');
+  }
+}

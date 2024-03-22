@@ -1,15 +1,15 @@
-<header *transloco="let t" class="header">
+<header class="header">
   <div class="container d-flex justify-content-start gap-4">
     <div class="logo d-flex justify-content-center align-items-center bg-white">
-      <a [routerLink]="route.ROOT"><img width="80" height="75" alt="{{ t(languageResourceKey.LOGO) }}"
+      <a [routerLink]="route.ROOT"><img width="80" height="75" alt="Logo"
           ngSrc="assets/images/logo.webp" priority>
       </a>
     </div>
     <nav class="nav">
       <ul class="d-flex">
-        <li><a  [class]="colorClass" [routerLink]="[root]">{{ t(languageResourceKey.HOME) }}</a></li>
-        <li><a  [class]="colorClass" [routerLink]="[root,route.ABOUT]">{{ t(languageResourceKey.ABOUT) }}</a></li>
-        <li><a  [class]="colorClass" [routerLink]="[root,route.PRIVACY]">{{ t(languageResourceKey.PRIVACY) }}</a> </li>
+        <li><a  [class]="colorClass" [routerLink]="[root]">Home</a></li>
+        <li><a  [class]="colorClass" [routerLink]="[root,route.ABOUT]">About</a></li>
+        <li><a  [class]="colorClass" [routerLink]="[root,route.PRIVACY]">Privacy</a> </li>
       </ul>
     </nav>
   </div>
