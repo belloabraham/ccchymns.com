@@ -1,10 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { SharedModule } from '@ccchymns.com/angular';
 import { NavigationComponent } from '../navigation/navigation.component';
 import { ReviewsComponent } from '../reviews/reviews.component';
 import { HeaderComponent } from '../header/header.component';
 import { FeaturesComponent } from '../features/features.component';
-import { NgOptimizedImage } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Route } from '../../core';
 import { RouterLink } from '@angular/router';
 import { Config } from '@ccchymns.com/common';
@@ -14,7 +13,7 @@ import { Title } from '@angular/platform-browser';
   selector: 'app-home',
   standalone: true,
   imports: [
-    SharedModule,
+    CommonModule,
     NavigationComponent,
     ReviewsComponent,
     HeaderComponent,

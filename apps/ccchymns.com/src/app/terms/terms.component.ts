@@ -3,18 +3,16 @@ import {
   Component,
   OnInit,
 } from '@angular/core';
-import {
-  SharedModule,
-} from '@ccchymns.com/angular';
 import { Title } from '@angular/platform-browser';
 import { NavigationComponent } from '../navigation/navigation.component';
 import { HeaderComponent } from '../header/header.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-terms',
   standalone: true,
   imports: [
-    SharedModule,
+    CommonModule,
     NavigationComponent,
     HeaderComponent,
   ],

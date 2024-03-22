@@ -1,13 +1,12 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CCCIconDirective } from '@ccchymns.com/ui';
 import { APP_REVIEWS, AppReview } from '../../core';
-import { SharedModule } from '@ccchymns.com/angular';
-import { NgOptimizedImage } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-reviews',
   standalone: true,
-  imports: [SharedModule, CCCIconDirective, NgOptimizedImage],
+  imports: [CommonModule, CCCIconDirective, NgOptimizedImage],
   templateUrl: './reviews.component.html',
   styleUrls: ['./reviews.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

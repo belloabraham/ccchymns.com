@@ -6,15 +6,13 @@ import {
 import {
   CCCPageNotFoundComponent,
 } from '@ccchymns.com/common';
-import {
-  SharedModule,
-} from '@ccchymns.com/angular';
 import { Title } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-page-not-found',
   standalone: true,
-  imports: [SharedModule, CCCPageNotFoundComponent],
+  imports: [CommonModule, CCCPageNotFoundComponent],
   templateUrl: './page-not-found.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

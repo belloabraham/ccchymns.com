@@ -1,10 +1,10 @@
+import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { SharedModule } from '@ccchymns.com/angular';
 
 @Component({
   selector: 'app-features',
   standalone: true,
-  imports: [SharedModule],
+  imports: [CommonModule],
   templateUrl: './features.component.html',
   styleUrls: ['./features.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
