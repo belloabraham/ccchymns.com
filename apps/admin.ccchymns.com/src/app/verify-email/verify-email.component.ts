@@ -5,7 +5,6 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
-import { SharedModule } from '@ccchymns.com/angular';
 import {
   ILanguageResourceService,
   LANGUAGE_RESOURCE_TOKEN,
@@ -33,6 +32,7 @@ import { Router, RouterLink } from '@angular/router';
 import { AlertDialog, LoggerUtil, Regex, Shield } from '@ccchymns.com/core';
 import { FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { NgOptimizedImage } from '@angular/common';
+import { SharedModule } from '../dashboard/shared';
 
 @Component({
   selector: 'app-verify-email',

@@ -12,10 +12,12 @@ import {
   Route,
 } from '@ccchymns.com/common';
 import { LanguageResourceKey } from '../../i18n/language-resource-key';
-import { SharedModule } from '../../../shared';
-import { NgMaterialButtonModule } from '@ccchymns.com/angular';
 import { TextFieldModule } from '@angular/cdk/text-field';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { IBibleReferenceForm } from '../form';
 import {
   JSON,
@@ -29,10 +31,11 @@ import { TuiDialogContext } from '@taiga-ui/core';
 import { POLYMORPHEUS_CONTEXT } from '@tinkoff/ng-polymorpheus';
 import { Router } from '@angular/router';
 import { BibleReferencesDataService } from '../../bible-references.data.service';
+import { DialogModule } from '../../../shared/dialog.module';
 @Component({
   selector: 'app-add-bible-reference-dialog',
   standalone: true,
-  imports: [SharedModule, NgMaterialButtonModule, TextFieldModule],
+  imports: [TextFieldModule, DialogModule],
   templateUrl: './add-bible-reference-dialog.component.html',
   styleUrl: './add-bible-reference-dialog.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

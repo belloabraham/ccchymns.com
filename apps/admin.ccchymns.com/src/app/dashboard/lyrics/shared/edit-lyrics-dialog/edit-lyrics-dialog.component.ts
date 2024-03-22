@@ -4,8 +4,6 @@ import {
   Inject,
   OnInit,
 } from '@angular/core';
-import { SharedModule } from '../../../shared';
-import { NgMaterialButtonModule } from '@ccchymns.com/angular';
 import {
   Config,
   CustomValidator,
@@ -16,10 +14,14 @@ import {
   Route,
 } from '@ccchymns.com/common';
 import { TextFieldModule } from '@angular/cdk/text-field';
-import { TuiDialogContext, TuiDialogService } from '@taiga-ui/core';
+import { TuiDialogContext } from '@taiga-ui/core';
 import { POLYMORPHEUS_CONTEXT } from '@tinkoff/ng-polymorpheus';
 import { DashboardLanguageResourceKey } from '../../../i18n/language-resource-key';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { ILyricsForm } from '../form';
 import { LanguageResourceKey } from '../../i18n/language-resource-key';
 import {
@@ -30,11 +32,12 @@ import {
 } from '@ccchymns.com/core';
 import { Router } from '@angular/router';
 import { LyricsDataService } from '../../lyrics.data.service';
+import { DialogModule } from '../../../shared/dialog.module';
 
 @Component({
   selector: 'app-edit-lyrics-dialog',
   standalone: true,
-  imports: [SharedModule, NgMaterialButtonModule, TextFieldModule],
+  imports: [DialogModule, TextFieldModule],
   templateUrl: './edit-lyrics-dialog.component.html',
   styleUrl: './edit-lyrics-dialog.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

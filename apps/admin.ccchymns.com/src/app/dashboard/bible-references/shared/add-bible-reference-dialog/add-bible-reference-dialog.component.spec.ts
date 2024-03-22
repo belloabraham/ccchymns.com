@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AddBibleReferenceDialogComponent } from './add-bible-reference-dialog.component';
-import { SharedModule } from '../../../shared';
 import {
   NgMaterialButtonModule,
 } from '@ccchymns.com/angular';
@@ -11,6 +10,7 @@ import {
   TranslocoTestingOptions,
 } from '@ngneat/transloco';
 import en from '../../../../../assets/i18n/en.json';
+import { DialogModule } from '../../../shared/dialog.module';
 
 export function getTranslocoTestingModule(
   options: TranslocoTestingOptions = {}
@@ -34,7 +34,7 @@ describe('AddBibleReferenceDialogComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         AddBibleReferenceDialogComponent,
-        SharedModule,
+        DialogModule,
         NgMaterialButtonModule,
         TextFieldModule,
         getTranslocoTestingModule(),

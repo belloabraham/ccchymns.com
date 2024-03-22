@@ -15,8 +15,7 @@ import {
 } from '@ccchymns.com/common';
 import { LanguageResourceKey } from '../../i18n/language-resource-key';
 import { DashboardLanguageResourceKey } from '../../../i18n/language-resource-key';
-import { FormError, SharedModule } from '../../../shared';
-import { NgMaterialButtonModule } from '@ccchymns.com/angular';
+import { FormError} from '../../../shared';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IAudioHymnForm } from '../form';
 import { TuiDialogContext } from '@taiga-ui/core';
@@ -38,11 +37,12 @@ import { from, retryWhen } from 'rxjs';
 import { SubSink } from 'subsink';
 import { getAudioLanguagePath } from '../utils/audio-language-path';
 import { StorageErrorCode } from '@angular/fire/storage';
+import { DialogModule } from '../../../shared/dialog.module';
 
 @Component({
   selector: 'app-add-audio-hymn-dialog',
   standalone: true,
-  imports: [SharedModule, NgMaterialButtonModule],
+  imports: [DialogModule],
   templateUrl: './add-audio-hymn-dialog.component.html',
   styleUrls: ['./add-audio-hymn-dialog.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -57,7 +57,7 @@ export class AddAudioHymnDialogComponent implements OnInit, OnDestroy {
     Validators.required,
     Validators.min(1),
     Validators.max(Config.MAX_HYMN_NUMBER),
-    CustomValidator.noDecimalNumber()
+    CustomValidator.noDecimalNumber(),
   ]);
   fileNameFC = new FormControl<string | null>(null, [Validators.required]);
   file?: File;

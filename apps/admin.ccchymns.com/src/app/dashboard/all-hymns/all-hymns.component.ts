@@ -9,10 +9,9 @@ import {
 import {
   NgMatTooltipModule,
   NgMaterialButtonModule,
-  SharedModule,
 } from '@ccchymns.com/angular';
 import { CCCIconDirective } from '@ccchymns.com/ui';
-import { EmptyStateComponent, ErrorStateComponent } from '../shared';
+import { EmptyStateComponent, ErrorStateComponent, SharedModule } from '../shared';
 import { DashboardLanguageResourceKey } from '../i18n/language-resource-key';
 import {
   ALLHymnsType,

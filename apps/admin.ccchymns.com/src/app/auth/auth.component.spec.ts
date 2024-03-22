@@ -5,7 +5,6 @@ import {
   LanguageResourceService,
   NgMaterialButtonModule,
   NgMaterialElevationDirective,
-  SharedModule,
 } from '@ccchymns.com/angular';
 import { NgOptimizedImage } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -15,6 +14,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { getTranslocoTestingModule, initialState } from '../mock';
 import { provideMockStore } from '@ngrx/store/testing';
 import { of } from 'rxjs';
+import { SharedModule } from '../dashboard/shared';
 
 describe('AuthComponent', () => {
   let component: AuthComponent;

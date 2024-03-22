@@ -15,8 +15,7 @@ import {
 } from '@ccchymns.com/common';
 import { DashboardLanguageResourceKey } from '../../../i18n/language-resource-key';
 import { LanguageResourceKey } from '../../i18n/language-resource-key';
-import { FormError, SharedModule } from '../../../shared';
-import { NgMaterialButtonModule } from '@ccchymns.com/angular';
+import { FormError } from '../../../shared';
 import { StorageService } from '../../../storage.service';
 import { AudioSpaceDataService } from '../../audio-space.data.service';
 import { TuiDialogContext } from '@taiga-ui/core';
@@ -34,11 +33,12 @@ import {
 import { SubSink } from 'subsink';
 import { from, retryWhen } from 'rxjs';
 import { StorageErrorCode } from '@angular/fire/storage';
+import { DialogModule } from '../../../shared/dialog.module';
 
 @Component({
   selector: 'app-add-audio-space-dialog',
   standalone: true,
-  imports: [SharedModule, NgMaterialButtonModule],
+  imports: [DialogModule],
   templateUrl: './add-audio-space-dialog.component.html',
   styleUrls: ['./add-audio-space-dialog.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

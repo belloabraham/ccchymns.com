@@ -4,8 +4,7 @@ import {
   Inject,
   OnInit,
 } from '@angular/core';
-import { NgMaterialButtonModule } from '@ccchymns.com/angular';
-import { FormError, SharedModule } from '../../shared';
+import { FormError } from '../../shared';
 import {
   Config,
   CustomValidator,
@@ -34,11 +33,12 @@ import {
 import { SubSink } from 'subsink';
 import { from, retryWhen } from 'rxjs';
 import { StorageErrorCode } from '@angular/fire/storage';
+import { DialogModule } from '../../shared/dialog.module';
 
 @Component({
   selector: 'app-tonic-solfa-dialog',
   standalone: true,
-  imports: [SharedModule, NgMaterialButtonModule],
+  imports: [DialogModule],
   templateUrl: './add-tonic-solfa-dialog.component.html',
   styleUrls: ['./add-tonic-solfa-dialog.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

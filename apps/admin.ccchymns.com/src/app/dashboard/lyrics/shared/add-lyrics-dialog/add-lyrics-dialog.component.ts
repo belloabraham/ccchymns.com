@@ -4,11 +4,9 @@ import {
   Inject,
   OnInit,
 } from '@angular/core';
-import { SharedModule } from '../../../shared';
 import { TuiDialogContext } from '@taiga-ui/core';
 import { POLYMORPHEUS_CONTEXT } from '@tinkoff/ng-polymorpheus';
 import { DashboardLanguageResourceKey } from '../../../i18n/language-resource-key';
-import { NgMaterialButtonModule } from '@ccchymns.com/angular';
 import {
   Config,
   CustomValidator,
@@ -29,11 +27,15 @@ import {
 } from '@ccchymns.com/core';
 import { LyricsDataService } from '../../lyrics.data.service';
 import { Router } from '@angular/router';
+import { DialogModule } from '../../../shared/dialog.module';
 
 @Component({
   selector: 'app-add-lyrics-dialog',
   standalone: true,
-  imports: [SharedModule, NgMaterialButtonModule, TextFieldModule],
+  imports: [
+    DialogModule,
+    TextFieldModule,
+  ],
   templateUrl: './add-lyrics-dialog.component.html',
   styleUrls: ['./add-lyrics-dialog.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -10,7 +10,6 @@ import {
   Router,
   RouterOutlet,
 } from '@angular/router';
-import { SharedModule } from '@ccchymns.com/angular';
 import { BibleReferencesDataService } from './bible-references.data.service';
 import { SubSink } from 'subsink';
 import { Unsubscribe } from '@angular/fire/firestore';
@@ -18,6 +17,7 @@ import { Store } from '@ngrx/store';
 import { filter } from 'rxjs';
 import { IBibleReference, Route } from '@ccchymns.com/common';
 import { getBibleReferencesActionGroup } from 'apps/admin.ccchymns.com/src/store';
+import { SharedModule } from '../shared';
 
 @Component({
   selector: 'app-bible-references',

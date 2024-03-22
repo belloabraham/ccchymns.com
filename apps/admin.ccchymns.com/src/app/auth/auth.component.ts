@@ -10,7 +10,6 @@ import {
   LANGUAGE_RESOURCE_TOKEN,
   NgMaterialButtonModule,
   NgMaterialElevationDirective,
-  SharedModule,
 } from '@ccchymns.com/angular';
 import { SubSink } from 'subsink';
 import {
@@ -33,6 +32,7 @@ import {
 import { NgOptimizedImage } from '@angular/common';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AlertDialog, LoggerUtil, Regex, Shield } from '@ccchymns.com/core';
+import { SharedModule } from '../dashboard/shared';
 
 
 @Component({

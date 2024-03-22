@@ -1,9 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AddAudioHymnDialogComponent } from './add-audio-hymn-dialog.component';
-import { SharedModule } from '../../../shared';
-import { NgMaterialButtonModule, TranslocoRootModule } from '@ccchymns.com/angular';
+import { NgMaterialButtonModule } from '@ccchymns.com/angular';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { DialogModule } from '../../../shared/dialog.module';
+import { TranslocoTestingModule } from '@ngneat/transloco';
 
 describe('AddAudioHymnDialogComponent', () => {
   let component: AddAudioHymnDialogComponent;
@@ -13,10 +14,10 @@ describe('AddAudioHymnDialogComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         AddAudioHymnDialogComponent,
-        SharedModule,
+        DialogModule,
         NgMaterialButtonModule,
         HttpClientTestingModule,
-        TranslocoRootModule
+        TranslocoTestingModule
       ],
     }).compileComponents();
 

@@ -12,7 +12,6 @@ import {
   ILanguageResourceService,
   LANGUAGE_RESOURCE_TOKEN,
   NgMaterialButtonModule,
-  SharedModule,
 } from '@ccchymns.com/angular';
 import { Store } from '@ngrx/store';
 import { SubSink } from 'subsink';
@@ -38,6 +37,7 @@ import {
 import { distinctUntilChanged, filter, map, merge } from 'rxjs';
 import { AUTH_IJTOKEN, IAuth } from '../../core';
 import { NotificationBuilder } from '@ccchymns.com/core';
+import { SharedModule } from './shared';
 
 export interface IBreadCrumb {
   label: string;
