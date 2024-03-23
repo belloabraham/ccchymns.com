@@ -7,7 +7,7 @@ import { SubSink } from 'subsink';
 import { Store } from '@ngrx/store';
 import { IBibleReferenceUIState } from '@ccchymns.com/common';
 import { BibleReferencesDataService } from '../bible-references.data.service';
-import { getEnglishBibleReferencesSelector } from 'apps/admin.ccchymns.com/src/store';
+import { getEnglishBibleReferencesSelector } from '../../../../store';
 
 @Component({
   selector: 'app-bible-references-english',

@@ -29,7 +29,7 @@ import {
 import {
   StoragePath,
   genericRetryStrategy,
-} from 'apps/admin.ccchymns.com/src/core';
+} from '../../../../core';
 import { SubSink } from 'subsink';
 import { from, retryWhen } from 'rxjs';
 import { StorageErrorCode } from '@angular/fire/storage';

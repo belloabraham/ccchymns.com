@@ -11,7 +11,7 @@ import { SubSink } from 'subsink';
 import { Store } from '@ngrx/store';
 import { AudioHymnsDataService } from '../audio-hymns.data.service';
 import { IAudioHymnsUIState } from '@ccchymns.com/common';
-import { getFrenchAudioHymnsSelector } from 'apps/admin.ccchymns.com/src/store';
+import { getFrenchAudioHymnsSelector } from '../../../../store';
 
 @Component({
   selector: 'app-audio-french',

@@ -11,7 +11,7 @@ import { SubSink } from 'subsink';
 import { IAudioHymnsUIState } from '@ccchymns.com/common';
 import { Store } from '@ngrx/store';
 import { AudioHymnsDataService } from '../audio-hymns.data.service';
-import { getYorubaAudioHymnsSelector } from 'apps/admin.ccchymns.com/src/store';
+import { getYorubaAudioHymnsSelector } from '../../../../store';
 
 @Component({
   selector: 'app-audio-yoruba',

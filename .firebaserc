@@ -1,18 +1,8 @@
 {
   "projects": {
-    "default": "ccchymnsdev"
+    "default": "ccchymns-9f715"
   },
   "targets": {
-    "ccchymnsdev": {
-      "hosting": {
-        "admin-ccchymnsdev": [
-          "admin-ccchymnsdev"
-        ],
-        "ccchymnsdev": [
-          "ccchymnsdev"
-        ]
-      }
-    },
     "ccchymns-9f715": {
       "hosting": {
         "adminccchymns": [

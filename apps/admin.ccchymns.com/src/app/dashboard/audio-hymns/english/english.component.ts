@@ -7,7 +7,7 @@ import { IAudioHymnsUIState } from '@ccchymns.com/common';
 import { SubSink } from 'subsink';
 import { Store } from '@ngrx/store';
 import { AudioHymnsDataService } from '../audio-hymns.data.service';
-import { getEnglishAudioHymnsSelector } from 'apps/admin.ccchymns.com/src/store';
+import { getEnglishAudioHymnsSelector } from '../../../../store';
 
 @Component({
   selector: 'app-audio-english',

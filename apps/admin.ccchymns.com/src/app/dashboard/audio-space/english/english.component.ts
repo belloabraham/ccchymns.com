@@ -15,7 +15,7 @@ import {
 import { AudioSpaceDataService } from '../audio-space.data.service';
 import { Store } from '@ngrx/store';
 import { SubSink } from 'subsink';
-import { getEnglishAudioSpaceSelector } from 'apps/admin.ccchymns.com/src/store';
+import { getEnglishAudioSpaceSelector } from '../../../../store';
 
 @Component({
   selector: 'app-audio-space-english',

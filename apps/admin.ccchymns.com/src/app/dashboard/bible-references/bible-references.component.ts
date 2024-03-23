@@ -16,7 +16,7 @@ import { Unsubscribe } from '@angular/fire/firestore';
 import { Store } from '@ngrx/store';
 import { filter } from 'rxjs';
 import { IBibleReference, Route } from '@ccchymns.com/common';
-import { getBibleReferencesActionGroup } from 'apps/admin.ccchymns.com/src/store';
+import { getBibleReferencesActionGroup } from '../../../store';
 import { SharedModule } from '../shared';
 
 @Component({

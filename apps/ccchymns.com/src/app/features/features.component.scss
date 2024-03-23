@@ -1,3 +1,5 @@
+@use 'gerillass';
+
 .features {
   margin-bottom: 1rem !important  ;
   svg {
@@ -22,5 +24,11 @@
   }
   .language-item {
     padding-bottom: 1rem;
+  }
+}
+
+@include gerillass.breakpoint(max, small) {
+  .row {
+    gap: 2rem;
   }
 }

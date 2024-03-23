@@ -29,7 +29,7 @@ import { FileUtil, NotificationBuilder, Shield } from '@ccchymns.com/core';
 import {
   StoragePath,
   genericRetryStrategy,
-} from 'apps/admin.ccchymns.com/src/core';
+} from '../../../../core';
 import { TuiDialogService } from '@taiga-ui/core';
 import { StorageService } from '../../storage.service';
 import { StorageErrorCode } from '@angular/fire/storage';

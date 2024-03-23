@@ -7,7 +7,7 @@ import { IBibleReferenceUIState } from '@ccchymns.com/common';
 import { Store } from '@ngrx/store';
 import { BibleReferencesDataService } from '../bible-references.data.service';
 import { SubSink } from 'subsink';
-import { getEgunBibleReferencesSelector } from 'apps/admin.ccchymns.com/src/store';
+import { getEgunBibleReferencesSelector } from '../../../../store';
 
 @Component({
   selector: 'app-bible-references-egun',

@@ -5,7 +5,7 @@ import {
   DATABASE_IJTOKEN,
   IDatabase,
   genericRetryStrategy,
-} from 'apps/admin.ccchymns.com/src/core';
+} from '../../../core';
 import { catchError, from, of, retryWhen } from 'rxjs';
 
 @Injectable()

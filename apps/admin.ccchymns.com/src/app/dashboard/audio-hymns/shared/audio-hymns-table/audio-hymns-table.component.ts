@@ -34,7 +34,7 @@ import { StorageService } from '../../../storage.service';
 import {
   StoragePath,
   genericRetryStrategy,
-} from 'apps/admin.ccchymns.com/src/core';
+} from '../../../../../core';
 import { getAudioLanguagePath } from '../utils/audio-language-path';
 import { Router } from '@angular/router';
 import { FileUtil, NotificationBuilder, Shield } from '@ccchymns.com/core';

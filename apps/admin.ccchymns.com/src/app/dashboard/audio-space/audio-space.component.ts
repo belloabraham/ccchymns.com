@@ -11,7 +11,7 @@ import {
 import { Store } from '@ngrx/store';
 import { filter } from 'rxjs';
 import {  IEditorsAudioSpace, Route } from '@ccchymns.com/common';
-import { getAudioSpaceActionGroup } from 'apps/admin.ccchymns.com/src/store';
+import { getAudioSpaceActionGroup } from '../../../store';
 @Component({
   selector: 'app-audio-space',
   standalone: true,

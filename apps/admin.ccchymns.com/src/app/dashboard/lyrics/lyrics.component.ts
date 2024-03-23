@@ -16,7 +16,7 @@ import { filter } from 'rxjs';
 import { SubSink } from 'subsink';
 import { Unsubscribe } from '@angular/fire/firestore';
 import { Store } from '@ngrx/store';
-import { getHymnLyricsActionGroup } from 'apps/admin.ccchymns.com/src/store';
+import { getHymnLyricsActionGroup } from '../../../store';
 
 @Component({
   selector: 'app-lyrics',

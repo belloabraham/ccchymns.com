@@ -7,7 +7,7 @@ import { SubSink } from 'subsink';
 import { IAudioHymnsUIState } from '@ccchymns.com/common';
 import { Store } from '@ngrx/store';
 import { AudioHymnsDataService } from '../audio-hymns.data.service';
-import { getEgunAudioHymnsSelector } from 'apps/admin.ccchymns.com/src/store';
+import { getEgunAudioHymnsSelector } from '../../../../store';
 
 @Component({
   selector: 'app-audio-egun',

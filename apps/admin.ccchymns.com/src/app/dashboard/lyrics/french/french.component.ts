@@ -10,7 +10,7 @@ import { LanguageResourceKey } from '../i18n/language-resource-key';
 import { Store } from '@ngrx/store';
 import { IHymnLyricsUIState } from '@ccchymns.com/common';
 import { SubSink } from 'subsink';
-import { getFrenchLyricsSelector } from 'apps/admin.ccchymns.com/src/store';
+import { getFrenchLyricsSelector } from '../../../../store';
 import { LyricsDataService } from '../lyrics.data.service';
 
 @Component({

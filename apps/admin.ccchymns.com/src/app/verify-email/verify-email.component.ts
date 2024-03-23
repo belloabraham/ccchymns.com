@@ -27,7 +27,7 @@ import {
   IAuth,
   Preference,
   AuthError,
-} from 'apps/admin.ccchymns.com/src/core';
+} from '../../core';
 import { Router, RouterLink } from '@angular/router';
 import { AlertDialog, LoggerUtil, Regex, Shield } from '@ccchymns.com/core';
 import { FormControl, Validators, ReactiveFormsModule } from '@angular/forms';

@@ -7,7 +7,7 @@ import {
   englishAudioHymnsFeature,
   frenchAudioHymnsFeature,
   yorubaAudioHymnsFeature,
-} from 'apps/admin.ccchymns.com/src/store';
+} from '../../../store';
 
 export const AUDIO_HYMNS_ROUTES: Routes = [
   {

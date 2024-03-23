@@ -28,7 +28,7 @@ import { COLUMN_NAMES_FOR_AUDIO_HYMNS_TABLE } from '../data';
 import {
   StoragePath,
   genericRetryStrategy,
-} from 'apps/admin.ccchymns.com/src/core';
+} from '../../../../../core';
 import { FileUtil, NotificationBuilder, Shield } from '@ccchymns.com/core';
 import { TuiDialogService } from '@taiga-ui/core';
 import { StorageService } from '../../../storage.service';

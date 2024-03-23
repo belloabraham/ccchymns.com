@@ -1,6 +1,6 @@
 import { Router } from "@angular/router";
 import { Route } from "@ccchymns.com/common";
-import { StoragePath } from "apps/admin.ccchymns.com/src/core";
+import { StoragePath } from "../../../../../core";
 
  export function  getAudioLanguagePath(router:Router): string {
     const basePath = `/${Route.AUDIO_HYMNS}`;

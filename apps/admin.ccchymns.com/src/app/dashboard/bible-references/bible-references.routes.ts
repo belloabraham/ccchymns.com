@@ -7,7 +7,7 @@ import {
   englishBibleReferencesFeature,
   frenchBibleReferencesFeature,
   yorubaBibleReferencesFeature,
-} from 'apps/admin.ccchymns.com/src/store';
+} from '../../../store';
 
 export const BIBLE_REFERENCES_ROUTES: Routes = [
   {

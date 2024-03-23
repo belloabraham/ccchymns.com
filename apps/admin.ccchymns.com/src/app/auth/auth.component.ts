@@ -17,7 +17,7 @@ import {
   IAuth,
   Preference,
   AuthError,
-} from 'apps/admin.ccchymns.com/src/core';;
+} from '../../core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Title } from '@angular/platform-browser';

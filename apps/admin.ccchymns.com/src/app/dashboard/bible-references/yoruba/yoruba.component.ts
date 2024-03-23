@@ -13,7 +13,7 @@ import { SubSink } from 'subsink';
 import { IBibleReferenceUIState } from '@ccchymns.com/common';
 import { BibleReferencesDataService } from '../bible-references.data.service';
 import { Store } from '@ngrx/store';
-import { getYorubaBibleReferencesSelector } from 'apps/admin.ccchymns.com/src/store';
+import { getYorubaBibleReferencesSelector } from '../../../../store';
 
 @Component({
   selector: 'app-bible-references-yoruba',

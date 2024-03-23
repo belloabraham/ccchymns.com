@@ -7,7 +7,7 @@ import {
   englishLyricsFeature,
   frenchLyricsFeature,
   yorubaLyricsFeature,
-} from 'apps/admin.ccchymns.com/src/store';
+} from '../../../store';
 
 export const LYRICS_ROUTES: Routes = [
   {

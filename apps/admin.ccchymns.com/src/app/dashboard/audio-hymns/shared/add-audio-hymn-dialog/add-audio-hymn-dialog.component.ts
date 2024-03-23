@@ -31,7 +31,7 @@ import {
 import {
   StoragePath,
   genericRetryStrategy,
-} from 'apps/admin.ccchymns.com/src/core';
+} from '../../../../../core';
 import { StorageService } from '../../../storage.service';
 import { from, retryWhen } from 'rxjs';
 import { SubSink } from 'subsink';
