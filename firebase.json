@@ -3,6 +3,7 @@
     {
       "target": "ccchymns-9f715",
       "public": "dist/apps/ccchymns.com/browser",
+      "cleanUrls": true,
       "header": [
         {
           "source": "assets/images/banner.png",
@@ -14,13 +15,7 @@
           ]
         }
       ],
-      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
-      "rewrites": [
-        {
-          "source": "**",
-          "destination": "/index.html"
-        }
-      ]
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
     },
     {
       "target": "adminccchymns",

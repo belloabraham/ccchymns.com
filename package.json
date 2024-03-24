@@ -24,6 +24,10 @@
     "build:ccchymns.com:prod": "nx build ccchymns.com --configuration=production",
     "build:ccchymns:prod": "pnpm run build:ccchymns.com:prod && pnpm run build:admin.ccchymns.com:prod",
 
+    "build:admin.ccchymns.com:staging": "nx build admin.ccchymns.com --configuration=staging",
+    "build:ccchymns.com:staging": "nx build ccchymns.com --configuration=staging",
+    "build:ccchymns:staging": "pnpm run build:ccchymns.com:staging && pnpm run build:admin.ccchymns.com:staging",
+
     "test:admin.ccchymns.com": "nx test admin.ccchymns.com",
     "test:ccchymns.com": "nx test ccchymns.com",
     "test:ui": "nx test ui",

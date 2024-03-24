@@ -1,4 +1,4 @@
-import { NgModule, isDevMode } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Route } from '../core/data/route';
 import { HomeComponent } from './home/home.component';
@@ -40,7 +40,6 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes, {
       initialNavigation: 'enabledBlocking',
-      // enableTracing: isDevMode(),
     }),
   ],
   exports: [RouterModule],
