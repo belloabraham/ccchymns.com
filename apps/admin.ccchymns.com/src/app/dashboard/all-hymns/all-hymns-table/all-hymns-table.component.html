@@ -47,11 +47,10 @@
   <ng-container [cdkColumnDef]="columnNames[4]">
     <th class="user-select-none" cdk-header-cell *cdkHeaderCellDef scope="col">{{t(columnNames[4])}}</th>
     <td cdk-cell *cdkCellDef="let row">
-      <i class='icon' [ccc-icon]="'y-circle'" [class]="row?.audioSpace?.yoruba ? 'text-success':'text-neutral'"></i>
-      <i class='icon' [ccc-icon]="'e-circle'" [class]="row?.audioSpace?.english ? 'text-success':'text-neutral'"></i>
-      <i class='icon' [ccc-icon]="'f-circle'" [class]="row?.audioSpace?.french ? 'text-success':'text-neutral'"></i>
-      <i class='icon' [ccc-icon]="'e-circle-outline'"
-        [class]="row?.audioSpace?.egun ? 'text-success':'text-neutral'"></i>
+      <i class='icon' [ccc-icon]="'e-circle'" [class]="row.audioSpace?.english ? 'text-success':'text-neutral'"></i>
+      <i class='icon visually-hidden' [ccc-icon]="'e-circle'"></i>
+      <i class='icon visually-hidden' [ccc-icon]="'e-circle'"></i>
+      <i class='icon visually-hidden' [ccc-icon]="'e-circle'"></i>
     </td>
   </ng-container>
 

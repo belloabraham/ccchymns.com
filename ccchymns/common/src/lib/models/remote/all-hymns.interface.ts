@@ -24,7 +24,7 @@ const allHymns: IAllHymns = {
     no: 1,
     english: '',
   },
-  toniSolfa: {
+  tonicSolfa: {
     no: 1,
     url: '',
   },
