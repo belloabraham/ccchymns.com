@@ -12,7 +12,7 @@ import { languageLoadedFeature } from '../store/selectors/language-resource.sele
 import { getApp, initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import {
-  initializeAppCheck, 
+  initializeAppCheck,
   ReCaptchaEnterpriseProvider,
   provideAppCheck,
 } from '@angular/fire/app-check';
@@ -36,9 +36,9 @@ const MODULES = [
   imports: [
     ...MODULES,
     provideFirebaseApp(() => initializeApp({ ...environment.firebase })),
-    provideAuth(() => getAuth()),
+    provideAuth(() => getAuth(getApp())),
     provideFirestore(() => getFirestore()),
-    provideStorage(() => getStorage()),
+    provideStorage(() => getStorage(getApp())),
     provideAppCheck(() => {
       const provider = new ReCaptchaEnterpriseProvider(
         environment.reCAPTCHAEnterpriseKey

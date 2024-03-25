@@ -1,15 +1,25 @@
 {
   "projects": {
-    "default": "ccchymns-9f715"
+    "default": "ccchymnsprod"
   },
   "targets": {
-    "ccchymns-9f715": {
+    "ccchymnsdev": {
       "hosting": {
-        "adminccchymns": [
-          "adminccchymns"
+        "admin-ccchymnsdev": [
+          "admin-ccchymnsdev"
         ],
-        "ccchymns-9f715": [
-          "ccchymns-9f715"
+        "ccchymnsdev": [
+          "ccchymnsdev"
+        ]
+      }
+    },
+    "ccchymnsprod": {
+      "hosting": {
+        "admin-ccchymnsprod": [
+          "admin-ccchymnsprod"
+        ],
+        "ccchymnsprod": [
+          "ccchymnsprod"
         ]
       }
     }
