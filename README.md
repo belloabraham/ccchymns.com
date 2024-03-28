@@ -12,7 +12,7 @@
 
 ## Technologies Used
 
-- Angular
+- Angular, Angular 17 SSR
 - Nx Workspace
 - Story book
 - Ngrx
@@ -32,4 +32,3 @@ CCC Hymns Dashboard is a comprehensive management tool designed for the efficien
 - Advanced search and filter options for easy access to hymns.
 - Playlist creation and management for organizing hymns.
 - Real-time updates and notifications.
-- [Include other specific functionalities of the dashboard.]
