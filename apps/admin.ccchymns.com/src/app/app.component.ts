@@ -61,7 +61,7 @@ export class AppComponent implements OnDestroy, OnInit {
   ]);
 
   private displayPercentageMap = new Map([
-    [Breakpoints.XSmall, Display.percentage85],
+    [Breakpoints.XSmall, Display.percentage75],
     [Breakpoints.Small, Display.percentage85],
     [Breakpoints.Medium, Display.percentage95],
     [Breakpoints.Large, Display.percentage100],
