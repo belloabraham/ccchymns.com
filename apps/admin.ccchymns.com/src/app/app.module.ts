@@ -39,15 +39,6 @@ const MODULES = [
     provideAuth(() => getAuth(getApp())),
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage(getApp())),
-    provideAppCheck(() => {
-      const provider = new ReCaptchaEnterpriseProvider(
-        environment.reCAPTCHAEnterpriseKey
-      );
-      return initializeAppCheck(getApp(), {
-        provider,
-        isTokenAutoRefreshEnabled: true,
-      });
-    }),
   ],
   providers: [provideStore(), provideState(languageLoadedFeature)],
   bootstrap: [AppComponent],
