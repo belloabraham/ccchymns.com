@@ -30,9 +30,27 @@ const routes: Routes = [
       import('./terms/terms.component').then((mod) => mod.TermsComponent),
   },
   {
+    path: Route.DOWNLOAD,
+    canMatch: [() => {}],
+    loadComponent: () =>
+      import('./download/download.component').then(
+        (mod) => mod.DownloadComponent
+      ),
+  },
+  {
+    path: `${Route.LINK}/:${Route.PARAMS.CONTENT_ID}`,
+    canMatch: [() => {}],
+    loadComponent: () =>
+      import('./download/download.component').then(
+        (mod) => mod.DownloadComponent
+      ),
+  },
+  {
     path: '**',
     loadComponent: () =>
-      import('./404/page-not-found.component').then((mod) => mod.PageNotFoundComponent),
+      import('./404/page-not-found.component').then(
+        (mod) => mod.PageNotFoundComponent
+      ),
   },
 ];
 

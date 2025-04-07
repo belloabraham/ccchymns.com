@@ -4,4 +4,9 @@ export class Route {
   static readonly PRIVACY = 'privacy';
   static readonly REFUND = 'refund';
   static readonly ABOUT = 'about';
+  static readonly DOWNLOAD = 'download';
+  static readonly LINK = 'link';
+  static readonly PARAMS = {
+    CONTENT_ID: 'contentId',
+  };
 }
